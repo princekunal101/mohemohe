@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import { title } from "process";
 
 interface PostPageProps {
   params: {
@@ -19,47 +20,51 @@ async function getPostFromPrams(params: PostPageProps["params"]) {
 
   return post;
 }
-export async function generateMetaData({params}: PostPageProps): Promise<Metadata> {
-const post = await getPostFromPrams(params);
 
-if(!post){
-  return{}
-}
+// export async function generateMetaData({ params }: PostPageProps): Promise<Metadata> {
+//   const post = await getPostFromPrams(params);
 
-const ogSearchParams = new URLSearchParams();
-ogSearchParams.set("title", post.title)
-return{
-  title: post.title,
-  description: post.description,
-  authors: {name : siteConfig.author},
-  openGraph: {
-    title: post.title,
-    description: post.description,
-    type: "article",
-    url: post.slug,
-    images: [
-      {
-        url: `/api/og?${ogSearchParams.toString()}`,
-        width: 1200,
-        height: 630,
-        alt: post.title
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: post.title,
-    description: post.description,
-    images: [`/api/og?${ogSearchParams.toString()}`],
-  }
-}
-}
+//   if (!post || !post.published) {
+//     return {
+//   title: "Page Not Found",
+//   description: "The requested page could not br found."
+// };
+//   }
+
+//   const ogSearchParams = new URLSearchParams();
+//   ogSearchParams.set("title", post.title)
+//   return {
+//     title: post.title,
+//     description: post.description,
+//     authors: { name: siteConfig.author },
+//     openGraph: {
+//       title: post.title,
+//       description: post.description,
+//       type: "article",
+//       url: post.slug,
+//       images: [
+//         {
+//           url: `/api/og?${ogSearchParams.toString()}`,
+//           width: 1200,
+//           height: 630,
+//           alt: post.title
+//         }
+//       ]
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       title: post.title,
+//       description: post.description,
+//       images: [`/api/og?${ogSearchParams.toString()}`],
+//     }
+//   }
+// }
 
 export async function generateStaticParams(): Promise<PostPageProps["params"][]> {
   return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
 
 }
-export default async function PostPage({ params }: PostPageProps) {
+export default async function PostPage({ params, }: PostPageProps) {
   const post = await getPostFromPrams(params);
 
   if (!post || !post.published) {
@@ -74,6 +79,6 @@ export default async function PostPage({ params }: PostPageProps) {
 
     <hr className="my-4" />
 
-    <MDXContent code={post.body}/>
+    <MDXContent code={post.body} />
   </article>
 }
