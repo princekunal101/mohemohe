@@ -33,7 +33,7 @@ export function PostItem({ slug, title, description, date, tags }: PostItemProps
             <time dateTime={date}>{formatDate(date)}</time>
           </dd>
         </dl>
-        <Link href={slug} className={cn(buttonVariants({ variant: "link" }), "py-0")}>
+        <Link href={"/" + slug} className={cn(buttonVariants({ variant: "link" }), "py-0")}>
           Read more &rarr;
         </Link>
       </div>

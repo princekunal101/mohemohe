@@ -16,7 +16,7 @@ export function SiteFooter() {
             <Icons.twitter className="h-6 w-6"/>
           </a>
           <a target="_blank" rel="noreferrer" href={siteConfig.links.github}>
-            <span className="sr-only">Mail</span>
+            <span className="sr-only">GitHub</span>
             <Icons.github className="h-6 w-6"/>
           </a>
         </div>

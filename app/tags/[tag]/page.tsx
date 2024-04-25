@@ -4,7 +4,6 @@ import { Tag } from "@/components/tag";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllTags, getPostsByTagSlug, sortTagsByCount } from "@/lib/utils";
 import { slug } from "github-slugger";
-import { Metadata, ResolvingMetadata } from "next";
 
 
 interface TagPageProps {

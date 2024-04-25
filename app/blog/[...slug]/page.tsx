@@ -3,9 +3,6 @@ import { MDXContent } from "@/components/mdx-components";
 import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
-import { Metadata, ResolvingMetadata } from "next";
-import { siteConfig } from "@/config/site";
-import { title } from "process";
 import { Tag } from "@/components/tag";
 
 interface PostPageProps {
