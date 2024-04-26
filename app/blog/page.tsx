@@ -32,7 +32,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     POST_PER_PAGE * currentPage
   );
 
-  const tags = getAllTags(posts);
+  const tags = getAllTags(posts.filter((post) => post.published));
   const sortedTags = sortTagsByCount(tags);
 
   return (
@@ -71,13 +71,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           )}
           <QueryPagination totalPages={totalPages} className=" justify-end mt-4" />
         </div>
-        
+
         <Card className="col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
           <CardHeader>
             <CardTitle>Tags</CardTitle>
             <CardContent className="flex flex-wrap px-0 py-1 gap-2">
               {sortedTags?.map((tag) => (
-              <Tag tag={tag} key={tag} count={tags[tag]} />
+                <Tag tag={tag} key={tag} count={tags[tag]} />
               ))}
             </CardContent>
           </CardHeader>

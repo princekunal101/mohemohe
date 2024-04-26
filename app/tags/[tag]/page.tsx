@@ -23,7 +23,7 @@ interface TagPageProps {
 // }
 
 export const generateStaticParams = () => {
-  const tags = getAllTags(posts);
+  const tags = getAllTags(posts.filter((post) => post.published));
   const paths = Object.keys(tags).map((tag) => ({ tag: slug(tag) }));
   return paths;
 }
@@ -32,8 +32,8 @@ export default function TagPage({ params }: TagPageProps) {
   const { tag } = params;
   const title = tag.split("-").join(" ")
 
-  const displayPosts = getPostsByTagSlug(posts, tag);
-  const tags = getAllTags(posts);
+  const displayPosts = getPostsByTagSlug(posts.filter((post) => post.published), tag);
+  const tags = getAllTags(posts.filter((post) => post.published));
   const sortedTags = sortTagsByCount(tags)
 
   return (
