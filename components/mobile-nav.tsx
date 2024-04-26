@@ -34,6 +34,7 @@ export function MobileNav() {
           <MobileLink onOpenChange={setOpen} href="/about">
             About
           </MobileLink>
+          <hr className="mr-2"/>
           <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
             Github
           </Link>

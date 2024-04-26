@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss"
-import {fontFamily} from "tailwindcss/defaultTheme"
+import { fontFamily } from "tailwindcss/defaultTheme"
 const config = {
   darkMode: ["class"],
   content: [
@@ -7,18 +7,18 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: '1rem',
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
-      fontFamily:{
+      fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans]
       },
       colors: {

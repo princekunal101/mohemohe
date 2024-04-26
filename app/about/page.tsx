@@ -8,7 +8,7 @@ export const metadata: Metadata ={
 }
 
 export default async function AboutPage() {
-  return (<div className="container max-w-6xl py-6 lg:py-10">
+  return (<div className="container px-4 sm:px-6 md:px-8 max-w-6xl py-6 lg:py-10">
     <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
       <div className="flex-1 space-x-4">
         <h1 className=" inline-block font-black text-4xl lg:text-5xl">
