@@ -23,6 +23,9 @@ export function SiteFooter() {
         <div className="mb-2 flex space-x-2 text-sm text-muted-foreground">
           <a href={siteConfig.links.personalSite} target="_blank">{siteConfig.author}</a>
         </div>
+        <div className="mb-2 flex space-x-2 text-sm text-muted-foreground">
+          <p> &copy; 2024 <a href="https://www.mohemohe.in">{siteConfig.name}</a> | All rights Reserved </p>
+        </div>
       </div>
     </footer>
   )
