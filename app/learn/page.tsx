@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 }
 const POST_PER_PAGE = 5;
 
-interface BlogPageProps {
+interface LearnPageProps {
   searchParams: {
     page?: string;
   };
 }
 
-export default async function BlogPage({ searchParams }: BlogPageProps) {
+export default async function LearnPage({ searchParams }: LearnPageProps) {
   const currentPage = Number(searchParams?.page) || 1
   const sortedPosts = sortPosts(posts.filter((post) => post.published)); //published posts
   // const sortedUpdatedPosts = sortByUpdatedPosts(posts.filter((post) => post.published)); //updsted posts
@@ -42,9 +42,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     <div className="container px-4 sm:px-6 md:px-8 max-w-4xl py-6 lg:py-10">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-center">
         <div className="flex-1 space-y-4">
-          <h1 className=" inline-block font-black text-4xl lg:text-5xl">Blog</h1>
+          <h1 className=" inline-block font-black text-4xl lg:text-5xl">Learn</h1>
           <p className="text-xl text-muted-foreground">
-            this is blog pages.
+            this is online learning pages.
           </p>
         </div>
       </div>

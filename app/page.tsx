@@ -20,7 +20,7 @@ export default function Home() {
             Nextjs 14.
           </p>
           <div className="flex flex-col gap-4 justify-center sm:flex-row">
-            <Link href="/blog" className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
+            <Link href="/learn" className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
               View Learning Subjects
             </Link>
             <Link href={siteConfig.links.github}
