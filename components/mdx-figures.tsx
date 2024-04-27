@@ -20,14 +20,15 @@ export function FigureMdx({
 
 }: FigureProps) {
 
+  const lightImgSrc = `/images/learn/light/${lightUrl}.png`;
+  const darkImgSrc = `/images/learn/dark/${lightUrl}.png`;
   return (
     <>
-      <figure className={cn("my-5 items-start rounded-md border w-full dark:max-w-none border-slate-300 dark:border-slate-700")} {...props}>
-      <Image className={cn(" w-full block dark:hidden")} src={"/" + lightUrl} alt={desc} width={200} height={100} />
-      <Image className={cn("w-full hidden dark:block")} src={"/" + darkUrl} alt={desc} width={200} height={100} />
-
-    </figure>
-      <p className={cn(" text-center -mt-4 capitalize italic text-sm caption-bottom")}>{desc}</p>
+      <figure className={cn("my-5 items-start w-full dark:max-w-none")} {...props}>
+        <Image className={cn(" w-full h-auto block rounded-md border border-zinc-200 bg-gray-100 dark:hidden")} src={lightImgSrc} alt={desc} width={1400} height={800} />
+        <Image className={cn("w-full h-auto hidden rounded-md border dark:border-zinc-700 dark:bg-gray-900 dark:block")} src={darkImgSrc} alt={desc} width={1400} height={800} />
+      </figure>
+      <p className={cn(" text-center -mt-4 normal-case italic text-sm caption-bottom")}>{desc}</p>
     </>
 
   )

@@ -73,7 +73,7 @@ export default async function PostPage({ params, }: PostPageProps) {
   const dateTitle = (post.publishedDate === post.updatedDate ? "Published On " : "Updated At ");
 
 
-  return <article className=" container px-4 sm:px-6 md:px-8 py-6 prose dark:prose-invert max-w-3xl">
+  return <article className=" container px-4 sm:px-6 md:px-8 py-6 text-justify prose dark:prose-invert max-w-3xl">
     <h1 className="mb-2">{post.title}</h1>
     <div className="flex gap-2 mb-2">
       {post.tags?.map(tag => <Tag tag={tag} key={tag} />

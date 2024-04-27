@@ -12,7 +12,11 @@ const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-san
 
 // const manrope = Manrope({ subsets: ["latin"], display: "swap", variable: "--font-mr" });
 export const metadata: Metadata = {
-  title: siteConfig.name,
+  title: {
+
+    template: `%s | ` + siteConfig.name,
+    default: siteConfig.name
+  },
   description: siteConfig.description,
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
 };

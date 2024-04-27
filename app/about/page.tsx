@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site";
 import { Metadata } from "next";
 
 export const metadata: Metadata ={
-  title: "About me",
-  description: "Information about me",
+  title: "About us",
+  description: "Information about us",
 }
 
 export default async function AboutPage() {
@@ -12,7 +12,7 @@ export default async function AboutPage() {
     <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
       <div className="flex-1 space-x-4">
         <h1 className=" inline-block font-black text-4xl lg:text-5xl">
-          About Me
+          About us
         </h1>
       </div>
     </div>
