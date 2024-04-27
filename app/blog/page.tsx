@@ -4,7 +4,7 @@ import { QueryPagination } from "@/components/query-pagination";
 import { Tag } from "@/components/tag";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
+import { getAllTags, sortByUpdatedPosts, sortPosts, sortTagsByCount } from "@/lib/utils";
 import { Metadata } from "next";
 
 
@@ -23,9 +23,12 @@ interface BlogPageProps {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const currentPage = Number(searchParams?.page) || 1
-  const sortedPosts = sortPosts(posts.filter((post) => post.published));
-  const totalPages = Math.ceil(sortedPosts.length / POST_PER_PAGE);
+  const sortedPosts = sortPosts(posts.filter((post) => post.published)); //published posts
+  // const sortedUpdatedPosts = sortByUpdatedPosts(posts.filter((post) => post.published)); //updsted posts
+  // let sortedPosts = sortedUpdatedPosts;
+  // (sortedPubPosts > sortedUpdatedPosts ? (sortedPosts = sortedPubPosts) : null)
 
+  const totalPages = Math.ceil(sortedPosts.length / POST_PER_PAGE);
 
   const displayPosts = sortedPosts.slice(
     POST_PER_PAGE * (currentPage - 1),
@@ -53,12 +56,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             <ul className="flex flex-col">
 
               {displayPosts.map((post) => {
-                const { slug, date, title, description, tags } = post
+                const { slug, publishedDate: publishedDate, updatedDate: updatedDate, title, description, tags } = post
                 return (
                   <li key={slug}>
                     <PostItem
                       slug={slug}
-                      date={date}
+                      publishedDate={publishedDate}
+                      updatedDate={updatedDate}
                       title={title}
                       description={description}
                       tags={tags} />

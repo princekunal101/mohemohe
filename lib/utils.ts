@@ -17,15 +17,42 @@ export function formatDate(input: string | number): string {
   })
 }
 
-
-export function sortPosts(posts: Array<Post>) {
+// Sorting only on the basis of publishing date
+export function sortPubPosts(posts: Array<Post>) {
   return posts.sort((a, b) => {
-    if (a.date > b.date) return -1;
-    if (a.date < b.date) return 1;
+    if (a.publishedDate > b.publishedDate) return -1;
+    if (a.publishedDate < b.publishedDate) return 1;
     return 0;
 
   })
 }
+
+// Sorting by chance if updated date have less than published date
+export function sortPosts(posts: Array<Post>) {
+  
+  return posts.sort((a, b) => {
+    let pubA = a.publishedDate;
+    const updA = a.updatedDate;
+    let pubB = b.publishedDate;
+    const updB = b.updatedDate;
+    (pubA < updA? pubA = updA : null);
+    (pubB < updB? pubB = updB : null);
+    
+    if (pubA > pubB) return -1;
+    if (pubA < pubB) return 1;
+    return 0;
+  })
+}
+
+// Sorting by updated dates only
+export function sortByUpdatedPosts(posts: Array<Post>) {
+  return posts.sort((a, b) => {
+    if (a.updatedDate > b.updatedDate) return -1;
+    if (a.updatedDate < b.updatedDate) return 1;
+    return 0;
+  })
+}
+
 
 export function getAllTags(posts: Array<Post>) {
   const tags: Record<string, number> = {}

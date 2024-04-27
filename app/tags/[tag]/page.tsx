@@ -12,8 +12,8 @@ interface TagPageProps {
   }
 }
 
-// export async function generateMetaData({
-//   params,
+// export async function generateMetaData({ 
+//   params, 
 // }: TagPageProps): Promise<Metadata> {
 //   const { tag } = params;
 //   return {
@@ -52,12 +52,13 @@ export default function TagPage({ params }: TagPageProps) {
             <ul className="flex flex-col">
 
               {displayPosts.map((post) => {
-                const { slug, date, title, description, tags } = post
+                const { slug, publishedDate: publishedDate, updatedDate: updatedDate, title, description, tags } = post
                 return (
                   <li key={slug}>
                     <PostItem
                       slug={slug}
-                      date={date}
+                      publishedDate={publishedDate}
+                      updatedDate={updatedDate}
                       title={title}
                       description={description}
                       tags={tags} />

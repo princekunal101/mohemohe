@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import "@/styles/mdx.css";
 import { Tag } from "@/components/tag";
+import { formatDate } from "@/lib/utils";
 
 interface PostPageProps {
   params: {
@@ -69,6 +70,9 @@ export default async function PostPage({ params, }: PostPageProps) {
     notFound();
   }
 
+  const dateTitle = (post.publishedDate === post.updatedDate ? "Published On " : "Updated At ");
+
+
   return <article className=" container px-4 sm:px-6 md:px-8 py-6 prose dark:prose-invert max-w-3xl">
     <h1 className="mb-2">{post.title}</h1>
     <div className="flex gap-2 mb-2">
@@ -76,10 +80,12 @@ export default async function PostPage({ params, }: PostPageProps) {
       )}
     </div>
     {post.description ? (
-      <p className=" text-xl mt-0 text-muted-foreground">{post.description}</p>
+      <p className=" text-xl m-0 text-muted-foreground">{post.description}</p>
     ) : null}
 
-    <hr className="my-4" />
+    <time className="text-wrap my-2 text-sm font-semibold" dateTime={post.updatedDate}>{dateTitle + formatDate(post.publishedDate)}</time>
+
+    <hr className="mb-4 mt-2" />
 
     <MDXContent code={post.body} />
   </article>

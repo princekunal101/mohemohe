@@ -42,7 +42,8 @@ export default function Home() {
               slug={post.slug}
               title={post.title}
               description={post.description}
-              date={post.date} 
+              publishedDate={post.publishedDate} 
+              updatedDate={post.updatedDate}
               tags={post.tags}/>
           </li>)}
         </ul>
