@@ -1,9 +1,10 @@
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
-import { cn, sortPosts } from "@/lib/utils";
-import { posts } from "#site/content";
+import { cn, sortByChapters, sortPosts } from "@/lib/utils";
+import { chapters, posts } from "#site/content";
 import Link from "next/link";
 import { PostItem } from "@/components/post-item";
+import ChapterBox from "@/components/chapter-box";
 
 
 export default function Home() {
@@ -16,11 +17,11 @@ export default function Home() {
             Hello, This is mohe mohe
           </h1>
           <p className="max-w-[42rem] mx-auto text-muted-foreground sm:text-xl text-balance">
-            Welcome to my learning templet. Built using <br/> tailwind, shadcn, velite and
+            Welcome to my learning templet. Built using <br /> tailwind, shadcn, velite and
             Nextjs 14.
           </p>
           <div className="flex flex-col gap-4 justify-center sm:flex-row">
-            <Link href="/learn" className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
+            <Link href="/blog" className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
               View Learning Subjects
             </Link>
             <Link href={siteConfig.links.github}
@@ -42,9 +43,9 @@ export default function Home() {
               slug={post.slug}
               title={post.title}
               description={post.description}
-              publishedDate={post.publishedDate} 
+              publishedDate={post.publishedDate}
               updatedDate={post.updatedDate}
-              tags={post.tags}/>
+              tags={post.tags} />
           </li>)}
         </ul>
       </section>
