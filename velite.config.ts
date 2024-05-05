@@ -31,13 +31,13 @@ const posts = defineCollection({
 const chapters = defineCollection({
   name: "Chapter",
   // pattern: "blog/**/**/*.mdx",
-  pattern: `learn/${"**/"}**/*.mdx`,// in ${variable books path from getting from learn folder}
+  pattern: `learn/${""}**/*.mdx`,// in ${variable books path from getting from learn folder}
   schema: s
     .object({
       slug: s.path(),
       chapTitle: s.string().max(90),
       chapNum: s.number(),
-      description: s.string().max(900).optional(),
+      chapDesc: s.string().max(900).optional(),
       publishedDate: s.isodate(),
       updatedDate: s.isodate(),
       published: s.boolean().default(true),

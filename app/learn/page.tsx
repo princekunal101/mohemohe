@@ -1,13 +1,14 @@
 import { chapters } from "@/.velite";
 import ChapterBox from "@/components/chapter-box";
-import { sortByChapters } from "@/lib/utils";
+import { ChapterHeader } from "@/components/chapter-header";
+import { cn, sortByChapters } from "@/lib/utils";
 
 
 export default function LearnPage() {
   const latestChapter = sortByChapters(chapters.filter((chapter) => chapter.published)).slice(0, 5);
 
-  return (<>
-    <h1>Learn pages</h1>
+  return (<div className={cn("container max-w-4xl items-center")}>
+    
     <ul className="flex flex-col">
           {latestChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
             <ChapterBox
@@ -17,6 +18,7 @@ export default function LearnPage() {
               />
           </li>)}
         </ul>
-  </>
+        
+  </div>
   )
 }

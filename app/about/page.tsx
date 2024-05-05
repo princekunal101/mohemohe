@@ -20,7 +20,7 @@ export default async function AboutPage() {
     <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
       <div className="min-w-48 max-w-48 flex flex-col gap-2">
         <Avatar className="h-48 w-48">
-          <AvatarImage src="https://avatars.githubusercontent.com/u/138247815?v=4" alt={siteConfig.author} />
+          {/* <AvatarImage src="https://avatars.githubusercontent.com/u/138247815?v=4" alt={siteConfig.author} /> */}
           <AvatarFallback>PK</AvatarFallback>
         </Avatar>
         <h2 className="text-2xl font-bold text-center break-words">

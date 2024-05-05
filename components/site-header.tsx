@@ -9,7 +9,7 @@ import { ModeToggle } from "./mode-toggle";
 
 export function SiteHeader() {
   return (
-    <header className="z-10 sticky top-0 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="z-10 sticky   w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container px-4 sm:px-6 md:px-8 flex h-14 max-w-screen-2xl items-center">
         <MainNav />
         <div className="flex flex-1 item-center justify-end space-x-2">
@@ -23,7 +23,7 @@ export function SiteHeader() {
               </div>
             </Link>
 
-            <Link href={siteConfig.links.twitter} target="_blank" rel="noreferre">
+            {/* <Link href={siteConfig.links.twitter} target="_blank" rel="noreferre">
               <div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0 hidden sm:inline-flex")}>
                 <Icons.twitter className="h-4 w-4" />
                 <span className="sr-only">Twitter</span>
@@ -35,7 +35,7 @@ export function SiteHeader() {
                 <Icons.linkedIn className="h-4 w-4" />
                 <span className="sr-only">LinkedIn</span>
               </div>
-            </Link>
+            </Link> */}
 
             <Link href={siteConfig.links.instagram} target="_blank" rel="noreferre">
               <div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0 hidden sm:inline-flex")}>

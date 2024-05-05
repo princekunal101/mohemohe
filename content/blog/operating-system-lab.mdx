@@ -1,0 +1,202 @@
+---
+title: Operating System Lab
+description: Operating System
+publishedDate: 2024-05-05
+updatedDate: 2024-05-05
+published: true
+tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
+
+---
+
+
+<Callout type="warning" txCenter="true" >**Expariment 1** </Callout>
+<Callout type="knowing">**Objective:** Study of hardware and software requirements of differnet operating systems *(Windows 10, UNIX, Linux, Windows XP, and Windows 7/8). </Callout>
+
+**Theory:**
+- An **operating syatem** (**OS**) is software that manages and handles the hardware and software resources of a system.It provides intrection between users of computers and computer hardware.
+- An operating system is responsible for managing and controlling all the activities and sharing of computer resources.
+- An operating system is a low-level software that includes all the basic functions like processor management, memory management, Error detection, etc.
+
+<FigureMdx lightUrl="operating-system-diagram" desc="Abstract view of a computer system."/>
+
+<Callout>**Windows 10**</Callout>
+
+**Hardware requirements**
+- **Processor:** 1 GHz or faster processor
+- **RAM:** 1 GB for 32-bit or 2 GB for 64-bit
+- **Storage space:** 16 GB for 32-bit OS or 20 GB for 64-bit OS.
+- **Display:** 800 x 6009 with WDDM driver
+
+**Software requirements**
+- **Graphics Card:** Direct X9 or later with WDDM 1.0 driver
+
+<Callout> **UNIX**</Callout> 
+
+**Hardware requirements**
+- **Processor:** Minimum of 1 GHz processor
+- **RAM:** Minimum of 1 GB RAM
+- **Storage space:** Minimum of 10 GB free disk space
+
+**Software requirements**
+- UNIX-compatible operating system, such as Sun Solaris, IBM AIX, HP-UX, etc. 
+- Compiler and development tools 
+- X Window System for graphical user interface 
+- Networking tools for network communication 
+
+<Callout>**Linux**</Callout>
+
+**Hardware Requirements:** 
+- **Processor:** Minimum of 1 GHz processor 
+- **RAM:** Minimum of 1 GB RAM (2 GB or more recommended for better performance) 
+- **Storage space:** Minimum of 10 GB free disk space (20 GB or more recommended for better performance) 
+**Software Requirements:** 
+- Linux distribution, such as Ubuntu, Fedora, CentOS, Debian, etc. 
+- Graphical user interface 
+- Compiler and development tools 
+- Networking tools for network communication 
+
+<Callout>**Windows XP**</Callout> 
+
+**Hardware Requirements:** 
+- **Processor:** Minimum of Pentium 233 MHz processor (300 MHz or higher) 
+- **RAM:** Minimum of 64 MB RAM (128 MB or higher) 
+- **Storage space:** Minimum of 1.5 GB free disk space 
+
+**Software Requirements:** 
+- Windows XP operating system 
+- DirectX 9 graphics device with WDDM driver (optional for graphical user interface) 
+- Networking tools for network communication (optional) 
+
+<Callout>**Windows 7/8**</Callout> 
+
+**Hardware Requirements:** 
+- **Processor:** Minimum of 1 GHz processor (1 GHz or higher) 
+- **RAM:** Minimum of 1 GB RAM (2 GB or higher) 
+- **Storage space:** Minimum of 16 GB free disk space (20 GB or higher)
+
+**Software Requirements:**
+- Windows 7 or Windows 8 operating system 
+- DirectX 9 graphics device with WDDM 1.0 or higher driver (optional for graphical user interface) 
+- Networking tools for network communication 
+
+
+<Callout type="warning" txCenter="true">**Expariment 2** </Callout>
+<Callout type="knowing">**Objective:** Execute various system calls. <ul><li>Process Management</li><li>File Management</li><li>Input/Output System Calls</li></ul></Callout>
+
+
+**Process Management:** Process management uses certain system calls. They are explained below.
+1. To create a new process - `fork ()` is used.
+2. To run a new program = `exec ()` is used.
+3. To make the process to wait = `wait ()` is used.
+4. To terminate the process – `exit ()` is used.
+5. To find the unique process id – `getpid ()` is used.
+6. To find the parent process id – `getppid ()` is used.
+7. To bias the currently running process property – `nice ()` is used.
+
+*Example program for example of `fork ()`*
+
+```c title="fork.c" "fork()" showLineNumbers
+#include <stdio.h>
+#include <sys/types.h>
+main()
+{
+  int pid;
+  pid = fork();
+  if (pid == 0)
+  {
+    printf("id of the child process is=%d\n", getpid());
+    printf("id of the parent process is=%d\n", getppid());
+  }
+  else
+  {
+    printf("id of the parent process is=%d\n", getpid());
+    printf("id of the parent of parent process is=%d\n", getppid());
+  }
+}
+```
+
+**OUTPUT** 
+``` terminal title="Terminal" showLineNumbers
+id of the parent process is=8971
+id of the parent of parent process is=8970
+id of the child process is=8971
+id of the parent process is=8971
+```
+
+
+**File Management:** There are four system calls for file management,
+1. `open ()`:system call is used to know the file descriptor of user-created files. Since read
+and write use file descriptor as their 1st parameter so to know the file descriptor `open()`
+system call is used.
+2. `read ()`:system call is used to read the content from the file. It can also be used to read
+the input from the keyboard by specifying the 0 as file descriptor.
+3. `write ()`: system call is used to write the content to the file.
+4. `close ()`:system call is used to close the opened file, it tells the operating system that you are done with the file and close the file.
+
+*Example program for file management*
+
+```c title="filemgt.c" showLineNumbers
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <stdio.h>
+int main()
+{
+  int n, fd;
+  char buff[50];
+  printf("Enter text to write in the file:\n");
+  n = read(0, buff, 50);
+  fd = open("file", O_CREAT | O_RDWR, 0777);
+  write(fd, buff, n);
+  write(1, buff, n);
+  int close(int fd);
+  return 0;
+}
+
+```
+
+**OUTPUT**
+
+```terminal title="Terminal" showLineNumbers
+Enter text to write in the file:
+hi how r u?
+hi how r u?
+```
+
+**Input/Output System Calls:** Basically there are total 5 types of I/O system calls:
+- **Create:** Used to Create a new empty file.
+- **open:** Used to Open the file for reading, writing or both.
+- **close:** Tells the operating system you are done with a file descriptor and Close the file
+which pointed by fd.
+- **read:** From the file indicated by the file descriptor fd, the `read()` function reads bytes
+of input into the memory area indicated by buf. 
+- **write:** Writes bytes from buf to the file or socket associated with fd.
+
+*Example program for Input/output System Calls*
+
+``` c title="input_output.c" showLineNumbers
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+  char buffer[100];
+  int n;
+
+  // Read input from the user
+  write(STDOUT_FILENO, "Enter a message: ", 17);
+  n = read(STDIN_FILENO, buffer, 100);
+
+  // Write the input back to the user
+  write(STDOUT_FILENO, "You entered: ", 13);
+  write(STDOUT_FILENO, buffer, n);
+
+  return 0;
+}
+```
+**OUTPUT**
+``` terminal title="Terminal" showLineNumbers
+Enter a message: helo
+You entered: helo
+```
