@@ -85,13 +85,13 @@ tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 
 
 **Process Management:** Process management uses certain system calls. They are explained below.
-- `fork()`: system call is used to create a new process.
-- `exec()`: system call is used to run a new program.
-- `wait()`: system call is used to make the process to wait.
-- `exit()`: system call is used to terminate the process.
-- `getpid()`: system call is used to find the unique process id.
-- `getppid()`: system call is used to find the parent process id.
-- `nice()`: system call is used to bias the currently running process property.
+- **`fork()`:** system call is used to create a new process.
+- **`exec()`:** system call is used to run a new program.
+- **`wait()`:** system call is used to make the process to wait.
+- **`exit()`:** system call is used to terminate the process.
+- **`getpid()`:** system call is used to find the unique process id.
+- **`getppid()`:** system call is used to find the parent process id.
+- **`nice()`:** system call is used to bias the currently running process property.
 
 *Example program for example of `fork()`*
 
@@ -125,13 +125,10 @@ id of the parent process is=8971
 
 
 **File Management:** There are four system calls for file management,
-- `open()`: system call is used to know the file descriptor of user-created files. Since read
-and write use file descriptor as their 1st parameter so to know the file descriptor `open()`
-system call is used.
-- `read()`: system call is used to read the content from the file. It can also be used to read
-the input from the keyboard by specifying the 0 as file descriptor.
-- `write()`: system call is used to write the content to the file.
-- `close()`: system call is used to close the opened file, it tells the operating system that you are done with the file and close the file.
+- **`open()`:** system call is used to know the file descriptor of user-created files. Since read and write use file descriptor as their 1st parameter so to know the file descriptor `open()`system call is used.
+- **`read()`:** system call is used to read the content from the file. It can also be used to read the input from the keyboard by specifying the 0 as file descriptor.
+- **`write()`:** system call is used to write the content to the file.
+- **`close()`:** system call is used to close the opened file, it tells the operating system that you are done with the file and close the file.
 
 *Example program for file management*
 
@@ -165,13 +162,11 @@ hi how r u?
 ```
 
 **Input/Output System Calls:** Basically there are total 5 types of I/O system calls:
-- `create()`: Used to Create a new empty file.
-- `open()`: Used to Open the file for reading, writing or both.
-- `close()`: Tells the operating system you are done with a file descriptor and Close the file
-which pointed by fd.
-- `read()`: From the file indicated by the file descriptor fd, the `read()` function reads bytes
-of input into the memory area indicated by buf. 
-- `write()`: Writes bytes from buf to the file or socket associated with fd.
+- **`create()`:** Used to Create a new empty file.
+- **`open()`:** Used to Open the file for reading, writing or both.
+- **`close()`:** Tells the operating system you are done with a file descriptor and Close the filewhich pointed by fd.
+- **`read()`:** From the file indicated by the file descriptor fd, the `read()` function reads bytesof input into the memory area indicated by buf. 
+- **`write()`:** Writes bytes from buf to the file or socket associated with fd.
 
 *Example program for Input/output System Calls*
 
