@@ -85,13 +85,13 @@ tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 
 
 **Process Management:** Process management uses certain system calls. They are explained below.
-- To create a new process - `fork()` is used.
-- To run a new program - `exec()` is used.
-- To make the process to wait - `wait()` is used.
-- To terminate the process - `exit()` is used.
-- To find the unique process id - `getpid()` is used.
-- To find the parent process id - `getppid()` is used.
-- To bias the currently running process property - `nice ()` is used.
+- `fork()`: system call is used to create a new process.
+- `exec()`: system call is used to run a new program.
+- `wait()`: system call is used to make the process to wait.
+- `exit()`: system call is used to terminate the process.
+- `getpid()`: system call is used to find the unique process id.
+- `getppid()`: system call is used to find the parent process id.
+- `nice()`: system call is used to bias the currently running process property.
 
 *Example program for example of `fork()`*
 
@@ -125,13 +125,13 @@ id of the parent process is=8971
 
 
 **File Management:** There are four system calls for file management,
-- `open()`:system call is used to know the file descriptor of user-created files. Since read
+- `open()`: system call is used to know the file descriptor of user-created files. Since read
 and write use file descriptor as their 1st parameter so to know the file descriptor `open()`
 system call is used.
-- `read()`:system call is used to read the content from the file. It can also be used to read
+- `read()`: system call is used to read the content from the file. It can also be used to read
 the input from the keyboard by specifying the 0 as file descriptor.
 - `write()`: system call is used to write the content to the file.
-- `close()`:system call is used to close the opened file, it tells the operating system that you are done with the file and close the file.
+- `close()`: system call is used to close the opened file, it tells the operating system that you are done with the file and close the file.
 
 *Example program for file management*
 
