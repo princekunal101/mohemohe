@@ -20,8 +20,8 @@ export function FigureMdx({
 
 }: FigureProps) {
 
-  const lightImgSrc = `/static/learn/light/${lightUrl}.png`;
-  const darkImgSrc = `/static/learn/dark/${lightUrl}.png`;
+  const lightImgSrc = `/learn/light/${lightUrl}.png`;
+  const darkImgSrc = `/learn/dark/${lightUrl}.png`;
   return (
     <>
       <figure className={cn("my-5 items-start w-full dark:max-w-none")} {...props}>
