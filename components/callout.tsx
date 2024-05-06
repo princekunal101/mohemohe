@@ -6,12 +6,14 @@ interface CalloutProps {
   children?: ReactNode;
   type?: "default" | "warning" | "danger" | "knowing" | "notes";
   txCenter?: boolean;
+  id?:string;
 }
 
 export function Callout({
   children,
   type = "default",
   txCenter= false,
+  id,
   ...props
 }: CalloutProps) {
   return <div className={cn(`my-6 items-start rounded-md border border-l-4 p-4 w-full dark:max-w-none ${txCenter? "text-center":null}`,
@@ -24,7 +26,7 @@ export function Callout({
     }
   )}
     {...props}>
-    <div>{children}</div>
+    <div id={id}>{children}</div>
   </div>
 
 

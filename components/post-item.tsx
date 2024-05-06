@@ -16,7 +16,7 @@ interface PostItemProps {
 
 export function PostItem({ slug, title, description, publishedDate: publishedDate, updatedDate: updatedDate, tags }: PostItemProps) {
 
-  const dateTitle = (publishedDate >= updatedDate ? ("Published On " + formatDate(publishedDate)) : ("Updated At " + formatDate(updatedDate)));
+  const dateTitle = (publishedDate >= updatedDate ? ("Published on: " + formatDate(publishedDate)) : ("Last updated: " + formatDate(updatedDate)));
 
   return (
     <article className=" flex flex-col gap-2 border-border border-b py-3">

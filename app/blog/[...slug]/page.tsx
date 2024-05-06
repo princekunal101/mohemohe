@@ -70,7 +70,10 @@ export default async function PostPage({ params, }: PostPageProps) {
     notFound();
   }
 
-  const dateTitle = (post.publishedDate === post.updatedDate ? "Published on: " : "Last update: ");
+  
+  const dateTitle = (post.publishedDate >= post.updatedDate ? ("Published on: " + formatDate(post.publishedDate)) : ("Last updated: " + formatDate(post.updatedDate)));
+
+  // const dateTitle = (post.publishedDate === post.updatedDate ? "Published on: " : "Last update: ");
 
 
   return <article className=" container px-4 sm:px-6 md:px-8 py-6 prose dark:prose-invert max-w-[1024px]">
@@ -83,7 +86,7 @@ export default async function PostPage({ params, }: PostPageProps) {
       <p className=" text-xl m-0 text-muted-foreground">{post.description}</p>
     ) : null}
 
-    <time className="text-wrap my-2 text-sm font-semibold" dateTime={post.updatedDate}>{dateTitle + formatDate(post.publishedDate)}</time>
+    <time className="text-wrap my-2 text-sm font-semibold" dateTime={post.updatedDate}>{dateTitle}</time>
 
     <hr className="mb-4 mt-2" />
 
