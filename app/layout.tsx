@@ -14,10 +14,11 @@ const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-san
 export const metadata: Metadata = {
   title: {
 
-    template: `%s | ` + siteConfig.name,
-    default: siteConfig.name
+    template: `%s - ` + siteConfig.name,
+    default: siteConfig.title
   },
   description: siteConfig.description,
+  keywords: siteConfig.keywords,
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
 };
 

@@ -1,8 +1,10 @@
 export const siteConfig = {
   name: "Mohemohe.in",
-  url: "https://my-project-delta-lemon.vercel.app",
+  title: "Mohe Mohe",
+  url: "https://mohemohe.in",
   description: "A online learning site using Next js",
   author: "Prince Kunal",
+  keywords: ["mohemohe.in"," Data Structure", " Algorithms", " Btech", " DSA", " Tafal", " Theory of Automata", " Java", " C", " C++", " OS", " Operating System", " Mohe Mohe", " CSE", " React", " HTML", " CSS", " PHP", " JavaScript", " Aktu", " Web Development", " Computer Science", " Programming", " Python", " Tutorial", " NextJS", " Mohe Mohe", " Beginners", " Professionals", " Graduation", " Students"],
   links: {
     twitter: "https://twitter.com/princekunal",
     github: "https://github.com/princekunal101",
@@ -12,4 +14,4 @@ export const siteConfig = {
   },
 };
 
-export type SiteConfig =typeof siteConfig
+export type SiteConfig = typeof siteConfig

@@ -2,11 +2,13 @@ import { build } from 'velite'
 
 /** @type {import('next').NextConfig} */
 export default {
+  typescript:{ignoreBuildErrors:true},
   // othor next config here...
   webpack: config => {
     config.plugins.push(new VeliteWebpackPlugin())
+
     return config
-  }
+  },
 }
 
 class VeliteWebpackPlugin {

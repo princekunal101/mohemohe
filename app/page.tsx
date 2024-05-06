@@ -1,10 +1,9 @@
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
-import { cn, sortByChapters, sortPosts } from "@/lib/utils";
-import { chapters, posts } from "#site/content";
+import { cn, sortPosts } from "@/lib/utils";
+import { posts } from "#site/content";
 import Link from "next/link";
 import { PostItem } from "@/components/post-item";
-import ChapterBox from "@/components/chapter-box";
 
 
 export default function Home() {

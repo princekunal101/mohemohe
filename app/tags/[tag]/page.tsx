@@ -2,8 +2,10 @@ import { posts } from "@/.velite";
 import { PostItem } from "@/components/post-item";
 import { Tag } from "@/components/tag";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { siteConfig } from "@/config/site";
 import { getAllTags, getPostsByTagSlug, sortTagsByCount } from "@/lib/utils";
 import { slug } from "github-slugger";
+import { Metadata, ResolvingMetadata } from "next";
 
 
 interface TagPageProps {
@@ -11,16 +13,28 @@ interface TagPageProps {
     tag: string;
   }
 }
-
 // export async function generateMetaData({ 
 //   params, 
 // }: TagPageProps): Promise<Metadata> {
-//   const { tag } = params;
-//   return {
-//     title: tag,
-//     description: `Posts on the topic os ${tag}`
+//   
+//   
 //   }
 // }
+export async function generateMetadata(
+  { params, }: TagPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const { tag } = params;
+  const title = tag.split("-").join(" ");
+  return {
+    // title: tag,
+    title: title[0].toUpperCase()+title.substring(1),
+    description: `Posts on the topic ${title}`
+  }
+  
+}
+
 
 export const generateStaticParams = () => {
   const tags = getAllTags(posts.filter((post) => post.published));
