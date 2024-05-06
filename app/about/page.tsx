@@ -1,40 +1,59 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
-import { Metadata } from "next";
+import { cn } from "@/lib/utils";
 
-export const metadata: Metadata ={
+import { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
   title: "About us",
   description: "Information about us",
 }
 
 export default async function AboutPage() {
-  return (<div className="container px-4 sm:px-6 md:px-8 max-w-6xl py-6 lg:py-10">
-    <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
+  return (<div className="container px-4 sm:px-6 md:px-8 max-w-[1024px] py-6 lg:py-10">
+    {/* <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
       <div className="flex-1 space-x-4">
         <h1 className=" inline-block font-black text-4xl lg:text-5xl">
           About us
         </h1>
       </div>
     </div>
-    <hr className="my-8" />
-    <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-      <div className="min-w-48 max-w-48 flex flex-col gap-2">
+    <hr className="my-8" /> */}
+    <div className="flex flex-col md:flex-row gap-8 items-center justify-center md:items-start">
+      <div className=" max-w-48 hidden md:flex flex-col gap-2">
         <Avatar className="h-48 w-48">
-          {/* <AvatarImage src="https://avatars.githubusercontent.com/u/138247815?v=4" alt={siteConfig.author} /> */}
+          <AvatarImage src="https://avatars.githubusercontent.com/u/138247815?v=4" alt={siteConfig.author} />
           <AvatarFallback>PK</AvatarFallback>
         </Avatar>
-        <h2 className="text-2xl font-bold text-center break-words">
-          {siteConfig.author}
-        </h2>
-        <p className="text-muted-foreground text-center break-words">
-          Software Developer
-        </p>
       </div>
-      <p className=" text-muted-foreground text-lg py-4">
+      <div className="flex flex-col text-center md:text-start">
+        <h2 className="text-2xl md:text-3xl font-bold  break-words">
+          Hello, I am {siteConfig.author}
+        </h2>
+        <p className="text-muted-foreground  break-words my-3">
+          I created {siteConfig.name} to help B.Tech (CSE) students to find their Goals and Notes, Learn their Syllabus in the easiest way.
+        </p>
 
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis dicta blanditiis, harum, ut, facere fugit necessitatibus labore mollitia placeat nulla alias! Veritatis fugiat illo ea voluptatibus cumque. Nemo, quis adipisci.
-        Temporibus, voluptatibus ex cupiditate harum, rem accusamus beatae omnis nulla vitae ea illo unde, ipsa rerum ut numquam alias eius amet eaque expedita totam enim inventore vel officia sapiente. Est?
-      </p>
+        <div className="flex flex-col gap-4 md:justify-start justify-center sm:flex-row">
+          <Link href={"/blog"} className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
+            View Learning Subjects
+          </Link>
+          <Link href={siteConfig.links.github}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "w-full sm:w-fit")}>
+            GitHub
+          </Link>
+        </div>
+      </div>
     </div>
-  </div>)
+    <hr className="my-4" />
+    <div className={cn("prose dark:prose-invert w-full max-w-full")}>
+      <h3>What is {siteConfig.name} ?</h3>
+      <p><strong>{siteConfig.name}</strong> is platform where the B.Tech (CSE) students can study freely online Anywhere Anytime.</p>
+    </div>
+  </div>
+  )
 }

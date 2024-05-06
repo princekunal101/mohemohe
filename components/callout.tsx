@@ -16,7 +16,7 @@ export function Callout({
   id,
   ...props
 }: CalloutProps) {
-  return <div className={cn(`my-6 items-start rounded-md border border-l-4 p-4 w-full dark:max-w-none ${txCenter? "text-center":null}`,
+  return <div id={id} className={cn(`my-6 items-start rounded-md border border-l-4 p-4 w-full dark:max-w-none ${txCenter? "text-center":null}`,
     {
       "border-red-500 bg-red-100 dark:prose": type === "danger",
       " border-yellow-500 bg-yellow-100 dark:prose": type === "warning",
@@ -26,7 +26,7 @@ export function Callout({
     }
   )}
     {...props}>
-    <div id={id}>{children}</div>
+    <div>{children}</div>
   </div>
 
 
