@@ -138,7 +138,7 @@ export default async function PostPage({ params, }: PostPageProps) {
 
   return (<article className=" container px-4 sm:px-6 md:px-8 py-6 prose dark:prose-invert max-w-[1024px]">
     <h1 className="mb-2">{post.title}</h1>
-    <div className="flex gap-2 mb-2">
+    <div className="flex flex-wrap gap-2 mb-2">
       {post.tags?.map(tag => <Tag tag={tag} key={tag} />
       )}
     </div>
