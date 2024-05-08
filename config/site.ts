@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Mohemohe.in",
+  name: "mohemohe.in",
   title: "Mohe Mohe",
-  url: "https://wwww.mohemohe.in",
-  description: "A online learning site using Next js",
+  url: "https://www.mohemohe.in",
+  description: "The Best Online Learning site for (BTech) Engineering Students.",
   author: "Prince Kunal",
   keywords: ["mohemohe.in"," Data Structure", " Algorithms", " Btech", " DSA", " Tafal", " Theory of Automata", " Java", " C", " C++", " OS", " Operating System", " Mohe Mohe", " CSE", " React", " HTML", " CSS", " PHP", " JavaScript", " Aktu", " Web Development", " Computer Science", " Programming", " Python", " Tutorial", " NextJS", " Mohe Mohe", " Beginners", " Professionals", " Graduation", " Students"],
   links: {
