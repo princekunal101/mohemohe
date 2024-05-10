@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     // if (!description) {
     //   return new Response("No description provided!", { status: 500 });
     // }
-    
+
 
     const heading =
       title.length > 140 ? `${title.substring(0, 140)}...` : title;
@@ -65,7 +65,7 @@ export async function GET(req: NextRequest) {
             </svg>
           </div>
 
-          <p tw="ml-4 font-bold text-5xl">mohemohe.in</p>
+          <p tw="ml-4 font-bold text-5xl">{siteConfig.title}</p>
         </div>
         <div tw=" flex ml-4 flex-col flex-1 py-10">
           <div tw="flex text-2xl uppercase font-bold tracking-tight ">

@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "mohemohe.in",
-  title: "Mohe Mohe",
+  name: "Mohe Mohe",
+  title: "mohemohe.in",
   url: "https://www.mohemohe.in",
   description: "The Best Online Learning site for (BTech) Engineering Students.",
   author: "Prince Kunal",
