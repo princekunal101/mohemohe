@@ -31,7 +31,7 @@ export function MobileNav() {
           <Icons.logo className="mr-2 h-8 w-8 flex items-center justify-center rounded-md bg-slate-600 dark:bg-slate-400 bg-opacity-25 dark:bg-opacity-30" />
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
-        <div className="flex flex-col gap-3 mt-3">
+        <div className="flex flex-col gap-3 mt-6">
           {/* <MobileLink onOpenChange={setOpen} href="/learn">
             Learn
           </MobileLink> */}

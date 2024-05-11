@@ -1,7 +1,7 @@
 'use client'
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-import { ChapterList } from "./chapter-view";
+import { ChapterList } from "./chapter-list";
 import { useEffect, useState } from "react";
 import { chapters } from "@/.velite";
 import { List } from "lucide-react";
@@ -11,19 +11,19 @@ import { List } from "lucide-react";
 interface ChapterPageProps {
   chapNum: number
   chapTitle: string
+  slug: string;
 }
 
 
-export function ChapterHeader({ chapNum, chapTitle }: ChapterPageProps) {
+export function ChapterHeader({ chapNum, chapTitle,slug }: ChapterPageProps) {
 
   // for using as shadow after chapter header go to the top
   const [isSticky, setIsSticky] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      setIsSticky(offset > 80);
+      setIsSticky(offset > 58);
     }
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll)
@@ -31,12 +31,8 @@ export function ChapterHeader({ chapNum, chapTitle }: ChapterPageProps) {
   })
 
   return (<>
-    <aside className={cn(`z-20  px-3 sm:py-3 lg:-mx-10 flex flex-row max-w-[1072px] h-auto min-h-14 items-center rounded-full bg-zinc-200/45 dark:bg-zinc-600/45 ${isSticky ? "border border-zinc-400/25 top-4 backdrop-blur-lg shadow-2xl sticky" : ""}`)}>
-      {/* <Button onClick={() => setIsOpen(!isOpen)} variant="ghost" className="w-10 rounded-full px-0 bg-transparent hover:bg-gray-400/15 bg-opacity-20">
-        <List className="h-5 w-5" />
-        <span className="sr-only">Toggle Theme</span>
-      </Button> */}
-      <ChapterList   />
+    <aside className={cn(`z-10 px-3 sm:py-3 flex flex-row max-w-[1072px] h-auto min-h-14 items-center rounded-full bg-slate-300/15  ${isSticky ? "border lg:w-full left-4 right-4 lg:left-1/2 lg:right-[unset] lg:-translate-x-1/2 border-zinc-400/25 top-4 backdrop-blur-xl shadow-sm fixed" : ""}`)}>
+      <ChapterList slug={slug} isSticky={isSticky}/>
 
       <div aria-hidden="true" className={cn(" w-[1px] h-9 ml-2.5 mr-3 bg-gray-400 hidden sm:block")} />
       <div className={cn(" w-9 h-11  dark:bg-gray-500 bg-gray-400 rounded-sm hidden sm:block")} >
@@ -46,11 +42,9 @@ export function ChapterHeader({ chapNum, chapTitle }: ChapterPageProps) {
         <h3 className={cn("text-sd font-semibold")}>Chapter {chapNum}</h3>
         <p className={cn("text-sm font-medium text-muted-foreground")}>{chapTitle}</p>
       </div>
-      
+
     </aside>
-    {/* {isOpen ? (
-      <div className={cn(`w-80 h-80 mt-4 fixed bg-black ${isSticky ? "border border-zinc-400/25 top-4 backdrop-blur-lg shadow-2xl fixed" : ""} `)}>Hello g i am here!</div>
-    ) : null} */}
+
   </>
   )
 }
