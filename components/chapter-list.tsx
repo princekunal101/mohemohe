@@ -78,8 +78,8 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
 
         <SheetContent side="bottom" className={cn("-px-4 rounded-t-lg overflow-y-scroll h-3/4")}>
           <SheetClose className={cn("hidden")} />
-          <div className={cn(" flex flex-row row-span-2 w-full h-auto  ")}>
-            <ul className="flex flex-col">
+          <div className={cn(" flex flex-row grid-rows-2 justify-evenly w-full h-auto  ")}>
+            <ul className="flexflex-col">
 
               {latestChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
                 <ChapterBox
@@ -91,7 +91,7 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
                 />
               </li>)}
             </ul>
-            <ul className="flex flex-col">
+            <ul className="sm:flex hidden  flex-col">
 
               {latestChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
                 <ChapterBox

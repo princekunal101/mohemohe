@@ -2,7 +2,7 @@
 title: Oops Java Lab
 description: Object Oriented Programming with Java lab
 publishedDate: 2024-05-08
-updatedDate: 2024-05-08
+updatedDate: 2024-05-12
 published: true
 tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 
@@ -11,6 +11,7 @@ tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
+- [Experiment 3](#experiment-3)
 
 
 <Callout type="warning" txCenter="true" id="experiment-1" >**Experiment 1**</Callout>
@@ -60,4 +61,119 @@ sudo snap install eclipse --clasic
 
 
 <Callout type="warning" txCenter="true" id="experiment-2" >**Experiment 2**</Callout>
-<Callout type="knowing">**Objective:** Creating simple java programs using command line arguments. </Callout>
+<Callout type="knowing">**Objective:** Creating simple Calculator java programs using command line arguments. </Callout>
+
+**Theory:**
+- **Command-Line Arguments:** Command-line arguments are parameters passed to a program when it is executed. In Java, these arguments are stored in the `args` parameter of the `main` method.
+- **Parsing:** Parsing is the process of converting data from one format to another. Here, we parse string arguments into numerical values using methods like `Double.parseDouble()`.
+- **Conditional Statements:** The program uses conditional statements (`if` and `switch`) to validate input, handle errors, and perform different operations based on the operator.
+- **Arithmetic Operations:** Arithmetic operations such as *addition*, *subtraction*, *multiplication*, and *division* are fundamental mathematical concepts. In this program, they are implemented using Java operators (`+`, `-`, `*`, `/`).
+- **Error Handling:** Error handling is crucial for robust software. In this program, we handle division by zero by checking for this condition explicitly
+
+```java title="Calculator.java"
+public class Calculator {
+  public static void main(String[] args) {
+    
+    if (args.length != 3) {
+      System.out.println("Usage: java Calculator num1 operator num2");
+      return;
+    }
+
+    double num1 = Double.parseDouble(args[0]);
+    String operator = args[1];
+    double num2 = Double.parseDouble(args[2]);
+    double result = 0.0;
+
+    switch (operator) {
+      case "+":
+        result = num1 + num2;
+        break;
+
+      case "-":
+        result = num1 - num2;
+        break;
+
+      case "*":
+        result = num1 * num2;
+        break;
+
+      case "/":
+        if (num2 != 0) {
+          result = num1 / num2;
+        } else {
+          System.out.println("Error: Division by zero");
+          return;
+        } break;
+      default:
+        System.out.println("Error: Invalid operator");
+        return;
+    }
+    System.out.println("Result: " + result);
+  }
+}
+```
+
+To compile this code, open your command prompt or terminal, navigate to the directory where you saved `Calculator.java`, and run as:
+
+```shell title="Terminal"
+javac Calculator.java
+```
+Once compiled successfully, run the program with command-line arguments as:
+
+```shell title="Terminal"
+java Calculator 5 + 3
+```
+
+```terminal title="Output"
+Result: 8.0
+```
+Similarly, we can perform other operations like subtraction, multiplication and division:
+```shell title="Terminal"
+java Calculator 10 - 4
+java Calculator 6 * 2
+java Calculator 8 / 2
+```
+          
+<Callout type="warning" txCenter="true" id="experiment-3" >**Experiment 3**</Callout>
+<Callout type="knowing">**Objective:** Understand OOP concepts (Abstraction) and basics of Java programming. </Callout>
+
+**Theory:**
+- A class is a blueprint or template for creating objects. It defines the properties (fields) and behaviors (methods) that objects of that type will have.
+- Abstraction is the process of hiding the implementation details and showing only the essential features of an object. Abstract classes and interfaces are used to achieve abstraction.
+
+```java title="Abstraction.java"
+abstract class Car {
+  Car() {
+    System.out.println("Car is built. ");
+  }
+  abstract void drive();
+
+  void gearChange() {
+    System.out.println("Gearchanged!!");
+  }
+}
+
+class Tesla extends Car {
+  void drive() {
+    System.out.println("Drive Safely");
+  }
+}
+
+class Abstraction {
+  public static void main(String args[]) {
+    Car obj = new Tesla();
+    obj.drive();
+    obj.gearChange();
+  }
+}
+```
+
+```makefile title="Output"
+Car is built. 
+Drive Safely
+Gearchanged!!
+``` 
+
+
+  <Callout type="warning" txCenter="true" id="experiment-4" >**Experiment 4**</Callout>
+  <Callout type="knowing">**Objective:** Understand OOP concepts and basics of Java programming. </Callout>

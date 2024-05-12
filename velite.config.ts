@@ -4,6 +4,8 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
+import { BookName } from "./app/learn/page";
+
 
 const computeFields = <T extends { slug: string }>(data: T) => ({
   ...data,

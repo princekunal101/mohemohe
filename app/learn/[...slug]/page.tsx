@@ -2,7 +2,6 @@ import { chapters } from "@/.velite";
 import { ChapterHeader } from "@/components/chapter-header";
 import { MDXContent } from "@/components/mdx-components";
 import "@/styles/mdx.css";
-import { Tag } from "@/components/tag";
 import { cn, formatDate } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/config/site";
@@ -100,26 +99,29 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
     </div>
     <article className="w-full  px-1 sm:px-1 md:px-4  py-6 prose dark:prose-invert max-w-6xl">
 
-      <div className={cn(" mb-8 flex w-full flex-col  gap-3 md:flex-row")}>
+      {chapter.chapNum >= 1 ? <div className={cn(" mb-2 flex w-full flex-col  gap-3 md:flex-row")}>
         <div className={cn(" w-14 h-14 sm:w-20 sm:h-20 flex flex-shrink-0 items-center justify-center bg-secondary rounded-full")}>
           <p className={cn(" text-3xl sm:text-5xl font-bold m-0 text-inherit")}>{chapter.chapNum}</p></div>
         <div className={cn("flex flex-col")}>
           <p className={cn("text-lg my-0 font-medium  text-muted-foreground hidden md:block")}>Chapter {chapter.chapNum}</p>
           <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>
         </div>
-      </div>{chapter.chapDesc ? (
-        <p className=" text-md my-5 ">{chapter.chapDesc}</p>
+      </div> : <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>}
+      {chapter.chapDesc ? (
+        <p className={cn(" text-md my-2 sm:my-5")}>{chapter.chapDesc}</p>
       ) : null}
 
-      <div className="flex gap-2 mb-2">
+      {/* <div className="flex gap-2 mb-2">
         {chapter.tags?.map(tag => <Tag tag={tag} key={tag} />
         )}
-      </div>
+      </div> */}
 
-      <time className="text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
-      <hr className="mb-4 mt-2" />
+     
 
       <MDXContent code={chapter.body} />
+      
+      <time className="text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
+
     </article>
   </div>
   )

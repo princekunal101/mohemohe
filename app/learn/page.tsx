@@ -3,6 +3,11 @@ import ChapterBox from "@/components/chapter-box";
 import { ChapterHeader } from "@/components/chapter-header";
 import { cn, sortByChapters } from "@/lib/utils";
 
+// for specifying the books
+export function BookName(){
+ const h ="/"
+  return h;
+}
 
 export default function LearnPage() {
   const latestChapter = sortByChapters(chapters.filter((chapter) => chapter.published)).slice(0, 5);

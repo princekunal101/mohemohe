@@ -2,6 +2,8 @@ import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
 import { Callout } from "./callout";
 import { FigureMdx } from "./mdx-figures";
+import { ChapIntro } from "./mdx-intro";
+import * as Icons from "lucide-react";
 
 
 const useMDXComponent = (code: string) => {
@@ -12,8 +14,11 @@ const useMDXComponent = (code: string) => {
 
 const components = {
   Image,
+  Icons,
   Callout,
   FigureMdx,
+  ChapIntro,
+  
   
 }
 
