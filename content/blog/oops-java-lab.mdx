@@ -14,7 +14,7 @@ tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 3](#experiment-3)
 
 
-<Callout type="warning" txCenter="true" id="experiment-1" >**Experiment 1**</Callout>
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
 <Callout type="knowing">**Objective:** Installation and use Java compiler and eclipse platform to write and execute java program. </Callout>
 
 **Theory:**
@@ -52,15 +52,83 @@ sudo apt-get install default-jdk
 java -version
 ```
 
-* For installing **Eclipse**
+- For installing **Eclipse**
 ```shell title="Terminal"
 sudo snap install eclipse --clasic
 ```
 
+- Instructions for creating and running it both in **Eclipse** and using the **command line** (**cmd**).
+
+Here's a simple Java program that checks whether a given number is prime or not. 
+```java title="Prime.java"
+public class Prime {
+	public static void main(String[] args) {
+		int num = 29; // Change this number to check prime or not for a different number
+		boolean prime = true;
+		if (num <= 1) {
+			prime = false;
+		} else {
+			for (int i = 2; i <= num / 2; i++) {
+				if (num % i == 0) {
+					prime = false;
+				}
+			}
+		}
+		if (prime == true) {
+			System.out.println(num + " is a prime no.");
+		} else {
+			System.out.println(num + " is not a prime no.");
+		}
+	}
+}
+```
 
 
+**Running in Eclipse:**
+- Open Eclipse and create a new Java project.
+- Inside the project, create a new Java class named `Prime`.
+- Write the provided Java code into the `Prime.java` file.
+- Save the file.
+- Right-click on the `Prime.java` file in the Package Explorer.
+- Select "**Run As**" -> "**Java Application**".
+- Now, the output in the console.
 
-<Callout type="warning" txCenter="true" id="experiment-2" >**Experiment 2**</Callout>
+```terminal title="Terminal"
+29 is a prime no.
+```
+
+Here's a simple Java program that calculates the factorial of a given number. 
+
+```java title="Factorial.java"
+public class Factorial {
+  public static void main(String[] args) {
+    int number = 5; // Change this number to calculate factorial for a different number
+    long factorial = calculateFactorial(number);
+    System.out.println("Factorial of " + number + " is: " + factorial);
+  }
+
+  public static long calculateFactorial(int n) {
+    if (n == 0 || n == 1) {
+      return 1;
+    } else {
+      return n * calculateFactorial(n - 1);
+    }
+  }
+}
+```
+**Running using CMD:**
+- Save the provided Java code into a file named `Factorial.java`.
+- Open a command prompt (**CMD**).
+- Navigate to the directory where `Factorial.java` is saved using the `cd` command.
+- Compile the Java file by typing `javac Factorial.java` and pressing Enter.
+- Once compiled successfully, run the program by typing `java Factorial` and pressing Enter.
+- You should see the output in the **command prompt**.
+
+```terminal title="Terminal"
+Factorial of 5 is: 120
+```
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-2" >**Experiment 2**</Callout>
 <Callout type="knowing">**Objective:** Creating simple Calculator java programs using command line arguments. </Callout>
 
 **Theory:**
@@ -134,7 +202,7 @@ java Calculator 6 * 2
 java Calculator 8 / 2
 ```
           
-<Callout type="warning" txCenter="true" id="experiment-3" >**Experiment 3**</Callout>
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3" >**Experiment 3**</Callout>
 <Callout type="knowing">**Objective:** Understand OOP concepts (Abstraction) and basics of Java programming. </Callout>
 
 **Theory:**
@@ -175,5 +243,5 @@ Gearchanged!!
 ``` 
 
 
-  <Callout type="warning" txCenter="true" id="experiment-4" >**Experiment 4**</Callout>
+  <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4" >**Experiment 4**</Callout>
   <Callout type="knowing">**Objective:** Understand OOP concepts and basics of Java programming. </Callout>
