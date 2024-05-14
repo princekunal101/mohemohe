@@ -106,7 +106,7 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
           <p className={cn("text-lg my-0 font-medium  text-muted-foreground hidden md:block")}>Chapter {chapter.chapNum}</p>
           <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>
         </div>
-      </div> : <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>}
+      </div> : <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.bookName}</h1>}
       {chapter.chapDesc ? (
         <p className={cn(" text-md my-2 sm:my-5")}>{chapter.chapDesc}</p>
       ) : null}

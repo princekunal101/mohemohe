@@ -17,7 +17,7 @@ interface ChapPageProps {
 
 export function ChapterList({ slug, isSticky }: ChapPageProps) {
   const [open, setOpen] = useState(false);
-  const latestChapter = sortByChapters(chapters.filter((chapter) => chapter.published)).slice(0, 5);
+  const indexChapter = sortByChapters(chapters.filter((chapter) => chapter.published)).slice(0, 5);
 
   return (<>
     <NavigationMenu className="hidden md:block" >
@@ -36,7 +36,7 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
             <div className={cn(" flex flex-row row-span-2 w-full h-auto")}>
               <ul className="flex flex-col">
 
-                {latestChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
+                {indexChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
                   <ChapterBox
 
                     slug={chapter.slug}
@@ -48,7 +48,7 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
               </ul>
               <ul className="flex flex-col">
 
-                {latestChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
+                {indexChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
                   <ChapterBox
                     slug={chapter.slug}
                     chapterName={chapter.chapTitle}
@@ -81,7 +81,7 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
           <div className={cn(" flex flex-row grid-rows-2 justify-evenly w-full h-auto  ")}>
             <ul className="flexflex-col">
 
-              {latestChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
+              {indexChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
                 <ChapterBox
 
                   slug={chapter.slug}
@@ -93,7 +93,7 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
             </ul>
             <ul className="sm:flex hidden  flex-col">
 
-              {latestChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
+              {indexChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
                 <ChapterBox
                   slug={chapter.slug}
                   chapterName={chapter.chapTitle}

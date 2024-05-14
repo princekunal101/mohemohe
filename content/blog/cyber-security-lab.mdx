@@ -1,0 +1,79 @@
+---
+title: Cyber Security Workshop
+description: Cyber Security Workshop
+publishedDate: 2024-05-14
+updatedDate: 2024-05-14
+published: true
+tags: ["cyber security", "aktu", "b-tech", "CSE", "lab"]
+
+---
+## Quick Links
+
+- [Experiment 1](#experiment-1)
+- [Experiment 2](#experiment-2)
+- [Experiment 3](#experiment-3)
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
+<Callout type="knowing">**Objective:**  Basic Packet Inspection:<ul> <li>Capture network traffic using Wire shark </li> <li> Analyze basic protocols to understand how data is transmitted and received. </li></ul> </Callout>
+*image is not added*<br/>
+**Theory:**
+
+**Basic concepts of the Network Traffic**
+- **IP Addresses:** It was designed for the devices to communicate with each other on a local network or over the Internet. It is used for host or network interface identification. It provides the location of the host and capacity of establishing the path to the host in that network. Internet Protocol is the set of predefined rules or terms under which the communication should be conducted. The types of IP addresses are **IPv4** and **IPv6**.
+    - IPv4 is a **32-bit address** in which each group represents 8 bits ranging from 0 to 255.
+    - IPv6 is a **128-bit address**.
+- IP addresses are assigned to the host either dynamically or static IP address. Most of the private users have dynamic IP address while business users or servers have a static IP address. Dynamic address changes whenever the device is connected to the Internet.
+
+- **Computer Ports:** The computer ports work in combination with the IP address directing all outgoing and incoming packets to their proper places. There are well-known ports to work with like **FTP** (File Transfer Protocol), which has port no. 21, etc. All the ports have the purpose of directing all packets in the predefined direction.
+
+- **Protocol:** The Protocol is a set of predefined rules. They are considered as the standardized way of communication. One of the most used protocol is T**CP/IP**. It stands for **Transmission Control Protocol/ Internet Protocol**.
+- **OSI model:** OSI model stands for **Open System Interconnect**. OSI model has seven layers, namely, **Application layer**, **Presentation layer**, **Session layer**, **Transport layer**, **Network layer**, **Data link layer**, and the **physical layer**. OSI model gives a detail representation and explanation of the transmission and reception of data through the layers. OSI model supports both connectionless and connection-oriented communication mode over the network layer. The OSI model was developed by ISO (International Standard Organization).
+
+**Capture network traffic**<br/>
+*Steps:-*
+- open Wireshark software.
+- By selecting the current interface, we can get the traffic traversing through that interface. The version used here is **3.0.3**. This version will open as:
+<FigureMdx lightUrl="" desc="The Wireshark software window"/>
+
+-  All the processes on the network are carried within this screen only.
+- The options given on the list are the Interface list options. The number of interface options will be present. Selection of any option will determine all the traffic. **For example**, from the above fig. select the Wi-Fi option. After this, a new window opens up, which will show all the current traffic on the network. Below is the image which tells us about the live capture of packets and our Wireshark will look like:
+<FigureMdx lightUrl="" desc="Packet content written in hexadecimal or the ASCII format."/>
+
+- And the information above the packet content, are the details of the packet header.
+- It will continue listening to all the data packets, and you will get much data. If you want to see a particular data, then you can click on the red button.
+- The traffic will be stationary, and you can note the parameters like time, source, destination, the protocol being used, length, and the Info.
+<FigureMdx lightUrl="" desc="Analyze basic protocols to understand how data is transmitted and received."/>
+ 
+*Steps:-*
+- Open the software.
+- Selecting an option from the Interface list options will determine all the traffic. For example, in this PC, we have chosen the current network, *i.e.*, the **ETHERNET**.
+
+<FigureMdx lightUrl="" desc="After connecting, shows the traffic"/>
+- There is a filter block below the menu bar, from where a large amount of data can be filtered.
+
+<FigureMdx lightUrl="" desc="Apply a filter for HTTP, only the interfaces with the HTTP will be listed."/>
+ 
+<FigureMdx lightUrl="" desc="Apply a filter for DNS, the interfaces with the DNS will be listed."/>
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-2" >**Experiment 2**</Callout>
+<Callout type="knowing">**Objective:**  Detecting and Analyzing Suspicious Traffic with Wireshark </Callout>
+
+**Theory:**
+- Our main goal is to understand how to capture and analyze suspicious network traffic, specifically focusing on a case where a Remote Code Execution (**RCE**) exploit has been performed. In this hypothetical scenario, we have three main actors:
+  - Suspicious Source IP — 192.168.0.66
+  - Victim IP — 192.168.0.33
+  - Local IP (our device) — 192.168.0.77
+- Our mission is to detect and analyze the suspicious traffic between the source and victim IPs, with a view of better understanding the nature of the potential attack and aid in planning a response.
+- **Setting up Wireshark:** The first step is installing and configuring Wireshark, which can be downloaded from its official website. Once installed, launch Wireshark and select the appropriate network interface that you want to monitor. This would typically be the interface that is connected to the same network as your suspicious source and victim IPs.
+- **Capturing Suspicious Traffic:** With Wireshark running and the right network interface selected, we can start capturing packets. But we don’t want to capture everything — that could potentially lead to information overload. Instead, we want to apply a filter that specifically targets traffic from our suspicious source IP to the victim IP.
+- In the Wireshark filter bar, we can input the following expression:<br/> `ip.src == 192.168.0.66 && ip.dst == 192.168.0.33` This will capture packets originating from 192.168.0.66 (the suspicious IP) and heading to 192.168.0.33 (the victim IP).
+- **Analyzing the Capture:** Once you’ve captured sufficient data, stop the packet capture by clicking on the stop button. Now it’s time to dig into the data.
+- As we’re interested in a potential RCE attack, we should be looking for unusual patterns or protocols that could indicate such an exploit. Common signs may include unexpected incoming traffic on ports commonly associated with services that can execute remote code (such as HTTP or SMB), repeated attempts to connect to a specific port, or evidence of a shell running on the victim machine (like reverse shell connections).
+- Look at the different protocols involved, the ports used, the frequency of the connections, and the payload of the packets. Right-click on a packet and select *Follow TCP/UDP Stream* for a closer look at the packet content.
+- **Wrapping up:** Once you’ve analyzed the data, you should have a better understanding of what the suspicious traffic was trying to do. In the case of an RCE exploit, you might be able to determine what code was attempted to be executed, and on which service. This information is vital for network administrators to patch vulnerabilities and ensure the future security of the system. Remember, network monitoring and packet analysis is a continuous process. Attackers are continually evolving, and so too should our strategies for defense. Stay vigilant, keep learning, and keep your networks safe.
+
+
+  <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3" >**Experiment 3**</Callout>
+  <Callout type="knowing">**Objective:** Understand OOP concepts and basics of Java programming. </Callout>

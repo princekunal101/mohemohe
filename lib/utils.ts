@@ -61,7 +61,7 @@ export function sortPosts(posts: Array<Post>) {
     const updB = b.updatedDate;
     (pubA < updA ? pubA = updA : null);
     (pubB < updB ? pubB = updB : null);
-
+    
     if (pubA > pubB) return -1;
     if (pubA < pubB) return 1;
     return 0;
