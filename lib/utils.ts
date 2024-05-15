@@ -100,3 +100,13 @@ export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
     return slugifiedTags.includes(tag)
   })
 }
+
+// Appllying 
+export function getBooksBySlug(chapters: Array<Chapter>) {
+  return chapters.filter(book => {
+    const category = book.slugAsParams.split('/')[0];
+    if (book.slugAsParams === category) {
+      // console.log(book)
+      return book};
+  })
+}

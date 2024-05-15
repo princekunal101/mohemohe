@@ -4,8 +4,6 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
-import { BookName } from "./app/learn/page";
-
 
 const computeFields = <T extends { slug: string }>(data: T) => ({
   ...data,
@@ -39,6 +37,7 @@ const chapters = defineCollection({
       slug: s.path(),
       chapTitle: s.string().max(90),
       bookName: s.string().max(90),
+      bookColor: s.string().max(50).optional(),
       chapNum: s.number(),
       chapDesc: s.string().max(900).optional(),
       publishedDate: s.isodate(),
