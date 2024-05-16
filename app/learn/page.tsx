@@ -5,22 +5,28 @@ import { ChapterHeader } from "@/components/chapter-header";
 import { cn, getBooksBySlug, sortByChapters } from "@/lib/utils";
 import { slug } from "github-slugger";
 
-// for specifying the books
-// export function BookName(){
-//  const h ="/"
-//   return h;
-// }
+
 
 export default function LearnPage() {
   // const latestChapter = sortByChapters(chapters.filter((chapter) => chapter.published)).slice(0, 5);
   const itemBooks = getBooksBySlug(chapters.filter((chapter) => chapter.published));
 
   // const category = slug.split('/')[0];
-  return (<div className={cn("container max-w-4xl items-center")}>
-    <h2 className={cn("text-3xl font-bold mt-4 ")}>Books</h2>
-    <BookCover slug="/" />
-    <div className=" flex flex-wrap gap-5 mt-4">
-      {itemBooks.map(chapter => 
+  return (<div className={cn("container px-4 sm:px-6 md:px-8 max-w-4xl py-6 lg:py-10")}>
+    <div className="flex flex-col items-start gap-4 md:flex-row md:justify-center">
+      <div className="flex-1 space-y-4">
+        <h1 className=" inline-block font-black text-4xl lg:text-5xl">Learn</h1>
+        <p className="text-xl text-muted-foreground">
+          The Best online learning Books.
+        </p>
+      </div>
+    </div>
+    <hr className="my-8" />
+
+
+    {/* <BookCover slug="/" /> */}
+    <div className=" grid grid-cols-2 md:grid-cols-4 gap-8 mt-4 px-2">
+      {itemBooks.map(chapter =>
         <BookCover
           key={chapter.slug}
           slug={chapter.slug}

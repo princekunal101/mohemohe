@@ -61,7 +61,7 @@ export function sortPosts(posts: Array<Post>) {
     const updB = b.updatedDate;
     (pubA < updA ? pubA = updA : null);
     (pubB < updB ? pubB = updB : null);
-    
+
     if (pubA > pubB) return -1;
     if (pubA < pubB) return 1;
     return 0;
@@ -101,12 +101,32 @@ export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
   })
 }
 
-// Appllying 
+// For finding the books
 export function getBooksBySlug(chapters: Array<Chapter>) {
   return chapters.filter(book => {
     const category = book.slugAsParams.split('/')[0];
     if (book.slugAsParams === category) {
       // console.log(book)
-      return book};
+      return book
+    };
   })
+}
+
+// For findng the chapters by giving the books name
+export function getChapterByBookPaths(chapters: Array<Chapter>, bookName: string) {
+  return chapters.sort((a, b) => (a.chapNum < b.chapNum ? -1 : 1)).filter(slug => {
+    const [books, ...chap] = slug.slugAsParams.split('/');
+
+    if (books === bookName) {
+      const newPath = chap.join('/');
+      const completeSlug = [books, newPath];
+      
+      let chapSlugAsParams = completeSlug.join('/')
+      
+      if (chapSlugAsParams.endsWith('/')) chapSlugAsParams =  chapSlugAsParams.slice(0, -1);
+      
+      if (slug.slugAsParams === chapSlugAsParams) return slug;
+    }
+  });
+
 }

@@ -4,40 +4,24 @@ import { useState } from "react";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { List } from "lucide-react";
-import { cn, getBooksBySlug, sortByChapters } from "@/lib/utils";
-import { chapters } from "@/.velite";
+import { cn, getBooksBySlug, getChapterByBookPaths, sortByChapters } from "@/lib/utils";
+import { Chapter, chapters } from "@/.velite";
 import ChapterBox from "./chapter-box";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@radix-ui/react-navigation-menu";
+import { slug } from "github-slugger";
 
 interface ChapPageProps {
   slug: string;
   isSticky: boolean;
+  bookName: string;
 }
 
 
-export function ChapterList({ slug, isSticky }: ChapPageProps) {
+export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
 
   const [open, setOpen] = useState(false);
-  // its original
-  const indexChapter = sortByChapters(chapters.filter((chapter) => chapter.published)).slice(0, 5);
-  
-  //on going
-  // const indexChapter = getBooksBySlug(chapters.filter((chapter) => chapter.published));
-  // const indexChapter = getBooksBySlug(chapters.filter((chapter) => chapter.published));
-  // Here the indexChapter is an array which have all first folder in side the learn folder
-  // indexChapter.map((chapter) => console.log(chapter))
-  
-  // chapters.forEach(slug => {
-  //   const [indexChapter, ...rest] = slug.slugAsParams.split('/');
-  //   if (indexChapter === indexChapter[1]) {
-  //     const newPath = rest.join('/');
-  //     // if (indexChapter === 'operating-system') {
-        
-  
-  //     // } 
-  //   }
-  // });
-  // console.log(chapterb)
+  // const indexChapters = getBooksBySlug(chapters.filter((chapter) => chapter.published));
+  const indexChapter = getChapterByBookPaths(chapters.filter((chapter) => chapter.published), bookName);
 
 
   return (<>
@@ -54,6 +38,7 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
           </NavigationMenuTrigger>
           <NavigationMenuContent className={`absolute h-[auto] w-[544px] mt-8 rounded-lg p-3 -ml-2 left-0 border  ${isSticky ? "backdrop-blur-lg supports-[backdrop-filter]:bg-background/95" : ""}  items-center backdrop-blur-2xl  border-zinc-400/45 shadow-lg `}>
 
+            <div className={cn(" flex flex-col row-span-2 w-full h-auto")}>
             <div className={cn(" flex flex-row row-span-2 w-full h-auto")}>
               <ul className="flex flex-col">
 
@@ -78,6 +63,18 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
                   />
                 </li>)}
               </ul>
+              </div>
+              <hr className="my-3" />
+              <ul className="flex flex-col">
+                <li className="first:border-border">
+                  <ChapterBox
+                    slug={"learn"}
+                    chapterName={"Learn more books"}
+                    chapterNum={-1}
+
+                  />
+                </li>
+              </ul>
             </div>
 
           </NavigationMenuContent>
@@ -97,14 +94,15 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="bottom" className={cn("-px-4 rounded-t-lg overflow-y-scroll h-3/4")}>
+        <SheetContent side="bottom" className={cn("-px-4 rounded-t-lg overflow-y-scroll h-4/5")}>
           <SheetClose className={cn("hidden")} />
-          <div className={cn(" flex flex-row grid-rows-2 justify-evenly w-full h-auto  ")}>
+          <div className={cn(" flex flex-col  justify-evenly w-full h-auto  ")}>
+          <div className={cn(" flex flex-row  w-full h-auto  ")}>
             <ul className="flexflex-col">
 
               {indexChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
                 <ChapterBox
-
+                  key={chapter.slug}
                   slug={chapter.slug}
                   chapterName={chapter.chapTitle}
                   chapterNum={chapter.chapNum}
@@ -116,12 +114,25 @@ export function ChapterList({ slug, isSticky }: ChapPageProps) {
 
               {indexChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
                 <ChapterBox
+                  key={chapter.slug}
                   slug={chapter.slug}
                   chapterName={chapter.chapTitle}
                   chapterNum={chapter.chapNum}
                   currentNum={slug === chapter.slug}
                 />
               </li>)}
+            </ul>
+            </div>
+            <hr className="my-3" />
+            <ul className="flex flex-col">
+              <li className="first:border-border">
+                <ChapterBox
+                  slug={"learn"}
+                  chapterName={"Learn more books"}
+                  chapterNum={-1}
+
+                />
+              </li>
             </ul>
           </div>
         </SheetContent>

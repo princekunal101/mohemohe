@@ -18,7 +18,7 @@ interface ChapterPageProps {
 export async function getChapterFromPrams(params: ChapterPageProps["params"]) {
   const slug = params.slug.join("/");
   const chapter = chapters.find((chapter) => chapter.slugAsParams === slug);
-
+  // console.log(params)
   return chapter;
 }
 
@@ -80,6 +80,9 @@ export async function generateStaticParams(): Promise<ChapterPageProps["params"]
 export default async function LearnChapter({ params }: ChapterPageProps) {
 
   const chapter = await getChapterFromPrams(params);
+  // const router = useRouter();
+
+  // console.log(params.slug[0])
 
   // if chapter is not found as link is provided
   if (!chapter || !chapter.published) {
@@ -95,7 +98,8 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
       <ChapterHeader
         chapNum={chapter.chapNum}
         chapTitle={chapter.chapTitle}
-        slug={chapter.slug} />
+        slug={chapter.slug}
+        bookName={params.slug[0]} />
     </div>
     <article className="w-full  px-1 sm:px-1 md:px-4  py-6 prose dark:prose-invert max-w-6xl">
 
@@ -116,10 +120,10 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
         )}
       </div> */}
 
-     
+
 
       <MDXContent code={chapter.body} />
-      
+
       <time className="text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
 
     </article>
