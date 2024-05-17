@@ -23,7 +23,7 @@ export function MobileNav() {
           <span className="sr-only">Toggle Theme</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right">
+      <SheetContent side="right" className="p-6">
         <SheetClose className={cn("absolute right-6 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary")}>
           <X className={cn(" w-5 h-5")} />
         </SheetClose>
@@ -32,9 +32,9 @@ export function MobileNav() {
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
         <div className="flex flex-col gap-3 mt-6">
-          {/* <MobileLink onOpenChange={setOpen} href="/learn">
+          <MobileLink onOpenChange={setOpen} href="/learn">
             Learn
-          </MobileLink> */}
+          </MobileLink>
           <MobileLink onOpenChange={setOpen} href="/blog">
             Blog
           </MobileLink>

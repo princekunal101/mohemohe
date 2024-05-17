@@ -123,9 +123,9 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
 
 
       <MDXContent code={chapter.body} />
-
-      <time className="text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
-
+      <div className=" text-right px-2">
+        <time className="text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
+      </div>
     </article>
   </div>
   )

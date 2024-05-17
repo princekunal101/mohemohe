@@ -48,11 +48,7 @@ const chapters = defineCollection({
     }).transform(computeFields)
 })
 
-// const learn = defineLearnCollection({
-//   name: "learn",
-//   pattern: "learn/**/*.mdx",
 
-// })
 
 export default defineConfig({
   root: "content",
@@ -63,18 +59,19 @@ export default defineConfig({
     name: "[name]-[hash:6].[ext]",
     clean: true,
   },
-  collections: { chapters,posts},
+  collections: { chapters, posts },
   mdx: {
     rehypePlugins: [
-      rehypeSlug, 
-      [rehypePrettyCode, { theme: "github-dark" }], 
+      rehypeSlug,
+      [rehypePrettyCode, { theme: "github-dark" }],
       [
         rehypeAutolinkHeadings, {
-      behavior: "wrap", properties: {
-        className: ["subheading-anchor"],
-        ariaLabel: "Link to section",
-      }
-    }]],
+          behavior: "wrap",
+          properties: {
+            className: ["subheading-anchor"],
+            ariaLabel: "Link to section",
+          }
+        }]],
     remarkPlugins: [],
   }
 })

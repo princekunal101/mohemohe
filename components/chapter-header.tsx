@@ -44,12 +44,14 @@ export function ChapterHeader({ chapNum, chapTitle, slug, bookName }: ChapterPag
     };
   })
   // Fetching the color of books
-    const color =  bookItems[0].bookColor
- 
+  const color = bookItems[0].bookColor
+
   // Displayable text from book name
   const bName = bookItems[0].bookName.split(' ');
   const firstLatter = bName.map(word => word.charAt(0));
   const bDisplayName = firstLatter.join('');
+
+  // console.log(slug)
 
   return (<>
     <aside className={cn(`z-10 px-3 sm:py-2 flex flex-row max-w-[1072px] h-auto min-h-14 items-center rounded-full bg-slate-300/15  ${isSticky ? "border lg:w-full left-4 right-4 lg:left-1/2 lg:right-[unset] lg:-translate-x-1/2 border-zinc-400/25 top-4 backdrop-blur-2xl shadow-sm fixed" : ""}`)}>

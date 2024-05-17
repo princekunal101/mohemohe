@@ -20,9 +20,18 @@ interface ChapPageProps {
 export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
 
   const [open, setOpen] = useState(false);
-  // const indexChapters = getBooksBySlug(chapters.filter((chapter) => chapter.published));
-  const indexChapter = getChapterByBookPaths(chapters.filter((chapter) => chapter.published), bookName);
 
+  // fetch the current book from books
+  const itemBooks = getBooksBySlug(chapters.filter((chapter) => chapter.published));
+  const bookItems = itemBooks.filter(book => {
+    const category = book.slugAsParams.split('/')[0];
+    if (bookName === category) {
+      // console.log(book)
+      return book
+    };
+  })
+  
+  const indexChapter = getChapterByBookPaths(chapters.filter((chapter) => chapter.published), bookName);
 
   return (<>
     <NavigationMenu className="hidden md:block" >
@@ -36,45 +45,41 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
               <span className="sr-only">Toggle Theme</span>
             </Button>
           </NavigationMenuTrigger>
-          <NavigationMenuContent className={`absolute h-[auto] w-[544px] mt-8 rounded-lg p-3 -ml-2 left-0 border  ${isSticky ? "backdrop-blur-lg supports-[backdrop-filter]:bg-background/95" : ""}  items-center backdrop-blur-2xl  border-zinc-400/45 shadow-lg `}>
+          <NavigationMenuContent className={`absolute h-[auto] w-[544px] mt-8 rounded-lg p-3 -ml-2 left-0 border  ${isSticky ? "backdrop-blur-2xl supports-[backdrop-filter]:bg-background/95" : ""}  items-center backdrop-blur-2xl  border-zinc-400/45 shadow-lg `}>
 
             <div className={cn(" flex flex-col row-span-2 w-full h-auto")}>
-            <div className={cn(" flex flex-row row-span-2 w-full h-auto")}>
-              <ul className="flex flex-col">
+              <div className="my-2" >
 
-                {indexChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
-                  <ChapterBox
-
-                    slug={chapter.slug}
-                    chapterName={chapter.chapTitle}
-                    chapterNum={chapter.chapNum}
-                    currentNum={(slug) === chapter.slug}
-                  />
-                </li>)}
-              </ul>
-              <ul className="flex flex-col">
-
-                {indexChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
-                  <ChapterBox
-                    slug={chapter.slug}
-                    chapterName={chapter.chapTitle}
-                    chapterNum={chapter.chapNum}
-                    currentNum={slug === chapter.slug}
-                  />
-                </li>)}
-              </ul>
+                <ChapterBox
+                  slug={bookItems[0].slug}
+                  chapterName={bookItems[0].chapTitle}
+                  chapterNum={bookItems[0].chapNum}
+                  currentNum={(slug) === bookItems[0].slug}
+                />
               </div>
-              <hr className="my-3" />
-              <ul className="flex flex-col">
-                <li className="first:border-border">
-                  <ChapterBox
-                    slug={"learn"}
-                    chapterName={"Learn more books"}
-                    chapterNum={-1}
 
-                  />
-                </li>
-              </ul>
+              <div className={cn(" flex flex-row  w-full h-auto border-t ")}>
+                <div className="grid w-full grid-cols-1 sm:grid-cols-2">
+
+                  {indexChapter.map((chapter) =>
+                    <ChapterBox
+                      key={chapter.slug}
+                      slug={chapter.slug}
+                      chapterName={chapter.chapTitle}
+                      chapterNum={chapter.chapNum}
+                      currentNum={(slug) === chapter.slug}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="my-2 border-t" >
+
+                <ChapterBox
+                  slug={"learn"}
+                  chapterName={"Learn more books"}
+                  chapterNum={-1}
+                />
+              </div>
             </div>
 
           </NavigationMenuContent>
@@ -94,49 +99,43 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="bottom" className={cn("-px-4 rounded-t-lg overflow-y-scroll h-4/5")}>
+        <SheetContent side="bottom" className={cn(" rounded-t-lg overflow-y-scroll h-4/5")}>
           <SheetClose className={cn("hidden")} />
           <div className={cn(" flex flex-col  justify-evenly w-full h-auto  ")}>
-          <div className={cn(" flex flex-row  w-full h-auto  ")}>
-            <ul className="flexflex-col">
-
-              {indexChapter.map((chapter) => <li key={chapter.slug} className="first:border-border">
-                <ChapterBox
-                  key={chapter.slug}
-                  slug={chapter.slug}
-                  chapterName={chapter.chapTitle}
-                  chapterNum={chapter.chapNum}
-                  currentNum={(slug) === chapter.slug}
-                />
-              </li>)}
-            </ul>
-            <ul className="sm:flex hidden  flex-col">
-
-              {indexChapter.map(chapter => <li key={chapter.slug} className="first:border-border">
-                <ChapterBox
-                  key={chapter.slug}
-                  slug={chapter.slug}
-                  chapterName={chapter.chapTitle}
-                  chapterNum={chapter.chapNum}
-                  currentNum={slug === chapter.slug}
-                />
-              </li>)}
-            </ul>
+            
+            <div className="my-2" >
+              <ChapterBox
+                slug={bookItems[0].slug}
+                chapterName={bookItems[0].chapTitle}
+                chapterNum={bookItems[0].chapNum}
+                currentNum={(slug) === bookItems[0].slug}
+              />
             </div>
-            <hr className="my-3" />
-            <ul className="flex flex-col">
-              <li className="first:border-border">
-                <ChapterBox
-                  slug={"learn"}
-                  chapterName={"Learn more books"}
-                  chapterNum={-1}
 
-                />
-              </li>
-            </ul>
+            <div className={cn(" flex flex-row  w-full h-auto border-t ")}>
+              <div className="grid w-full grid-cols-1 sm:grid-cols-2">
+
+                {indexChapter.map((chapter) =>
+                  <ChapterBox
+                    key={chapter.slug}
+                    slug={chapter.slug}
+                    chapterName={chapter.chapTitle}
+                    chapterNum={chapter.chapNum}
+                    currentNum={(slug) === chapter.slug}
+                  />
+                )}
+              </div>
+            </div>
+
+            <div className="my-3 border-t" >
+              <ChapterBox
+                slug={"learn"}
+                chapterName={"Learn more books"}
+                chapterNum={-1}
+              />
+            </div>
           </div>
         </SheetContent>
-
       </Sheet>
     </div>
   </>

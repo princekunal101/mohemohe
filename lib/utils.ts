@@ -123,7 +123,7 @@ export function getChapterByBookPaths(chapters: Array<Chapter>, bookName: string
       
       let chapSlugAsParams = completeSlug.join('/')
       
-      if (chapSlugAsParams.endsWith('/')) chapSlugAsParams =  chapSlugAsParams.slice(0, -1);
+      // if (chapSlugAsParams.endsWith('/')) chapSlugAsParams =  chapSlugAsParams.slice(0, -1);
       
       if (slug.slugAsParams === chapSlugAsParams) return slug;
     }
