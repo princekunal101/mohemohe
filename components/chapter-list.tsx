@@ -58,7 +58,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                 />
               </div>
 
-              <div className={cn(" flex flex-row  w-full h-auto border-t ")}>
+              <div className={cn(" flex flex-row  w-full h-auto border-t  py-2")}>
                 <div className="grid w-full grid-cols-1 sm:grid-cols-2">
 
                   {indexChapter.map((chapter) =>
@@ -72,7 +72,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                   )}
                 </div>
               </div>
-              <div className="my-2 border-t" >
+              <div className=" border-t py-2" >
 
                 <ChapterBox
                   slug={"learn"}
@@ -99,11 +99,11 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="bottom" className={cn(" rounded-t-lg overflow-y-scroll h-4/5")}>
+        <SheetContent side="bottom" className={cn("px-4 rounded-t-lg overflow-y-scroll h-4/5")}>
           <SheetClose className={cn("hidden")} />
           <div className={cn(" flex flex-col  justify-evenly w-full h-auto  ")}>
             
-            <div className="my-2" >
+            <div className=" py-2" >
               <ChapterBox
                 slug={bookItems[0].slug}
                 chapterName={bookItems[0].chapTitle}
@@ -112,7 +112,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
               />
             </div>
 
-            <div className={cn(" flex flex-row  w-full h-auto border-t ")}>
+            <div className={cn(" flex flex-row  w-full h-auto border-t py-2")}>
               <div className="grid w-full grid-cols-1 sm:grid-cols-2">
 
                 {indexChapter.map((chapter) =>
@@ -127,7 +127,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
               </div>
             </div>
 
-            <div className="my-3 border-t" >
+            <div className="py-2 border-t" >
               <ChapterBox
                 slug={"learn"}
                 chapterName={"Learn more books"}

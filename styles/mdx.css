@@ -37,3 +37,7 @@
 .subheading-anchor {
   @apply no-underline hover:underline font-bold;
 }
+
+.katex-html{
+  @apply hidden
+}
