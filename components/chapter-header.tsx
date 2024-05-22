@@ -7,6 +7,7 @@ import { chapters } from "@/.velite";
 import { List } from "lucide-react";
 import { BookCover } from "./book-items/book-cover";
 import { siteConfig } from "@/config/site";
+import { notFound } from "next/navigation";
 
 
 
@@ -43,6 +44,10 @@ export function ChapterHeader({ chapNum, chapTitle, slug, bookName }: ChapterPag
       return book
     };
   })
+
+  if (!bookItems[0]) {
+    notFound();
+  }
   // Fetching the color of books
   const color = bookItems[0].bookColor
 
