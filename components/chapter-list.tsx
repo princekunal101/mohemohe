@@ -52,7 +52,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
 
                 <ChapterBox
                   slug={bookItems[0].slug}
-                  chapterName={bookItems[0].chapTitle}
+                  chapterName={"Introduction"}
                   chapterNum={bookItems[0].chapNum}
                   currentNum={(slug) === bookItems[0].slug}
                 />
@@ -106,7 +106,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
             <div className=" py-2" >
               <ChapterBox
                 slug={bookItems[0].slug}
-                chapterName={bookItems[0].chapTitle}
+                chapterName={"Introduction"}
                 chapterNum={bookItems[0].chapNum}
                 currentNum={(slug) === bookItems[0].slug}
               />

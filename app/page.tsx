@@ -4,7 +4,13 @@ import { cn, sortPosts } from "@/lib/utils";
 import { posts } from "#site/content";
 import Link from "next/link";
 import { PostItem } from "@/components/post-item";
+import { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+  title: siteConfig.name + " | " + "The Best Learning Platform",
+  // description: "Choose a book for a day and Add a step for success. A step for the success"
+}
 
 export default function Home() {
   const latestPosts = sortPosts(posts.filter((post) => post.published)).slice(0, 5);
@@ -20,7 +26,7 @@ export default function Home() {
             Nextjs 14.
           </p>
           <div className="flex flex-col gap-4 justify-center sm:flex-row">
-            <Link href="/blog" className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
+            <Link href="/learn" className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
               View Learning Subjects
             </Link>
             <Link href={siteConfig.links.github}

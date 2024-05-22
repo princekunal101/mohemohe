@@ -19,7 +19,7 @@ export function PostItem({ slug, title, description, publishedDate: publishedDat
   const dateTitle = (publishedDate >= updatedDate ? ("Published on: " + formatDate(publishedDate)) : ("Last updated: " + formatDate(updatedDate)));
 
   return (
-    <article className=" flex flex-col gap-2 border-border border-b py-3">
+    <article className=" flex flex-col gap-1 border-border border-b py-2">
       <div>
         <h2 className="text-2xl font-bold">
           <Link href={"/" + slug}>{title}</Link>

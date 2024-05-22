@@ -28,7 +28,7 @@ export function MobileNav() {
           <X className={cn(" w-5 h-5")} />
         </SheetClose>
         <MobileLink onOpenChange={setOpen} href="/" className="flex items-center mr-10">
-          <Icons.logo className="mr-2 h-8 w-8 flex items-center justify-center rounded-md bg-slate-600 dark:bg-slate-400 bg-opacity-25 dark:bg-opacity-30" />
+          <Icons.logo className="mr-2 h-8 w-8 flex items-center justify-center rounded bg-black/80 dark:bg-white/25" />
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
         <div className="flex flex-col gap-3 mt-6">

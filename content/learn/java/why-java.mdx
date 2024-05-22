@@ -1,0 +1,70 @@
+---
+chapTitle: About Java Programming 
+bookName: Java Programming
+chapDesc: Java is one of the world's most important and widely used computer language. Further more, it has held that distinction for many years. Unlike some other computer languages whose influence has waned with the passage of time, Java's has grown stronger. 
+chapNum: 1
+publishedDate: 2024-05-25
+updatedDate: 2024-05-25
+tags: ["code", "checking", "trial"]
+published: true
+---
+
+<ChapIntro><li className="flex gap-3"><Icons.Info/> Why Java </li><hr className="my-2"/><li className="flex gap-3"><Icons.FileClock/> History of Java </li><hr className="my-2"/><li className="flex gap-3"><Icons.FilePenLine/> Java Environment and socurce File Structure </li><hr className="my-2"/><li className="flex gap-3"><Icons.FileCog/> Compilation Process </li></ChapIntro>
+
+---
+
+## Why Java
+&ensp; **Java** is currently one of the most influential programming language. Java is widely used for developing a variety of applications, including web applications, mobile apps *(Android applications are widely built using Java)*, enterprise software, and many more. Java has a vast ecosystem of libraries, framework, and tools that furture ecnhance its capabilities and productivity for developers.
+
+
+## History of Java
+&ensp; Java was conceived by James Gosling, Patrick Naughton, Chris Warth, Ed Frank, and Mike Sheridan at Sun Microsystems, *(now owned by Oracle Corporation)* Introducing in 1991. This language was initially called "**Oak**", but was renamed "**Java**" in 1995 because of **&trade;** trademark issue. Between the initial implementation of Oak in the fall of 1992 and the public announcement of Java in the spring of 1995, many more people contributed to the design and evolution of the language. Finally in 1996, **Java 1.0** was released for Linux, Solaris, Macintosh, and Windows. {/* Bill Joy, Arthur van Huff, Jonathan Payne, Frank Yellin, and Lindholm were key contributors to thr maturing of the original prototype.*/}<br/>
+&ensp; The primary motivation was the need for a platform-independent (*i.e.* architecture-neutral) language that could be used to create software to be embedded in various consumer electronic devices, such as microwave ovens and remote controls.
+
+{/* ## Introduction
+Java is a high-level, object-oriented programming language developed by Sun Microsystems *(now owned by Oracle Corporation)*. It was first released in 1995, designed to be platform-independent. *i.e.* Java programs can run on any device or operating system that has a **Java Virtual Machine** (**JVM**) installed.<br/> */}
+{/* oracle books */}
+
+## JVM (Java Virtual Machine)
+&ensp; The most critical component of the JRE is the JVM. The key that allows Java to solve both the security and the pertability problems just  described is that the output of a Java compiler is not executable code. Rather, it is bytecode. *Bytecode* is a highly optimizes set of insteuctions designed to be executed by the Java run-time system, which is called the **Java Virtual Machine** (**JVM**). The original JVM was designed as an interpreter for bytecode. 
+
+
+## JRE (Java Runtime Environment)
+&ensp; The Java Runtime Environment (JRE) is a set of software tools used for developing Java applications and applets. It encompasses a variety of components that are essential for running Java programs on a computer.
+<FigureMdx lightUrl="jre-and-jvm-java" desc="Figure of Java run-time environment and Java vertual machine"/>
+
+## Java Environment 
+&ensp; The term **Java environment** typically refers to the software ecosystem and infrastructure require to develop, compile, debug, and execute Java applications. It encompasses various components and tools that facilitate Java software development.<br/>
+&ensp; After installing JDK, several files and folders gt created on installed location in storage device. The adject location of these folders formation depends on the particular operating system. but by default, the JDK folder is formed under Program Files in windows system.
+
+| Folder | Description |
+| ------ | ------------ |
+| bin   | The compiler and other Java development tools. |
+| demo  | Demo programs from which you can learn various java features. |
+| include | It contains files to integrate java with other languages. |
+| jre | Runtime Environment files are included. |
+| lib | Library files, including the Java API class library. |
+| src | The Source code for th java API classes. This folder is only created if you unpack the `src.zip` file. |
+| README | The Java readme file in HTML format & the text format. |
+| LICENSE | The Java license that you agreed to when you downloaded the JDK. |
+| COPYRIGHT | It is the copyright notice about all. |
+
+## Java Source File Structure
+
+- Package Declaration
+- Imports
+- Class Declaration
+- Additional classes (Optional)
+- Main methods (Optional)
+
+```java title="Demo.java"
+public class Demo {
+  public static void main(String[] args) {
+    System.out.println("Welcome to Java Language");
+  }
+}
+```
+
+## Compilation Process
+
+<FigureMdx lightUrl="java-compilation-process" desc="Java Compilation Process in Different System."/>

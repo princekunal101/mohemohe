@@ -41,3 +41,7 @@
 .katex-html{
   @apply hidden
 }
+
+table{
+  @apply block overflow-x-auto max-w-full
+}

@@ -10,7 +10,7 @@ interface TagProps {
 export function Tag({ tag, current, count }: TagProps) {
   return <Link className={badgeVariants({
     variant: current ? "default" : "secondary",
-    className: "no-underline rounded-md hover:bg-gray-300 dark:hover:bg-gray-700"
+    className: "no-underline rounded-md hover:bg-gray-400/65"
   })} href={`/tags/${slug(tag)}`}>
     {tag} {count? `(${count})` : null}
   </Link>

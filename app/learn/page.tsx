@@ -4,8 +4,13 @@ import ChapterBox from "@/components/chapter-box";
 import { ChapterHeader } from "@/components/chapter-header";
 import { cn, getBooksBySlug, sortByChapters } from "@/lib/utils";
 import { slug } from "github-slugger";
+import { Metadata } from "next";
 
 
+export const metadata: Metadata = {
+  title: "The Best Learning Platform ",
+  description: "Choose a book for a day and Add a step for success."
+}
 
 export default function LearnPage() {
   // const latestChapter = sortByChapters(chapters.filter((chapter) => chapter.published)).slice(0, 5);
@@ -17,7 +22,7 @@ export default function LearnPage() {
       <div className="flex-1 space-y-4">
         <h1 className=" inline-block font-black text-4xl lg:text-5xl">Learn</h1>
         <p className="text-xl text-muted-foreground">
-          The Best online learning Books.
+        Choose a book for a day and Add a step for success.
         </p>
       </div>
     </div>

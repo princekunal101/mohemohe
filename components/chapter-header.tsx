@@ -80,8 +80,9 @@ export function ChapterHeader({ chapNum, chapTitle, slug, bookName }: ChapterPag
       <div className={cn(" flex flex-col ml-3")}>
         {chapNum >= 1 ? <><h3 className={cn("text-sd font-semibold")}>Chapter {chapNum}</h3>
           <p className={cn("text-sm font-medium text-muted-foreground")}>{chapTitle}</p>
-        </> :
-          <p className={cn("text-sm font-medium text-muted-foreground")}>{chapTitle}</p>
+        </> : chapNum === 0 ?
+          <p className={cn("text-sm font-medium text-muted-foreground")}>{"Introduction"}</p>
+          : <p className={cn("text-sm font-medium text-muted-foreground")}>{chapTitle}</p>
         }
       </div>
 
