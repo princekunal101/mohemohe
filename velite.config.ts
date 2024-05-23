@@ -66,7 +66,7 @@ export default defineConfig({
     rehypePlugins: [
       rehypeSlug, 
       remarkMath,
-      [rehypeKatex, {strict: true, throwOnError: true}],
+      [rehypeKatex, { strict: true, throwOnError: true }],
       [rehypePrettyCode, { theme: "github-dark" }],
       [
         rehypeAutolinkHeadings, {

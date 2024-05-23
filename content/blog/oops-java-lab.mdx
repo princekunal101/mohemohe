@@ -2,7 +2,7 @@
 title: Oops Java Lab
 description: Object Oriented Programming with Java lab
 publishedDate: 2024-05-08
-updatedDate: 2024-05-12
+updatedDate: 2024-05-24
 published: true
 tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 
@@ -12,6 +12,9 @@ tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
 - [Experiment 3](#experiment-3)
+- [Experiment 4](#experiment-4)
+- [Experiment 5](#experiment-5)
+- [Experiment 6](#experiment-6)
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
@@ -242,6 +245,311 @@ Drive Safely
 Gearchanged!!
 ``` 
 
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4" >**Experiment 4**</Callout>
+<Callout type="knowing">**Objective:** Create Java programs using inheritance and polymorphism. </Callout>
 
-  <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4" >**Experiment 4**</Callout>
-  <Callout type="knowing">**Objective:** Understand OOP concepts and basics of Java programming. </Callout>
+**Theory:**<br/>
+
+- **Inheritance** is a mechanism by which a new class (called a subclass or derived class) is created from an existing class (called a superclass or base class). The subclass inherits the properties and behaviors (methods) of the superclass. This allows for code reuse and peromotes the creation of hirerchical relationships between classes.
+
+- **polymorphism** is Java refers to the ability of objects to take on multiple forms. It allows objects of different classes to be treated as objects of a common superclass through a common interface.
+
+There are two types of polymorphism in java-
+- Compile-time polymorphism (method **overloading**)
+- Runtime polymorphism (method **overriding**)
+
+```java title="Inheritance.java"
+// Superclass
+class Animal {
+  void eat() {
+    System.out.println("I am a omnivorous!! ");
+  }
+}
+
+// Subclass
+class Mammal extends Animal {
+  void nature() {
+    System.out.println("I am a mammal!! ");
+  }
+}
+
+class Dog extends Mammal {
+  void sound() {
+    System.out.println("I bark!! ");
+  }
+}
+
+class Inheritance {
+  public static void main(String args[]) {
+    Dog d = new Dog();
+    d.eat();
+    d.nature();
+    d.sound();
+  }
+}
+```
+
+```makefile title="Output"
+I am a omnivorous!! 
+I am a mammal!!
+I bark!!
+```
+
+
+**Compile-time polymorphism** (**Method Overloading**)**:** This occurs when multiple methods in a class have the same name but different parameters.
+
+```java title="Overloading.java"
+class CircleArea {
+  double area(double x) {
+    return 3.14 * x;
+  }
+}
+
+class SquareArea {
+  int area(int x) {
+    return x * x;
+  }
+}
+
+class RectangleArea {
+  int area(int x, int y) {
+    return x * y;
+  }
+}
+
+class TriangleArea {
+  int area(int y, int x) {
+    return (y * x) / 2;
+  }
+}
+
+class Overloading {
+  public static void main(String args[]) {
+    CircleArea ca = new CircleArea();
+    SquareArea sa = new SquareArea();
+    RectangleArea ra = new RectangleArea();
+    TriangleArea ta = new TriangleArea();
+
+    System.out.println("Circle area = " + ca.area(1));
+    System.out.println("Square area = " + sa.area(2));
+    System.out.println("Rectangle area = " + ra.area(3, 4));
+    System.out.println("Triangle area = " + ta.area(6, 3));
+  }
+}
+```
+
+```makefile title="Output"
+Circle area = 3.14
+Square area = 4
+Rectangle area = 12
+Triangle area = 9
+```
+
+**Runtime polymorphism** (**Method Overriding**)**:** This occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. The subclass method must have the same signature (name and parameters) as the superclass method.
+
+```java title="Overriding.java"
+ class Shape {
+  void draw() {
+    System.out.println("Mention shape here");
+  }
+
+  void numberOfSides() {
+    System.out.println("side = 0");
+  }
+}
+
+class Circle extends Shape {
+  void draw() {
+    System.out.println("CIRCLE ");
+  }
+
+  void numberOfSides() {
+    System.out.println("side = 0 ");
+  }
+}
+
+class Box extends Shape {
+  void draw() {
+    System.out.println("BOX ");
+  }
+
+  void numberOfSides() {
+    System.out.println("side= 6");
+  }
+}
+
+class Triangle extends Shape {
+  void draw() {
+    System.out.println("TRIANGLE ");
+  }
+
+  void numberOfSides() {
+    System.out.println("side = 3 ");
+  }
+}
+
+public class Overriding {
+  public static void main(String args[]) {
+    Circle c = new Circle();
+    c.draw();
+    c.numberOfSides();
+
+    Box b = new Box();
+    b.draw();
+    b.numberOfSides();
+
+    Triangle t = new Triangle();
+    t.draw();
+    t.numberOfSides();
+  }
+}
+```
+
+```makefile title="Output"
+CIRCLE 
+side = 0
+BOX
+side= 6
+TRIANGLE
+side = 3
+
+```
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-5" >**Experiment 5**</Callout>
+<Callout type="knowing">**Objective:** Implement error-handling techniques using exception handling and multithreading. </Callout>
+**Theory:**<br/>
+Exception handling and multithreading are two crucial aspects of Java programming, especially when it comes to building
+ robust and efficient applications.
+```java title="ExceptionDemo.java"
+public class ExceptionDemo {
+  public static void main(String[] args) {
+      // array of size 4.
+      int[] arr = new int[4];
+
+      try {
+          int i = arr[4];
+
+          // this statement will never execute
+          // as exception is raised by above statement
+          System.out.println("Inside try block");
+      }
+
+      catch (ArrayIndexOutOfBoundsException ex) {
+          System.out.println("Exception caught in catch block");
+      }
+      
+      // this will always execute 
+      finally {
+          System.out.println("finally block executed");
+      }
+      // rest program will be executed
+      System.out.println("Outside try-catch-finally clause");
+  }
+}
+```
+
+```makefile title="Output"
+Exception caught in catch block
+finally block executed
+Outside try-catch-finally clause 
+```
+- **Throw Exception**
+```java title="ThrowExcepDemo.java"
+public class ThrowExcepDemo {
+    static void fun() {
+        try {
+            throw new NullPointerException("demo");
+        } catch (NullPointerException e) {
+            System.out.println("Caught inside fun().");
+            throw e; // rethrowing the exception
+        }
+    }
+
+    public static void main(String args[]) {
+        try {
+            fun();
+        } catch (NullPointerException e) {
+            System.out.println("Caught in main.");
+        }
+    }
+}
+```
+
+```makefile title=""
+Caught inside fun().
+Caught in main.
+```
+- **Throws Exception**
+
+```java title="ThrowsExcepDemo.java"
+public class ThrowsExecpDemo {
+
+    static void fun() throws IllegalAccessException {
+        System.out.println("Inside fun(). ");
+        throw new IllegalAccessException("demo");
+    }
+
+    public static void main(String args[]) {
+        try {
+            fun();
+        } catch (IllegalAccessException e) {
+            System.out.println("caught in main.");
+        }
+    }
+}
+```
+
+```makefile title="Output"
+Inside fun(). 
+caught in main.
+```
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6" >**Experiment 6**</Callout>
+<Callout type="knowing">**Objective:** Create java program with the use of java packages. </Callout>
+
+```java title="PackageDemo.java"
+package MyPack;
+
+// Class to which the above package belongs
+public class PackageDemo {
+
+    // Member functions of the class- 'Demo'
+    // Method 1 - To show()
+    public void show() {
+
+        // Print message
+        System.out.println("Hi Everyone");
+    }
+
+    // Method 2 - To show()
+    public void view() {
+        // Print message
+        System.out.println("Hello");
+    }
+}
+```
+
+```java title="PackageImportDemo.java"
+package MyPack;
+
+import MyPack.*;
+
+// Class to which the package belongs
+public class PackageImportDemo {
+
+    // main driver method
+    public static void main(String arg[]) {
+
+        // Creating an object of Demo class
+        PackageDemo d = new PackageDemo();
+
+        // Calling the functions show() and view()
+        // using the object of Demo class
+        d.show();
+        d.view();
+    }
+}
+```
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-7" >**Experiment 7**</Callout>
+<Callout type="knowing">**Objective:** Construct java program using Java I/O package. </Callout>
