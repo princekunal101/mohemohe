@@ -1,6 +1,6 @@
 {
   "name": "project1",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -25,6 +25,7 @@
     "react-dom": "^18",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
+    "shiki": "^1.6.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -37,7 +38,7 @@
     "eslint-config-next": "14.2.1",
     "postcss": "^8",
     "rehype-autolink-headings": "^7.1.0",
-    "rehype-pretty-code": "^0.13.1",
+    "rehype-pretty-code": "^0.13.2",
     "rehype-slug": "^6.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",

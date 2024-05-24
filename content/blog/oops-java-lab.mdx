@@ -63,7 +63,7 @@ sudo snap install eclipse --clasic
 - Instructions for creating and running it both in **Eclipse** and using the **command line** (**cmd**).
 
 Here's a simple Java program that checks whether a given number is prime or not. 
-```java title="Prime.java"
+```java showLineNumbers title="Prime.java"
 public class Prime {
 	public static void main(String[] args) {
 		int num = 29; // Change this number to check prime or not for a different number
@@ -102,7 +102,7 @@ public class Prime {
 
 Here's a simple Java program that calculates the factorial of a given number. 
 
-```java title="Factorial.java"
+```java showLineNumbers title="Factorial.java"
 public class Factorial {
   public static void main(String[] args) {
     int number = 5; // Change this number to calculate factorial for a different number
@@ -141,7 +141,7 @@ Factorial of 5 is: 120
 - **Arithmetic Operations:** Arithmetic operations such as *addition*, *subtraction*, *multiplication*, and *division* are fundamental mathematical concepts. In this program, they are implemented using Java operators (`+`, `-`, `*`, `/`).
 - **Error Handling:** Error handling is crucial for robust software. In this program, we handle division by zero by checking for this condition explicitly
 
-```java title="Calculator.java"
+```java showLineNumbers title="Calculator.java"
 public class Calculator {
   public static void main(String[] args) {
     
@@ -212,7 +212,7 @@ java Calculator 8 / 2
 - A class is a blueprint or template for creating objects. It defines the properties (fields) and behaviors (methods) that objects of that type will have.
 - Abstraction is the process of hiding the implementation details and showing only the essential features of an object. Abstract classes and interfaces are used to achieve abstraction.
 
-```java title="Abstraction.java"
+```java showLineNumbers title="Abstraction.java"
 abstract class Car {
   Car() {
     System.out.println("Car is built. ");
@@ -258,7 +258,7 @@ There are two types of polymorphism in java-
 - Compile-time polymorphism (method **overloading**)
 - Runtime polymorphism (method **overriding**)
 
-```java title="Inheritance.java"
+```java showLineNumbers title="Inheritance.java"
 // Superclass
 class Animal {
   void eat() {
@@ -298,7 +298,7 @@ I bark!!
 
 **Compile-time polymorphism** (**Method Overloading**)**:** This occurs when multiple methods in a class have the same name but different parameters.
 
-```java title="Overloading.java"
+```java showLineNumbers title="Overloading.java"
 class CircleArea {
   double area(double x) {
     return 3.14 * x;
@@ -347,7 +347,7 @@ Triangle area = 9
 
 **Runtime polymorphism** (**Method Overriding**)**:** This occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. The subclass method must have the same signature (name and parameters) as the superclass method.
 
-```java title="Overriding.java"
+```java showLineNumbers title="Overriding.java"
  class Shape {
   void draw() {
     System.out.println("Mention shape here");
@@ -420,7 +420,7 @@ side = 3
 **Theory:**<br/>
 Exception handling and multithreading are two crucial aspects of Java programming, especially when it comes to building
  robust and efficient applications.
-```java title="ExceptionDemo.java"
+```java showLineNumbers title="ExceptionDemo.java"
 public class ExceptionDemo {
   public static void main(String[] args) {
       // array of size 4.
@@ -454,7 +454,7 @@ finally block executed
 Outside try-catch-finally clause 
 ```
 - **Throw Exception**
-```java title="ThrowExcepDemo.java"
+```java showLineNumbers title="ThrowExcepDemo.java"
 public class ThrowExcepDemo {
     static void fun() {
         try {
@@ -481,7 +481,7 @@ Caught in main.
 ```
 - **Throws Exception**
 
-```java title="ThrowsExcepDemo.java"
+```java showLineNumbers title="ThrowsExcepDemo.java"
 public class ThrowsExecpDemo {
 
     static void fun() throws IllegalAccessException {
@@ -507,7 +507,7 @@ caught in main.
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6" >**Experiment 6**</Callout>
 <Callout type="knowing">**Objective:** Create java program with the use of java packages. </Callout>
 
-```java title="PackageDemo.java"
+```java showLineNumbers title="PackageDemo.java"
 package MyPack;
 
 // Class to which the above package belongs
@@ -529,7 +529,7 @@ public class PackageDemo {
 }
 ```
 
-```java title="PackageImportDemo.java"
+```java showLineNumbers title="PackageImportDemo.java"
 package MyPack;
 
 import MyPack.*;

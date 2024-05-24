@@ -50,7 +50,12 @@ const chapters = defineCollection({
     }).transform(computeFields)
 })
 
-
+const options ={
+theme: {
+  dark: "github-dark",
+  light: "github-light",
+}
+}
 
 export default defineConfig({
   root: "content",
@@ -67,7 +72,7 @@ export default defineConfig({
       rehypeSlug, 
       remarkMath,
       [rehypeKatex, { strict: true, throwOnError: true }],
-      [rehypePrettyCode, { theme: "github-dark" }],
+      [rehypePrettyCode, options],
       [
         rehypeAutolinkHeadings, {
           behavior: "wrap",
