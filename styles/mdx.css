@@ -1,5 +1,5 @@
 [data-rehype-pretty-code-figure] pre {
-  @apply px-0;
+  @apply px-0 rounded-md border border-zinc-200 dark:border-zinc-700;
 }
 
 [data-rehype-pretty-code-figure] code {
@@ -26,11 +26,11 @@
 }
 
 [data-rehype-pretty-code-figure] [data-highlighted-chars] {
-  @apply rounded bg-zinc-400/50 border-s-zinc-500/50 ;
+  @apply rounded bg-zinc-400/50 border-s-zinc-500/50;
   box-shadow: 0 0 0 3px rgba(138, 138, 142, 0.4);
 }
 
-[data-rehype-pretty-code-figure] [data-chars-id]  {
+[data-rehype-pretty-code-figure] [data-chars-id] {
   @apply border-blue-300 bg-blue-300/30 border-b-2 px-1.5 py-1 shadow-none;
 }
 
@@ -49,12 +49,12 @@
 code[data-theme*=" "] span {
   /* color: var(--shiki-light); */
   /* background: var(--shiki-light-bg); */
-  @apply leading-7 text-[var(--shiki-light)] dark:text-[var(--shiki-dark)]  ;
+  @apply leading-7 text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
 }
 
 pre[data-theme*=" "],
-code[data-theme*=" "]{
-@apply bg-[var(--shiki-light-bg)] dark:bg-[var(--shiki-dark-bg)];
+code[data-theme*=" "] {
+  @apply bg-[var(--shiki-light-bg)] dark:bg-[var(--shiki-dark-bg)];
 }
 
 
