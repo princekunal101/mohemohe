@@ -4,6 +4,7 @@ import { Callout } from "./callout";
 import { FigureMdx } from "./mdx-figures";
 import { ChapIntro } from "./mdx-intro";
 import * as Icons from "lucide-react";
+import { NextUp } from "./mdx-next-up";
 
 
 const useMDXComponent = (code: string) => {
@@ -18,6 +19,7 @@ const components = {
   Callout,
   FigureMdx,
   ChapIntro,
+  NextUp,
   
   
 }

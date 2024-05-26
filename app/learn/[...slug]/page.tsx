@@ -101,13 +101,13 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
         slug={chapter.slug}
         bookName={params.slug[0]} />
     </div>
-    <article className="w-full  px-1 sm:px-1 md:px-4  py-6 prose dark:prose-invert max-w-6xl">
+    <article className="w-full px-1 sm:px-1 md:px-4 py-6 prose dark:prose-invert max-w-6xl">
 
       {chapter.chapNum >= 1 ? <div className={cn(" mb-2 flex w-full flex-col  gap-3 md:flex-row")}>
         <div className={cn(" w-14 h-14 sm:w-20 sm:h-20 flex flex-shrink-0 items-center justify-center bg-secondary rounded-full")}>
           <p className={cn(" text-3xl sm:text-5xl font-bold m-0 text-inherit")}>{chapter.chapNum}</p></div>
         <div className={cn("flex flex-col")}>
-          <p className={cn("text-lg my-0 font-medium  text-muted-foreground hidden md:block")}>Chapter {chapter.chapNum}</p>
+          <p className={cn("text-md my-0 font-medium  text-muted-foreground hidden md:block")}>Chapter {chapter.chapNum}</p>
           <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>
         </div>
       </div> 

@@ -1,0 +1,289 @@
+---
+chapTitle: Programming Structures in Java
+bookName: Java Programming
+chapDesc: In the privious chapter we have learn about the why Java, History of Java, and Java Environment as Java Development Kit, Java vertual machine, Java runtime environment.
+chapNum: 2
+publishedDate: 2024-05-25
+updatedDate: 2024-05-25
+tags: ["code", "checking", "trial"]
+published: true
+---
+
+<ChapIntro><li className="flex gap-3"><Icons.Shapes className=" flex-shrink-0"/> Defining Classes and Access Specifiers </li><hr className="my-2"/><li className="flex gap-3"><Icons.Ampersands className=" flex-shrink-0"/> Comments, Data Types, variables and Operators </li><hr className="my-2"/><li className="flex gap-3"><Icons.Brackets className=" flex-shrink-0"/> Control Flow, Arrays and Strings </li></ChapIntro>
+
+---
+
+## Classes in Java
+Classes is fundamental to object-oriented programming. Here's a basic example of how to define a class in Java
+- We've defined a class named `MyClass`.
+- It has two fields. `myField` of `int`, and `anotherField` of type `String`.
+- It has a Constructor `MyClass(int myField, String anotherField)` that initializes these fields.
+- It has getter and setter methods for accessing and modifying these fields.
+
+```java title="MyClass.java"
+public class MyClass {
+  // Fields (attributes)
+  private int myField;
+  private String anotherField;
+
+  // Constructor
+  public MyClass(int myField, String anotherField) {
+    this.myField = myField;
+    this.anotherField = anotherField;
+  }
+
+  // Methods
+  public int getMyField() {
+    return myField;
+  }
+
+  public void setMyField(int myField) {
+    this.myField = myField;
+  }
+
+  public String getAnotherField() {
+    return anotherField;
+  }
+
+  public void setAnotherField(String anotherField) {
+    this.anotherField = anotherField;
+  }
+} 
+```
+- Create an intance of this class and manipulate its fields.
+
+```java title="Main.java"
+public class Main {
+  public static void main(String[] args) {
+    MyClass obj = new MyClass(10, "Hello");
+    System.out.println(obj.getMyField());
+    System.out.println(obj.getAnotherField());
+
+    obj.setMyField(20);
+    obj.setAnotherField("World");
+
+    System.out.println(obj.getMyField());
+    System.out.println(obj.getAnotherField());
+  }
+}
+```
+
+```makefile title="Output"
+10
+Hello
+20
+World
+```
+
+Given examples are just a basic. Classes can have more complex structure, including inheritance, interfaces, and other features of object-oriented programming.
+
+## Modifiers in Java
+Modifier is conceivable to alter classes and systems by utilizing modifiers. There are two classifications of modifiers &mdash;
+- **Access Modifiers:** public, default, protected and private
+- **Non-access Modifiers:** static, final and abstract.
+
+### Access Modifiers
+Java gives various access modifiers to set access levels for classes, fields, variables, routines and constructors. It is also known as **Access Specifiers**. The four right to gain access are &mdash;
+- **Private:** visible to the class.
+- **Default:** visible to the bundle. No modifiers are required
+- **Protected:** visible to all subclasses and package.
+- **Public:** visible to the world.
+
+|   | Private | No Modifier | Protected | Public |
+| :------- |------|------ | ------- | -------- |
+| Same class | Yes | Yes | Yes | Yes |
+| Same package subclass | No | Yes | Yes | Yes |
+| Same package non-subclass | No | Yes | Yes | Yes |
+| Different package subclass | No | No | Yes | Yes |
+| Different package non-subclass | No | No | No | Yes |
+
+Here's the example of access modifier.
+```java title="MyClass.java"
+package mypackage;
+
+public class MyClass {
+  public int publicField;
+  protected int protectedField;
+  int defaultField;    // package-private
+  private int privateField;
+
+  public MyClass() {
+    // Constructor
+  }
+
+  public void publicMethod() {
+    // Method with public access
+  }
+
+  protected void protectedMethod() {
+    // Method with package-private access
+  }
+
+  private void privateMethod() {
+    // Method with private access
+  }
+}
+```
+- `publicField` is accessible from any class.
+- `protectedField` is accessible within its package and by subclasses.
+- `defaultField` is accessible within its package.
+- `privateField` is accessible only within its own class.
+- `publicMethod()`, `protectedField()`, and `defaultField()` have similar access levels as thir corresponding fields.
+- `privateMethod()` is accessible only within its own class.
+
+
+### Non Access Modifiers
+Java gives various non-access modifiers to attain numerous other usefulness.
+- **Static:** The static modifier for making class variables and methods.
+- **Final:** The final modifier for concluding the executions of classes, variables and methods.
+- **Abstract:** This modifier is used for creating abstract methods and classes.
+- **Volatile and Synchronized:** These modifiers and typically used for threads.
+
+## Comments in Java
+Just an in the case of C++ and C, Java supports two types of comments namely, single line comments and multi-line comments. The syntax for these types of comments are as follows &mdash;
+
+- Single line comment
+```java
+//<comment>
+```
+- Multiple line comment
+```java
+/*<commnet 
+line 2
+.
+.
+line n>*/
+```
+All characters that exist in the comments region are simply ignored by the Java compiler.
+
+Any line that is only composed of whitespace characters or comments is considered a blank line. These lines are just ignored by the compiler and are not included in the executable.
+
+
+## Data Types
+Data types specify the type of data that can be stored in a variable. Java supports several built-in data types, which can be categorised into two main categories &mdash;
+- Primitive data types and
+- Referance data types
+
+### Primitive data types
+```java title="Example.java"
+int myNum = 7;                // Integer
+float myFloatNum = 8.74f;     // Floating Point Number
+char myChar = 'P';            // Character
+boolean myBool = true;        // Boolean
+String myText = "Hello";      // String
+```
+There are mainly eight types of primitive data types in Java programming &mdash;
+| Data Type | Characteristics | Range |
+|:---------:|:--------------- |:-----|
+| `byte` | **8 bit** signed integer | **-128** to **127** |
+| `short` | **16 bit** signed integer | **-32768** to **32767** |
+| `int` | **32 bit** signed integer | **2E-31** to **2E+30** |
+| `long` | **64 bit** signed integer | **2E-63** to **2E+62** |
+| `float` | **32 bit** floating point number | **&pm; 1.4E-45** to **&pm; 3.4028235E+38** |
+| `double` | **64 bit** floating point number | **&pm; 4.9E-324** to **&pm; 1.7976931348623157E+308** |
+| `boolean` | **1 bit** `true` or `false` | **NA** |
+| `char` | **16 bit**, Unicode | **Unicode character**, `\u0000` to `\uFFFF` can mix with hexadecimal number. |
+
+## Operators in Java
+The Operator set in Java is extremely rich. Broadly, the operators available in Java are devided in the follwing categories.
+- Relational Operators
+- Arithmetic operators
+- Logical Operators
+- Bitwise Operators
+- Misc Operators
+- Assignment Operators
+
+**The Arithmetic Operators:** Operators in Java are used in essentially the same manner as in algebra. They are used with variables for performing arithmatic operations. Here's list of arithmatic operators available in Java.
+
+| Operation | Operator | Description |
+| :----- | :------: | :----- |
+| Addition | + | Adds the values of two variables |
+| Subtraction | - | Subtracts the values of two variables |
+| Multiplication | * | Multiplies the values of two variables |
+| Divison | / | Divides the values of two variables |
+| Modulus | % | The resultant value is the remainder of devision |
+| Increment | ++ | Increases the value by 1 |
+| Decrement | -- | Decreases the value by 1 |
+
+**The Relational Operators:** Java also supports several realtional operators. The list of realtional operators that are supported by Java are given below.
+
+| Operation | Operator | Description |
+| :------- | :-------: | :----- |
+| Equal to | == | Compares the values of variables for equality |
+| Not Equal to | != | Compares the values of variables for inequality |
+| Garter Than | &gt; | Checks if one value is grater than the other value |
+| Lesser than  | &lt; |  Checks if one value is lesser than the other value. |
+| Garter than or Equal to | &gt;= | Checks if one value is grater than or equal to the other value |
+| Lesser than or Equal to | &lt;= | Checks if one value is lesser than or equal to the other value |
+
+**The Bitwise Operators:** The bitwise operators available in Java can be easily applied to an number of data types. These data types include byte, short, long, int and char. Typically, and bitwise operator performs the concerned operation bit-wise. The list bitwise operators that are available in Java followings are shown below &mdash;
+
+| Operation | Operator | Description |
+| :------- | :------: | :------- |
+| BINARY AND | & | Performs the AND operation |
+| BINARY OR | &verbar; | Performs the OR operation |
+| BINARY XOR | ^ | Performs the XOR operation |
+| ONE'S COMPLEMENT | ~ | Performs the complementation operation on a unary variable |
+| BINARY LEFT SHIFT | &lt;&lt; | Performs the left shifting of bits |
+| BINARY RIGHT SHIFT | &gt;&gt; | Performs the right shifting of bits |
+
+Java also supports right shift zero fill operator `>>>`, which fills the shifted bits on the right with zero.
+
+**The Logical Operators:** Logical operators are an integral part of any operator set. The logical operators supported by Java are listed below.
+
+| Operation | Operator | Description |
+| :------- | :-----: | :------- |
+| Logical AND | && | Returns True if both the conditions mentioned are true |
+| Logical OR | &verbar;&verbar; | Returns True if one or both the conditions mentioned are true. |
+| Logical NOT | ! | Returns True if the conditions mentioned is False |
+
+**The Assignment Operators:** There are follwing assignment operators supported by Java language.
+| Operation | Operator | Description |
+| :-------- | :-------: | :-------- |
+| Simple assignment operator | = | Assigns a value on the right to the variable in the left |
+| Add - assignment operator | += | Adds the value on the right to the value of the variable o the left and assigns the resultant to the variable on the left |
+| Subtract - assignment operator | -= | Subtracts the value on the right to the value of the variable on the left and assigns the resultant to the variable on the left |
+| Multiple - assignment operator | *= | Multiplies the value on the right to the value of the variable on the left and assigns the resultant to the variable on the left |
+| Devide - assignment operator | /= | Devides the value on the right to the value of the variable on the left and assigns the resultant to the variable on the left |
+| Modulus -assignment operator | %= | It takes the modulus of the LHS and RHS and assigns the resultant to the variable on the left |
+| Left shift - assignment operator | &lt;&lt;= | It takes the left shift of the LHS and RHS and assigns the resultant to the variable ont the left |
+| Right shift - assignment operator | &gt;&gt;= | It takes the right shift of the LHS and RHS and assigns the resultant to the variable on the left |
+| Bitwise - assignment operator | &= | It takes the bitwise AND of the LHS and RHS and assigns the resultant to the variable on the left |
+| bitwise exclusive OR - assignment operator | ^= | It takes the bitwise XOR of the LHS and RHS and assigns the resultant to the variable on the left |
+| bitwise inclusive OR - assignment operator | &verbar;= | It takes the bitwise OR of the LHS and RHS and assigns the resultant to the variable on the left |
+
+**Misc Operator:** There are several other operators, which supported by Java.
+- **Conditional Operator `?:`:** The conditional operator is a ternary operator that contains three operands. Essentially, this operator is used for the evalution of boolean expression. The operator tests the first operand or condition and if the condition is true, then th second value is assigned to the variable. However, if the condition is false, the third operamd is assigned to the variable.
+
+```java
+variable a = (<condition>) ? valueIfTrue : valueIfFalse;
+```
+
+- ***instanceof* Operator:** Only object refernce variables can be used with this operator. This objective of this operator is to check is an object is an instance of an exiting class.
+
+```java
+(<object refernce variable>) instanceof(<interface/class>);
+```
+
+**Precedence of Java Operators:** The oprecedence list for Java shall helps to predict operator operations in an expression deduction. The associativity for all the operators is left to right. However, the unary, assignment and conditional operator follows right to left associativity.
+
+| Operator | Category |
+| :------- | :---------- |
+| () [] .*(dot operator)* | Postfix |
+| ++ -- ! ~ | Unary |
+| * / % | Multiplicative |
+| + - | Additive |
+| &gt;&gt; &gt;&gt;&gt; &lt;&lt; | Shift |
+| &gt; &gt;= &lt; &lt;= | Relational |
+| == != | Equality |
+| & | Bitwise AND |
+| &verbar; | Bitwise OR |
+| ^ | Bitwise XOR |
+| && | Logical AND |
+| &verbar;&verbar; | Logical OR |
+| ?: | Conditional |
+| = += -= *= /= %= &gt;&gt;= &= ^= &verbar;= | Assignment |
+| , | Comma |
+
+
+<NextUp nextChap="3" nextChapName="Object-Oriented Programming" nextChapLink="/java/object-oriented-programming"> Comming soon!</NextUp>
