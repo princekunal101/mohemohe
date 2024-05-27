@@ -1,0 +1,121 @@
+---
+chapTitle: Operators in Java
+bookName: Java Programming
+chapDesc: In the privious chapter we have learn about the Classes, Access Specifiers. How to comments the text in java. Data type and variables.
+chapNum: 3
+publishedDate: 2024-05-25
+updatedDate: 2024-05-25
+tags: ["code", "checking", "trial"]
+published: true
+---
+
+<ChapIntro><li className="flex gap-3"><Icons.Ampersands className=" flex-shrink-0"/> Operators </li><hr className="my-2"/><li className="flex gap-3"><Icons.EqualNot className=" flex-shrink-0"/> Classifications of Operators </li></ChapIntro>
+
+---
+
+
+
+
+## Operators in Java
+The Operator set in Java is extremely rich. Broadly, the operators available in Java are devided in the follwing categories.
+- Relational Operators
+- Arithmetic operators
+- Logical Operators
+- Bitwise Operators
+- Misc Operators
+- Assignment Operators
+
+**The Arithmetic Operators:** Operators in Java are used in essentially the same manner as in algebra. They are used with variables for performing arithmatic operations. Here's list of arithmatic operators available in Java.
+
+| Operation | Operator | Description |
+| :----- | :------: | :----- |
+| Addition | + | Adds the values of two variables |
+| Subtraction | - | Subtracts the values of two variables |
+| Multiplication | * | Multiplies the values of two variables |
+| Divison | / | Divides the values of two variables |
+| Modulus | % | The resultant value is the remainder of devision |
+| Increment | ++ | Increases the value by 1 |
+| Decrement | -- | Decreases the value by 1 |
+
+**The Relational Operators:** Java also supports several realtional operators. The list of realtional operators that are supported by Java are given below.
+
+| Operation | Operator | Description |
+| :------- | :-------: | :----- |
+| Equal to | == | Compares the values of variables for equality |
+| Not Equal to | != | Compares the values of variables for inequality |
+| Garter Than | &gt; | Checks if one value is grater than the other value |
+| Lesser than  | &lt; |  Checks if one value is lesser than the other value. |
+| Garter than or Equal to | &gt;= | Checks if one value is grater than or equal to the other value |
+| Lesser than or Equal to | &lt;= | Checks if one value is lesser than or equal to the other value |
+
+**The Bitwise Operators:** The bitwise operators available in Java can be easily applied to an number of data types. These data types include byte, short, long, int and char. Typically, and bitwise operator performs the concerned operation bit-wise. The list bitwise operators that are available in Java followings are shown below &mdash;
+
+| Operation | Operator | Description |
+| :------- | :------: | :------- |
+| BINARY AND | & | Performs the AND operation |
+| BINARY OR | &verbar; | Performs the OR operation |
+| BINARY XOR | ^ | Performs the XOR operation |
+| ONE'S COMPLEMENT | ~ | Performs the complementation operation on a unary variable |
+| BINARY LEFT SHIFT | &lt;&lt; | Performs the left shifting of bits |
+| BINARY RIGHT SHIFT | &gt;&gt; | Performs the right shifting of bits |
+
+Java also supports right shift zero fill operator `>>>`, which fills the shifted bits on the right with zero.
+
+**The Logical Operators:** Logical operators are an integral part of any operator set. The logical operators supported by Java are listed below.
+
+| Operation | Operator | Description |
+| :------- | :-----: | :------- |
+| Logical AND | && | Returns True if both the conditions mentioned are true |
+| Logical OR | &verbar;&verbar; | Returns True if one or both the conditions mentioned are true. |
+| Logical NOT | ! | Returns True if the conditions mentioned is False |
+
+**The Assignment Operators:** There are follwing assignment operators supported by Java language.
+| Operation | Operator | Description |
+| :-------- | :-------: | :-------- |
+| Simple assignment operator | = | Assigns a value on the right to the variable in the left |
+| Add - assignment operator | += | Adds the value on the right to the value of the variable o the left and assigns the resultant to the variable on the left |
+| Subtract - assignment operator | -= | Subtracts the value on the right to the value of the variable on the left and assigns the resultant to the variable on the left |
+| Multiple - assignment operator | *= | Multiplies the value on the right to the value of the variable on the left and assigns the resultant to the variable on the left |
+| Devide - assignment operator | /= | Devides the value on the right to the value of the variable on the left and assigns the resultant to the variable on the left |
+| Modulus -assignment operator | %= | It takes the modulus of the LHS and RHS and assigns the resultant to the variable on the left |
+| Left shift - assignment operator | &lt;&lt;= | It takes the left shift of the LHS and RHS and assigns the resultant to the variable ont the left |
+| Right shift - assignment operator | &gt;&gt;= | It takes the right shift of the LHS and RHS and assigns the resultant to the variable on the left |
+| Bitwise - assignment operator | &= | It takes the bitwise AND of the LHS and RHS and assigns the resultant to the variable on the left |
+| bitwise exclusive OR - assignment operator | ^= | It takes the bitwise XOR of the LHS and RHS and assigns the resultant to the variable on the left |
+| bitwise inclusive OR - assignment operator | &verbar;= | It takes the bitwise OR of the LHS and RHS and assigns the resultant to the variable on the left |
+
+**Misc Operator:** There are several other operators, which supported by Java.
+- **Conditional Operator `?:`:** The conditional operator is a ternary operator that contains three operands. Essentially, this operator is used for the evalution of boolean expression. The operator tests the first operand or condition and if the condition is true, then th second value is assigned to the variable. However, if the condition is false, the third operamd is assigned to the variable.
+
+```java
+variable a = (<condition>) ? valueIfTrue : valueIfFalse;
+```
+
+- ***instanceof* Operator:** Only object refernce variables can be used with this operator. This objective of this operator is to check is an object is an instance of an exiting class.
+
+```java
+(<object refernce variable>) instanceof(<interface/class>);
+```
+
+**Precedence of Java Operators:** The oprecedence list for Java shall helps to predict operator operations in an expression deduction. The associativity for all the operators is left to right. However, the unary, assignment and conditional operator follows right to left associativity.
+
+| Operator | Category |
+| :------- | :---------- |
+| () [] .*(dot operator)* | Postfix |
+| ++ -- ! ~ | Unary |
+| * / % | Multiplicative |
+| + - | Additive |
+| &gt;&gt; &gt;&gt;&gt; &lt;&lt; | Shift |
+| &gt; &gt;= &lt; &lt;= | Relational |
+| == != | Equality |
+| & | Bitwise AND |
+| &verbar; | Bitwise OR |
+| ^ | Bitwise XOR |
+| && | Logical AND |
+| &verbar;&verbar; | Logical OR |
+| ?: | Conditional |
+| = += -= *= /= %= &gt;&gt;= &= ^= &verbar;= | Assignment |
+| , | Comma |
+
+
+<NextUp nextChap="4" nextChapName="Programming Concepts in Java" nextChapLink="/java/programming-concepts"> Comming soon! {/*Let's learn about the Fundamental of Progrmming Structure. how Conditional, Looping and Branching Statements working? Basic concept of Arrays and String.  */} </NextUp>
