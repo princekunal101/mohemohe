@@ -2,7 +2,7 @@
 title: Oops Java Lab
 description: Object Oriented Programming with Java lab
 publishedDate: 2024-05-08
-updatedDate: 2024-05-24
+updatedDate: 2024-06-03
 published: true
 tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 
@@ -16,7 +16,7 @@ tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 5](#experiment-5)
 - [Experiment 6](#experiment-6)
 - [Experiment 7](#experiment-7)
-{/* - [Experiment 8](#experiment-8) */}
+- [Experiment 8](#experiment-8)
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
@@ -485,7 +485,6 @@ Caught in main.
 
 ```java showLineNumbers title="ThrowsExcepDemo.java"
 public class ThrowsExecpDemo {
-
     static void fun() throws IllegalAccessException {
         System.out.println("Inside fun(). ");
         throw new IllegalAccessException("demo");
@@ -687,3 +686,129 @@ The state of thread t2 when it has completed it's execution - TERMINATED
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
 <Callout type="knowing">**Objective:** Construct java program using Java I/O package. </Callout>
+
+**Theory:**
+
+First we need to create the `.txt` file with the name input. Write something in `input.txt` file.
+```java title="CopyFile.java" showLineNumbers
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class CopyFile {
+
+   public static void main(String args[]) throws IOException {
+      FileInputStream in = null;
+      FileOutputStream out = null;
+
+      try {
+         in = new FileInputStream("input.txt");
+         out = new FileOutputStream("output.txt");
+
+         int c;
+         while ((c = in.read()) != -1) {
+            out.write(c);
+         }
+      } finally {
+         if (in != null) {
+            in.close();
+         }
+         if (out != null) {
+            out.close();
+         }
+      }
+   }
+}
+```
+- The new file will be create and copy all the text which is written in `input.txt`. 
+
+Same Here, First we need to create the `.txt` file with the name input. Write something in `input.txt` file.
+
+```java title="FileCopyDemo.java" showLineNumbers
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileCopyDemo {
+
+   public static void main(String args[]) throws IOException {
+      FileReader in = null;
+      FileWriter out = null;
+
+      try {
+         in = new FileReader("input.txt");
+         out = new FileWriter("output.txt");
+
+         int c;
+         while ((c = in.read()) != -1) {
+            out.write(c);
+         }
+      } finally {
+         if (in != null) {
+            in.close();
+         }
+         if (out != null) {
+            out.close();
+         }
+      }
+   }
+}
+```
+
+- The output will be showing as creating or coping all the text from `input.txt` to `output.txt`.
+
+## File Output Stream 
+```java title="FileOutputStreamExample.java" showLineNumbers
+import java.io.*;
+
+public class FileOutputStreamExample {
+      public static void main(String args[]) {
+            try {
+                  FileOutputStream fout = new FileOutputStream("D:\\testout.txt");
+                  fout.write(65);
+                  fout.write(66);
+                  fout.close();
+                  System.out.println("success...");
+            } catch (Exception e) {
+                  System.out.println(e);
+            }
+      }
+}
+```
+- The `testout.txt` file will be created in D drive of your computer system storage. In the `testout` file text will appear as **AB**.
+```makefile title="Output"
+success...
+```
+
+
+```java title="FileOutputStreamExample1.java" showLineNumbers
+import java.io.FileOutputStream;
+
+public class FileOutputStreamExample1 {
+    public static void main(String args[]) {
+        try {
+            FileOutputStream fout = new FileOutputStream("testout.txt");
+            String s = "Welcome to javaTpoint.";
+            byte b[] = s.getBytes();// converting string into byte array
+            fout.write(b);
+            fout.close();
+            System.out.println("success...");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+```
+
+- The `testout.txt` file will be Created in that folder where we execute this code.
+```makefile title="testout.txt"
+Welcome to javaTpoint.
+```
+
+```makefile title="Output"
+success...
+```
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
+<Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. </Callout>

@@ -2,7 +2,7 @@
 title: Operating System Lab
 description: Operating system lab
 publishedDate: 2024-05-05
-updatedDate: 2024-05-13
+updatedDate: 2024-06-03
 published: true
 tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 
@@ -11,6 +11,8 @@ tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
+- [Experiment 3](#experiment-3)
+{/* - [Experiment 4](#experiment-4) */}
 
 
 
@@ -203,9 +205,165 @@ You entered: helo
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3">**Experiment 3**</Callout>
-<Callout type="knowing">**Objective:** Execute various system calls. <ul><li>Process Management</li><li>File Management</li><li>Input/Output System Calls</li></ul></Callout>
+<Callout type="knowing">**Objective:** Implement CPU Scheduling Policies: <ul><li>SJF</li><li>Priority</li><li>FCFS</li><li>Multi-level Queue</li></ul></Callout>
+
+```c title="FirstComeFirstSearch.c" showLineNumbers
+#include <stdio.h>
+
+int main()
+
+{
+  int n, bt[30], wait_t[30], turn_ar_t[30], av_wt_t = 0, avturn_ar_t = 0, i, j;
+  // the maximum process that be used to calculate is specified.
+  printf("Please enter the total number of processes(maximum 30): "); 
+  scanf("%d", &n);
+
+  printf("\nEnter The Process Burst Timen");
+  for (i = 0; i < n; i++) // burst time for every process will be taken as input
+  {
+    printf("P[%d]:", i + 1);
+    scanf("%d", &bt[i]);
+  }
+
+  wait_t[0] = 0;
+
+  for (i = 1; i < n; i++)
+  {
+    wait_t[i] = 0;
+    for (j = 0; j < i; j++)
+      wait_t[i] += bt[j];
+  }
+
+  printf("\nProcess\t\tBurst Time\tWaiting Time\tTurnaround Time");
+
+  for (i = 0; i < n; i++)
+  {
+    turn_ar_t[i] = bt[i] + wait_t[i];
+    av_wt_t += wait_t[i];
+    avturn_ar_t += turn_ar_t[i];
+    printf("\nP[%d]\t\t%d\t\t\t%d\t\t\t\t%d", i + 1, bt[i], wait_t[i], turn_ar_t[i]);
+  }
+
+  av_wt_t /= i;
+  avturn_ar_t /= i; // average calculation is done here
+  printf("\nAverage Waiting Time=%d", av_wt_t);
+  printf("\nAverage Turnaround Time=%d", avturn_ar_t);
+
+  return 0;
+}
+```
+```makefile title="Output"
+Please enter the total number of processes(maximum 30): 5
+
+Enter The Process Burst TimenP[1]:4      
+P[2]:6
+P[3]:2
+P[4]:1
+P[5]:9
+
+Process      Burst Time      Waiting Time     Turnaround Time
+P[1]            4                  4
+P[2]            6                  10
+P[3]            2                  10             12       
+P[4]            1                  12             13       
+P[5]            9                  13             22       
+Average Waiting Time=7
+Average Turnaround Time=12
+```
+
+```c title="SortestJobFirst.c" showLineNumbers
+#include <stdio.h>
+void main()
+{
+  int bt[20], p[20], wt[20], tat[20], i, j, n, total = 0, pos, temp; 
+  // bt-Burst Time // wt-Waiting Time  //  tat-Turn Around Time  //pos-position
+  float avg_wt, avg_tat;
+
+  printf("Enter number of process:");
+  scanf("%d", &n);
+
+  printf("\nEnter Burst Time:\n");
+  for (i = 0; i < n; i++)
+  {
+    printf("p%d:", i + 1);
+    scanf("%d", &bt[i]);
+    p[i] = i + 1; // contains process number
+  }
+
+  // sorting burst time in ascending order using selection sort
+  for (i = 0; i < n; i++)
+  {
+    pos = i;
+    for (j = i + 1; j < n; j++)
+    {
+      if (bt[j] < bt[pos])
+        pos = j;
+    }
+
+    temp = bt[i];
+    bt[i] = bt[pos];
+    bt[pos] = temp;
+    temp = p[i];
+    p[i] = p[pos];
+    p[pos] = temp;
+  }
+
+  wt[0] = 0; // waiting time for first process will be zero
+
+  // calculate waiting time
+  for (i = 1; i < n; i++)
+  {
+    wt[i] = 0;
+    for (j = 0; j < i; j++)
+      wt[i] += bt[j];
+    total += wt[i];
+  }
+  avg_wt = (float)total / n; // average waiting time
+  total = 0;
+
+  printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
+  for (i = 0; i < n; i++)
+  {
+    tat[i] = bt[i] + wt[i]; // calculate turnaround time
+    total += tat[i];
+    printf("\np%d\t\t  %d\t\t    %d\t\t\t%d", p[i], bt[i], wt[i], tat[i]);
+  }
+  avg_tat = (float)total / n; // average turnaround time
+  printf("\n\nAverage Waiting Time=%f", avg_wt);
+  printf("\nAverage Turnaround Time=%f\n", avg_tat);
+}
+```
+
+```makefile title="Output" 
+Enter number of process:6
+
+Enter Burst Time:
+p1:1
+p2:5
+p3:9
+p4:7
+p5:4
+p6:8
+
+Process     Burst Time     Waiting Time     Turnaround Time
+p1                1            0                   1
+p5                4            1                   5
+p2                5            5                   10
+p4                7            10                  17
+p6                8            17                  25
+p3                9            25                  34
+
+Average Waiting Time=9.666667
+Average Turnaround Time=15.333333  
+```
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4">**Experiment 4**</Callout>
+<Callout type="knowing">**Objective:** Implement file storage allocation technique: <ul><li>Contiguous (using array)</li><li>Linked-list (using linked-list)</li><li>Indirect allocation (indexing)</li></ul></Callout>
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-5">**Experiment 5**</Callout>
+<Callout type="knowing">**Objective:** Implementation of contiguous allocation techniques: <ul><li>Worst-Fit</li><li>Best-Fit</li><li>First-Fit</li></ul></Callout>
 
 
 **See Also**
 
-- [Operating System](/blog/operating-system/)
+- [Operating System](/learn/operating-system/)
