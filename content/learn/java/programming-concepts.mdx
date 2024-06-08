@@ -1,10 +1,10 @@
 ---
-chapTitle: Progrmming concept in Java
+chapTitle: Programming Concept in Java
 bookName: Java Programming
 chapDesc: In the privious chapter we have learn about the Operators, Classification of operators e.g. Relational, Arithmatic, Logical, Bitwise, Misc, and Assignment Operators and its precedence.
 chapNum: 4
 publishedDate: 2024-05-30
-updatedDate: 2024-05-30
+updatedDate: 2024-06-30
 tags: ["code", "checking", "trial"]
 published: true
 ---
@@ -13,7 +13,319 @@ published: true
 
 ---
 
+## Control Flow
+Control flow statements in Java enable us to control the flow of execution in a program. The main control flow statements in Java are &mdash;
 
+**Conditional Statements**<br/>
+There are two sorts of decision making constructs in Java.They are &mdash;
+- if constructs
+- switch constructs
+
+**`if`:** The `if` statement is Java's conditional branch statement. It can be used to route program execution through two different paths. Here is the general from of the `if` statement.
+```java
+if (condition) statement1;
+else statement2;
+```
+- Here, each `statement` may be single statement or a compound statement enclosed in curly braces *i.e.* block. The `condition` is any expression that returns a `boolean` valu. The `else` clause is optional. 
+
+```java 
+int a, b;
+//...
+if(a < b) a = 0;
+else b = 0;
+```
+
+- Here, if `a` is less then `b`, then `a` is set to zero. In no case are they both set to zero.
+
+**Nested ifs:** A nested `if` is an `if` statement that is the target of another `if` or `else`. Nested `if`s are very common in programming.
+
+```java
+if(i == 10) {
+  if(j < 20) a = b;
+  if(k > 100) c = d; // this if is
+  else a = c;        // associated with this else
+}
+else a = d;          // this else refers to if(i == 10)
+```
+
+**The `if-else-if` Ladder:** A common programming construct that is based upon a sequence of nested `if`s is the *if-else-if* ladder. It looks like this.
+
+```java
+if(condition)
+  statement;
+else if(condition)
+  statement;
+else if(condition)
+  statement;
+.
+.
+.
+else
+  statement;
+```
+
+- The `if` statements are executed from the top down. As soon as one of the conditions controlling the `if` is `true`, the statement associated with that `if` is executed, and the rest of the ladder is bypassed. If the none of the conditions is true, then the final `else` statement will be executed.
+
+**`switch`:** The `switch` statement is Java's multiway branch statement. It provides an easy way to dispatch execution to different parts of your code based on the value of an expression. It provides a better alternative than a large series of `if-else-if` statements. It looks like this.
+
+```java
+switch (expression) {
+  case value1:
+    // statement sequence
+    break;
+  case value2:
+    // statement sequence
+    break;
+  .
+  .
+  .
+  case valueN:
+    // statement sequence
+    break;
+  default:
+    // default statement sequence
+}
+```
+
+- Here is a simple example that uses a `switch` statement.
+```java title="SampleSwitch.java"
+public class SampleSwitch {
+  public static void main(String args[]) {
+    for (int i = 0; i < 6; i++)
+      switch (i) {
+        case 0:
+          System.out.println("i is zero.");
+          break;
+        case 1:
+          System.out.println("i is one.");
+          break;
+        case 2:
+          System.out.println("i is two.");
+          break;
+        case 3:
+          System.out.println("i is three.");
+          break;
+        default:
+          System.out.println("i is greater than 3.");
+      }
+  }
+}
+```
+
+```makefile title="Output"
+i is zero.
+i is one.
+i is two.
+i is three.
+i is greater than 3.
+i is greater than 3.
+```
+
+ 
+**Looping Statements**<br/>
+Looping is a common programming situation that you can expect to encounter rather regularly. Loop can simply be described as a situation in which you may need to execute the same block of code over and over, Java supports three looping constructs, which are as follows &mdash;
+- for Loop
+- do...while Loop
+- while Loop
+
+**while:** The `while` loop is Java's most fundamental loop statement. It repeats a statement or block while its controlling expression is `true`. Here is the general form.
+```java 
+while(condition) {
+  // body of loop
+}
+```
+
+- The `condition` can be any Boolean expression. The body of the loop will be executed as long as the conditional expression is true. When `condition` becomes false, control passes to the next line of the code immediately following the loop.
+
+```java title="While.java"
+public class While {
+  public static void main(String args[]) {
+    int n = 10;
+
+    while (n > 0) {
+      System.out.println("tick " + n);
+      n--;
+    }
+  }
+}
+```
+```makefile title="Output"
+tick 10
+tick 9
+tick 8
+tick 7
+tick 6
+tick 5
+tick 4
+tick 3
+tick 2
+tick 1
+```
+
+**do-while:** The do-while statement is similar to the while, with one difference, the continuation condition is evaluated after executing the code block. This causes for the code block to be executed at least once, unless there is a an exit condition embedded in it. Here is the general form.
+```java
+do {
+  statement;
+} while (condition);
+```
+
+**for:** 
+
+**Branching Statements**
+- break statement
+- continue statement
+- return statement
+- throw statement
+
+**Method Invocation**
+
+**Exception Handling**
+- try-catch block
+- finally block
+
+
+
+## Arrays
+An **array** is a group of like-typed variables that are referred to by a common name. Arrays of any type can be created and may have one or more dimensions. A specific element in an array is accessed by its index. 
+
+The `new` keyword can also be used to create arrays. In a similar manner, it creates objects. An **array** is a data structure that holds a group of variables together. Its size is defined when it is created, and it cannot be changed.
+
+Each variable can be accessed using an index that starts at 0 and goes up to the length of the array to -1. Arrays can hold primitive and refernce values. 
+
+- **Declare array variables:** To create an array, we first must create an array variable of the desired type. as `type var-name[];` or `datatype[] myarray;`.
+```java
+int month_days[];
+double[] myarray;
+```
+
+- Let's declare first an array field and check what happening with it when an object is created.
+
+```java title="ArraysDemo.java"
+public class ArraysDemo {
+  int array[];
+
+  public static void main(String[] args) {
+    ArraysDemo ad = new ArraysDemo();
+    System.out.println("array was initialized with " + ad.array);
+  }
+}
+```
+```makefile title="Output"
+array was initialized with null
+```
+- **Making Arrays:** We can make an exhibit by utilizing the new operator with the accompanying statement as `myarray = new datatype[sizeOfArray];`
+```java
+double[] myarray = new double[15];
+```
+
+- **Handling Arrays:** At the point when handling components of an array, we frequently utilize either for or foreach.
+
+```java title="MyArray.java"
+public class MyArray {
+  public static void main(String[] args) {
+    double[] myarray = { 0.5, 1.2, 2.2, 3.4, 4.7 };
+
+    // Printing the all elements
+    for (int k = 0; k < myarray.length; k++) {
+      System.out.print(myarray[k] + "  ");
+    }
+
+    // Sum of all elements
+    double aggregate = 0;
+
+    for (int k = 0; k < myarray.length; k++) {
+      aggregate += myarray[k];
+    }
+    System.out.println("\nAggregate value = " + aggregate);
+    
+    // Searching for the greatest element
+    double maxval = myarray[0];
+
+    for (int k = 1; k < myarray.length; k++) {
+      if (myarray[k] > maxval)
+        maxval = myarray[k];
+    }
+    System.out.println("Max Value is " + maxval);
+  }
+}
+```
+```makefile title="Output"
+0.5  1.2  2.2  3.4  4.7 
+Aggregate value = 12.0
+Max Value is 4.7
+```
+
+- **The forech Loops:** JDK 1.5 presented another for construct, which is known as foreach loop or extended for loop. This construct empowers us to cross the complete array successively without utilizing an extra varable.
+```java title="MyTestArray.java"
+public class MyTestArray {
+  public static void main(String[] args) {
+    double[] myarray = { 0.5, 1.2, 2.2, 3.4, 4.7 };
+
+    for (double i : myarray) {
+      System.out.println(i);
+    }
+  }
+}
+```
+```makefile title="Output"
+0.5
+1.2
+2.2
+3.4
+4.7
+```
+## Strings
+Strings are generally utilized as a part of Java, for writing computer programs, are a grouping of characters. String is not a primitive type. Nor is it simply an array of characters. Rather, String defines an object, and a full description of it requires an understanding of several object-related features. 
+
+String instances model texts and perform all kinds of operations o them. String type is a special type, because object of this type are given special treatment by the JVM. 
+
+- The most appropriate approach to make a string is to use the following statement. `String myString = "My World";`.
+
+```java title="MyStringDemo.java"
+public class MyStringDemo {
+  public static void main(String args[]) {
+
+    String text1 = null;
+
+    String text21 = "hi G.";
+    String text22 = "hi G.";
+    String text23 = new String("hi G.");
+
+    String piece1 = "h";
+    String piece2 = "i G.";
+    String text24 = piece1 + piece2; // Concatenate String 
+    
+    char[] myArray = { 'h', 'i', ' ', 'G', '.' };
+    String myString = new String(myArray);
+
+    System.out.println(myString);
+  }
+}
+```
+
+```makefile title="Output"
+hi G.
+```
+- The String class is immutable (changeless), so that once it is made a String object, its type can't be changed. This means that the JVM can reuse existing values to from new String values, without consuming additional memory. This process is called *interning*. One copy of each text value (literal) is saved to a special memory region called *String Pool*.
+
+**Determining String Length:** Routines used to get data about an object are known as accessor methods. One accessor technique that you can use with strings is the `length()` function. 
+
+```java title="MyString.java"
+public class MyString {
+  public static void main(String args[]) {
+    String newStr = "I am hungry!";
+    int strLen = newStr.length();
+
+    String.out.println("length = " + strLen);
+  }
+}
+```
+
+```makefile title="Output"
+length = 12
+```
 
 
 <NextUp nextChap="5" nextChapName="Object-Oriented Programming" nextChapLink="/java/object-oriented-programming"> Comming soon!</NextUp>
+
+{/* reference  \njava programming for beginners \njava for absolute beginner */}
