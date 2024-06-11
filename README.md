@@ -1,7 +1,7 @@
 
 ---
 <p align="center">
-  <a href="https://www.mohemohe.in"> <img src="https://www.mohemohe.in/m1-logo.png" alt="Project Logo" width="200" height="200">
+  <a href="https://www.mohemohe.in"> <img src="https://www.mohemohe.in/m1-logo.png" alt="Project Logo" width="180" height="180">
   </a>
 </p>
 
@@ -23,8 +23,10 @@
 </p>
 
 <p align="center">
-  Briefly describe your project here. What problem does it solve? What is its main functionality?
+  Creative learning app for students and quick revision contents/articles in organized form which help easy to grow programming skills, knowledge and revision for Engineering student.
 </p>
+
+---
 
 ## Table of Contents
 
@@ -42,9 +44,17 @@
 
 ## About The Project
 
-[![Product Name Screen Shot](/public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png)![Product Name Screen Shot](/public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png)](https://www.mohemohe.in)
+<a href="https://www.mohemohe.in/">
+<p align="center">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png" alt="Product Name Screen Shot" width="400">
+</p>
 
-Briefly describe your project here. What problem does it solve? What is its main functionality?
+<p align="center">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png" alt="Product Name Screen Shot" width="400">
+</p>
+</a>
+
+You can read or learn article and programming language freely.
 
 ### Built With
 
@@ -59,7 +69,7 @@ Describe how to set up your project locally. Include prerequisites and installat
 ### Prerequisites
 
 List any prerequisites or dependencies required to run the project.
-<!-- 
+
 ### Installation
 
 1. Clone the repo
@@ -73,22 +83,42 @@ List any prerequisites or dependencies required to run the project.
 3. Enter your API keys, configuration, etc.
    ```sh
    cp .env.example .env
-   ``` -->
+   ```
 
 ## Usage
 
 Feel frely to learn and read content/article from the CSE Engineering background.
 
-[![Mohe Mohe Screen Shot](/public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png)![Mohe Mohe Screen Shot](/public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png)](https://www.mohemohe.in)
+
+<a href="https://www.mohemohe.in/">
+<p align="center">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="400">
+</p>
+
+<p align="center">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="400">
+</p>
+</a>
 
 You can choose directly from chapter list. Click on the list icon and list will appear.
 
-![Mohe Mohe Chapter list Screen shot](/public/images/screenshots/Screenshot_2024-06-12-00-28-58-103_com.microsoft.emmx-edit.png)
+
+<a href="https://www.mohemohe.in/">
+<p align="center">
+  <img src="public/images/screenshots/Screenshot_2024-06-12-00-28-58-103_com.microsoft.emmx-edit.png" alt="Mohe Mohe Chapter list Screen shot" width="400">
+</p>
+</a>
 
 You can also choose themes.
 
-[![Mohe Mohe Toggele Theme Screen shot](/public/images/screenshots/Screenshot_2024-06-12-00-34-15-264_com.microsoft.emmx-edit.png)
-![Mohe Mohe Toggele Theme Screen shot](/public/images/screenshots/Screenshot_2024-06-12-00-34-41-268_com.microsoft.emmx-edit.png)](https://www.mohemohe.in)
+<a href="https://www.mohemohe.in/">
+<p align="center">
+  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-15-264_com.microsoft.emmx-edit.png" alt="Mohe Mohe Toggele Theme Screen shot" width="400">
+</p>
+<p align="center">
+  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-41-268_com.microsoft.emmx-edit.png" alt="Mohe Mohe Toggele Theme Screen shot" width="400">
+</p>
+</a>
 
 ## Roadmap
 
@@ -119,11 +149,18 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Project Link: [https://github.com/princekunal101/project1/](https://github.com/princekunal101/project1/)
 
-<!-- ## Acknowledgements
+## Acknowledgements
 
 Mention any libraries, articles, or resources used in your project.
 
-- [Some Library](https://example.com)
-- [Another Resource](https://example.com) -->
+- [Lucide icons](https://lucide.dev)
+- [Vercel](https://vercel.com)
+- [MDX](https://mdxjs.com)
 
 ---
+## Learn
+- [`Java Programming`](https://www.mohemohe.in/learn/java)
+- [`Java Programming Lab`](https://www.mohemohe.in/blog/opps-java-lab)
+- [`Operating System`](https//www.mohemohe.in/learn/operating-system)
+- [`Operating System Lab`](https://www.mohemohe.in/blog/operating-system-lab)
+
