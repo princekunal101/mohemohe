@@ -46,11 +46,11 @@
 
 <a href="https://www.mohemohe.in/">
 <p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png" alt="Product Name Screen Shot" width="400">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png" alt="Product Name Screen Shot" width="300">
 </p>
 
 <p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png" alt="Product Name Screen Shot" width="400">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png" alt="Product Name Screen Shot" width="300">
 </p>
 </a>
 
@@ -92,11 +92,11 @@ Feel frely to learn and read content/article from the CSE Engineering background
 
 <a href="https://www.mohemohe.in/">
 <p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="400">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="300">
 </p>
 
 <p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="400">
+  <img src="public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="300">
 </p>
 </a>
 
@@ -105,7 +105,7 @@ You can choose directly from chapter list. Click on the list icon and list will 
 
 <a href="https://www.mohemohe.in/">
 <p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-12-00-28-58-103_com.microsoft.emmx-edit.png" alt="Mohe Mohe Chapter list Screen shot" width="400">
+  <img src="public/images/screenshots/Screenshot_2024-06-12-00-28-58-103_com.microsoft.emmx-edit.png" alt="Mohe Mohe Chapter list Screen shot" width="300">
 </p>
 </a>
 
@@ -113,10 +113,10 @@ You can also choose themes.
 
 <a href="https://www.mohemohe.in/">
 <p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-15-264_com.microsoft.emmx-edit.png" alt="Mohe Mohe Toggele Theme Screen shot" width="400">
+  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-15-264_com.microsoft.emmx-edit.png" alt="Mohe Mohe Toggele Theme Screen shot" width="300">
 </p>
 <p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-41-268_com.microsoft.emmx-edit.png" alt="Mohe Mohe Toggele Theme Screen shot" width="400">
+  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-41-268_com.microsoft.emmx-edit.png" alt="Mohe Mohe Toggele Theme Screen shot" width="300">
 </p>
 </a>
 
@@ -161,6 +161,6 @@ Mention any libraries, articles, or resources used in your project.
 ## Learn
 - [`Java Programming`](https://www.mohemohe.in/learn/java)
 - [`Java Programming Lab`](https://www.mohemohe.in/blog/opps-java-lab)
-- [`Operating System`](https//www.mohemohe.in/learn/operating-system)
+- [`Operating System`](https://www.mohemohe.in/learn/operating-system)
 - [`Operating System Lab`](https://www.mohemohe.in/blog/operating-system-lab)
 
