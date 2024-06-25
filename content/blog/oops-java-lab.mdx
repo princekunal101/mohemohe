@@ -2,7 +2,7 @@
 title: Oops Java Lab
 description: Object Oriented Programming with Java lab
 publishedDate: 2024-05-08
-updatedDate: 2024-06-03
+updatedDate: 2024-06-25
 published: true
 tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 
@@ -505,81 +505,7 @@ Inside fun().
 caught in main.
 ```
 
-<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6" >**Experiment 6**</Callout>
-<Callout type="knowing">**Objective:** Create java program with the use of java packages. </Callout>
 
-**Theory:**<br/>
-A package in Java is a way to organize classes and interfaces into namespaces, facilitating code orgamization and managment.
-
-```java showLineNumbers title="PackageDemo.java"
-package MyPack;
-
-// Class to which the above package belongs
-public class PackageDemo {
-
-    // Member functions of the class- 'Demo'
-    // Method 1 - To show()
-    public void show() {
-
-        // Print message
-        System.out.println("Hi Everyone");
-    }
-
-    // Method 2 - To show()
-    public void view() {
-        // Print message
-        System.out.println("Hello");
-    }
-}
-```
-Type this code in terminal for create directory for package. the folder will create same as Package name `MyPack`. In the `MyPack` folder `.class` file will create with the name `.java` file.
-```shell title="Terminal"
-javac -d . PackageDemo.java
-```
-
-```java showLineNumbers title="PackageImportDemo.java"
-package MyPack;
-
-import MyPack.*;
-
-// Class to which the package belongs
-public class PackageImportDemo {
-
-    // main driver method
-    public static void main(String arg[]) {
-
-        // Creating an object of Demo class
-        PackageDemo d = new PackageDemo();
-
-        // Calling the functions show() and view()
-        // using the object of Demo class
-        d.show();
-        d.view();
-    }
-}
-```
-
-This line of code will folow rule same as above. If we choose another name of package then `.class` file will create in new folder.
-```shell title="Terminal"
-javac -d . PackageImportDemo.java
-```
-
-For run this code we need to type `package name` with `.class` file name.
-```shell title="Terminal"
-java MyPack.PackageImportDemo
-```
-
-```makefile title="Output"
-Hi Everyone
-Hello
-```
-
-
-<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-7" >**Experiment 7**</Callout>
-<Callout type="knowing">**Objective:** Construct java program using Java Thread. </Callout>
-
-**Theory:**<br/>
-Thread in Java represent the execution flow of a program. They enable concurrent execution, allowing multiple tasks to run simultaneously.
 
 **Thread States**<br/>
 - **New:** The thread is created but not yet started.
@@ -684,7 +610,78 @@ The state of thread t2 after invoking the method sleep() on it - TIMED_WAITING
 The state of thread t2 when it has completed it's execution - TERMINATED
 ```
 
-<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6" >**Experiment 6**</Callout>
+<Callout type="knowing">**Objective:** Create java program with the use of java packages. </Callout>
+
+**Theory:**<br/>
+A package in Java is a way to organize classes and interfaces into namespaces, facilitating code orgamization and managment.
+
+```java showLineNumbers title="PackageDemo.java"
+package MyPack;
+
+// Class to which the above package belongs
+public class PackageDemo {
+
+    // Member functions of the class- 'Demo'
+    // Method 1 - To show()
+    public void show() {
+
+        // Print message
+        System.out.println("Hi Everyone");
+    }
+
+    // Method 2 - To show()
+    public void view() {
+        // Print message
+        System.out.println("Hello");
+    }
+}
+```
+Type this code in terminal for create directory for package. the folder will create same as Package name `MyPack`. In the `MyPack` folder `.class` file will create with the name `.java` file.
+```shell title="Terminal"
+javac -d . PackageDemo.java
+```
+
+```java showLineNumbers title="PackageImportDemo.java"
+package MyPack;
+
+import MyPack.*;
+
+// Class to which the package belongs
+public class PackageImportDemo {
+
+    // main driver method
+    public static void main(String arg[]) {
+
+        // Creating an object of Demo class
+        PackageDemo d = new PackageDemo();
+
+        // Calling the functions show() and view()
+        // using the object of Demo class
+        d.show();
+        d.view();
+    }
+}
+```
+
+This line of code will folow rule same as above. If we choose another name of package then `.class` file will create in new folder.
+```shell title="Terminal"
+javac -d . PackageImportDemo.java
+```
+
+For run this code we need to type `package name` with `.class` file name.
+```shell title="Terminal"
+java MyPack.PackageImportDemo
+```
+
+```makefile title="Output"
+Hi Everyone
+Hello
+```
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-7" >**Experiment 7**</Callout>
 <Callout type="knowing">**Objective:** Construct java program using Java I/O package. </Callout>
 
 **Theory:**<br/>
@@ -812,5 +809,13 @@ success...
 ```
 
 
-<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
 <Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. </Callout>
+
+```makefile title="Compile"
+javac -d mods com.aryacs/module-info.java com.aryacs/com/aryacs/Hello123.java
+```
+
+```makefile title="Run"
+java --module-path mods --module com.arya/com.aryacs.Hello123
+```

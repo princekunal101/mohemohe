@@ -2,7 +2,7 @@
 title: Operating System Lab
 description: Operating system lab
 publishedDate: 2024-05-05
-updatedDate: 2024-06-08
+updatedDate: 2024-06-25
 published: true
 tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 
@@ -12,7 +12,8 @@ tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
 - [Experiment 3](#experiment-3)
-{/* - [Experiment 4](#experiment-4) */}
+- [Experiment 4](#experiment-4)
+- [Experiment 5](#experiment-5)
 
 
 
@@ -377,7 +378,437 @@ Average Turnaround Time=12
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4">**Experiment 4**</Callout>
 <Callout type="knowing">**Objective:** Implement CPU Scheduling Policies: <ul><li>Priority Scheduling</li><li>Round Robin</li></ul></Callout>
 
+
+**Theory:**<br/>
+
+**Preemptive Scheduling:** Preemptive scheduling is used when a process switches from the running state to the ready state or from the waiting state to the ready state. <br/>The resources are allocated to the process for a limited amount of time and then taken away, and the process is again placed back in the ready queue if that process still has CPU burst time remaining.
+
+- **Round Robin:** Round Robin is a CPU scheduling algorithm where each process is cyclically assigned a fixed time slot. It is the preemptive version of the First come First Serve CPU Scheduling algorithm. 
+
+**Algorithm**<br/> 
+- **Step 1:** Start the process. 
+- **Step 2:** Accept the number of processes in the ready Queue and time quantum. 
+- **Step 3:** For each process in the ready Queue, assign the process and accept the CPU burst time. 
+- **Step 4:** Each process runs for a predefined time quantum. 
+- **Step 5:** If a process finishes execution within the time quantum, it is removed from the queue. If a process does not finish within the time quantum, it is pre-empted, and put at the end of the queue to await further execution. 
+- **Step 6:** When a process is preempted, the CPU switches to the next process in the queue. 
+- **Step 7:** Continue this process of executing each process for its time quantum until all processes have completed their execution. 
+- **Step 8:** Stop.
+
+```c title="roundRobin.c" showLineNumbers
+#include <stdio.h>
+
+void round_robin(int processes[], int n, int burst_times[], int quantum)
+{
+  int remaining_burst_times[n];
+  int waiting_times[n];
+  int turnaround_times[n];
+  int total_waiting_time = 0;
+  int total_turnaround_time = 0;
+  int time = 0;
+  int done;
+
+  for (int i = 0; i < n; i++)
+  {
+    remaining_burst_times[i] = burst_times[i];
+    waiting_times[i] = 0;
+  }
+  while (1)
+  {
+    done = 1;
+    for (int i = 0; i < n; i++)
+    {
+      if (remaining_burst_times[i] > 0)
+      {
+        done = 0;
+        if (remaining_burst_times[i] > quantum)
+        {
+          time += quantum;
+          remaining_burst_times[i] -= quantum;
+        }
+        else
+        {
+          time += remaining_burst_times[i];
+          waiting_times[i] = time - burst_times[i];
+          remaining_burst_times[i] = 0;
+        }
+      }
+    }
+    if (done == 1)
+      break;
+  }
+  for (int i = 0; i < n; i++)
+  {
+    turnaround_times[i] = burst_times[i] + waiting_times[i];
+    total_waiting_time += waiting_times[i];
+    total_turnaround_time += turnaround_times[i];
+  }
+  printf("Process\tBurst Time\tTurnaround Time\tWaiting Time\n");
+  for (int i = 0; i < n; i++)
+  {
+    printf("P%d\t%d\t\t%d\t\t %d\n", processes[i], burst_times[i], turnaround_times[i],
+           waiting_times[i]);
+  }
+  printf("Average Turnaround Time: %.2f\n", (float)total_turnaround_time / n);
+  printf("Average Waiting Time: %.2f\n", (float)total_waiting_time / n);
+}
+
+int main()
+{
+  int n, quantum;
+  printf("Enter the number of processes: ");
+  scanf("%d", &n);
+  int processes[n];
+  int burst_times[n];
+  printf("Enter burst time for the following process:\n");
+  for (int i = 0; i < n; i++)
+  {
+    processes[i] = i + 1;
+    printf("P%d: ", i + 1);
+    scanf("%d", &burst_times[i]);
+  }
+  printf("Enter the quantum time: ");
+  scanf("%d", &quantum);
+  round_robin(processes, n, burst_times, quantum);
+  return 0;
+}
+```
+
+```makefile title="Output"
+
+Enter the number of processes: 4 
+Enter burst time for the following process: 
+P1: 6 
+P2: 8 
+P3: 9 
+P4: 2 
+Enter the quantum time: 3 
+Process Burst Time Turnaround Time Waiting Time 
+P1          6             14             8 
+P2          8             22            14 
+P3          9             25            16 
+P4          2             11             9 
+Average Turnaround Time: 18.00 
+Average Waiting Time: 11.75 
+```
+
+- **Priority Scheduling Algorithm:** Preemptive Priority CPU Scheduling Algorithm is a pre-emptive method of CPU scheduling algorithm that works based on the priority of a process. In this algorithm, the scheduler schedules the tasks to work as per the priority, which means that a higher priority process should be executed first. 
+
+**Algorithm**<br/>
+
+- **Step-1:** Select the first process whose arrival time will be 0, we need to select that process because that process is only executing at time t=0. 
+- **Step-2:** Check the priority of the next available process. Here we need to check for 3 conditions. 
+- **```if priority(current process) > priority(prior process)```** : then execute the current process. 
+- **```if priority(current process) < priority(prior process)```** : then execute the prior process. 
+- **```if priority(current process) = priority(prior process)```** : then execute the process which arrives first *i.e.*, arrival time should be first. 
+- **Step-3:** Repeat Step-2 until it reaches the final process. 
+- **Step-4:** When it reaches the final process, choose the process which is having the highest priority & execute it. Repeat the same step until all processes complete their execution.
+
+```c title="prioritySchedulingAlgo.c" showLineNumbers
+#include <stdio.h>
+
+typedef struct
+{
+  int process_id;
+  int burst_time;
+  int priority;
+} Process;
+
+void priority_scheduling(Process processes[], int n)
+{
+  int waiting_times[n];
+  int turnaround_times[n];
+  int total_waiting_time = 0;
+  int total_turnaround_time = 0;
+  for (int i = 0; i < n - 1; i++)
+  {
+    for (int j = i + 1; j < n; j++)
+    {
+      if (processes[i].priority > processes[j].priority)
+      {
+        Process temp = processes[i];
+        processes[i] = processes[j];
+        processes[j] = temp;
+      }
+    }
+  }
+  waiting_times[0] = 0;
+  for (int i = 1; i < n; i++)
+  {
+    waiting_times[i] = waiting_times[i - 1] + processes[i - 1].burst_time;
+  }
+  for (int i = 0; i < n; i++)
+  {
+    turnaround_times[i] = processes[i].burst_time + waiting_times[i];
+    total_waiting_time += waiting_times[i];
+    total_turnaround_time += turnaround_times[i];
+  }
+  printf("Process\tBurst Time\tPriority\tTurnaround Time\tWaiting Time\n");
+  for (int i = 0; i < n; i++)
+  {
+    printf("P%d\t%d\t\t%d\t\t %d\t\t%d\n", processes[i].process_id, processes[i].burst_time,
+           processes[i].priority, turnaround_times[i], waiting_times[i]);
+  }
+  printf("Average Waiting Time: %.2f\n", (float)total_waiting_time / n);
+
+  printf("Average Turnaround Time: %.2f\n", (float)total_turnaround_time / n);
+}
+
+int main()
+{
+  int n;
+  printf("Enter the number of processes: ");
+  scanf("%d", &n);
+  Process processes[n];
+  printf("Enter burst time for the following process:\n");
+  for (int i = 0; i < n; i++)
+  {
+    processes[i].process_id = i + 1;
+    printf("P%d: ", i + 1);
+    scanf("%d", &processes[i].burst_time);
+  }
+  printf("Enter priority for the following process:\n");
+  for (int i = 0; i < n; i++)
+  {
+    processes[i].process_id = i + 1;
+    printf("P%d: ", i + 1);
+    scanf("%d", &processes[i].priority);
+  }
+  priority_scheduling(processes, n);
+  return 0;
+}
+```
+
+```makefile title="Output"
+Enter the number of processes: 4 
+Enter burst time for the following process: 
+P1: 4 
+P2: 6 
+P3: 3 
+P4: 8 
+Enter priority for the following process: 
+P1: 4 
+P2: 7 
+P3: 2 
+P4: 1 
+Process Burst Time Priority Turnaround Time Waiting Time 
+P4 8 1 8 0 
+P3 3 2 11 8 
+P1 4 4 15 11 
+P2 6 7 21 15 
+Average Waiting Time: 8.50 
+Average Turnaround Time: 13.75
+```
+
+
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-5">**Experiment 5**</Callout>
+<Callout type="knowing">**Objective:** Implementation of Banker's Algorithm. </Callout>
+
+**Theory:**<br/>
+
+**Banker's Algorithm:** The Banker's algorithm is a resource allocation and deadlock avoidance algorithm that tests for safety by simulating the allocation for predetermined maximum possible amounts of all resources, then makes an **safe state** check to test for possible activities, before deciding whether allocation should be allowed to continue. 
+
+*Following Data structures are used to implement the Banker's Algorithm:* Let `n` be the number of processes in the system and `m` be the number of resources types. 
+
+**Available:** 
+- It is a 1-d array of size `m` indicating the number of available resources of each type. 
+- `Available[j] = k` means there are `k` instances of resource type Rj 
+
+**Max:** 
+- It is a 2-d array of size `n*m` that defines the maximum demand of each process in a system. 
+- `Max[i][j] = k` means process Pi may request at most `k` instances of resource type `Rj`. 
+
+**Allocation:** 
+- It is a 2-d array of size `n*m` that defines the number of resources of each type currently allocated to each process. 
+- `Allocation[i][j] = k` means process `Pi` is currently allocated `k` instances of resource type `Rj`. 
+
+**Need:** 
+- It is a 2-d array of size `n*m` that indicates the remaining resource need of each process. 
+- `Need[i][j] = k` means process `Pi` currently need `k` instances of resource type `Rj` for its execution. 
+- `Need[i][j] = Max[i][j] - Allocation[i][j]`
+
+- Allocation specifies the resources currently allocated to process Pi and Needi specifies the additional resources that process Pi may still request to complete its task. Banker's algorithm consists of Safety algorithm and Resource request algorithm.
+
+**Safety Algorithm:** <br/>
+- **Step 1:** Let Work and Finish be vectors of length `m` and `n` respectively. 
+
+```c title="Initialize"
+Work = Available 
+Finish[ i ] = false; 
+for i=1, 2, 3, 4….n
+``` 
+- **Step 2:** Find an i such that both ```Finish[i] = false``` ```Need[i]<= Work``` if no such i exists goto **step 4** 
+- **Step 3:** ```Work = Work + Allocation[i]``` ```Finish[ i ] = true ``` Go to **Step 2**. 
+- **Step 4:** ```if Finish [ i ] = true``` for all `i` then the system is in a safe state 
+
+
+**Resource-Request Algorithm:** Let `Request[i]` be the request array for process `Pi`. `Request[i][j] = k` means process `Pi` wants `k` instances of resource type `Rj`. When a request for resources is made by process Pi, the following actions are taken: 
+
+- **Step 1:** ```If Request[i]<= Need[i]``` Goto **Step 2**. Otherwise, raise an error condition, since the process has exceeded its maximum claim. 
+- **Step 2:** ```If Request[i]<= Available``` Goto **Step 3**; otherwise, `Pi` must wait, since the resources are not available. 
+- **Step 3:** Have the system pretend to have allocated the requested resources to process `Pi` by modifying the state as follows: 
+```c 
+Available = Available - Request[ i ] 
+Allocation[ i ] = Allocation[ i ] + Request[ i ] 
+Need[ i ] = Need[ i ] - Request[ i ] 
+```
+
+```c title="requestResourceAlgo.c" showLineNumbers
+#include <stdio.h>
+
+int main()
+{
+  int n, m, i, j, k, alloc[20][20], max[20][20], avail[20];
+  printf("Enter the number of process: ");
+  scanf("%d", &n);
+
+  printf("Enter the number of resources: ");
+  scanf("%d", &m);
+
+  // Allocate Resources from the user
+  printf("Enter the Allocated Resources:\n");
+  for (i = 0; i < n; i++)
+    for (j = 0; j < m; j++)
+    {
+      printf("alloc[P%d][R%d]= ", i, j);
+      scanf("%d", &alloc[i][j]);
+    }
+
+  // Provide Max matrix from the user
+  printf("Enter the Max Resources:\n");
+  for (i = 0; i < n; i++)
+    for (j = 0; j < m; j++)
+    {
+      printf("max[P%d][R%d]: ", i, j);
+      scanf("%d", &max[i][j]);
+    }
+
+  // Define the Available Resources
+  printf("Enter the Available Resources:\n");
+  for (i = 0; i < m; i++)
+  {
+    printf("avail[R%d]: ", i);
+    scanf("%d", &avail[i]);
+  }
+  int f[n], ans[n], ind = 0;
+  for (k = 0; k < n; k++)
+  {
+    f[k] = 0;
+  }
+  // Calculate the need matrix
+  int need[n][m];
+  for (i = 0; i < n; i++)
+  {
+    for (j = 0; j < m; j++)
+      need[i][j] = max[i][j] - alloc[i][j];
+  }
+  // Find the Safe Sequence
+  int y = 0;
+  for (k = 0; k < 5; k++)
+  {
+    for (i = 0; i < n; i++)
+    {
+      if (f[i] == 0)
+      {
+        int flag = 0;
+        for (j = 0; j < m; j++)
+        {
+          if (need[i][j] > avail[j])
+          {
+            flag = 1;
+            break;
+          }
+        }
+        if (flag == 0)
+        {
+          ans[ind++] = i;
+          for (y = 0; y < m; y++)
+            avail[y] += alloc[i][y];
+          f[i] = 1;
+        }
+      }
+    }
+  }
+  int flag = 1;
+  
+  // To check if sequence is Safe or Not
+  for (int i = 0; i < n; i++)
+  {
+    if (f[i] == 0)
+    {
+      flag = 0;
+      printf("The Following System is not safe");
+      break;
+    }
+  }
+  // Print the Safe Sequence
+  if (flag == 1)
+  {
+    printf("Following is the SAFE Sequence\n");
+    for (i = 0; i < n - 1; i++)
+      printf(" P%d ->", ans[i]);
+    printf(" P%d", ans[n - 1]);
+  }
+  return (0);
+}
+```
+
+```makefile title="Output"
+Enter the number of process: 5 
+Enter the number of resources: 4 
+Enter the Allocated Resources: 
+alloc[P0][R0]: 0 
+alloc[P0][R1]: 0 
+alloc[P0][R2]: 1 
+alloc[P0][R3]: 2 
+alloc[P1][R0]: 1 
+alloc[P1][R1]: 0 
+alloc[P1][R2]: 0 
+alloc[P1][R3]: 0 
+alloc[P2][R0]: 1 
+alloc[P2][R1]: 3 
+alloc[P2][R2]: 5 
+alloc[P2][R3]: 4 
+alloc[P3][R0]: 0 
+alloc[P3][R1]: 6 
+alloc[P3][R2]: 3 
+alloc[P3][R3]: 2 
+alloc[P4][R0]: 0 
+alloc[P4][R1]: 0 
+alloc[P4][R2]: 1 
+alloc[P4][R3]: 4 
+Enter the Max Resources: 
+max[P0][R0]: 0 
+max[P0][R1]: 0 
+max[P0][R2]: 1 
+max[P0][R3]: 2 
+max[P1][R0]: 1 
+max[P1][R1]: 7 
+max[P1][R2]: 5 
+max[P1][R3]: 0 
+max[P2][R0]: 2 
+max[P2][R1]: 3 
+max[P2][R2]: 5 
+max[P2][R3]: 6 
+max[P3][R0]: 0 
+max[P3][R1]: 6 
+max[P3][R2]: 5 
+max[P3][R3]: 2 
+max[P4][R0]: 0 
+max[P4][R1]: 6 
+max[P4][R2]: 5 
+max[P4][R3]: 6
+Enter the Available Resources: 
+avail[R0]: 1 
+avail[R1]: 5
+avail[R2]: 2
+avail[R3]: 0 
+Following is the SAFE Sequence 
+P0 -> P2 -> P3 -> P4 -> P1
+```
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6">**Experiment 6**</Callout>
 <Callout type="knowing">**Objective:** Implement file storage allocation technique: <ul><li>Contiguous (using array)</li><li>Linked-list (using linked-list)</li><li>Indirect allocation (indexing)</li></ul></Callout>
 
 {/* <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6">**Experiment 6**</Callout>
