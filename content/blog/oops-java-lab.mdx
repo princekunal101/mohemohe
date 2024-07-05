@@ -835,11 +835,11 @@ Use the below details in the Spring boot creation:
 - **Group:** net.guides.springboot
 - **Arifect:** registration-login-demo
 - **Name:** registration-login-demo
-- **Dependencies:** Spring Web, Spring Data JPA, MySQL Driver, Thymeleaf, Devtools
+- **Dependencies:** Spring Web, Spring Data JPA, MySQL Driver, Thymeleaf, Devtools, Security, Lombok
 - Click on the **generate** project button. Next, you can extract and import the downloaded ZIP file into your favorite IDE.
 
 
-<FigureMdx lightUrl="java-compilation-process" desc="Project Structure"/>
+<FigureMdx lightUrl="file-structure-springboot" desc="Project Structure"/>
 
 **Create the file and packages add these code**
 ```xml title="UserAuth/pom.xml" showLineNumbers
@@ -1612,15 +1612,15 @@ public class UserController {
 
 **Run the Application** 
 - To run this application right-click on the application, click **Run As**, and then select the Java Application option.
-- Open Chrome and *Enter this URL in the search bar* [localhost:8080/register](localhost:8080/register) you will see this page.
+- Open Chrome and *Enter this URL in the search bar* [localhost:8080/register](localhost:8080/register) you will see the page.
 
 
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
-<Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. (User Registration and Login Form) </Callout>
+<Callout type="knowing">**Objective:** Test RESTful web services using Spring Boot. </Callout>
 
-
+{/* 
 
 ```makefile title="Compile"
 javac -d mods com.aryacs/module-info.java com.aryacs/com/aryacs/Hello123.java
@@ -1628,8 +1628,8 @@ javac -d mods com.aryacs/module-info.java com.aryacs/com/aryacs/Hello123.java
 
 ```makefile title="Run"
 java --module-path mods --module com.arya/com.aryacs.Hello123
-```
+``` */}
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-10" >**Experiment 10**</Callout>
-<Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. (User Registration and Login Form) </Callout>
+<Callout type="knowing">**Objective:** Test Frontend web application with Spring Boot. </Callout>
