@@ -17,6 +17,8 @@ tags: ["Java", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 6](#experiment-6)
 - [Experiment 7](#experiment-7)
 - [Experiment 8](#experiment-8)
+- [Experiment 9](#experiment-9)
+- [Experiment 10](#experiment-10)
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
@@ -810,7 +812,815 @@ success...
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
-<Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. </Callout>
+<Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. (User Registration and Login Form) </Callout>
+
+**Theory:**<br/>
+- Spring Security is a framework that provides authentication, authorization, and protection against common attacks. With first-class support for securing imperative and reactive applications, it is the de-facto standard for securing Spring-based applications.
+
+**Tools and Technologies used:**<br/>
+- Spring Boot 3
+- Spring MVC 6
+- Spring Secutrity 6
+- Hibernate 6
+- Thymeleaf 3
+- MySQL 8
+- Maven
+
+**Create a Spring Boot Project:**
+Spring Boot provides a web tool called Spring Initializer to quickly bootstrap an application. To use it, go to [https://start.spring.io](https://start.spring.io/) and generate a new Spring Boot Project.<br/>
+Use the below details in the Spring boot creation:
+- **Generate:** Maven Project
+- **Java Version:** 17
+- **Spring Boot:** 3.3.1
+- **Group:** net.guides.springboot
+- **Arifect:** registration-login-demo
+- **Name:** registration-login-demo
+- **Dependencies:** Spring Web, Spring Data JPA, MySQL Driver, Thymeleaf, Devtools
+- Click on the **generate** project button. Next, you can extract and import the downloaded ZIP file into your favorite IDE.
+
+
+<FigureMdx lightUrl="java-compilation-process" desc="Project Structure"/>
+
+**Create the file and packages add these code**
+```xml title="UserAuth/pom.xml" showLineNumbers
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.0</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.Springboot</groupId>
+  <artifactId>UserAuth</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>UserAuth</name>
+  <description>Demo project for Spring Boot</description>
+  <properties>
+    <java.version>17</java.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.thymeleaf.extras</groupId>
+      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project> 
+```
+
+```properties title="src/main/resources/application.properties" showLineNumbers
+spring.datasource.url=jdbc:mysql://localhost:3305/mydb 
+spring.datasource.username=root 
+spring.datasource.password=system 
+ 
+#hibernate ddl auto (create , create-drop, validate, update) 
+spring.jpa.hibernate.ddl-auto=update 
+ 
+#Display Application warn and errors and info 
+logging.level.org.hibernate.SQL=DEBUG 
+logging.level.org.hibernate.Type=TRACE 
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.Entity/User.java" showLineNumbers
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "users")
+public class User {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+  // @Column(unique = true)
+  private String username;
+  private String password;
+  private String fullname;
+
+  public User() {
+
+  }
+
+  public User(String username, String password, String fullname) {
+    super();
+    this.username = username;
+    this.password = password;
+    this.fullname = fullname;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getFullname() {
+    return fullname;
+  }
+
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
+  }
+
+  @Override
+  public String toString() {
+    return "User [id=" + id + ", username=" + username + ", password=" +
+        password + ", fullname=" + fullname + "]";
+  }
+}
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.repositories/UserRepository.java" showLineNumbers
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.Springboot.UserAuth.Entity.User;
+import com.Springboot.UserAuth.dto.UserDto;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+  User findByUsername(String username);
+
+  User save(UserDto userDto);
+}
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.dto/UserDto.java" showLineNumbers
+public class UserDto {
+  private String username;
+  private String password;
+  private String fullname;
+
+  public UserDto(String username, String password, String fullname) {
+    super();
+    this.username = username;
+    this.password = password;
+    this.fullname = fullname;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getFullname() {
+    return fullname;
+  }
+
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
+  }
+
+  @Override 
+  public String toString() { 
+   return "UserDto [username=" + username + ", password=" + password + ", 
+     fullname=" + fullname + "]"; 
+  }
+}
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.Services/UserService.java" showLineNumbers
+import com.Springboot.UserAuth.Entity.User;
+import com.Springboot.UserAuth.dto.UserDto;
+
+public interface UserService {
+  User findByUsername(String username);
+
+  User save(UserDto userDto);
+} 
+```
+
+
+```java title="src/main/java/com.Springboot.UserAuth.Services/UserServiceImpl.java" showLineNumbers
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.Springboot.UserAuth.Entity.User;
+import com.Springboot.UserAuth.dto.UserDto;
+import com.Springboot.UserAuth.repositories.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+  @Autowired
+  PasswordEncoder passwordEncoder;
+
+  private UserRepository userRepository;
+
+  public UserServiceImpl(UserRepository userRepository) {
+    super();
+    this.userRepository = userRepository;
+  }
+
+  @Override
+  public User findByUsername(String username) {
+    return userRepository.findByUsername(username);
+  }
+
+  @Override
+  public User save(UserDto userDto) {
+    User user = new User(userDto.getUsername(),
+        passwordEncoder.encode(userDto.getPassword()),
+        userDto.getFullname());
+    return userRepository.save(user);
+  }
+}
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.Configuration/CustomUserDetails.java" showLineNumbers
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class CustomUserDetails implements UserDetails {
+
+  private String username;
+  private String password;
+  private Collection<? extends GrantedAuthority> authorities;
+  private String fullname;
+
+  public CustomUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities,
+      String fullname) {
+    this.username = username;
+    this.password = password;
+    this.authorities = authorities;
+    this.fullname = fullname;
+  }
+
+  public String getFullname() {
+    return fullname;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
+
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
+  @Override
+  public String getUsername() {
+    return username;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
+}
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.Configuration/CustomUserDetailsService.java"
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.Springboot.UserAuth.Entity.User;
+import com.Springboot.UserAuth.repositories.UserRepository;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+  private UserRepository userRepository;
+
+  public CustomUserDetailsService(UserRepository userRepository) {
+    super();
+    this.userRepository = userRepository;
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+    User user = userRepository.findByUsername(username);
+    if (user == null) {
+      throw new UsernameNotFoundException("Username or Password not found");
+    }
+    return new CustomUserDetails(user.getUsername(), user.getPassword(),
+        authorities(), user.getFullname());
+  }
+
+  public Collection<? extends GrantedAuthority> authorities() {
+    return Arrays.asList(new SimpleGrantedAuthority("USER"));
+  }
+}
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.Configuration/SecurityConfig.java"
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+  @Autowired
+  CustomUserDetailsService customUserDetailsService;
+
+  @Bean
+  public static PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+    http.csrf().disable().authorizeHttpRequests().requestMatchers("/register")
+        .permitAll().requestMatchers("home").permitAll().and().formLogin().loginPage("/login")
+        .loginProcessingUrl("/login").defaultSuccessUrl("/home", true).permitAll().and().logout()
+        .invalidateHttpSession(true).clearAuthentication(true)
+        .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
+        .permitAll();
+
+    return http.build();
+  }
+
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+  }
+}
+```
+
+```java title="src/main/java/com.Springboot.UserAuth.Controller/UserController.java" showLineNumbers
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.Springboot.UserAuth.Entity.User;
+import com.Springboot.UserAuth.Services.UserService;
+import com.Springboot.UserAuth.dto.UserDto;
+
+@Controller
+public class UserController {
+
+  @Autowired
+  private UserDetailsService userDetailsService;
+
+  private UserService userService;
+
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
+
+  @GetMapping("/home")
+  public String home(Model model, Principal principal) {
+    UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+    model.addAttribute("userdetail", userDetails);
+    return "home";
+  }
+
+  @GetMapping("/login")
+  public String login(Model model, UserDto userDto) {
+
+    model.addAttribute("user", userDto);
+    return "login";
+  }
+
+  @GetMapping("/register")
+  public String register(Model model, UserDto userDto) {
+    model.addAttribute("user", userDto);
+    return "register";
+  }
+
+  @PostMapping("/register")
+  public String registerSava(@ModelAttribute("user") UserDto userDto, Model model) {
+    User user = userService.findByUsername(userDto.getUsername());
+    if (user != null) {
+      model.addAttribute("Userexist", user);
+      return "register";
+    }
+    userService.save(userDto);
+    return "redirect:/register?success";
+  }
+}
+```
+
+```html title="src/main/resources/templates/home.html"
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard {
+      background-color: #5e057e;
+      color: #fff;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .dashboard_title {
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    .dashboard_user {
+      margin-top: 20px;
+    }
+
+    .dashboard_user_name {
+      font-size: 18px;
+      color: #c299d0;
+    }
+
+    .span-text {
+      text-align: right;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <h1 class="dashboard_title">Welcome to the Dashboard </h1>
+    <div class="dashboard_user">
+      <h2 th:text="${userdetail.fullname}" class="dashboard_user_name"></h2>
+    </div>
+    <div class="span-text">
+      <span sec:authorize="isAuthenticated" style="color: white;">
+        <a th:href="@{/logout}">Logout</a>
+      </span>
+    </div>
+  </div>
+
+</body>
+
+</html>
+```
+
+```html title="src/main/resources/templates/register.html" showLineNumbers
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .form-container {
+      background-color: #fff;
+      width: 400px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #5e057e;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #5e057e;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #5e057e;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #299d00;
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #888;
+    }
+
+    .success-message {
+      background-color: #5e057e;
+      color: #fff;
+      padding: 10px;
+      border-radius: 3px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+
+    <div th:if="${param.success}">
+      <div class="success-message">
+        <p>Registration Successful!</p>
+      </div>
+    </div>
+
+    <h2>Registration</h2>
+    <form th:action="@{/register}" method="post" role="form" th:object="${user}">
+      <label for="fullname">FullName:</label>
+      <input th:field="*{fullname}" type="text" id="fullname" name="fullname" 
+        placeholder="Enter your FullName" required>
+
+      <label for="username">Username:</label>
+      <input th:field="*{username}" type="text" id="username" name="username" 
+        placeholder="Enter your Username" required>
+
+      <label for="password">Password:</label>
+      <input th:field="*{password}" type="password" id="password" name="password" 
+        placeholder="Enter your Password" required>
+
+      <button type="submit">Register</button>
+    </form>
+    <div>
+      <span th:if="${Userexist}" style="color: red;">Username is Taken</span>
+    </div>
+    <div>
+      <span class="form-footer">Already have an account? 
+        <a th:href="@{/login1}">Login</a>here.
+      </span>
+    </div>
+  </div>
+</body>
+
+</html>
+```
+
+```html title="src/main/resources/templates/login.html" showLineNumbers
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .form-container {
+      background-color: #fff;
+      width: 400px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #5e057e;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #5e057e;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #5e057e;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #299d00;
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #888;
+    }
+
+    .error-message,
+    .logout-message {
+      background-color: #5e057e;
+      color: #fff;
+      padding: 10px;
+      border-radius: 3px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-container">
+
+      <div th:if="${param.error}">
+        <div class="error-message">
+          <p>Invalid Username or Password</p>
+        </div>
+      </div>
+
+      <div th:if="${param.logout}">
+        <div class="logout-message">
+          <p>Logout Successful!</p>
+        </div>
+      </div>
+
+      <h2>Login</h2>
+      <form th:action="@{/login}" method="post" role="form" th:object="${user}">
+
+        <label for="username">Username:</label>
+        <input th:field="*{username}" type="text" id="username" name="username" 
+          placeholder="Enter your Username" required>
+
+        <label for="password">Password:</label>
+        <input th:field="*{password}" type="password" id="password" name="password" 
+          placeholder="Enter your Password" required>
+
+        <button type="submit">Login</button>
+      </form>
+      <p class="form-footer">Don't have an account? <a th:href="@{/register}">Register</a>here.</p>
+    </div>
+  </div>
+</body>
+
+</html>
+```
+
+**Run the Application** 
+- To run this application right-click on the application, click **Run As**, and then select the Java Application option.
+- Open Chrome and *Enter this URL in the search bar* [localhost:8080/register](localhost:8080/register) you will see this page.
+
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
+<Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. (User Registration and Login Form) </Callout>
+
+
 
 ```makefile title="Compile"
 javac -d mods com.aryacs/module-info.java com.aryacs/com/aryacs/Hello123.java
@@ -819,3 +1629,7 @@ javac -d mods com.aryacs/module-info.java com.aryacs/com/aryacs/Hello123.java
 ```makefile title="Run"
 java --module-path mods --module com.arya/com.aryacs.Hello123
 ```
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-10" >**Experiment 10**</Callout>
+<Callout type="knowing">**Objective:** Create industry oriented application using Spring Framework. (User Registration and Login Form) </Callout>
