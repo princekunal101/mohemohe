@@ -919,7 +919,7 @@ Use the below details in the Spring boot creation:
 ```
 
 ```properties title="src/main/resources/application.properties" showLineNumbers
-spring.datasource.url=jdbc:mysql://localhost:3305/mydb 
+spring.datasource.url=jdbc:mysql://localhost:3305/mysql?useSSL=false 
 spring.datasource.username=root 
 spring.datasource.password=system 
  
@@ -1169,7 +1169,7 @@ public class CustomUserDetails implements UserDetails {
 }
 ```
 
-```java title="src/main/java/com.Springboot.UserAuth.Configuration/CustomUserDetailsService.java"
+```java title="src/main/java/com.Springboot.UserAuth.Configuration/CustomUserDetailsService.java" showLineNumbers
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -1210,7 +1210,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 }
 ```
 
-```java title="src/main/java/com.Springboot.UserAuth.Configuration/SecurityConfig.java"
+```java title="src/main/java/com.Springboot.UserAuth.Configuration/SecurityConfig.java" showLineNumbers
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -1315,7 +1315,7 @@ public class UserController {
 }
 ```
 
-```html title="src/main/resources/templates/home.html"
+```html title="src/main/resources/templates/home.html" showLineNumbers
 <!DOCTYPE html>
 <html>
 
@@ -1610,15 +1610,415 @@ public class UserController {
 </html>
 ```
 
+<FigureMdx lightUrl="spring-boot-eclipse-project-8" desc="Project Structure"/>
+<FigureMdx lightUrl="spring-boot-mysql-server-workbench" desc="MySQL Workbench as Database"/>
+
 **Run the Application** 
 - To run this application right-click on the application, click **Run As**, and then select the Java Application option.
-- Open Chrome and *Enter this URL in the search bar* [localhost:8080/register](localhost:8080/register) you will see the page.
+- Open Chrome and *Enter this URL in the search bar* [localhost:8080/register](localhost:8080/register) you will see the page like this.
 
+<FigureMdx lightUrl="spring-boot-login-page-output" desc="Login page ./login"/>
+<FigureMdx lightUrl="spring-boot-register-page-output" desc="Register page ./register"/>
+<FigureMdx lightUrl="spring-boot-home-page-output" desc="Dashboard page ./home"/>
+
+{/* End of the experiment - 8 */}
 
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
 <Callout type="knowing">**Objective:** Test RESTful web services using Spring Boot. </Callout>
+
+**Theroy:**<br/>
+A RESTful web service is a service that follows the principles of Representational State Transfer (REST) architecture. REST is an architectural style for designing networked applications. It relies on a stateless, clint-server, cacheable communications protocol the HTTP. RESTful applications use HTTP requests to perform CRUD (Create, Read, Update, Delete) operations on resources, which are typically represented by JSON or XML.
+
+
+**create a spring boot application:**
+- Use Spring Initializer [https://start.spring.io](https://start.spring.io/) to generate a new Spring Boot Project with dependencies:
+- Spring Web
+- Spring Data JPA
+- H2 Database (for an in-memory database)
+
+
+<FigureMdx lightUrl="spring-boot-eclipse-project-9" desc="Project Structure"/>
+
+**Add all these code in your project:**
+
+```java title="src/main/java/net.springboot.spring/SpringBootRest2Application.java" showLineNumbers
+package net.springboot.spring;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringBootRest2Application {
+
+  public static void main(String[] args) {
+    SpringApplication.run(SpringBootRest2Application.class, args);
+  }
+}
+```
+
+```java title="src/main/java/net.springboot.spring.beans/student.java" showLineNumbers
+package net.springboot.spring.beans;
+
+public class Student {
+  String name;
+  int age;
+  String registrationNumber;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String registrationNumber) {
+    this.registrationNumber = registrationNumber;
+  }
+}
+```
+
+```java title="src/main/java/net.springboot.spring.beans/StudentRegistration.java" showLineNumbers
+package net.springboot.spring.beans;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentRegistration {
+  private List<Student> studentRecords;
+  private static StudentRegistration stdregd = null;
+
+  private StudentRegistration() {
+    studentRecords = new ArrayList<Student>();
+  }
+
+  public static StudentRegistration getInstance() {
+    if (stdregd == null) {
+      stdregd = new StudentRegistration();
+      return stdregd;
+    } else {
+      return stdregd;
+    }
+  }
+
+  public void add(Student std) {
+    studentRecords.add(std);
+  }
+
+  public String upDateStudent(Student std) {
+    for (int i = 0; i < studentRecords.size(); i++) {
+      Student stdn = studentRecords.get(i);
+      if (stdn.getRegistrationNumber().equals(std.getRegistrationNumber())) {
+        studentRecords.set(i, std);// update the new record return "Update successful";
+      }
+    }
+
+    return "Update un-successful";
+  }
+
+  public String deleteStudent(String registrationNumber) {
+    for (int i = 0; i < studentRecords.size(); i++) {
+      Student stdn = studentRecords.get(i);
+      if (stdn.getRegistrationNumber().equals(registrationNumber)) {
+        studentRecords.remove(i);// update the new record return "Delete successful";
+      }
+    }
+    return "Delete un-successful";
+  }
+
+  public List<Student> getStudentRecords() {
+    return studentRecords;
+  }
+}
+```
+
+```java title="src/main/java/netnet.springboot.spring.beans/StudentRegistrationReply.java" showLineNumbers
+package net.springboot.spring.beans;
+
+public class StudentRegistrationReply {
+  String name;
+  int age;
+  String registrationNumber;
+  String registrationStatus;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String registrationNumber) {
+    this.registrationNumber = registrationNumber;
+  }
+
+  public String getRegistrationStatus() {
+    return registrationStatus;
+  }
+
+  public void setRegistrationStatus(String registrationStatus) {
+    this.registrationStatus = registrationStatus;
+  }
+}
+```
+
+
+```java title="src/main/java/net.springboot.spring.controllers/StudentRetriveController.java" showLineNumbers
+package net.springboot.spring.controllers;
+
+import java.util.List;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import net.springboot.spring.beans.Student;
+import net.springboot.spring.beans.StudentRegistration;
+
+@Controller
+public class StudentRetrieveController {
+  @RequestMapping(method = RequestMethod.GET, value = "/student/allstudent")
+  @ResponseBody
+  public List<Student> getAllStudents() {
+    return StudentRegistration.getInstance().getStudentRecords();
+  }
+}
+```
+
+```java title="src/main/java/net.springboot.spring.controllers/StudentRegistrationController.java" showLineNumbers
+package net.springboot.spring.controllers;
+
+import java.util.List;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import net.springboot.spring.beans.*;
+
+@Controller
+public class StudentRegistrationController {
+  @RequestMapping(method = RequestMethod.POST, value = "/register/student")
+  @ResponseBody
+  public StudentRegistrationReply registerStudent(@RequestBody Student student) {
+    System.out.println("In registerStudent");
+    StudentRegistrationReply stdregreply = new StudentRegistrationReply();
+    StudentRegistration.getInstance().add(student);
+    // We are setting the below value just to reply a message back to the caller
+    // stdregreply.setName(student.getName()); stdregreply.setAge(student.getAge());
+    // stdregreply.setRegistrationNumber(student.getRegistrationNumber());
+    // stdregreply.setRegistrationStatus("Successful");
+
+    return stdregreply;
+  }
+}
+```
+
+```xml title="pom.xml" showLineNumbers
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.bhaiti.kela</groupId>
+  <artifactId>spring-boot-rest-2</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>spring-boot-rest-2</name>
+  <description>Demo project for Spring Boot</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.5.BUILD-SNAPSHOT</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <snapshots>
+        <enabled>true</enabled>
+
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>
+```
+
+```properties title="src/main/resources/application.properties" showLineNumbers
+server.port=8083 
+spring.profiles.active=@spring.profiles.active@
+```
+
+
+```java title="src/main/java/net.springboot.spring.controllers/StudentUpdateController.java" showLineNumbers
+package net.springboot.spring.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import net.springboot.spring.beans.Student;
+import net.springboot.spring.beans.StudentRegistration;
+
+@Controller
+public class StudentUpdateController {
+
+  @RequestMapping(method = RequestMethod.PUT, value = "/update/student")
+
+  @ResponseBody
+  public String updateStudentRecord(@RequestBody Student stdn) {
+    System.out.println("In updateStudentRecord");
+    return StudentRegistration.getInstance().upDateStudent(stdn);
+  }
+}
+```
+
+```java title="src/main/java/net.springboot.spring.controllers/StudentDeleteController.java" showLineNumbers
+package net.springboot.spring.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import net.springboot.spring.beans.StudentRegistration;
+
+@Controller
+public class StudentDeleteController {
+  @RequestMapping(method = RequestMethod.DELETE, value = "/delete/student/{regdNum}")
+  @ResponseBody
+  public String deleteStudentRecord(@PathVariable("regdNum") String regdNum) {
+    System.out.println("In deleteStudentRecord");
+    return StudentRegistration.getInstance().deleteStudent(regdNum);
+  }
+}
+```
+
+
+
+
+
 
 {/* 
 
@@ -1633,3 +2033,178 @@ java --module-path mods --module com.arya/com.aryacs.Hello123
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-10" >**Experiment 10**</Callout>
 <Callout type="knowing">**Objective:** Test Frontend web application with Spring Boot. </Callout>
+
+**Theory:**<br/>
+Testing a frontend web application involves ensuring that the user interface works as expected, including user interactions, data displays, and integration with backend services. testing can be broadly categorized into the following types:
+- **Unit Testing:** Tests individual components or functions in isolation.
+- **INtegration Testing:** Tests intractions between multiple components or services.
+- **End-to-End (E2E) Testing: Tests the entire application flow from start to finish, as a user would interact with it.
+
+
+**create a spring boot application:**
+- Use Spring Initializer [https://start.spring.io](https://start.spring.io/) to generate a new Spring Boot Project with dependencies:
+- Spring Web
+- Spring Boot MVC
+- Thymeleaf
+- Spring Data JPA
+- H2 Database (for an in-memory database)
+- JUnit/ Mockito / Selenium.
+
+
+<FigureMdx lightUrl="spring-boot-eclipse-project-10" desc="Project Structure"/>
+
+**Add all these code**
+
+```xml title="pom.xml" showLineNumbers
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+
+```java title="src/main/java/net.sourcecode.spring.domain/User.java" showLineNumbers
+package net.sourcecode.spring.domain;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column(name = "name")
+    private String name;
+
+    public User() {
+    }
+
+    public User(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
+
+```properties title="src/main/resources/application.properties" showLineNumbers
+spring.application.name=spring
+logging.level.org.springframework=INFO
+
+################### Hibernate Configuration ##########################
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+```sql title="src/main/resources/data.sql" showLineNumbers
+delete from users;
+
+insert into users(id, name) values(1,'Admin');
+insert into users(id, name) values(2,'Ram');
+insert into users(id, name) values(3,'Krishna');
+```
+
+```java title="src/main/java/net.sourcecode.spring.repositories/UserRepository.java" showLineNumbers
+package net.sourcecode.spring.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.domain.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+}
+```
+
+```java title="src/main/java/net.sourcecode.spring.web.controllers/HomeController.java" showLineNumbers
+package net.sourcecode.spring.web.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import net.sourcecode.spring.repositories.UserRepository;
+
+@Controller
+public class HomeController {
+
+    @Autowired
+    UserRepository userRepository;
+
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "index";
+    }
+}
+
+```
+
+```html title="src/main/resources/templates/index.html" showLineNumbers
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Spring Boot Web App using Spring MVC and Spring Data JPA</title>
+</head>
+<body>
+    <h1>Spring Boot Web App using Spring MVC and Spring Data JPA</h1>
+    <hr />
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">Id</td>
+                <td th:text="${user.name}">Name</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+```
+
+```java title="src/main/java/net.sourcecode.spring/Application.java" showLineNumbers
+package net.sourcecode.spring;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+- Hit this URL in browser: [http://localhost:8080](http://localhost:8080/) and see the output.
+
+--------
