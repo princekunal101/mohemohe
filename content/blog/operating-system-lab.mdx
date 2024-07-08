@@ -2,7 +2,7 @@
 title: Operating System Lab
 description: Operating system lab
 publishedDate: 2024-05-05
-updatedDate: 2024-06-25
+updatedDate: 2024-07-08
 published: true
 tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 
@@ -809,9 +809,579 @@ P0 -> P2 -> P3 -> P4 -> P1
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6">**Experiment 6**</Callout>
-<Callout type="knowing">**Objective:** Implement file storage allocation technique: <ul><li>Contiguous (using array)</li><li>Linked-list (using linked-list)</li><li>Indirect allocation (indexing)</li></ul></Callout>
+<Callout type="knowing">**Objective:** Implement of Resource Allocation Graph (RAG)</Callout>
 
-{/* <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6">**Experiment 6**</Callout>
+**Theory:**<br/>
+Resource Allocation Graph (RAG) is a fundamental concept in operating systems and concurrent programming. It is used to represent the allocation of resources to processes and to detect and prevent deadlocks. It is a directed graph used to model the allocation of resources to processes in a system. It helps in visualizing the relationships between processes and resources and can be used to detect and prevent deadlocks. 
+<br/>One of the advantages of having a diagram is, sometimes it is possible to see a deadlock directly by using RAG, but then you might not be able to know that by looking at the table. But the tables are better if the system contains lots of process and resource and Graph is better if the system contains less number of process and resource. We know that any graph contains vertices and edges.
+
+**Types of Vertices in RAG:** RAG also contains vertices and edges. In RAG vertices are two types and edges are also two types in RAG:
+- **Process Vertex:** Every process will be represented as a process vertex. Generally, the process will be represented with a circle. 
+- **Resource Vertex:** Every resource will be represented as a resource vertex. 
+- **Assign Edge:** If you already assign a resource to a process then it is called Assign edge. 
+- **Request Edge:** It means in future the process might want some resource to complete the execution, that is called request edge. 
+
+**Algorithm for check the deadlock:**
+- **Step 1:** First, find the currently available instances of each resource. 
+- **Step 2:** Check for each process which can be executed using the allocated + available resource. 
+- **Step 3:** Add the allocated resource of the executable process to the available resources and terminate it. 
+- **Step 4:** Repeat the 2nd and 3rd steps until the execution of each process. 
+- **Step 5:** If at any step, none of the processes can be executed then there is a deadlock in the system.
+
+```c title="deadlock.c" showLineNumbers
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+// Define the number of nodes in the graph
+#define MAX_NODES 100
+// Define the graph using an adjacency list
+typedef struct Node
+{
+  int vertex;
+  struct Node *next;
+} Node;
+
+Node *graph[MAX_NODES];
+bool visited[MAX_NODES];
+// Function to create a new node
+Node *createNode(int v)
+{
+  Node *newNode = (Node *)malloc(sizeof(Node));
+  newNode->vertex = v;
+  newNode->next = NULL;
+  return newNode;
+}
+
+// Function to add an edge to the graph
+void addEdge(int from, int to)
+{
+  Node *newNode = createNode(to);
+  newNode->next = graph[from];
+  graph[from] = newNode;
+}
+
+// Function to detect a cycle in the graph using DFS
+bool isCyclicUtil(int node, bool *recStack)
+{
+  if (visited[node] == false)
+  {
+    visited[node] = true;
+    recStack[node] = true;
+
+    Node *p = graph[node];
+    while (p != NULL)
+    {
+      if (visited[p->vertex] == false && isCyclicUtil(p->vertex, recStack))
+        return true;
+      else if (recStack[p->vertex] == true)
+        return true;
+      p = p->next;
+    }
+  }
+  recStack[node] = false;
+  return false;
+}
+
+// Function to check if the graph is cyclic
+bool isCyclic()
+{
+  bool *recStack = (bool *)malloc(MAX_NODES * sizeof(bool));
+  for (int i = 0; i < MAX_NODES; i++)
+  {
+    visited[i] = false;
+    recStack[i] = false;
+  }
+  for (int i = 0; i < MAX_NODES; i++)
+    if (isCyclicUtil(i, recStack))
+      return true;
+  return false;
+}
+int main()
+{
+  int numProcesses, numResources, temp, resourceNumber;
+
+  // Get the number of resources and processes from the user
+  printf("Enter the number of resources: ");
+  scanf("%d", &numResources);
+  printf("Enter the number of processes: ");
+  scanf("%d", &numProcesses);
+
+  // Initialize the graph
+  for (int i = 0; i < numProcesses + numResources; i++)
+    graph[i] = NULL;
+
+  // Fill the graph with user input
+  for (int processIndex = 0; processIndex < numProcesses; processIndex++)
+  {
+
+    // Get the number of resources the current process is holding
+    printf("Enter the number of resources process %d is holding: ", processIndex);
+    scanf("%d", &temp);
+    for (int i = 0; i < temp; i++)
+    {
+      printf("Enter the resource number process %d is holding: ", processIndex);
+      scanf("%d", &resourceNumber);
+      // Add an edge from the resource to the process
+      addEdge(numProcesses + resourceNumber, processIndex);
+    }
+    // Get the number of resources the current process is requesting
+    printf("Enter the number of resources process %d is requesting: ", processIndex);
+    scanf("%d", &temp);
+    for (int i = 0; i < temp; i++)
+    {
+      printf("Enter the resource number process %d is requesting: ", processIndex);
+      scanf("%d", &resourceNumber);
+      // Add an edge from the process to the resource
+      addEdge(processIndex, numProcesses + resourceNumber);
+    }
+  }
+
+  // Check for deadlock
+  if (isCyclic())
+    printf("Deadlock detected!\n");
+  else
+    printf("No deadlock detected.\n");
+  return 0;
+}
+```
+
+```makefile title="Output (deadlock)" 
+Enter the number of resources: 2
+Enter the number of processes: 2    
+Enter the number of resources process 0 is holding: 1
+Enter the resource number process 0 is holding: 0
+Enter the number of resources process 0 is requesting: 1
+Enter the resource number process 0 is requesting: 1
+Enter the number of resources process 1 is holding: 1
+Enter the resource number process 1 is holding: 1
+Enter the number of resources process 1 is requesting: 1
+Enter the resource number process 1 is requesting: 0
+Deadlock detected!
+```
+
+```makefile title="Output (!deadlock)" 
+Enter the number of resources: 2
+Enter the number of processes: 3    
+Enter the number of resources process 0 is holding: 1
+Enter the resource number process 0 is holding: 0
+Enter the number of resources process 0 is requesting: 0
+Enter the number of resources process 1 is holding: 1
+Enter the resource number process 1 is holding: 1
+Enter the number of resources process 1 is requesting: 0
+Enter the number of resources process 2 is holding: 0
+Enter the number of resources process 2 is requesting: 1
+Enter the resource number process 2 is requesting: 0
+No deadlock detected.
+```
+
+
+
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-7">**Experiment 7**</Callout>
+<Callout type="knowing">**Objective:** Implement Page Replacement Algorithm: <ul><li>FIFO</li><li>LRU</li></ul></Callout>
+
+**Theory:**<br/>
+Page replacement is basic to demand paging. It completes the separation between logical memory and physical memory. With this mechanism, an enormous virtual memory can be provided for programmers on a smaller physical memory. There are many different page-replacement algorithms. Every operating system probably has its own replacement scheme. 
+- **FIFO:** The FIFO algorithm is used in the paging method for memory management in an operating system that decides which existing page needs to be replaced in the queue. FIFO algorithm replaces the oldest (First) page which has been present for the longest time in the main memory. In simple words, when a new page comes in from secondary memory to main memory, It selects the front of the queue which is the oldest page present, and removes it. 
+
+
+**Algorithm**: 
+- **Step 1:** Start the program. 
+- **Step 2:** Read the number of frames. 
+- **Step 3:** Read the number of pages. 
+- **Step 4:** Read the page numbers. 
+- **Step 5:** Initialize the values in frames to -1. 
+- **Step 6:** Allocate the pages in to frames in First in first out order. 
+- **Step 7:** Display the number of page faults. 
+- **Step 8:** Stop the program.
+
+```c title="fifo.c" showLineNumbers
+#include <stdio.h>
+int main()
+{
+  int a[5], b[20], n, p = 0, q = 0, m = 0, h, k, i, q1 = 1;
+  char f = 'M';
+  printf("Enter the Number of Pages:");
+  scanf("%d", &n);
+  printf("Enter %d Page Numbers:\n", n);
+
+  for (i = 0; i < n; i++)
+    scanf("%d", &b[i]);
+
+  for (i = 0; i < n; i++)
+  {
+    if (p == 0)
+    {
+      if (q >= 3)
+        q = 0;
+      a[q] = b[i];
+      q++;
+      if (q1 < 3)
+      {
+        q1 = q;
+      }
+    }
+    printf("\n%d", b[i]);
+    printf("\t");
+    for (h = 0; h < q1; h++)
+      printf("%d-", a[h]);
+
+    if ((p == 0) && (q <= 3))
+    {
+      printf("-->%c", f);
+      m++;
+    }
+    p = 0;
+    for (k = 0; k < q1; k++)
+    {
+      if (b[i + 1] == a[k])
+        p = 1;
+    }
+  }
+  printf("\nNo of Miss:%d", m);
+  printf("\nNo of Hit:%d", n - m);
+}
+```
+
+```makefile title="Output" showLineNumbers
+Enter the Number of Pages:15
+Enter 15 Page Numbers:
+0
+9
+0
+1
+8
+5
+7
+8
+9
+2
+6
+5
+0
+7
+4
+
+0       0--->M
+9       0-9--->M
+0       0-9-
+1       0-9-1--->M
+8       8-9-1--->M
+5       8-5-1--->M
+7       8-5-7--->M
+8       8-5-7-
+9       9-5-7--->M
+2       9-2-7--->M
+6       9-2-6--->M
+5       5-2-6--->M
+0       5-0-6--->M
+7       5-0-7--->M
+4       4-0-7--->M
+No of Miss:13
+No of Hit:2
+```
+
+- **LRU:** LRU stands for **Least Recently Used**. As the name suggests, this algorithm is based on the strategy that whenever a page fault occurs, the least recently used page will be replaced with a new page. So, the page not utilized for the longest time in memory (compared to all other pages) gets replaced. This strategy is known as LRU paging.
+
+**Algorithm:** 
+- **Step 1:** Start the program. 
+- **Step 2:** Read the number of frames. 
+- **Step 3:** Read the number of pages. 
+- **Step 4:** Read the page numbers. 
+- **Step 5:** Initialize the values in frames to -1. 
+- **Step 6:** Allocate the pages in to frames by selecting the page that has not been used for the longest period of time. 
+- **Step 7:** Display the number of page faults. 
+- **Step 8:** Stop the program.
+
+```c title="LRU.c" showLineNumbers
+#include <stdio.h>
+int main()
+{
+  int a[5], b[20], p = 0, q = 0, m = 0, h, k,
+                   i, q1 = 1, j, u, n;
+  char f = 'M';
+  printf("Enter the number of pages:");
+  scanf("%d", &n);
+  printf("Enter %d Page Numbers:\n", n);
+  for (i = 0; i < n; i++)
+    scanf("%d", &b[i]);
+  for (i = 0; i < n; i++)
+  {
+    if (p == 0)
+    {
+      if (q >= 3)
+        q = 0;
+      a[q] = b[i];
+      q++;
+      if (q1 < 3)
+      {
+        q1 = q;
+      }
+    }
+    printf("\n%d", b[i]);
+    printf("\t");
+
+    for (h = 0; h < q1; h++)
+      printf("%d-", a[h]);
+    if ((p == 0) && (q <= 3))
+    {
+      printf("-->%c", f);
+      m++;
+    }
+    p = 0;
+    if (q1 == 3)
+    {
+      for (k = 0; k < q1; k++)
+      {
+        if (b[i + 1] == a[k])
+          p = 1;
+      }
+      for (j = 0; j < q1; j++)
+      {
+        u = 0;
+        k = i;
+        while (k >= (i - 1) && (k >= 0))
+
+        {
+          if (b[k] == a[j])
+            u++;
+          k--;
+        }
+        if (u == 0)
+          q = j;
+      }
+    }
+    else
+    {
+      for (k = 0; k < q; k++)
+      {
+        if (b[i + 1] == a[k])
+          p = 1;
+      }
+    }
+  }
+  printf("\nNo of Miss:%d", m);
+  printf("\nNo of Hit:%d", n - m);
+}
+```
+
+```makefile title="Output" showLineNumbers
+Enter the number of pages:15
+Enter 15 Page Numbers:
+0
+9
+0
+1
+8
+0
+2
+7
+1
+3
+2
+9
+8
+5
+2
+
+0       0--->M
+9       0-9--->M
+0       0-9-
+1       0-9-1--->M
+8       0-8-1--->M
+0       0-8-1-
+2       0-8-2--->M
+7       0-7-2--->M
+1       1-7-2--->M
+3       1-7-3--->M
+2       1-2-3--->M
+9       9-2-3--->M
+8       9-2-8--->M
+5       9-5-8--->M
+2       2-5-8--->M
+No of Miss:13
+No of Hit:2
+```
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8">**Experiment 8**</Callout>
+<Callout type="knowing">**Objective:** Write C programs to simulate Disk Scheduling Algorithms using: <ul><li>FCFS (First Come First Serve)</li><li>SSTF (Shortest Seek Time Fit)</li></ul></Callout>
+
+**Theory:**<br/>
+Disk scheduling is a technique operating system use to manage the order in which disk I/O (input/output) requests are processed. Disk scheduling is also known as I/O Scheduling. Disk scheduling algorithms are crucial in managing how data is read from and written to a computer's hard disk. 
+<br/>Common disk scheduling methods include First-Come, First-Served (FCFS), Shortest Seek Time First (SSTF), SCAN, C-SCAN, LOOK, and C-LOOK.
+
+- **FCFS:** FCFS (First Come First Serve) is the simplest disk scheduling algorithm. This algorithm entertains requests in the order they arrive in the disk queue. The algorithm looks very fair and there is no starvation (all requests are serviced sequentially) but generally, it does not provide the fastest service.
+
+**Algorithm** 
+- **Step 1:** Let Request array represents an array storing indexes of tracks that have been requested in ascending order of their time of arrival. `head` is the position of disk head. 
+- **Step 2:** Let us one by one take the tracks in default order and calculate the absolute distance of the track from the head. 
+- **Step 3:** Increment the total seek count with this distance. 
+- **Step 4:** Currently serviced track position now becomes the new head position. 
+- **Step 5:** Go to **Step 2** until all tracks in request array have not been serviced. 
+
+```c title="FCFS.c" showLineNumbers
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_QUEUE_SIZE 20
+int main()
+{
+  int queue[MAX_QUEUE_SIZE];
+  int n, head, i, seek = 0, max;
+  float avg;
+  printf("Enter the max range of the disk: ");
+  if (scanf("%d", &max) != 1 || max <= 0)
+  {
+    fprintf(stderr, "Invalid max range. Please enter a positive integer.\n");
+    return 1;
+  }
+  printf("Enter the size of the queue request (max %d): ", MAX_QUEUE_SIZE - 1);
+  if (scanf("%d", &n) != 1 || n <= 0 || n >= MAX_QUEUE_SIZE)
+  {
+    fprintf(stderr, "Invalid queue size. Please enter a positive integer less than %d.\n",
+            MAX_QUEUE_SIZE);
+    return 1;
+  }
+  printf("Enter the queue of disk positions to be read:\n");
+  for (i = 1; i <= n; i++)
+  {
+    if (scanf("%d", &queue[i]) != 1 || queue[i] < 0 || queue[i] > max)
+    {
+      fprintf(stderr, "Invalid disk position. Please enter a value between 0 and %d.\n", max);
+      return 1;
+    }
+  }
+  printf("Enter the initial head position: ");
+  if (scanf("%d", &head) != 1 || head < 0 || head > max)
+  {
+    fprintf(stderr, "Invalid initial head position. Please enter a value between 0 and %d.\n", max);
+    return 1;
+  }
+
+  queue[0] = head;
+
+  for (i = 0; i < n; i++)
+  {
+    int diff = abs(queue[i + 1] - queue[i]);
+    seek += diff;
+    printf("Disk head moves from %d to %d with seek %d\n", queue[i], queue[i + 1], diff);
+  }
+  printf("Total seek time is %d\n", seek);
+  avg = (float)seek / n;
+  printf("Average seek time is %.2f\n", avg);
+
+  return 0;
+}
+```
+
+```makefile title="Output" 
+Enter the max range of the disk: 100
+Enter the size of the queue request (max 19): 9
+Enter the queue of disk positions to be read:
+45
+20
+90
+5
+30
+35
+25
+70
+95
+Enter the initial head position: 49
+Disk head moves from 49 to 45 with seek 4
+Disk head moves from 45 to 20 with seek 25      
+Disk head moves from 20 to 90 with seek 70      
+Disk head moves from 90 to 5 with seek 85       
+Disk head moves from 5 to 30 with seek 25       
+Disk head moves from 30 to 35 with seek 5       
+Disk head moves from 35 to 25 with seek 10      
+Disk head moves from 25 to 70 with seek 45      
+Disk head moves from 70 to 95 with seek 25      
+Total seek time is 294
+Average seek time is 32.67
+```
+
+- **SSTF:** SSTF (Shortest Seek Time Fist) is an abbreviation that selects the request which is closest to the current head position before moving the head away to service other requests. This is done by selecting the request which has the least seek time from the current head position. 
+
+**Algorithm** 
+- **Step 1:** Let the Request array represents an array storing indexes of tracks that have been requested. `head` is the position of the disk head. 
+- **Step 2:** Find the positive distance of all tracks in the request array from the head. 
+- **Step 3:** Find a track from the requested array which has not been accessed/serviced yet and has a minimum distance from the head. 
+- **Step 4:** Increment the total seek count with this distance. 
+- **Step 5:** Currently serviced track position now becomes the new head position. 
+- **Step 6:** Go to step 2 until all tracks in the request array have not been serviced. 
+
+```c title="SSTF.c" showLineNumbers
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int RQ[100], i, n, TotalHeadMoment = 0, initial, count = 0;
+  float m;
+  printf("Enter the number of Requests:");
+  scanf("%d", &n);
+  printf("Enter the Requests sequence:\n");
+
+  for (i = 0; i < n; i++)
+    scanf("%d", &RQ[i]);
+  printf("Enter initial head position:");
+  scanf("%d", &initial);
+
+  while (count != n)
+  {
+    int min = 1000, d, index;
+    for (i = 0; i < n; i++)
+    {
+      d = abs(RQ[i] - initial);
+      if (min > d)
+      {
+        min = d;
+        index = i;
+      }
+    }
+    TotalHeadMoment = TotalHeadMoment + min;
+    initial = RQ[index];
+    RQ[index] = 1000;
+    count++;
+  }
+  printf("Total Seek Time is %d \n", TotalHeadMoment);
+  m = (float)TotalHeadMoment / n;
+  printf("Average Seek Time is %.2f", m);
+  return 0;
+}
+```
+
+```makefile title="Output"
+Enter the number of Requests:10
+Enter the Requests sequence:
+45
+20
+90
+10
+15
+25
+66
+78
+76
+23
+Enter initial head position:51
+Total Seek Time is 121
+Average Seek Time is 12.10
+```
+
+------
+
+
+
+
+
+
+
+{/* 
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8">**Experiment 8**</Callout>
 <Callout type="knowing">**Objective:** Implementation of contiguous allocation techniques: <ul><li>Worst-Fit</li><li>Best-Fit</li><li>First-Fit</li></ul></Callout> */}
 
 
