@@ -17,6 +17,8 @@ tags: ["OS", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 6](#experiment-6)
 - [Experiment 7](#experiment-7)
 - [Experiment 8](#experiment-8)
+- [Experiment 9](#experiment-9)
+- [Experiment 10](#experiment-10)
 
 
 
@@ -1375,19 +1377,376 @@ Total Seek Time is 121
 Average Seek Time is 12.10
 ```
 
-------
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9">**Experiment 9**</Callout>
+<Callout type="knowing">**Objective:** Implement the solution for Bounded Buffer (producer-consumer) problem. </Callout>
+
+**Theory:**
+The producer-consumer problem is an example of a multi-process synchronization problem. The problem describes two processes, the producer and the consumer that share a common fixed-size buffer and use it as a queue. The producer's job is to generate data, put it into the buffer, and start again. At the same time, the consumer is consuming the data (i.e., removing it from the buffer), one piece at a time.
+
+**What is the Actual Problem?**<br/>
+Given the common fixed-size buffer, the task is to make sure that the producer can't add data into the buffer when it is full and the consumer can't remove data from an empty buffer. Accessing memory buffers should not be allowed to producers and consumers at the same time. 
+
+<Callout type="">📝**Note:** An inadequate solution could result in a deadlock where both processes are waiting to be awakened. </Callout>
+  
+**Approach:** The idea is to use the concept of parallel programming and Critical Section to implement the Producer-Consumer problem in C language using `OpenMP`.
+
+```c title="pc_problem.c" showLineNumbers
+#include <stdio.h>
+void main()
+{
+  int buffer[10], bufsize, in, out, produce, consume, choice = 0;
+  in = 0;
+  out = 0;
+  bufsize = 5;
+  while (choice != 3)
+  {
+
+    printf("1. Produce \t 2. Consume\t3. Exit");
+    printf("\nEnter your choice:  ");
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 1:
+      if ((in + 1) % bufsize == out)
+        printf("Buffer is Full\n");
+      else
+      {
+        printf("Enter the value: ");
+        scanf("%d", &produce);
+        buffer[in] = produce;
+        in = (in + 1) % bufsize;
+      }
+      break;
+    case 2:
+      if (in == out)
+        printf("Buffer is Empty\n");
+      else
+      {
+        consume = buffer[out];
+        printf("The consumed value is %d\n", consume);
+        out = (out + 1) % bufsize;
+      }
+      break;
+    }
+  }
+}
+```
+
+```makefile title="Output"
+1. Produce       2. Consume     3. Exit
+Enter your choice: 1
+Enter the value: 43
+1. Produce       2. Consume     3. Exit
+Enter your choice: Enter the value: 432
+1. Produce       2. Consume     3. Exit
+Enter your choice: 2
+The consumed value is 43
+1. Produce       2. Consume     3. Exit
+Enter your choice: 43
+1. Produce       2. Consume     3. Exit
+Enter your choice: 43
+1. Produce       2. Consume     3. Exit
+Enter your choice: 2
+The consumed value is 432
+1. Produce       2. Consume     3. Exit
+Enter your choice: 2
+Buffer is Empty
+1. Produce       2. Consume     3. Exit
+Enter your choice: 1
+Enter the value: 345
+1. Produce       2. Consume     3. Exit
+Enter your choice: 1
+Enter the value: 567
+1. Produce       2. Consume     3. Exit
+Enter your choice: 1
+Enter the value: 324
+1. Produce       2. Consume     3. Exit
+Enter your choice: 1
+Enter the value: 324
+1. Produce       2. Consume     3. Exit
+Enter your choice: 1
+Buffer is Full
+1. Produce       2. Consume     3. Exit
+Enter your choice: 345
+1. Produce       2. Consume     3. Exit
+Enter your choice: 2
+The consumed value is 345
+1. Produce       2. Consume     3. Exit
+Enter your choice: 2
+The consumed value is 567
+1. Produce       2. Consume     3. Exit
+Enter your choice: 23
+1. Produce       2. Consume     3. Exit
+Enter your choice: 44
+1. Produce       2. Consume     3. Exit
+Enter your choice: 2
+The consumed value is 324
+1. Produce       2. Consume     3. Exit
+Enter your choice: 3
+```
 
 
 
 
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-10">**Experiment 10**</Callout>
+<Callout type="knowing">**Objective:** Implementation of contiguous allocation techniques: <ul><li>Worst-Fit</li><li>Best-Fit</li><li>First-Fit</li></ul></Callout>
+
+**Theory:**<br/>
+Contiguous memory allocation is a memory allocation strategy. As the name implies, we utilize 
+this technique to assign contiguous blocks of memory to each task. Thus, whenever a process 
+asks to access the main memory, we allocate a continuous segment from the empty region to the 
+process based on its size.
+
+- **First- Fit:** The first-fit algorithm searches for the first free partition that is large enough to accommodate the process. The operating system starts searching from the beginning of the memory and allocates the first free partition that is large enough to fit the process. 
+
+```c title="first_fit.c" showLineNumbers
+#include <stdio.h>
+#include <process.h>
+void main()
+{
+  int a[20], p[20], i, j, n, m;
+  printf("Enter no of Blocks: ");
+  scanf("%d", &n);
+  printf("Enter the Block size:\n");
+  for (i = 1; i <= n; i++)
+  {
+    scanf("%d", &a[i]);
+  }
+  printf("Enter no. of Process: ");
+  scanf("%d", &m);
+
+  printf("Enter the size of Processes:\n");
+  for (i = 1; i <= m; i++)
+  {
+    scanf("%d", &p[i]);
+  }
+  for (i = 1; i <= n; i++)
+  {
+    for (j = 1; j <= m; j++)
+    {
+      if (p[j] <= a[i])
+      {
+        printf("The Process %d allocated to %d\n", j, a[i]);
+        p[j] = 10000;
+        break;
+      }
+    }
+  }
+  for (j = 1; j <= m; j++)
+  {
+    if (p[j] != 10000)
+    {
+      printf("The Process %d is not allocated\n", j);
+    }
+  }
+}
+```
+
+```makefile title="Output"
+Enter no of Blocks: 5
+Enter the Block size:
+100
+500
+200
+300
+600
+Enter no. of Process: 4
+Enter the size of Processes:        
+212
+417
+112
+426
+The Process 1 allocated to 500      
+The Process 3 allocated to 200      
+The Process 2 allocated to 600      
+The Process 4 is not allocated 
+```
+
+- **Best- Fit:** The best-fit algorithm searches for the smallest free partition that is large enough to accommodate the process. The operating system searches the entire memory and selects the free partition that is closest in size to the process. 
+
+```c title="best_fit.c" showLineNumbers
+#include <stdio.h>
+#include <conio.h>
+#define max 25
+int main()
+{
+  int frag[max], b[max], f[max], i, j, nb, nf, temp, lowest = 10000;
+  static int bf[max], ff[max];
+
+  printf("\nEnter the number of blocks: ");
+  scanf("%d", &nb);
+
+  printf("Enter the number of files: ");
+  scanf("%d", &nf);
+
+  printf("Enter the size of the blocks:-\n");
+  for (i = 1; i <= nb; i++)
+  {
+    printf("Block %d: ", i);
+    scanf("%d", &b[i]);
+  }
+  printf("Enter the size of the files :-\n");
+
+  for (i = 1; i <= nf; i++)
+  {
+    printf("File %d: ", i);
+    scanf("%d", &f[i]);
+  }
+  for (i = 1; i <= nf; i++)
+  {
+    for (j = 1; j <= nb; j++)
+    {
+      if (bf[j] != 1)
+      {
+        temp = b[j] - f[i];
+        if (temp >= 0)
+          if (lowest > temp)
+          {
+            ff[i] = j;
+
+            lowest = temp;
+          }
+      }
+    }
+    frag[i] = lowest;
+    bf[ff[i]] = 1;
+    lowest = 10000;
+  }
+
+  printf("\nFile No\t\tFile Size\tBlock No\tBlock Size\tFragment");
+  for (i = 1; i <= nf && ff[i] != 0; i++)
+    printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d", i, f[i], ff[i], b[ff[i]], frag[i]);
+
+  return 0;
+}
+```
+
+```makefile title="Output"
+Enter the number of blocks: 5
+Enter the number of files: 4
+Enter the size of the blocks:-
+Block 1: 100
+Block 2: 500
+Block 3: 200
+Block 4: 300
+Block 5: 600
+Enter the size of the files :-
+File 1: 212
+File 2: 417
+File 3: 112
+File 4: 426
+
+File No     File Size       Block No        Block Size      Fragment
+1               212             4               300             88       
+2               417             2               500             83       
+3               112             3               200             88       
+4               426             5               600             174 
+```
+
+- **Worst- Fit:** The worst-fit algorithm searches for the largest free partition and allocates the process to it. This algorithm is designed to leave the largest possible free partition for future use.
+
+```c title="Output" showLineNumbers
+#include <stdio.h>
+#include <stdlib.h>
+int disk[20];
+struct blocks
+{
+  int bid;
+  int size;
+  int index;
+} block;
+
+struct processs
+{
+  int pid;
+  int size;
+  int flag;
+  struct blocks b;
+  int fragment;
+} process;
+
+int main()
+{
+  int nb, np, i, j;
+  int disk_index = 0;
+  printf("Total disk size is 50.\n");
+  printf("Enter the number of blocks: ");
+  scanf("%d", &nb);
+  struct blocks bls[nb], temp;
+
+  for (i = 0; i < nb; i++)
+  {
+    bls[i].bid = i;
+    printf("Enter the size of block %d : ", i);
+    scanf("%d", &bls[i].size);
+    bls[i].index = disk_index;
+    disk_index = disk_index + bls[i].size;
+  }
+
+  printf("Enter the number of processes: ");
+  scanf("%d", &np);
+  struct processs ps[np];
+  for (i = 0; i < np; i++)
+  {
+    ps[i].pid = i;
+    printf("Enter the size of process %d : ", i);
+    scanf("%d", &ps[i].size);
+    ps[i].flag = -1;
+  }
+  for (i = 0; i < nb - 1; i++)
+  {
+    for (j = i + 1; j < nb; j++)
+    {
+      if (bls[j].size > bls[i].size)
+      {
+        temp.bid = bls[j].bid;
+        temp.size = bls[j].size;
+        temp.index = bls[j].index;
+        bls[j].bid = bls[i].bid;
+        bls[j].size = bls[i].size;
+        bls[j].index = bls[i].index;
+        bls[i].bid = temp.bid;
+        bls[i].size = temp.size;
+        bls[i].index = temp.index;
+      }
+    }
+  }
+  for (i = 0; i < np; i++)
+  {
+    if (i >= nb || bls[i].size < ps[i].size)
+      printf("No block is available for the process\n");
+    else
+      ps[i].b = bls[i];
+  }
+  printf("Now process block allocation list is\n");
+  for (i = 0; i < np; i++)
+  {
+    printf("process id: %d process size %d block id %d free space %d.\n",
+           ps[i].pid, ps[i].size, ps[i].b.bid, ps[i].b.size - ps[i].size);
+  }
+  return 0;
+}
+```
+
+```makefile title="Output"
+Total disk size is 50.
+Enter the number of blocks: 4
+Enter the size of block 0 : 10
+Enter the size of block 1 : 9
+Enter the size of block 2 : 4
+Enter the size of block 3 : 8
+Enter the number of processes: 3
+Enter the size of process 0 : 1
+Enter the size of process 1 : 2
+Enter the size of process 2 : 3
+Now process block allocation list is
+process id: 0 process size 1 block id 0 free space 9.
+process id: 1 process size 2 block id 1 free space 7.
+process id: 2 process size 3 block id 3 free space 5.
+```
 
 
+**See Also:** [Operating System](/learn/operating-system/)
 
-{/* 
-<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8">**Experiment 8**</Callout>
-<Callout type="knowing">**Objective:** Implementation of contiguous allocation techniques: <ul><li>Worst-Fit</li><li>Best-Fit</li><li>First-Fit</li></ul></Callout> */}
-
-
-**See Also**
-
-- [Operating System](/learn/operating-system/)
+-----
