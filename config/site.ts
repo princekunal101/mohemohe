@@ -7,7 +7,7 @@ export const siteConfig = {
   keywords: ["mohemohe.in", " Data Structure", " Algorithms", " Btech", " DSA", " Tafal", " Theory of Automata", " Java", " C", " C++", " OS", " Operating System", " Mohe Mohe", " CSE", " React", " HTML", " CSS", " PHP", " JavaScript", " Aktu", " Web Development", " Computer Science", " Programming", " Python", " Tutorial", " NextJS", " Mohe Mohe", " Beginners", " Professionals", " Graduation", " Students"],
   links: {
     twitter: "https://twitter.com/princekunal",
-    github: "https://github.com/princekunal101",
+    github: "https://github.com/princekunal101/mohemohe",
     personalSite: "https://kunalzone.com",
     linkedin: "https://www.linkedin.com/in/prince-kunal-45b8a4287",
     instagram: "https://instagram.com/mohemohe.in"
