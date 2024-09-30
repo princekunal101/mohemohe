@@ -22,8 +22,8 @@ export default async function AboutPage() {
     </div>
     <hr className="my-8" /> */}
     <div className="flex flex-col md:flex-row gap-8 items-center justify-center md:items-start">
-      <div className=" max-w-48 hidden md:flex flex-col gap-2">
-        <Avatar className="h-48 w-48">
+      <div className=" max-w-48 md:flex flex-col gap-2">
+        <Avatar className="h-32 w-32 md:h-48 md:w-48">
           <AvatarImage src="/authors/prince-kunal.jpg" alt={siteConfig.author} />
           <AvatarFallback>PK</AvatarFallback>
         </Avatar>
