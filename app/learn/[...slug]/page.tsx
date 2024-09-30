@@ -7,6 +7,8 @@ import { notFound } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Metadata, ResolvingMetadata } from "next";
 
+import { Icons } from "@/components/icons";
+
 
 interface ChapterPageProps {
   params: {
@@ -90,7 +92,7 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
   }
 
   const dateTitle = (chapter.publishedDate === chapter.updatedDate ? "Published on: " : "Last updated: ");
-
+  const githubLink = (siteConfig.links.github + "/tree/master/content/" + (chapter.slug.split("/").pop() === params.slug[0] ? chapter.slug + "/index" : chapter.slug));
 
   return (<div className={cn("relative mx-auto px-4 py-4 max-w-screen-lg md:py-4")}>
     <div className={cn(" relative lg:-mx-12 h-[67px] lg:mb-8 max-w-[1072px]")}>
@@ -110,8 +112,8 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
           <p className={cn("text-md my-0 font-medium  text-muted-foreground hidden md:block")}>Chapter {chapter.chapNum}</p>
           <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>
         </div>
-      </div> 
-      : <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>}
+      </div>
+        : <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>}
       {chapter.chapDesc ? (
         <p className={cn(" text-md my-2 sm:my-5")}>{chapter.chapDesc}</p>
       ) : null}
@@ -124,8 +126,13 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
 
 
       <MDXContent code={chapter.body} />
-      <div className=" text-right px-2">
-        <time className="text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
+
+      <div className="flex gap-3 justify-between  px-2">
+        <a className="flex gap-2 items-center" target="_blank" href={githubLink + ".mdx"}>
+          <Icons.github className="h-7 w-7" />
+          <p className="text-wrap my-2 text-sm font-semibold">Help us to Improve</p>
+        </a>
+        <time className="text-right text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
       </div>
     </article>
   </div>
