@@ -1,0 +1,222 @@
+---
+chapTitle: Hyper Text Markup Language
+bookName: Web Technology
+chapDesc: In the privious chapter we have learn about the client server computations, how client-server works and pros & cons of it.
+chapNum: 4
+publishedDate: 2024-10-10
+updatedDate: 2024-10-10
+tags: ["aktu","web-technology"]
+published: true
+---
+
+<ChapIntro><li className="flex gap-3"><Icons.Code className=" flex-shrink-0"/> Some basic html tags. </li><hr className="my-2"/><li className="flex gap-3"><Icons.FileCode2 className=" flex-shrink-0"/> Basic structure of html. </li></ChapIntro>
+
+---
+## Hyper Text Markup Language (HTML) 
+- HTML is the language of web. it is used to create websites.
+- HTML is basically used for designing web pages.
+- We use HTML tag to defination look and feel of a website.
+- It is not programming language. It is markup language. *(Markup language is set of text)*.
+- HTML file is always ends with ```.html``` ```.htm```
+- HTML file program always start with **html** tag.
+
+
+
+## Structure of HTML program/ Web pages
+```html showLineNumbers title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Class</title>
+</head>
+<body>
+    <h1>Hello world!</h1>
+</body>
+</html>
+```
+
+- ```<title>``` tag is used for setting the title of the web page.
+- ```<head>``` tag is used for setting the title of web page. It can also put the JavaScript in ```<head>``` tag *(validation purpose)*
+- ```<body>``` tag is used for printing the content of web page.
+
+## Tags:
+**Bold tag** ```<b> </b>```: It is used to bold the contents of the web page. *e.g.* Hello **STUDENTS**.
+```html
+Hello <b>STUDENTS</b>
+```
+
+**Italic tag** ```<i> </i>```: It is used to italic the cpntent of the body. *e.g.* Hi *Studends*.
+```html
+Hi <i>Students</i>
+```
+
+**Strike off tag** ```<s> </s>```: *e.g.* <s>Hello</s>
+```html
+<s>Hello</s>
+```
+
+**Underline tag** ```<u> </u>```: It underline the content. *e.g.* <u>Hi Students</u>
+```html
+<u>Hi Students</u>
+```
+
+**Heading tag**: It is used for making heading in web pages. There are six type of heading tags &mdash;
+```html
+<h1> ... </h1>
+<h2> ... </h2>
+<h3> ... </h3>
+<h4> ... </h4>
+<h5> ... </h5>
+<h6> ... </h6>
+```
+
+**Stand alone tag** ```<hr>``` ```<br>```: Some tags doen't have closing tag. These tags are called stand alone tag.
+    ```<br>``` used for breaking the line.
+    ```<hr>``` it create a horizontal line.
+```html
+Hello <br>Students
+<hr>
+```
+
+**List tag**: It is the collection of one or more item. HTML support three types of list &mdash;
+    - Unordered list ```<ul> </ul>```
+    - Ordered list ```<ol> </ol>```
+    - Defination list ```<dl> </dl>``` ```<dt> </dt>``` ```<dd> </dd>```
+
+```html
+<html>
+<head>
+    <title> COMPUTER </title>
+</head>
+<body>
+    <dl>  <!--tag is used for defination list -->
+        <dt> RAM </dt>  <!--tag is used for defination term -->
+        <dd> Random Access Memory </dd> <!--tag is used for defination description -->
+    </dl>
+</body>
+</html>
+```
+
+**Superscript tag** ```<sup> </sup>```: *e.g.* x<sup>2</sup> + y<sup>3</sup> + 70
+```html 
+<body>
+    x<sup>2</sup> + y<sup>3</sup> + 70
+</body>
+```
+
+**Subscript tag** ```<sub> </sub>```: *e.g.* H<sub>2</sub>SO<sub>4</sub>
+```html
+<body> 
+    H<sub>2</sub>SO<sub>4</sub>
+</body>
+```
+
+**Pre tag** ```<pre> </pre>```: It is used in performated text.
+*e.g.*
+```makefile
+            Name    Marks
+            XYZ     20
+            ABC     30
+```
+
+```html
+<body>
+    <pre>
+            Name    Marks
+            XYZ     20
+            ABC     30
+    </pre>
+</body>
+```
+
+**Anchor tag** ```<a> </a>```: It is used to create hyperlink to a resource *(web page, page file, document file, text file)*.
+        
+        **Attribute of anchor tag**: ```href``` *(hyperlink reference)*
+
+**Image** ```<img> </img>```: It is used to place an image on the Web page. 
+- ```<img>``` tag is used to set an image on the web page. 
+- Images are not part of the Web page file, they are separate file which are inserted into the web page where it is used by the browser.
+
+    **Attribute of image tag**: ```size```, ```title```, ```alignment```, ```border-size```, ```source```.
+```html
+<body>
+    <img src="pic.jpeg" align="right"></img>
+</body>
+```
+
+**Frame set** ```<frame>```: It can display one for more than one HTML document in the same browser window.
+- Each HTML document is called frame and each frame is independent of the others.
+- ```<frame set>``` tag is used to divide browser window.
+- ```<body>``` tag is not required.
+
+    **Attribute of frame set tag**: ```row```, ```columns```, ```frame-border```, ```border-color```, ```name```.
+
+- **Row**: It divides browser window row wise.
+```html
+<html>
+    <frame set rows="30%","70%">
+    <frame set rows="30%","70%","*">
+    </frame set>
+</html>
+```
+
+- **Columns**: It divides browsers window column wise.
+```html
+<html>
+    <frame set cols="33%","33%","34%">
+        <frame src="a.html">
+        <frame src="b.html">
+        <frame src="c.html">
+    </frame set>
+</html>
+```
+
+**Table tag** ```<table>```: It is useful to display data in 2D format.
+- Tabels are also powerful tool for formatting web pages.
+- Table is created using three basic tags. ```<table>```, ```<tr>```, ```<th>``` *(optional)*, ```<td>```.
+    
+    **Attribute for table tag**: 
+- **Border:** It is used to set the border of the table.
+- **Border color:** It is used to change the border colour of the table.
+- **Align:** It is used for setting the alignment of the table.
+
+**Nested Table**: Nested table in HTML means creating a table on web page inside another table on the same web page.
+
+```html
+<html>
+<body>
+    <table border="2" align="center">
+        <caption> Btech </caption>
+        <tr><td> Section</td>
+            <td><table border="2">
+                    <tr><td>A</td>
+                        <td>B</td>
+                    </tr>
+                    <tr><td>C</td>
+                        <td>D</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
+
+
+<FigureMdx lightUrl="wt-nasted-table" desc="Nested Table output"/>
+
+**Form tag** ```<form>```: Website use ```form``` to collect information from user and transmit that information to the server for processing.
+    - Html form is used to pass the data to a server.
+    - One can have more than one html form in single page.
+    - There are four primary elements used within home tag &mdash;
+        - ```input```, ```text area```, ```select```, ```button```.
+
+
+
+
+---
+
+<NextUp nextChap="5" nextChapName="eXtensible Markup Language XML" nextChapLink="/web-technology/xml"> Let's know about XML eXtensible Markup Language and its uses. what makes other from the HTML and valid XML document.</NextUp>
