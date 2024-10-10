@@ -1,0 +1,64 @@
+---
+title: OS Question Answers
+description: Question answers of the operating system syllabus
+publishedDate: 2024-07-2
+updatedDate: 2024-07-2
+tags: ["OS", "QAs", "aktu", "b-tech"]
+published: true
+---
+
+<Callout type="notes">**Sort Answer type Questions-**</Callout>
+## (2022-23 KCS 401)
+
+1. **Define two main functions of an operating system.**<br/>
+**ANS** wel come to the number world
+2. **Explain the principal advantages of multiprogramming.**
+3. **Define the term busy waiting.** 
+4. **Define semaphore and its types.**<br/>
+**ANS** A semaphore is a synchronization mechanism used in Concurrent programming to cintrol access to shared resources by multiple processes or threads. It is essentially a variable or abstract data type is used to solve critical section problems and to achieve process synchronization in multi-processing environments. <br/>
+
+    A semaphore S is an integer variable that, apart from intilization, is accessed only through two standard atomic operations: `wait()` ans `signal()`. The `wait()` operation was originally termed P (from the Dutch ***proberen***, "to test"), `signal()` was originally called V (from ***verhogen***, "to increase"). The defination of `wait()` is as follows:
+    ```c 
+    wait(S) {
+      while (S <= 0)
+        ; // busy wait
+      S--;
+    }
+    ```
+    The defination of `signal()` is as follows:
+    ```c 
+    signal(S) {
+      S++;
+    } 
+    ```
+
+5. **Explain starvation problem and its solution.** 
+6. **Explain internal and external fragmentation.** 
+7. **Explain thrashing and locality of reference.**
+8. **Distinguish between physical and logical address space of a process.**
+9. **Explain various operations associated with a file.** 
+10. **Explain tree level directory structure.** 
+
+## (2021-22 KCS 401)
+11. **Define Operating system and mention its major functions.** 
+12. **Briefly define the term Real Time Operating System.**
+13. **What dou mean by Concurrent Processes?**
+14. **Define Seek time and Latency time.**
+15. **What do we need Scheduling?**
+16. **What are the Performance Criteria in CPU Scheduling?**
+17. **Explain the Logical address space and Phusical address diagrammatically.**
+18. **Explain in brief about the Multiprogrmming with fixed partitions.**
+19. **What do you mean by the safe state and an unsafe state?**
+20. **What do you mean by the I/O Buffering?**
+
+
+## (2018-19 RCS 401)
+21. **Describe the typical elements of the process control block.**
+22. **What are the various scheduling criteria for CPU scheduling?**
+23. **What is the main function of the memory-management unit?**
+24. **Define seek time and latency time.**
+25. **Define SCAN and C-SCAN scheduling algorithms.**
+21. **What is a safe state and an unsafe state?**
+26. **Explain the logical address space and physical address space diagrammatically.**
+
+
