@@ -120,13 +120,26 @@ export function getChapterByBookPaths(chapters: Array<Chapter>, bookName: string
     if (books === bookName) {
       const newPath = chap.join('/');
       const completeSlug = [books, newPath];
-      
+
       let chapSlugAsParams = completeSlug.join('/')
-      
+
       // if (chapSlugAsParams.endsWith('/')) chapSlugAsParams =  chapSlugAsParams.slice(0, -1);
-      
+
       if (slug.slugAsParams === chapSlugAsParams) return slug;
     }
+  });
+}
+
+
+// All indexed chapter without book names
+export function getAllIndexedChapters(chapters: Array<Chapter>) {
+  return chapters.sort((a, b) => (a.chapNum < b.chapNum ? -1 : 1)).filter(slug => {
+    const [books, ...chap] = slug.slugAsParams.split('/');
+    const newPath = chap.join('/');
+    const completeSlug = [books, newPath];
+
+    let chapSlugAsParams = completeSlug.join('/')
+    if (slug.slugAsParams === chapSlugAsParams) return slug;
   });
 
 }
