@@ -37,8 +37,8 @@ export default async function AboutPage() {
         </p>
 
         <div className="flex flex-col gap-4 md:justify-start justify-center sm:flex-row">
-          <Link href={"/blog"} className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
-            View Blogs
+          <Link href={siteConfig.links.linkedin} className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}>
+            Linked In
           </Link>
           <Link href={siteConfig.links.github}
             target="_blank"
