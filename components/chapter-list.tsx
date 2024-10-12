@@ -30,7 +30,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
       return book
     };
   })
-  
+
   const indexChapter = getChapterByBookPaths(chapters.filter((chapter) => chapter.published), bookName);
 
   return (<>
@@ -55,6 +55,9 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                   chapterName={"Introduction"}
                   chapterNum={bookItems[0].chapNum}
                   currentNum={(slug) === bookItems[0].slug}
+                  isBNew={bookItems[0].isBNew}
+                  isNew={bookItems[0].isNew}
+                  isMod={bookItems[0].isMod}
                 />
               </div>
 
@@ -68,6 +71,8 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                       chapterName={chapter.chapTitle}
                       chapterNum={chapter.chapNum}
                       currentNum={(slug) === chapter.slug}
+                      isNew={chapter.isNew}
+                      isMod={chapter.isMod}
                     />
                   )}
                 </div>
@@ -102,13 +107,16 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
         <SheetContent side="bottom" className={cn("px-4 rounded-t-lg overflow-y-scroll h-4/5")}>
           <SheetClose className={cn("hidden")} />
           <div className={cn(" flex flex-col  justify-evenly w-full h-auto  ")}>
-            
+
             <div className=" py-2" >
               <ChapterBox
                 slug={bookItems[0].slug}
                 chapterName={"Introduction"}
                 chapterNum={bookItems[0].chapNum}
                 currentNum={(slug) === bookItems[0].slug}
+                isBNew={bookItems[0].isBNew}
+                isNew={bookItems[0].isNew}
+                isMod={bookItems[0].isMod}
               />
             </div>
 
@@ -122,6 +130,8 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                     chapterName={chapter.chapTitle}
                     chapterNum={chapter.chapNum}
                     currentNum={(slug) === chapter.slug}
+                    isNew={chapter.isNew}
+                    isMod={chapter.isMod}
                   />
                 )}
               </div>

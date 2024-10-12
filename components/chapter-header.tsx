@@ -8,6 +8,7 @@ import { List } from "lucide-react";
 import { BookCover } from "./book-items/book-cover";
 import { siteConfig } from "@/config/site";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 
 
@@ -75,7 +76,7 @@ export function ChapterHeader({ chapNum, chapTitle, slug, bookName }: ChapterPag
 
       })} >
         <div className={cn("absolute w-[40px]  aspect-[3/4] rounded-[1px] bg-red-20 shadow-inner overflow-hidden ")}>
-          <img className={cn("h-full w-full")} src="/forgud_cov.png" alt="" />
+          <Image className={cn("h-full w-full")} width="100" height="100" src="/forgud_cov.png" alt="cover" />
         </div>
         <p className={cn(" ml-1 mr-1 text-xs mt-3 text-center text-balance font-semibold uppercase text-white")}>{bDisplayName}</p>
         <p className={cn(" ml-1 mr-1 text-[5px] mb-1 text-center text-muted text-balance font-semibold")}>{siteConfig.title}</p>

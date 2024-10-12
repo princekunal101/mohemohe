@@ -37,6 +37,8 @@ export default function LearnPage() {
           slug={chapter.slug}
           bName={chapter.bookName}
           bColor={chapter.bookColor}
+          isBNew={chapter.isBNew}
+          isMod={chapter.isMod}
 
         />
       )}
