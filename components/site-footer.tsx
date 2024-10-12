@@ -25,6 +25,11 @@ export function SiteFooter() {
             {/* <Icons.github className="h-6 w-6"/> */}
             <Github/>
           </a>
+          <a target="_blank" rel="noreferrer" href={siteConfig.links.x}>
+            <span className="sr-only">X</span>
+            <Icons.twitter className="h-6 w-6"/>
+            {/* <Github/> */}
+          </a>
         </div>
         {/* <div className="mb-2 flex space-x-2 text-sm text-muted-foreground">
           <a href={siteConfig.links.personalSite} target="_blank">{siteConfig.author}</a>

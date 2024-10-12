@@ -27,14 +27,14 @@ export function SiteHeader({isStickyHeader}:SiteHeaderProps) {
               </div>
             </Link>
 
-            {/* <Link href={siteConfig.links.twitter} target="_blank" rel="noreferre">
+            <Link href={siteConfig.links.x} target="_blank" rel="noreferre">
               <div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0 hidden sm:inline-flex")}>
                 <Icons.twitter className="h-4 w-4" />
-                <span className="sr-only">Twitter</span>
+                <span className="sr-only">X</span>
               </div>
             </Link>
 
-            <Link href={siteConfig.links.linkedin} target="_blank" rel="noreferre">
+            {/* <Link href={siteConfig.links.linkedin} target="_blank" rel="noreferre">
               <div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0 hidden sm:inline-flex")}>
                 <Icons.linkedIn className="h-4 w-4" />
                 <span className="sr-only">LinkedIn</span>

@@ -45,14 +45,14 @@ export function MobileNav() {
           <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
             Github
           </Link>
-          {/* <Link target="_blank" rel="noreferrer" href={siteConfig.links.twitter}>
-            Twitter
-          </Link>
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.linkedin}>
+          {/* <Link target="_blank" rel="noreferrer" href={siteConfig.links.linkedin}>
             LinkedIn
-          </Link> */}
+            </Link> */}
           <Link target="_blank" rel="noreferrer" href={siteConfig.links.instagram}>
             Instagram
+          </Link>
+          <Link target="_blank" rel="noreferrer" href={siteConfig.links.x}>
+            X
           </Link>
         </div>
       </SheetContent>
