@@ -1,0 +1,91 @@
+---
+title: Database Management System Lab
+description: Database Management System lab
+publishedDate: 2024-10-25
+updatedDate: 2024-10-25
+published: true
+tags: ["DBMS", "aktu", "b-tech", "CSE", "lab"]
+
+---
+## Quick Links
+
+- [Experiment 1](#experiment-1)
+- [Experiment 2](#experiment-2)
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
+<Callout type="knowing">**Objective:** Installation of MySQL Database. </Callout>
+
+
+**MySQL Installation**<br/>
+To install the MySQL software, we must use the MySQL official site and download the latest version from the MySQL Community Server as per the requirement of our system.
+- For this installation, we need the downloaded version of the MySQL which we initially done in the system. From the directory where we have the unzipped files, open Window Explorer and double-click on **```setup.exe```**.
+- The product we want to install is MySQL Server 9.0 Setup Wizard.
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p1" desc="First window of MySQL Server 9.0 Setup"/>
+- We can perform a basic installation with some term acceptance which is End-User License Agreement then go to the next step.
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p2" desc="License and Agreement of MySQL Server 9.0 Setup"/>
+- Now choose the Setup Type as per the requirement, we will go with the Complete Setup Option.
+- Installation window has been appeared, now simply click on the Install tab.
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p3" desc="Ready to Install MySQL Server 9.0"/>
+- Now our MySQL Server Setup Wizard has been successfully completed. Click on the finish button by giving permission to Run MySQL Configuration with tick icon.
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p4" desc="Choose the Setup Type of MySQL Server 9.0"/>
+- A new window with the name MySQL Configurator will pop out to our system. Go with the each step for the proper functioning of our SQL Server.
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p5" desc="Configuration window of MySQL Server 9.0 Setup"/>
+    - Data Directory contains the detail of our work path.
+    - Type and Networking contains the Config Type, we will go with the Development Computer with TCP/IP connectivity Port:3306 and X Protocol Port:33060.
+        <FigureMdx lightUrl="dbms-sql-installation-lab-p6" desc="Accounts and Roles of MySQL Server 9.0 Setup"/>
+    - Account and Roles contains the Password Setup for our MySQL Root server. We may also add the user here as our requirement.
+    - With our Username, Password and Database role we will go to the next step.
+    - For Windows Service, we will go with the option as our need.
+    - For Server File Permission, we give full access to the server.
+    - Sample Database contain Create Sakila Database and Create World Database, we will go with both the option.
+    - After applying Configuration, the steps will start to be executed. 
+        <FigureMdx lightUrl="dbms-sql-installation-lab-p7" desc="Applying Configuration for MySQL Server 9.0 Setup"/>
+    - Now the Configuration completed Finish the window now by clicking on the tab.
+- For running the SQL Program, we have to download the MySQL Workbench in our system from the same MySQL Official site from the Community Server and select the path where we want to install the Workbench.
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p8" desc="Setup for MySQL Workbench 8.0 CE"/>
+- Click on the Complete Setup type and go to the next step.
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p9" desc="Connect to MySQL Server 9.0"/>
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p10" desc="Wizard Completed for MySQL Workbench 8.0 CE"/>
+- After that MySQL Workbench is started to install in the system it will take sometime to install the data. After that the Wizard Completed has been shown in the system.
+- For connecting the MySQL Server, we have to enter the Password which we created earlier to link it with the MySQL Workbench.
+- Our SQL Workbench will look like as the below image: 
+    <FigureMdx lightUrl="dbms-sql-installation-lab-p11" desc="Startup Window of MySQL Workbench"/>
+
+
+<Callout>**Notes:** After installation you can work now on the Workbench to create your Database very efficiently by using DDL and DML Commands.</Callout>
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-2" >**Experiment 2**</Callout>
+<Callout type="knowing">**Objective:** Create a database by using the Following SQL Commands:<ul><li>CREATE</li><li>INSERT</li><li>SELECT</li><li>DESCRIBE</li></ul></Callout>
+**Theory**
+- **SQL commands** are extensively used to interact with databases, enabling users to perform a wide range of actions on database systems. Understanding these commands is crucial for effectively managing and manipulating data.
+- *SQL Commands are mainly categorized into five categories:*
+    - **DDL:** Data Definition Language
+    - **DQL:** Data Query Language
+    - **DML:** Data Manipulation Language
+    - **DCL:** Data Control Language
+    - **TCL:** Transaction Control Language
+- **```CREATE```:** Create database or its objects (table, index, function, views, store procedure, and triggers).
+- **```INSERT```:** Insert data into a table.
+- **```SELECT```:** Used to retrieve data from a database.
+- **```DESCRIBE```:** Used to display the structure of a table, view, type, procedure, function, package, or synonym.
+```sql title="student.sql"
+CREATE TABLE Students (
+	RollNo INT PRIMARY KEY,
+	Name VARCHAR(50),
+    Section VARCHAR(10)
+	);
+INSERT INTO Students (RollNo, Name, Section) VALUES (65, 'Girish', 'B');
+INSERT INTO Students (RollNo, Name, Section) VALUES (93, 'Mukesh', 'B');
+INSERT INTO Students (RollNo, Name, Section) VALUES (69, 'Harshit', 'B');
+INSERT INTO Students (RollNo, Name, Section) VALUES (64, 'Divyanshu', 'A');
+INSERT INTO Students (RollNo, Name, Section) VALUES (135, 'Yash', 'C');
+
+SELECT * FROM Students;
+```
+**Output:**
+<FigureMdx lightUrl="dbms-sql-installation-lab-p12" desc="Output of the above programs."/>
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3" >**Experiment 3**</Callout>
+<Callout type="knowing">**Objective:** Study of hardware and software requirements of differenet operating systems *(Windows 10, UNIX, Linux, Windows XP, and Windows 7/8)*. </Callout>
