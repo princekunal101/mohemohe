@@ -1,0 +1,178 @@
+---
+title: Design Analysis and Algorithm Lab
+description: Design Analysis and Algorithm lab
+publishedDate: 2024-10-25
+updatedDate: 2024-10-25
+published: true
+tags: ["DAA", "aktu", "b-tech", "CSE", "lab"]
+
+---
+## Quick Links
+
+- [Experiment 1](#experiment-1)
+- [Experiment 2](#experiment-2)
+- [Experiment 3](#experiment-3)
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
+<Callout type="knowing">**Objective:** Program for Recursive Binary. </Callout>
+
+**Theory:**
+- Binary Search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing the search interval in half. If the value of the search key is less than the item in the middle of the interval, narrow the interval to the lower half.
+
+**Algorithm:**
+- **Base Case:** If the interval is empty, ```return -1``` indicating the target is not found.
+- **Recursive Case:**
+    - Find the middle element of the current interval.
+    - Compare the ```middle``` element with the ```target``` value.
+    - If the ```middle``` element is equal to the ```target```, return the index of the ```middle``` element.
+    - If the ```target``` is less than the ```middle``` element, recursively search the left half.
+    - If the ```target``` is greater than the ```middle``` element, recursively search the right half.
+
+```c title="binary-search.c" showLineNumbers
+#include <stdio.h>
+
+int binarySearch(int arr[], int left, int right, int target) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid;
+        }
+        if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {2, 3, 4, 10, 40};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 10;
+    int result = binarySearch(arr, 0, n - 1, target);
+
+    (result == -1) ? printf("Element not present in array")
+                   : printf("Element is present at index %d", result);
+    return 0;
+}
+```
+
+```makefile title="Output"
+Element is present at index 3
+```
+
+**Complexity Analysis:**
+- **Time Complexity:** **$$O(\log n)$$** where **$$n$$** is the number of elements in the array. This is because each step halves the size of the interval.
+- **Space Complexity:** **$$O(\log n)$$** due to the recursive call stack. Each call uses additional space proportional to the height of the recursion tree, which is **$$\log n$$**.
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-2" >**Experiment 2**</Callout>
+<Callout type="knowing">**Objective:** Programs for Linear Search. </Callout>
+
+**Theory:**
+- Linear Search is the simplest search algorithm. It checks every element in the array sequentially until the desired element is found or the list is exhausted.
+
+**Algorithm:**
+- Start from the first element.
+- Compare the current element with the target value.
+- If it matches, return the index.
+- If it doesn’t, move to the next element.
+- Continue until the element is found or the end of the array is reached.
+
+```c title="linear-search.c" showLineNumbers
+#include <stdio.h>
+
+int linearSearch(int arr[], int size, int target) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i; // Return the index if the target is found
+        }
+    }
+    return -1; // Return -1 if the target is not found
+}
+
+int main() {
+    int arr[] = {9, 4, 1, 78, 33, 26, 56, 9};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 33;
+
+    int result = linearSearch(arr, size, target);
+    if (result != -1) {
+        printf("Element found at index %d\n", result);
+    } else {
+        printf("Element not found\n");
+    }
+    return 0;
+}
+```
+
+```makefile title="Output"
+Element found at index 4
+```
+
+**Complexity Analysis:**
+- **Time Complexity:** **$$O(n)$$** – where **$$n$$** is the number of elements in the array. This is because, in the worst case, you might need to check every element.
+- **Space Complexity:** **$$O(1)$$** – Linear Search uses a constant amount of extra space.
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3" >**Experiment 3**</Callout>
+<Callout type="knowing">**Objective:** Program for Insetion Sort. </Callout>
+
+**Theory:**
+Insertion Sort iteratively builds a sorted portion of the array, one element at a time, by repeatedly picking the next element and inserting it into its correct position.
+
+**Algorithm:**
+- Start from the second element *(assuming the first element is already sorted)*.
+- Compare the current element with the elements in the sorted portion.
+- Shift elements in the sorted portion to the right until the correct position for the current element is found.
+- Insert the current element into its correct position.
+- Repeat until the entire array is sorted.
+
+```c title="insertion-sort.c" showLineNumbers
+#include <stdio.h>
+
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    insertionSort(arr, n);
+    printArray(arr, n);
+    return 0;
+}
+```
+
+```makefile title="Output"
+5 6 11 12 13
+```
+
+**Complexity Analysis:**
+- **Best Case:** $$O(n)$$ – when the array is already sorted.
+- **Average Case:** **$$O(n^2)$$** – when the array elements are in random order.
+- **Worst Case:** **$$O(n^2)$$** – when the array is sorted in reverse order.
+- **Space Complexity:** **$$O(1)$$** – Insertion Sort uses a constant amount of extra space.
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4" >**Experiment 4**</Callout>
+<Callout type="knowing">**Objective:** Study of hardware and software requirements of differenet operating systems *(Windows 10, UNIX, Linux, Windows XP, and Windows 7/8)*. </Callout>
