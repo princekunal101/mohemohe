@@ -5,6 +5,7 @@ import { Icons } from "./icons";
 export function SiteFooter() {
   return(
     <footer>
+      <hr/>
       <div className="mb-6 mt-14 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
           <a target="_blank" rel="noreferrer" href="mailto:princekunal601@gamil.com">
