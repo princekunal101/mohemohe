@@ -91,7 +91,9 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
     notFound();
   }
 
-  const dateTitle = (chapter.publishedDate === chapter.updatedDate ? "Published on: " : "Last updated: ");
+  // const dateTitle = (chapter.publishedDate === chapter.updatedDate ? ("Published on: " + formatDate(chapter.publishedDate)) : ("Last updated: " + formatDate(chapter.updatedDate)));
+  const dateTitle = (chapter.publishedDate === chapter.updatedDate ? ("Published on: ") : ("Last updated: "));
+
   const githubLink = (siteConfig.links.github + "/tree/master/content/" + (chapter.slug.split("/").pop() === params.slug[0] ? chapter.slug + "/index" : chapter.slug));
 
   return (<div className={cn("relative mx-auto px-4 py-4 max-w-screen-lg md:py-4")}>
@@ -127,12 +129,12 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
 
       <MDXContent code={chapter.body} />
 
-      <div className="flex gap-3 justify-between  px-2">
+      <div className="flex w-full gap-2 justify-between px-2">
         <a className="flex gap-2 items-center" target="_blank" href={githubLink + ".mdx"}>
           <Icons.github className="h-7 w-7" />
-          <p className="text-wrap my-2 text-sm font-semibold">Help us to Improve</p>
+          <p className="flex text-wrap my-2 text-sm font-semibold">Help us <span className="hidden sm:flex">&nbsp;to improve content</span></p>
         </a>
-        <time className="text-right text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.publishedDate)}</time>
+        <time className="text-right text-wrap my-2 text-sm font-semibold" dateTime={chapter.updatedDate}>{dateTitle + formatDate(chapter.updatedDate)}</time>
       </div>
     </article>
   </div>

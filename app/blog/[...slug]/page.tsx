@@ -66,7 +66,6 @@ return {
     images: [`/api/og?${ogSearchParams.toString()}`],
   }
 
- 
   }
 }
 
