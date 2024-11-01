@@ -51,6 +51,18 @@ export function sortByChapters(chapters: Array<Chapter>) {
   return chapters.sort((a, b) => (a.chapNum < b.chapNum ? -1 : 1))
 }
 
+// paired chapter number list
+export function createPairedChapters(chapters: Array<Chapter>) {
+  const rows = Math.ceil(chapters.length / 2);
+  const firstColumn = chapters.slice(0, rows);
+  const secondColumn = chapters.slice(rows, chapters.length);
+
+  return firstColumn.map((item, index) => {
+    const secondItem = secondColumn[index] || { id: 0, value: 'null' };
+    return [item, secondItem];
+  });
+};
+
 // Sorting by chance if updated date have less than published date
 export function sortPosts(posts: Array<Post>) {
 
