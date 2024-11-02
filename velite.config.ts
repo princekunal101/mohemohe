@@ -1,10 +1,14 @@
 import { title } from "process";
 import { defineConfig, defineCollection, s } from "velite";
 import rehypeSlug from "rehype-slug";
+import { h } from 'hastscript';
+import { toString } from 'hast-util-to-string';
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import autolinkHeadings from "rehype-autolink-headings";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { AnchorIcon } from "lucide-react";
+import { Nodes } from "hast";
 
 
 const computeFields = <T extends { slug: string }>(data: T) => ({
@@ -53,11 +57,25 @@ const chapters = defineCollection({
     }).transform(computeFields)
 })
 
-const options ={
-theme: {
-  dark: "github-dark",
-  light: "github-light",
+const options = {
+  theme: {
+    dark: "github-dark",
+    light: "github-light",
+  }
 }
+
+// const createSROnlyLabel = (text) => {
+//   const node = h('span.sr-only', `Section titled ${escape(text)}`);
+//   node.properties['is:raw'] = true;
+
+//   return node;
+// }
+
+function createLinkIcon(node: Nodes) {
+  return [
+    h('span.visually-hidden', `Read the "${toString(node)}" section`),
+    h('span.icon.icon-link', { ariaHidden: 'true' }, 'AnchorIcon')
+  ];
 }
 
 export default defineConfig({
@@ -72,18 +90,46 @@ export default defineConfig({
   collections: { chapters, posts },
   mdx: {
     rehypePlugins: [
-      rehypeSlug, 
+      rehypeSlug,
       remarkMath,
       [rehypeKatex, { strict: true, throwOnError: true }],
       [rehypePrettyCode, options],
-      [
-        rehypeAutolinkHeadings, {
-          behavior: "wrap",
-          properties: {
-            className: ["subheading-anchor"],
-            ariaLabel: "Link to section",
-          }
-        }]],
+      [autolinkHeadings, {
+        behavior: "wrap",
+        // group: (node: Nodes) => h(`div.heading-wrapper.level-${node}`, { tabIndex: -1 },),
+        properties: (node: Nodes)=>({'className':"subheading-anchor"}),
+        content: (heading: Nodes) => ([
+          h('span', `${toString(heading)}`),
+          h(`span`,
+          [h('svg', {
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+          }, [h('path', { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" }),
+          h('path', { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" })
+          ],
+          )],
+        ),]),
+        // {
+        //   return[
+        //     h('span.visually-hidden', 'Read the "', toString(node), '" section'),
+        //     h('span.icon.icon-link', {ariaHidden: 'true'})
+        //   ]
+
+        // }
+        // behavior: "wrap",
+        // properties: {
+        //   className: ["subheading-anchor"],
+        //   ariaLabel: "Link to section",
+        // }
+      }]
+    ],
     remarkPlugins: [],
   }
 })
