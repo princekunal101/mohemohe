@@ -71,7 +71,7 @@ code[data-theme*=" "] {
 }
 
 .subheading-anchor svg {
-  @apply ml-2 opacity-0 w-[0.7em] h-[0.7em] ;
+  @apply ml-2 opacity-0 w-[0.8em] h-[0.8em] ;
 }
 
 .subheading-anchor:hover svg {
