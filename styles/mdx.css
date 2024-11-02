@@ -7,7 +7,7 @@
 }
 
 [data-rehype-pretty-code-figure] pre {
-  @apply px-0 rounded-none  border-zinc-200 dark:border-zinc-700;
+  @apply px-0 rounded-none border-zinc-200 dark:border-zinc-700;
 }
 
 [data-rehype-pretty-code-figure] code {
@@ -67,7 +67,15 @@ code[data-theme*=" "] {
 
 
 .subheading-anchor {
-  @apply no-underline transition ease-in-out duration-300 hover:text-blue-400 font-bold;
+  @apply inline-flex items-center justify-center no-underline transition ease-in-out hover:opacity-100 hover:text-blue-400 duration-300 font-extrabold;
+}
+
+.subheading-anchor svg {
+  @apply ml-2 opacity-0 w-[0.7em] h-[0.7em] ;
+}
+
+.subheading-anchor:hover svg {
+  @apply opacity-100 transition-opacity duration-300;
 }
 
 .katex-html {
@@ -77,5 +85,3 @@ code[data-theme*=" "] {
 table {
   @apply block overflow-x-auto max-w-full
 }
-
-
