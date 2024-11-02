@@ -78,6 +78,22 @@ code[data-theme*=" "] {
   @apply opacity-100 transition-opacity duration-300;
 }
 
+.links {
+  @apply inline-flex items-center no-underline text-blue-500;
+}
+
+.links svg {
+  @apply ml-[2px]  w-[0.9em] h-[0.9em] ;
+}
+
+
+.internal-links {
+  @apply no-underline text-blue-500;
+}
+
+.links {
+  @apply inline-flex items-center no-underline text-blue-500;
+}
 .katex-html {
   @apply hidden
 }

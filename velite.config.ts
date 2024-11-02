@@ -5,10 +5,14 @@ import { h } from 'hastscript';
 import { toString } from 'hast-util-to-string';
 import rehypePrettyCode from "rehype-pretty-code";
 import autolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from 'rehype-external-links';
 import remarkMath from "remark-math";
 import remarkGFM from 'remark-gfm';
 import rehypeKatex from "rehype-katex";
-import { Node, Nodes } from "hast";
+
+import { Element, Node, Nodes } from "hast";
+import { Url } from "url";
+import test from "node:test";
 
 
 const computeFields = <T extends { slug: string }>(data: T) => ({
@@ -89,6 +93,57 @@ const autoLinkOptions = {
   ]),
 }
 
+// external links icon and options
+const externalLinksOptions = {
+  properties: ({ 'className': "links" }),
+
+  rel: (node: Element) => {
+    const url = node.properties.href;
+    return url?.toString().startsWith('http://') || url?.toString().startsWith('https://') ? ['nofollow', 'noopener', 'noreferrer'] : node.properties.className = (node.properties.className || []).toString().concat('internal-links');
+  },
+  target: (node: Element) => {
+    const url = node.properties.href;
+    return url?.toString().startsWith('http://') || url?.toString().startsWith('https://') ? '_blank' : undefined;
+  },
+  test: (node: Element) => {
+    const url = node.properties.href;
+    if (url?.toString().startsWith('http') || url?.toString().startsWith('https')) {
+      // node.properties.className = (node.properties.className || []).toString().concat('internal-links');
+      return true;
+    }
+    else if (url?.toString().startsWith('/') || url?.toString().startsWith('mailto')) {
+      node.properties.className = (node.properties.className || []).toString().concat('internal-links');
+      return false;
+    }
+  },
+  protocols: ['http', 'https', 'tel', 'data', 'mailto', '//'],
+  content: (node: Element) => {
+    const url = node.properties.href;
+    if (url?.toString().startsWith('http://') || url?.toString().startsWith('https://')) {
+      return [
+        h('span', [
+          h('svg', {
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+          }, [
+            h('path', { d: "M15 3h6v6" }),
+            h('path', { d: "M10 14 21 3" }),
+            h('path', { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" })
+          ])
+        ])
+      ]
+    }
+  },
+}
+
+
+
 export default defineConfig({
   root: "content",
   output: {
@@ -105,8 +160,10 @@ export default defineConfig({
 
       [rehypeKatex, { strict: true, throwOnError: true }],
       [rehypePrettyCode, options],
+      [rehypeExternalLinks, externalLinksOptions],
       [autolinkHeadings, autoLinkOptions]
     ],
+
     remarkPlugins: [
       remarkMath,
       remarkGFM,
