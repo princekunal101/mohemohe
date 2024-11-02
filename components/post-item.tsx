@@ -38,7 +38,7 @@ export function PostItem({ slug, title, description, publishedDate: publishedDat
           </dd>
         </dl>
         <Link href={"/" + slug} className={cn(buttonVariants({ variant: "link" }), "py-0")}>
-          Read more &rarr;
+          Read more &#10132;
         </Link>
       </div>
     </article>

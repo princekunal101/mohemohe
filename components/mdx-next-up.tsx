@@ -28,7 +28,7 @@ export function NextUp({
 
 
         <Link href={"/learn" + nextChapLink} className={cn(buttonVariants({ size: "lg" }), "w-full md:w-fit my-4 text-md no-underline")}>
-          Start Chapter {nextChap} &rarr;
+          Start Chapter {nextChap} &#10132;
         </Link>
 
       </div>
