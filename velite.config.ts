@@ -4,15 +4,15 @@ import rehypeSlug from "rehype-slug";
 import { h } from 'hastscript';
 import { toString } from 'hast-util-to-string';
 import rehypePrettyCode from "rehype-pretty-code";
+import { transformerCopyButton } from '@rehype-pretty/transformers'
 import autolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from 'rehype-external-links';
 import remarkMath from "remark-math";
 import remarkGFM from 'remark-gfm';
 import rehypeKatex from "rehype-katex";
 
-import { Element, Node, Nodes } from "hast";
-import { Url } from "url";
-import test from "node:test";
+import { Element, ElementContent, Nodes } from "hast";
+import { CodeHeaderIcons, Language } from "./components/code-header-icons";
 
 
 const computeFields = <T extends { slug: string }>(data: T) => ({
@@ -159,7 +159,65 @@ export default defineConfig({
       rehypeSlug,
 
       [rehypeKatex, { strict: true, throwOnError: true }],
-      [rehypePrettyCode, options],
+      [rehypePrettyCode, {
+        theme: {
+          dark: "github-dark",
+          light: "github-light",
+        },
+        onVisitTitle(node: Element) {
+          const language = node.properties['data-language'] as Language;
+          // if(codeNode.tagName === 'code'){
+          // node.properties.className = ['its-working-here'];
+          // node.children. = ['its-working-here'];
+          // node.children = node.children.filter(child => child.type !== 'text');
+          //   node.children = node.children.map(child => {if( child.type === 'text'){
+
+          //     return h('span', { className: 'title' }, `${toString(node)}`)
+          //   }
+          // return child})
+          node.children = [h('div', { className: 'code-block-header' }, [
+            h('div', { className: 'header-block-caption' }, [
+              h('span', { className: 'code-block-language-icon' },
+                CodeHeaderIcons[language] || CodeHeaderIcons['default'],
+                // h('svg', { width: "24px", height: "24px", fill: "currentColor", viewBox: "0 0 512 512", enableBackground: "new 0 0 512 512" },
+                //   h('g', { strokeLinecap: "round", strokeLinejoin: "round" }, [
+                //     h('path', { d: "M108.669,0.501h23.032v22.756h21.069V0.501h23.034V69.41h-23.032V46.334h-21.069V69.41h-23.032V0.501 H108.669z M206.091,23.353h-20.275V0.501h63.594v22.852h-20.285V69.41h-23.032V23.353H206.091z M259.502,0.501h24.02l14.771,24.213 l14.759-24.213h24.023V69.41h-22.938V35.256l-15.845,24.5h-0.395l-15.856-24.5V69.41h-22.539V0.501z M348.54,0.501h23.038v46.133 h32.391V69.41H348.54V0.501z M74.987,100.926l32.946,369.533l147.844,41.04L404.031,470.4l32.981-369.475H74.987z M368.289,188.62 l-2.063,22.977l-0.906,10.188h-0.149H256h-0.158h-63.956l4.142,46.407h59.814H256h92.98h12.214l-1.106,12.172l-10.65,119.32 l-0.682,7.652L256,433.045v0.008l-0.208,0.059l-92.839-25.774l-6.351-71.161h20.97h24.527l3.227,36.146l50.474,13.632l0.042-0.013 v-0.004l50.551-13.64l5.257-58.781H256h-0.158H154.578L143.439,188.62l-1.085-12.157h113.488H256h113.374L368.289,188.62z" })
+                //   ]
+                //   )
+                // ),
+              ),
+              h('span', { className: 'code-block-caption-name' }, `${toString(node)}`)
+            ]),
+            h('div.code-block-copy-button', [
+              h('button.copy-button', { type: 'button' ,onClick: 'copyCode(this)'},
+                h('svg', { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                  h('rect', { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2" }),
+                  h('path', { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" }),
+
+                ))
+            ])
+
+          ])]
+
+          // )
+        }
+        // transformers: [
+        //   transformerCopyButton({
+        //     visibility: 'always',
+        //     feedbackDuration: 3000,
+        //   })
+        // ]
+      }
+      ],
+      // [rehypeCodeTitles, {
+      //   customTitle: (title: Element) => {
+      //     return h('span', { className: 'code-title' },
+      //       [h('span', { className: 'icon' }, '🗒️'),
+      //         `${title}`
+      //       ]
+      //     )
+      //   }
+      // }],
       [rehypeExternalLinks, externalLinksOptions],
       [autolinkHeadings, autoLinkOptions]
     ],
@@ -170,3 +228,14 @@ export default defineConfig({
     ],
   }
 })
+
+
+// function copyCode(button: Element) {
+//   const code = button.closest('pre').querySelector('code').innerText;
+//   navigator.clipboard.writeText(code).then(() => {
+//     button.innerText = 'Copied!';
+//     setTimeout(() => {
+//       button.innerText = 'copy';
+//     }, 3000);
+//   });
+// }

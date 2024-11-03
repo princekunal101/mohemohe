@@ -2,10 +2,21 @@
   @apply px-0 rounded-md border overflow-hidden border-zinc-200 dark:border-zinc-700;
 }
 
+/* modification with code block title  */
 [data-rehype-pretty-code-figure] [data-rehype-pretty-code-title] {
-  @apply pl-4 pr-3 h-12 m-0 flex items-center rounded-none border-b bg-zinc-50 dark:bg-transparent border-zinc-200 dark:border-zinc-700;
+  @apply h-12 m-0 flex items-center rounded-none border-b bg-zinc-50 dark:bg-transparent border-zinc-200 dark:border-zinc-700;
 }
 
+[data-rehype-pretty-code-figure] [data-rehype-pretty-code-title] .code-block-header {
+  @apply flex flex-row justify-between items-center m-0 px-3 h-full w-full;}
+  
+  [data-rehype-pretty-code-figure] [data-rehype-pretty-code-title] .header-block-caption {
+    @apply flex flex-row gap-2 items-center;
+  }
+  
+  [data-rehype-pretty-code-figure] [data-rehype-pretty-code-title] .code-block-header button {
+    @apply flex flex-row justify-center items-center h-8 w-8  hover:bg-zinc-500/15 rounded-md transition duration-100 ;}
+/* here the end of code block titile modifications */
 [data-rehype-pretty-code-figure] pre {
   @apply px-0 rounded-none border-zinc-200 dark:border-zinc-700;
 }
