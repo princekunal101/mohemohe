@@ -63,6 +63,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
               <div className="grid w-full grid-cols-2 my-2" >
 
                 <ChapterBox
+                  key={bookItems[0].slug}
                   slug={bookItems[0].slug}
                   chapterName={"Introduction"}
                   chapterNum={bookItems[0].chapNum}
@@ -88,7 +89,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                         isMod={chapter[0].isMod}
                       />
                       <ChapterBox
-                        key={chapter[1].slug}
+                        key={chapter[1].slug+0}
                         slug={chapter[1].slug}
                         chapterName={chapter[1].chapTitle}
                         chapterNum={chapter[1].chapNum}
@@ -103,6 +104,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
               <div className="grid w-full grid-cols-2 border-t py-2" >
 
                 <ChapterBox
+                  key={slug}
                   slug={"learn"}
                   chapterName={"Learn more books"}
                   chapterNum={-1}
@@ -192,6 +194,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
 
             <div className="grid w-full grid-cols-1 sm:grid-cols-2 py-2" >
               <ChapterBox
+                key={bookItems[0].slug+1}
                 slug={bookItems[0].slug}
                 chapterName={"Introduction"}
                 chapterNum={bookItems[0].chapNum}
@@ -208,7 +211,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                 {pairedChap.map((chapter) =>
                   <>
                     <ChapterBox
-                      key={chapter[0].slug}
+                      key={chapter[0].slug+1}
                       slug={chapter[0].slug}
                       chapterName={chapter[0].chapTitle}
                       chapterNum={chapter[0].chapNum}
@@ -217,7 +220,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                       isMod={chapter[0].isMod}
                     />
                     <ChapterBox
-                      key={chapter[1].slug}
+                      key={chapter[1].slug+1}
                       slug={chapter[1].slug}
                       chapterName={chapter[1].chapTitle}
                       chapterNum={chapter[1].chapNum}
@@ -234,7 +237,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
 
                 {indexChapter.map((chapter) =>
                   <ChapterBox
-                    key={chapter.slug}
+                    key={chapter.slug+2}
                     slug={chapter.slug}
                     chapterName={chapter.chapTitle}
                     chapterNum={chapter.chapNum}
@@ -248,6 +251,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
 
             <div className="grid w-full grid-cols-1 sm:grid-cols-2 py-2 border-t" >
               <ChapterBox
+                key={slug}
                 slug={"learn"}
                 chapterName={"Learn more books"}
                 chapterNum={-1}
