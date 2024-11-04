@@ -76,9 +76,23 @@ code[data-theme*=" "] {
   @apply bg-[var(--shiki-light-bg)] dark:bg-[var(--shiki-dark-bg)];
 }
 
+ /* code {
+  @apply bg-zinc-400/25 p-[2px] font-normal rounded-md after:content-['normal'];
+} */
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+
+  @apply font-normal text-[1rem] bg-zinc-300/25 border border-zinc-400/20 py-[2px] px-[5px] rounded-md after:content-none before:content-none;
+}
+
+/* .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+ content: ""; 
+}
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+ content: ""; 
+} */
 
 .subheading-anchor {
-  @apply inline-flex items-center justify-center no-underline transition ease-in-out hover:opacity-100 hover:text-blue-400 duration-300 font-extrabold;
+  @apply inline-flex items-center justify-center no-underline transition-colors ease-in-out hover:opacity-100 hover:text-blue-400 duration-300 font-extrabold;
 }
 
 .subheading-anchor svg {
@@ -89,22 +103,23 @@ code[data-theme*=" "] {
   @apply opacity-100 transition-opacity duration-300;
 }
 
-.links {
-  @apply inline-flex items-center no-underline text-blue-500;
+.links, .internal-links {
+  @apply no-underline text-blue-500 hover:opacity-75 transition-opacity duration-75;
 }
 
 .links svg {
-  @apply ml-[2px]  w-[0.9em] h-[0.9em] ;
+  @apply   w-[0.9em] h-[0.9em] ;
+}
+
+.links span {
+  @apply inline-flex;
 }
 
 
-.internal-links {
+/* .internal-links {
   @apply no-underline text-blue-500;
-}
+} */
 
-.links {
-  @apply inline-flex items-center no-underline text-blue-500;
-}
 .katex-html {
   @apply hidden
 }
