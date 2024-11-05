@@ -38,15 +38,15 @@ export async function GET(req: NextRequest) {
         <div tw="flex flex-row-reverse w-full justify-center items-center">
 
           <div tw="flex flex-col ml-10 w-auto h-full justify-start items-start">
-            <div style={{ transform: 'rotate(-12deg)' }} tw="flex text-2xl -ml-6 text-zinc-500 font-semibold">Chapter {chapterNum}</div>
-            <div style={{ transform: 'rotate(-12deg)' }} tw="flex w-70 text-6xl font-extrabold">{heading}</div>
+            <div style={{ transform: 'rotate(-10deg)' }} tw="flex text-2xl -ml-6 text-zinc-500 font-semibold">Chapter {chapterNum}</div>
+            <div style={{ transform: 'rotate(-10deg)' }} tw="flex mr-28 w-80 text-7xl tracking-tight font-bold">{heading}</div>
           </div>
 
-          <div style={{ transform: 'rotate(-12deg)' }} tw="flex justify-center items-center -ml-4 w-32 h-32 rounded-full text-6xl font-extrabold text-blue-500 bg-blue-500/20">{chapterNum}</div>
+          <div style={{ transform: 'rotate(-10deg)' }} tw="flex justify-center items-center -ml-4 w-32 h-32 rounded-full text-6xl font-extrabold text-blue-500 bg-blue-500/20">{chapterNum}</div>
 
           {/* books */}
-          <div style={{ transform: 'rotate(-12deg)' }} tw="flex relative w-[260px] h-[360px] ">
-            <div style={{ background: 'linear-gradient(to bottom, #f43f5e, #e11d48)' }} tw="w-full h-full mb-3 flex flex-col items-center justify-between rounded-md shadow-2xl text-white">
+          <div style={{ transform: 'rotate(-10deg)' }} tw="flex relative w-[260px] h-[360px] ">
+            <div style={{ background: 'linear-gradient(to bottom, #ef4444, #b91c1c)' }} tw="w-full h-full mb-3 flex flex-col items-center justify-between rounded-md shadow-2xl text-white">
               <p tw="text-4xl mt-6 mx-4 font-semibold">{bookName}</p>
               <div tw=" flex opacity-70 items-center bg-black justify-center rounded-full mb-14">
                 <svg
