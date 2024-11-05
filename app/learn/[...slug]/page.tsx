@@ -38,26 +38,33 @@ export async function generateMetadata(
   if (!chapter || !chapter.published) {
     return {
       title: "Page Not Found",
-      description: "The requested page could not br found."
+      description: "The requested page could not br found.",
+
     };
   }
 
+  const chapterNum = chapter.chapNum <= 0 ? 1 : chapter.chapNum;
+  
   const ogSearchParams = new URLSearchParams();
-  ogSearchParams.set("title", chapter.chapTitle)
+  ogSearchParams.set("title", chapter.chapTitle);
+  ogSearchParams.set("book", chapter.bookName);
+  ogSearchParams.set("chapter", chapterNum.toString());
   return {
     title: chapter.chapTitle,
     description: chapter.chapDesc,
+
     authors: { name: siteConfig.author },
     openGraph: {
       title: chapter.chapTitle,
       description: chapter.chapDesc,
+
       type: "article",
       url: chapter.slug,
       images: [
         {
-          url: `/api/og?${ogSearchParams.toString()}`,
+          url: `/api/learn-og?${ogSearchParams.toString()}`,
           width: 1200,
-          height: 680,
+          height: 630,
           alt: chapter.chapTitle
         }
       ]
@@ -66,7 +73,7 @@ export async function generateMetadata(
       card: "summary_large_image",
       title: chapter.chapTitle,
       description: chapter.chapDesc,
-      images: [`/api/og?${ogSearchParams.toString()}`],
+      images: [`/api/learn-og?${ogSearchParams.toString()}`],
     }
 
 
