@@ -79,9 +79,8 @@ code[data-theme*=" "] {
  /* code {
   @apply bg-zinc-400/25 p-[2px] font-normal rounded-md after:content-['normal'];
 } */
-.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-
-  @apply font-normal text-[1rem] bg-zinc-300/25 border border-zinc-400/20 py-[2px] px-[5px] rounded-md after:content-none before:content-none;
+.prose :where(code):not([data-rehype-pretty-code-figure] code) {
+  @apply font-normal font-sans text-[1em] bg-zinc-300/25 border border-zinc-400/20 py-[2px] px-[5px] rounded-md after:content-none before:content-none;
 }
 
 /* .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
