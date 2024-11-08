@@ -9,6 +9,8 @@ export async function GET(req: NextRequest) {
   try {
     const fontBold = await interBold;
 
+    const baseUrl = process.env.NEXT_PUBLICAPP_URL;
+
     const { searchParams, } = req.nextUrl;
     const title = searchParams.get("title");
     // const description = searchParams.get("description")|| 'Default description';
@@ -30,11 +32,7 @@ export async function GET(req: NextRequest) {
 
     return new ImageResponse((
 
-      <div tw="flex flex-col w-full h-full items-center justify-center">
-        <div style={{ filter: 'blur(90px)' }} tw="absolute bg-red-400 h-80 w-50  left-0 top-40 rounded-full" />
-        <div style={{ filter: 'blur(50px)' }} tw="absolute bg-pink-500 h-24 w-24 left-0 top-5 rounded-full" />
-        <div style={{ filter: 'blur(70px)' }} tw="absolute bg-blue-400 h-80 w-80 top-0 right-0 rounded-full" />
-        <div style={{ filter: 'blur(50px)' }} tw="absolute bg-green-500/30 h-64 w-64  -right-10 -bottom-10 rounded-full" />
+      <div style={{ backgroundImage: `url('${baseUrl}/learn-og-bg.png')` }} tw="flex flex-col w-full h-full items-center justify-center">
         <div tw="flex flex-row-reverse w-full justify-center items-center">
 
           <div tw="flex flex-col ml-10 w-auto h-full justify-start items-start">
@@ -42,7 +40,7 @@ export async function GET(req: NextRequest) {
             <div style={{ transform: 'rotate(-10deg)' }} tw="flex mr-28 w-80 text-7xl tracking-tight font-bold">{heading}</div>
           </div>
 
-          <div style={{ transform: 'rotate(-10deg)' }} tw="flex justify-center items-center -ml-4 w-32 h-32 rounded-full text-6xl font-extrabold text-blue-500 bg-blue-500/20">{chapterNum}</div>
+          <div style={{ transform: 'rotate(-10deg)' }} tw="flex justify-center items-center -ml-6 w-38 h-38 rounded-full text-7xl font-extrabold text-blue-500 bg-blue-500/20">{chapterNum}</div>
 
           {/* books */}
           <div style={{ transform: 'rotate(-10deg)' }} tw="flex relative w-[260px] h-[360px] ">
@@ -71,8 +69,8 @@ export async function GET(req: NextRequest) {
                   />
                 </svg>
               </div>
-              <div tw="absolute flex w-[260px] h-[360px] rounded shadow-inner overflow-hidden">
-                <img tw="h-full w-full flex" src="https://mohemohe.in/forgud_cov.png" alt="cover" />
+              <div tw="absolute flex w-[260px] h-[360px] rounded-md shadow-inner overflow-hidden">
+                <img tw="h-full w-full flex" src={`${baseUrl}/forgud_cov.png`} alt="cover" />
               </div>
 
             </div>
