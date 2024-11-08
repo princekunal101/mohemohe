@@ -32,7 +32,7 @@ export async function GET(req: NextRequest) {
 
     return new ImageResponse((
 
-      <div style={{ backgroundImage: `url('${baseUrl}/learn-og-bg.png')` }} tw="flex flex-col w-full h-full items-center justify-center">
+      <div style={{ backgroundImage: `url(${baseUrl}/learn-og-bg.png)` }} tw="flex flex-col w-full h-full items-center justify-center">
         <div tw="flex flex-row-reverse w-full justify-center items-center">
 
           <div tw="flex flex-col ml-10 w-auto h-full justify-start items-start">
