@@ -9,7 +9,9 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "The Best Learning Platform ",
-  description: "Choose a book for a day and Add a step for success."
+  description: "Choose a book for a day and Add a step for success.",
+
+
 }
 
 export default function LearnPage() {
@@ -22,7 +24,7 @@ export default function LearnPage() {
       <div className="flex-1 space-y-4">
         <h1 className=" inline-block font-black text-4xl lg:text-5xl">Learn</h1>
         <p className="text-xl text-muted-foreground">
-        Choose a book for a day and Add a step for success.
+          Choose a book for a day and Add a step for success.
         </p>
       </div>
     </div>
