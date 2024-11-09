@@ -2,14 +2,13 @@ import { NextRequest } from "next/server";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/config/site";
 
+
 export const runtime = "edge";
 
 const interBold = fetch(new URL("../../../assets/fonts/Inter-Bold.ttf", import.meta.url)).then((res) => res.arrayBuffer());
 export async function GET(req: NextRequest) {
   try {
-    const fontBold = await interBold;
-
-    const baseUrl = process.env.NEXT_PUBLICAPP_URL;
+    const fontBold = await interBold; 
 
     const { searchParams, } = req.nextUrl;
     const title = searchParams.get("title");
@@ -32,7 +31,7 @@ export async function GET(req: NextRequest) {
 
     return new ImageResponse((
 
-      <div style={{ backgroundImage: `url(${baseUrl}/learn-og-bg.png)` }} tw="flex flex-col w-full h-full items-center justify-center">
+      <div style={{ backgroundImage: "url(https://mohemohe.in/images/learn-og-bg.png)" }} tw="flex flex-col w-full h-full items-center bg-white justify-center">
         <div tw="flex flex-row-reverse w-full justify-center items-center">
 
           <div tw="flex flex-col ml-10 w-auto h-full justify-start items-start">
@@ -70,7 +69,7 @@ export async function GET(req: NextRequest) {
                 </svg>
               </div>
               <div tw="absolute flex w-[260px] h-[360px] rounded-md shadow-inner overflow-hidden">
-                <img tw="h-full w-full flex" src={`${baseUrl}/forgud_cov.png`} alt="cover" />
+                <img tw="h-full w-full flex" src="https://mohemohe.in/images/og-book_cov.png" alt="cover" />
               </div>
 
             </div>
