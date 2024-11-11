@@ -89,7 +89,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                         isMod={chapter[0].isMod}
                       />
                       <ChapterBox
-                        key={chapter[1].slug+0}
+                        key={chapter[1].slug}
                         slug={chapter[1].slug}
                         chapterName={chapter[1].chapTitle}
                         chapterNum={chapter[1].chapNum}

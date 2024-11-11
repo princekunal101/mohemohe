@@ -20,7 +20,6 @@ interface ChapterPageProps {
 }
 
 
-
 export function ChapterHeader({ chapNum, chapTitle, slug, bookName }: ChapterPageProps) {
 
   // for using as shadow after chapter header go to the top
@@ -60,7 +59,7 @@ export function ChapterHeader({ chapNum, chapTitle, slug, bookName }: ChapterPag
   // console.log(slug)
 
   return (<>
-    <aside className={cn(`z-10 px-3 sm:py-2 flex flex-row max-w-[1072px] h-auto min-h-14 items-center rounded-full bg-slate-300/15  ${isSticky ? "border lg:w-full left-4 right-4 lg:left-1/2 lg:right-[unset] lg:-translate-x-1/2 border-zinc-400/25 top-4 backdrop-blur-2xl shadow-sm fixed" : ""}`)}>
+    <aside key={slug} className={cn(`z-10 px-3 sm:py-2 flex flex-row max-w-[1072px] h-auto min-h-14 items-center rounded-full bg-slate-300/15  ${isSticky ? "border lg:w-full left-4 right-4 lg:left-1/2 lg:right-[unset] lg:-translate-x-1/2 border-zinc-400/25 top-4 backdrop-blur-2xl shadow-sm fixed" : ""}`)}>
       <ChapterList slug={slug} isSticky={isSticky} bookName={bookName} />
 
       <div aria-hidden="true" className={cn(" w-[1px] h-9 ml-2.5 mr-3 bg-gray-400 hidden sm:block")} />
