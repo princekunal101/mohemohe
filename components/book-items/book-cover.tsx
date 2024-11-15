@@ -45,7 +45,7 @@ export function BookCover({
 
       })}>
         <div className={cn("absolute min-w-[120px] max-w-[220px] aspect-[5/7] rounded bg-red-20 shadow-inner overflow-hidden ")}>
-          <img className={cn("h-full w-full")} src="/forgud_cov.png" alt="cover" />
+          <Image width={220} height={300} className={cn("h-full w-full")} src="/forgud_cov.png" alt="cover" />
 
         </div>
         <p className={cn(" ml-3 mr-2 text-base mt-6 text-center text-balance font-semibold")}>{bName}</p>
