@@ -1,0 +1,228 @@
+---
+chapTitle: JavaScript
+bookName: Web Technology
+chapDesc: In the privious chapter we have learn about the Structure of website layout design. Some of the devices have their own design according to their screen size.
+chapNum: 11
+publishedDate: 2024-10-31
+updatedDate: 2024-10-31
+tags: ["aktu","web-technology"]
+isNew: true
+isMod: false
+published: true
+---
+
+<ChapIntro><li className="flex gap-3"><Icons.Info className=" flex-shrink-0"/> Information. </li><hr className="my-2"/><li className="flex gap-3"><Icons.FileText className=" flex-shrink-0"/> Documents and Forms. </li><hr className="my-2"/><li className="flex gap-3"><Icons.SquareFunction className=" flex-shrink-0"/> Statements and Functions. </li><hr className="my-2"/><li className="flex gap-3"><Icons.Car className=" flex-shrink-0"/> Objects. </li></ChapIntro>
+
+---
+
+# Scripting
+Scripting means writing scripts, which are smaller programs designed to automate tasks, managing system processes, or perform specific functions in larger applications. 
+- Those programming language which uses interpreter to execute the source code directly, without any compilation. 
+- There are many scripting languages&mdash; Python, [JavaScript](/learn/web-technology/js#javascript), Bash, Perl, Ruby, PHP, etc.
+
+
+## JavaScript
+ JavaScript is a high level versatile and interpreted programming language used to create dynamic content on web.
+ It was developed by [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich) for *Netscape* and it was initially known as **LiveScript** but later renamed to **JavaScript**.
+- Used as Client Side Scripting Language executing code on users browser.
+- Used for multiple development fields defining its versality.
+- It borrows much of syntax from C, includeing curly braces and control structures as `if`, `for`, `while`, etc.
+- **JavaScript is used for &mdash;** Web development, Server side development, Game development, Mobile app devlopment, etc. 
+
+<Callout>**Need to know:**<br/> JavaScript has no direct relationship with [Java](/learn/java). It was named to Capitalise on Java's popularity at that time. </Callout>
+
+
+### JavaScript is Good for Frontend Language
+JavaScript is plays a crucial role in developing dynamic and interactive web pages. Here is the breakdown of the main functions &mdash;
+- **Client signed interactivity:** JavaScript runs on the client browser, enabling interactivity without loading to communicate with the server.
+- **DOM Manipulation:** The Document Object Model represent the structure of HTML document as a tree structure.
+- **Event handling:** JavaScript enables developers to define actions that occurs in response to user interaction.
+- **Framework and libraries:** JavaScript has a rich ecosystem of framework and libraries such as React, Angular, Vue.js, jQuery, Moment.js, etc.
+
+### Advantage of JavaScript
+- **Easy to learn and implement:** JavaScript's syntax is beginner friendly. 
+- **Popularity:** It is one of the most widely-used programming language and supported by all mazor web browser.
+- **Interpretability:** JavaScript code is interpreted directly by the web browser.
+- **Server load deduction:** JavaScript runs on the client side reducing the load on the serer and improving overall application perfromance.
+
+### Disadvantages of JavaScript
+- **Client side security:** It can be exploited for malicious purposes until not properly secured.
+- **Browser support:** It may have inconsistencies across different browsers.
+
+## Java vs JavaScript
+
+|         Java                    |           JavaScript              |
+| ------------------------------- | --------------------------------- |
+| Java is Object Oriented Programming language.(**OOPs**) | JavaScript is Scripting language.|
+| Compiled to byte code.          | Interpreted at runtime.           |
+| Uses [`jvm`](/learn/java/why-java#jvm-java-virtual-machine) for execution. | Executed at client server.        |
+| It is multithreaded.            | It is event based.                |
+| Faster due to pre compilation.  | Slower due to interpretation.     |
+| Supports large standard libraries. | Relies on framework.           |
+| It is denoted by `.java` extension. | It is denoted by `.js` extension. |
+| Checks extension for compile time error. | Relies on runtime error. |
+| Method are defined within classes. | Functions can be declared anywhere. |
+| Used for app development.       | Mostly used for web development.  |
+| Large scale system.             | Fronted interactivity.            |
+
+### Documents
+The Document Object Model (DOM), is the fundamental API for repersenting and manipulating the content of HTML and XML documents.
+- **Accessing DOM Elements:** JavaScript have several methods to manipulate HTML elements.
+
+|     Method        |         Description       |
+| ----------------- | ------------------------- |
+| `document.getElementById("myId");` | Access through element `id`. |
+| `document.getElementByClassName("myClass");`| Access through element `class`. |
+| `document.getElementByTagName("div");` | Access through element `tag`. |
+| `document.querySelector(".myClass");` | Access single element with any. |
+| `document.querySelectorAll(".myClass");` | Access all element with any. |
+- **Manipulating DOM Elements:** It can modify the content, attributes, and style of HTML elements.
+
+|         Property/Method            |         Description             |
+| ---------------------------------- | ------------------------------- |
+| `element.innerHTML = "New Content";` | Modify the inner HTML of an element. |
+| `element.style.color = "blue";`    | Modify the style/color value to an HTML element. |
+| `element.setAttribute("src", "img.jpg");` | Modify the attribute value of an HTML element. |
+
+### Forms
+The `document.forms` property in JavaScript provides a collection of all `<form>` elements. This makes easy access and manipulate the forms and their elements.
+<Callout>**Need to know:**<br/> Similarly, all the `form`'s componentes are access using the `HTMLFormElement.elements` property. </Callout>
+
+
+
+## Statements
+JavaScript statements are instructions that a browser excutes to perform a specific action. Its statement are terminated with semicolon. JavaScript statements are composed by the following statements&mdash; Variables, Operation, Expressions, Keywords and Comments. 
+- **Variable Decleration:** It is used to create variables to store the data values. *keywords are* [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const).
+- **Conditional Statement:** It execute or skip other statements depending on the value of a specified expression. These statement are dessision based, common Conditional statements are `if`, [`if...else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else), [`switch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch).
+- **Loop Statement:** It repeat a block of code until specified condition is true. Loop statements are [`for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while), [`while`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while), and [`do...while`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while).
+- **Try-Catch Statement:** It handles exceptions that occur in the try block, allowing the program to continue running. [`try...catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch), and `finally`.
+
+```js title="SwitchFunc.js" showLineNumbers
+function convert(x) {
+  switch (typeof x) {
+    case 'number':        // Convert number to hexadecimal integer
+      return x.toString(16);
+    case 'string':        // Return the sttring encosed in quotes
+      return '"' + x + '"';
+    default:              // Convert any othr type in the usual way
+      return String(x);
+  } 
+}
+```
+
+
+## Functions
+A JavaScript function is a block of code that is defined once but may be executed, invoked, any number of times.
+A function defination may includes a list of identifiers, known as *parameters* that works as local variable for the body of the function.
+- Functions are defined with the `function` keyword with a name.
+- Functions often use their argument values to compute a `return value`.
+
+```js title="FactorialFunc.js" showLineNumbers
+function factorial(x) {
+  if (x <= 1) return 1;
+  return x * factorial(x-1);
+}
+```
+
+## Objects
+An object is an unordered collection of properties, each has a name and a value. we are already familier with the fundamental data structure which are named as **hash**, **hashtable**, **dictionary**, or **associative array**.
+
+```js title="ObjectSyntax.js" showLineNumbers
+let student = {
+  firstName: "Prince",
+  lastName: "Kunal",
+  age: 23,
+  greet: function() {
+    return "नमस्ते, " + this.firstName;
+  }
+}
+```
+**Accessing Object Properties:** There are two method to access the object properties&mdash;
+```js title="AccesProperties.js" showLineNumbers
+// Dot Notations
+console.log(student.firstName);     // Prince  
+
+// Bracket Notations 
+console.log(student["firstName"]);  // Prince
+```
+
+
+
+{/* 
+**Config Files:** You'll also notice config files such **[`Link`](https://mohemohe.in)** as `next.config.js` at the root of your application. Most of these files are created and pre-configured when you start a new project using create-next-app. You will not need to modify them in this course.
+
+You'll also notice config files such Link
+ as next.config.js at the root of your application. Most of these files are created and pre-
+
+```welcome```
+ **`js_ welcome here!`**
+
+- *`js index.html`*
+
+[`LinkLearn`](https://mohemohe.in/learn)
+
+[LinkLearn](https://mohemohe.in/learn)
+
+[`LinkLearn`](https:learn)
+
+[LinkLearn](mailto:princekunal@gmail.com)
+
+[LinkLearn XML](/learn/web-technology/xml)
+
+We now present another example, a UNIVERSITY database, to illustrate thee ER modeling concepts. Suppose that [`a database is needed to`](https://learn/html) keep track of student enrollments in classes an student's final grades.
+
+
+### JavaScript
+
+# JavaScript
+
+#### JavaScript
+
+##### JavaScript
+
+
+###### JavaScript
+
+
+`\`\`\j console.log("good");`\`\`\
+
+```tsx title="callout.tsx" showLineNumbers
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
+
+
+interface CalloutProps {
+  children?: ReactNode;
+  type?: "default" | "warning" | "danger" | "knowing" | "notes";
+  txCenter?: boolean;
+  breakBefore?: boolean;
+  id?:string;
+}
+
+export function Callout({
+  children,
+  type = "default",
+  txCenter= false,
+  breakBefore= false,
+  id,
+  ...props
+}: CalloutProps) {
+  return <div id={id} className={cn(`my-6 ${breakBefore? "break-before-page": ""} items-start rounded-md border border-l-4 p-4 w-full dark:max-w-none ${txCenter? "text-center":null}`,
+    {
+      "border-red-500 bg-red-100 dark:prose": type === "danger",
+      " border-yellow-500 bg-yellow-100 dark:prose": type === "warning",
+      " border-green-500 bg-green-100 dark:prose": type === "knowing",
+      " border-orange-500 bg-orange-100 dark:prose": type === "notes",
+    }
+  )}
+    {...props}>
+    <div>{children}</div>
+  </div>
+
+}
+``` */}
+
+----
+
+
+<NextUp nextChap="12" nextChapName="AJAX" nextChapLink="/web-technology/ajax"> In the next chapter we will be learn the basic concepts of Asynchronous JavaScript And XML (AJAX), how its working.</NextUp>
