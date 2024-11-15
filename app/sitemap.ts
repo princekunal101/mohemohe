@@ -22,7 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${WEBSITE_HOST_URL}/${slug}`,
         lastModified: updatedDate,
         changeFrequencyPosts,
-        priority: 0.3,
+        priority: 0.7,
     }));
 
 
@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${WEBSITE_HOST_URL}/${slug}`,
         lastModified: updatedDate,
         changeFrequencyChapters,
-        priority: 0.5,
+        priority: 0.85,
     }));
 
 
@@ -57,20 +57,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${WEBSITE_HOST_URL}/about`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
-            priority: 0.8,
+            priority: 0.95,
           },
           {
             url: `${WEBSITE_HOST_URL}/learn`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
-            priority: 0.8,
+            priority: 0.85,
           },
           
           {
             url: `${WEBSITE_HOST_URL}/blog`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
-            priority: 0.5,
+            priority: 0.75,
           },
           
            ...posted, ...chap]
