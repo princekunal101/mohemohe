@@ -38,15 +38,15 @@ export default function RootLayout({
     <html lang="en" className="scroll-pt-[3.5rem]">
       <body
 
-        className={cn(",in-h-screen bg-background font-sans antialiased", inter.variable)}>
+        className={cn("in-h-screen bg-background font-sans antialiased", inter.variable)}>
         <Providers>
           <div className="relative flex min-h-dvh flex-col bg-background">
-            <SiteHeader />
-            <main className="flex-1 overflow-hidden">{children}</main>
+            {/* <SiteHeader /> */}
+            <main className="flex-1">{children}</main>
             <SiteFooter />
           </div>
         </Providers>
       </body>
-    </html>
+    </html >
   );
 }

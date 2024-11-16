@@ -2,6 +2,7 @@ import { chapters } from "@/.velite";
 import { BookCover } from "@/components/book-items/book-cover";
 import ChapterBox from "@/components/chapter-box";
 import { ChapterHeader } from "@/components/chapter-header";
+import { SiteHeader } from "@/components/site-header";
 import { cn, getBooksBySlug, sortByChapters } from "@/lib/utils";
 import { slug } from "github-slugger";
 import { Metadata } from "next";
@@ -19,7 +20,10 @@ export default function LearnPage() {
   const itemBooks = getBooksBySlug(chapters.filter((chapter) => chapter.published));
 
   // const category = slug.split('/')[0];
-  return (<div className={cn("container px-4 sm:px-6 md:px-8 max-w-4xl py-6 lg:py-10")}>
+  return (
+  <>
+  <SiteHeader isStickyHeader={true}/>
+  <div className={cn("container px-4 sm:px-6 md:px-8 max-w-4xl py-6 lg:py-10")}>
     <div className="flex flex-col items-start gap-4 md:flex-row md:justify-center">
       <div className="flex-1 space-y-4">
         <h1 className=" inline-block font-black text-4xl lg:text-5xl">Learn</h1>
@@ -58,5 +62,7 @@ export default function LearnPage() {
     </ul> */}
 
   </div>
+
+  </>
   )
 }
