@@ -141,7 +141,7 @@ const externalLinksOptions = {
       // node.properties.className = (node.properties.className || []).toString().concat('internal-links');
       return true;
     }
-    else if (url?.toString().startsWith('/') || url?.toString().startsWith('mailto')) {
+    else if (url?.toString().startsWith('/') || url?.toString().startsWith('mailto') || url?.toString().startsWith('#')) {
       node.properties.className = (node.properties.className || []).toString().concat('internal-links');
       return false;
     }
