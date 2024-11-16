@@ -11,7 +11,12 @@ isMod: false
 published: true
 ---
 
-<ChapIntro><li className="flex gap-3"><Icons.Info className=" flex-shrink-0"/> Information. </li><hr className="my-2"/><li className="flex gap-3"><Icons.FileText className=" flex-shrink-0"/> Documents and Forms. </li><hr className="my-2"/><li className="flex gap-3"><Icons.SquareFunction className=" flex-shrink-0"/> Statements and Functions. </li><hr className="my-2"/><li className="flex gap-3"><Icons.Car className=" flex-shrink-0"/> Objects. </li></ChapIntro>
+<ChapIntro>
+<li className="flex gap-3"><Icons.Info className=" flex-shrink-0"/> Information. </li>
+<hr className="my-2"/><li className="flex gap-3"><Icons.FileText className=" flex-shrink-0"/> Documents and Forms. </li>
+<hr className="my-2"/><li className="flex gap-3"><Icons.SquareFunction className=" flex-shrink-0"/> Statements and Functions. </li>
+<hr className="my-2"/><li className="flex gap-3"><Icons.Car className=" flex-shrink-0"/> Objects. </li>
+</ChapIntro>
 
 ---
 
@@ -29,7 +34,10 @@ Scripting means writing scripts, which are smaller programs designed to automate
 - It borrows much of syntax from C, includeing curly braces and control structures as `if`, `for`, `while`, etc.
 - **JavaScript is used for &mdash;** Web development, Server side development, Game development, Mobile app devlopment, etc. 
 
-<Callout>**Need to know:**<br/> JavaScript has no direct relationship with [Java](/learn/java). It was named to Capitalise on Java's popularity at that time. </Callout>
+<Callout>
+**Need to know:** JavaScript has no direct relationship with [Java](/learn/java). It was named to Capitalise on Java's popularity at that time. 
+</Callout>
+
 
 
 ### JavaScript is Good for Frontend Language
@@ -88,8 +96,6 @@ The Document Object Model (DOM), is the fundamental API for repersenting and man
 The `document.forms` property in JavaScript provides a collection of all `<form>` elements. This makes easy access and manipulate the forms and their elements.
 <Callout>**Need to know:**<br/> Similarly, all the `form`'s componentes are access using the `HTMLFormElement.elements` property. </Callout>
 
-
-
 ## Statements
 JavaScript statements are instructions that a browser excutes to perform a specific action. Its statement are terminated with semicolon. JavaScript statements are composed by the following statements&mdash; Variables, Operation, Expressions, Keywords and Comments. 
 - **Variable Decleration:** It is used to create variables to store the data values. *keywords are* [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const).
@@ -109,7 +115,6 @@ function convert(x) {
   } 
 }
 ```
-
 
 ## Functions
 A JavaScript function is a block of code that is defined once but may be executed, invoked, any number of times.
@@ -146,81 +151,6 @@ console.log(student.firstName);     // Prince
 console.log(student["firstName"]);  // Prince
 ```
 
-
-
-{/* 
-**Config Files:** You'll also notice config files such **[`Link`](https://mohemohe.in)** as `next.config.js` at the root of your application. Most of these files are created and pre-configured when you start a new project using create-next-app. You will not need to modify them in this course.
-
-You'll also notice config files such Link
- as next.config.js at the root of your application. Most of these files are created and pre-
-
-```welcome```
- **`js_ welcome here!`**
-
-- *`js index.html`*
-
-[`LinkLearn`](https://mohemohe.in/learn)
-
-[LinkLearn](https://mohemohe.in/learn)
-
-[`LinkLearn`](https:learn)
-
-[LinkLearn](mailto:princekunal@gmail.com)
-
-[LinkLearn XML](/learn/web-technology/xml)
-
-We now present another example, a UNIVERSITY database, to illustrate thee ER modeling concepts. Suppose that [`a database is needed to`](https://learn/html) keep track of student enrollments in classes an student's final grades.
-
-
-### JavaScript
-
-# JavaScript
-
-#### JavaScript
-
-##### JavaScript
-
-
-###### JavaScript
-
-
-`\`\`\j console.log("good");`\`\`\
-
-```tsx title="callout.tsx" showLineNumbers
-import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
-
-
-interface CalloutProps {
-  children?: ReactNode;
-  type?: "default" | "warning" | "danger" | "knowing" | "notes";
-  txCenter?: boolean;
-  breakBefore?: boolean;
-  id?:string;
-}
-
-export function Callout({
-  children,
-  type = "default",
-  txCenter= false,
-  breakBefore= false,
-  id,
-  ...props
-}: CalloutProps) {
-  return <div id={id} className={cn(`my-6 ${breakBefore? "break-before-page": ""} items-start rounded-md border border-l-4 p-4 w-full dark:max-w-none ${txCenter? "text-center":null}`,
-    {
-      "border-red-500 bg-red-100 dark:prose": type === "danger",
-      " border-yellow-500 bg-yellow-100 dark:prose": type === "warning",
-      " border-green-500 bg-green-100 dark:prose": type === "knowing",
-      " border-orange-500 bg-orange-100 dark:prose": type === "notes",
-    }
-  )}
-    {...props}>
-    <div>{children}</div>
-  </div>
-
-}
-``` */}
 
 ----
 
