@@ -18,7 +18,7 @@ export function Callout({
   id,
   ...props
 }: CalloutProps) {
-  return <div id={id} className={cn(`my-6 ${breakBefore? "break-before-page": ""} items-start rounded-md border border-l-4 p-4 w-full dark:max-w-none ${txCenter? "text-center":null}`,
+  return <div key={id} id={id} className={cn(`my-6 ${breakBefore? "break-before-page": ""} items-start rounded-md border border-l-4 p-4 w-full not-prose text-sm dark:max-w-none ${txCenter? "text-center":null}`,
     {
       "border-red-500 bg-red-100 dark:prose": type === "danger",
       " border-yellow-500 bg-yellow-100 dark:prose": type === "warning",
@@ -28,7 +28,7 @@ export function Callout({
     }
   )}
     {...props}>
-    <div>{children}</div>
+  {children}
   </div>
 
 
