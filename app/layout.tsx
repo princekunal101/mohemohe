@@ -41,7 +41,7 @@ export default function RootLayout({
         className={cn("in-h-screen bg-background font-sans antialiased", inter.variable)}>
         <Providers>
           <div className="relative flex min-h-dvh flex-col bg-background">
-            {/* <SiteHeader /> */}
+            <SiteHeader />
             <main className="flex-1">{children}</main>
             <SiteFooter />
           </div>

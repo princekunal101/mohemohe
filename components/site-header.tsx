@@ -1,3 +1,5 @@
+"use client";
+
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -6,14 +8,18 @@ import { Icons } from "./icons";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 import { ModeToggle } from "./mode-toggle";
+import { usePathname, useRouter } from "next/navigation";
 
 interface SiteHeaderProps {
   isStickyHeader?: boolean;
 }
 
 export function SiteHeader({isStickyHeader}:SiteHeaderProps) {
+  const pathname = usePathname();
+  const isLearnPage = pathname.startsWith(`/learn/`);
+  
   return (
-    <header className={`z-10  w-full border-b border-border bg-background/95 ${isStickyHeader ? "sticky top-0 backdrop-blur supports-[backdrop-filter]:bg-background/60" : " "} `}>
+    <header className={`z-50  w-full border-b border-border bg-background/95 ${!isLearnPage ? "sticky top-0 backdrop-blur supports-[backdrop-filter]:bg-background/60" : " "} `}>
       <div className="container px-4 sm:px-6 md:px-8 flex h-14 max-w-screen-2xl items-center">
         <MainNav />
         <div className="flex flex-1 item-center justify-end space-x-2">
