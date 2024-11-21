@@ -48,10 +48,10 @@ export default function LearnPage() {
 
         <div className="container">
           <BookMainItemLearn
-            slug={bookItems[1].slug}
-            bookName={bookItems[1].chapTitle}
-            bookDesc={bookItems[1].chapDesc}
-            bookShortDesc={bookItems[1].chapShortDesc} />
+            slug={bookItems[2].slug}
+            bookName={bookItems[2].chapTitle}
+            bookDesc={bookItems[2].chapDesc}
+            bookShortDesc={bookItems[2].chapShortDesc} />
         </div> 
          
          {/* <div className="absolute inset-0 h-screen -top-20  mt-0 w-full">
