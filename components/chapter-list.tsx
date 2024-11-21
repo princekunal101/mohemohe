@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { List } from "lucide-react";
 import { cn, createPairedChapters, getBooksBySlug, getChapterByBookPaths, sortByChapters } from "@/lib/utils";
 import { Chapter, chapters } from "@/.velite";
-import ChapterBox from "./chapter-box";
+import ChapterBox, { ChapterIntroBox } from "./chapter-box";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 interface ChapPageProps {
@@ -62,14 +62,11 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
             <div className={cn(" flex flex-col row-span-2 w-full h-auto")}>
               <div className="grid w-full grid-cols-2 my-2" >
 
-                <ChapterBox
+                <ChapterIntroBox
                   key={bookItems[0].slug}
                   slug={bookItems[0].slug}
-                  chapterName={"Introduction"}
-                  chapterNum={bookItems[0].chapNum}
                   currentNum={(slug) === bookItems[0].slug}
                   isBNew={bookItems[0].isBNew}
-                  isNew={bookItems[0].isNew}
                   isMod={bookItems[0].isMod}
                 />
               </div>
@@ -103,11 +100,10 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
               </div>
               <div className="grid w-full grid-cols-2 border-t py-2" >
 
-                <ChapterBox
+                <ChapterIntroBox
                   key={slug}
                   slug={"learn"}
-                  chapterName={"Learn more books"}
-                  chapterNum={-1}
+                  isNext={true}
                 />
               </div>
             </div>
@@ -193,25 +189,22 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
           <div className={cn(" flex flex-col justify-evenly w-full h-auto ")}>
 
             <div className="grid w-full grid-cols-1 sm:grid-cols-2 py-2" >
-              <ChapterBox
-                key={bookItems[0].slug+1}
+              <ChapterIntroBox
+                key={bookItems[0].slug}
                 slug={bookItems[0].slug}
-                chapterName={"Introduction"}
-                chapterNum={bookItems[0].chapNum}
-                currentNum={(slug) === bookItems[0].slug}
                 isBNew={bookItems[0].isBNew}
-                isNew={bookItems[0].isNew}
+                currentNum={(slug) === bookItems[0].slug}
                 isMod={bookItems[0].isMod}
               />
             </div>
 
-            <div className={cn(" flex flex-row  w-full h-auto border-t py-2")}>
+            <div className={cn(" flex flex-row w-full h-auto border-t py-2")}>
               <div className="sm:grid hidden w-full grid-cols-2">
 
                 {pairedChap.map((chapter) =>
                   <>
                     <ChapterBox
-                      key={chapter[0].slug+1}
+                      key={chapter[0].slug}
                       slug={chapter[0].slug}
                       chapterName={chapter[0].chapTitle}
                       chapterNum={chapter[0].chapNum}
@@ -220,7 +213,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
                       isMod={chapter[0].isMod}
                     />
                     <ChapterBox
-                      key={chapter[1].slug+1}
+                      key={chapter[1].slug}
                       slug={chapter[1].slug}
                       chapterName={chapter[1].chapTitle}
                       chapterNum={chapter[1].chapNum}
@@ -237,7 +230,7 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
 
                 {indexChapter.map((chapter) =>
                   <ChapterBox
-                    key={chapter.slug+2}
+                    key={chapter.slug}
                     slug={chapter.slug}
                     chapterName={chapter.chapTitle}
                     chapterNum={chapter.chapNum}
@@ -250,11 +243,10 @@ export function ChapterList({ slug, isSticky, bookName }: ChapPageProps) {
             </div>
 
             <div className="grid w-full grid-cols-1 sm:grid-cols-2 py-2 border-t" >
-              <ChapterBox
+              <ChapterIntroBox
                 key={slug}
                 slug={"learn"}
-                chapterName={"Learn more books"}
-                chapterNum={-1}
+                isNext={true}
               />
             </div>
           </div>
