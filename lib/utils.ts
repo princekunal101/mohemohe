@@ -54,7 +54,7 @@ export function sortByChapters(chapters: Array<Chapter>) {
 // paired chapter number list
 export function createPairedChapters(chapters: Array<Chapter>) {
   const rows = Math.ceil(chapters.length / 2);
-  const firstColumn = chapters.slice(0, rows);
+  const firstColumn = chapters.slice(1, rows);
   const secondColumn = chapters.slice(rows, chapters.length);
 
   return firstColumn.map((item, index) => {
@@ -132,12 +132,11 @@ export function getChapterByBookPaths(chapters: Array<Chapter>, bookName: string
     if (books === bookName) {
       const newPath = chap.join('/');
       const completeSlug = [books, newPath];
-
+      
       let chapSlugAsParams = completeSlug.join('/')
-
       // if (chapSlugAsParams.endsWith('/')) chapSlugAsParams =  chapSlugAsParams.slice(0, -1);
 
-      if (slug.slugAsParams === chapSlugAsParams) return slug;
+      if (chapSlugAsParams) return slug;
     }
   });
 }
