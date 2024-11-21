@@ -2,6 +2,7 @@
 chapTitle: CSS Property 
 bookName: Web Technology
 chapDesc: In the privious chapter we have learn about the CSS, why CSS is important for us as a programmer. Some basic syntax and selectors.
+chapShortDesc: Structure of box element in CSS, including borders, padding, and margin.
 chapNum: 8
 publishedDate: 2024-10-22
 updatedDate: 2024-10-22
@@ -11,7 +12,11 @@ isMod: false
 published: true
 ---
 
-<ChapIntro><li className="flex gap-3"><Icons.FileCode2 className=" flex-shrink-0"/> CSS property and Types of CSS. </li><hr className="my-2"/><li className="flex gap-3"><Icons.Boxes className=" flex-shrink-0"/> CSS Box Models. </li></ChapIntro>
+
+<ChapIntro listData={[
+  {icon: <Icons.FileCode2 className="w-5 h-5"/>, topic:' CSS property and Types of CSS.'},
+  {icon: <Icons.Boxes className="w-5 h-5"/>, topic:'CSS Box Models.'}
+]}/>
 
 ---
 ## CSS property
@@ -33,7 +38,7 @@ There are three types of CSS which are given below or Three ways of inserting a 
     ```html
     <p style="color: pink"> Welcome to CSS </p>
     ```
-- **Internal CSS**: It is used to apply css on a single document or page. It can affect all the element of the page. It is written inside the ```<style>``` tag which in ```<heads>``` section of the HTML.
+- **Internal CSS**: It is used to apply css on a single document or page. It can affect all the element of the page. It is written inside the ```<style>``` tag which in ```<head>``` section of the HTML.
 - **External CSS**: It is used to apply css on multiple pages or all pages. It can be written in any text editor. The file should not contain any ```<html>``` tags. The file must be saved in with ```.css``` extension.
 
 ### CSS Border

@@ -2,6 +2,7 @@
 chapTitle: Hyper Text Markup Language
 bookName: Web Technology
 chapDesc: In the privious chapter we have learn about the client server computations, how client-server works and pros & cons of it.
+chapShortDesc: Creating and structuring web content, including lists, tables, images, frames, and forms.
 chapNum: 4
 publishedDate: 2024-10-10
 updatedDate: 2024-11-01
@@ -11,7 +12,10 @@ isMod: false
 published: true
 ---
 
-<ChapIntro><li className="flex gap-3"><Icons.Code className=" flex-shrink-0"/> Some basic html tags. </li><hr className="my-2"/><li className="flex gap-3"><Icons.FileCode2 className=" flex-shrink-0"/> Basic structure of html. </li></ChapIntro>
+<ChapIntro listData={[
+  {icon: <Icons.Code className="w-5 h-5"/>, topic:' Some basic html tags.'},
+  {icon: <Icons.FileCode2 className="w-5 h-5"/>, topic:'Basic structure of html.'},
+]}/>
 
 ---
 ## Hyper Text Markup Language (HTML) 

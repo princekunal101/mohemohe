@@ -2,6 +2,7 @@
 chapTitle: CSS Advanced 
 bookName: Web Technology
 chapDesc: In the privious chapter we have learn about the CSS, why CSS is important for us as a programmer. Some basic syntax and selectors.
+chapShortDesc: Techniques as grouping, dimentions, dispaly, positioning, floating, alignment, etc. that enhanced styling and interactivity.
 chapNum: 9
 publishedDate: 2024-10-25
 updatedDate: 2024-10-25
@@ -11,7 +12,11 @@ isMod: false
 published: true
 ---
 
-<ChapIntro><li className="flex gap-3"><Icons.Group className=" flex-shrink-0"/> Grouping. </li><hr className="my-2"/><li className="flex gap-3"><Icons.Info className=" flex-shrink-0"/> Types of Properties </li><hr className="my-2"/><li className="flex gap-3"><Icons.PanelTop className=" flex-shrink-0"/> Navigation bar </li></ChapIntro>
+<ChapIntro listData={[
+  {icon: <Icons.Group className="w-5 h-5"/>, topic:'Learn how grouping is work.'},
+  {icon: <Icons.Info className="w-5 h-5"/>, topic:'Types of Properties'},
+  {icon: <Icons.PanelTop className="w-5 h-5"/>, topic:'Study about Navigation bar in css.'}
+]}/>
 
 ---
 ## Grouping

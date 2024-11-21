@@ -2,6 +2,7 @@
 chapTitle: JavaScript
 bookName: Web Technology
 chapDesc: In the privious chapter we have learn about the Structure of website layout design. Some of the devices have their own design according to their screen size.
+chapShortDesc: Basic concept and uses of JavaScript programming language in web technology.
 chapNum: 11
 publishedDate: 2024-10-31
 updatedDate: 2024-10-31
@@ -11,12 +12,12 @@ isMod: false
 published: true
 ---
 
-<ChapIntro>
-<li className="flex gap-3"><Icons.Info className=" flex-shrink-0"/> Information. </li>
-<hr className="my-2"/><li className="flex gap-3"><Icons.FileText className=" flex-shrink-0"/> Documents and Forms. </li>
-<hr className="my-2"/><li className="flex gap-3"><Icons.SquareFunction className=" flex-shrink-0"/> Statements and Functions. </li>
-<hr className="my-2"/><li className="flex gap-3"><Icons.Car className=" flex-shrink-0"/> Objects. </li>
-</ChapIntro>
+<ChapIntro listData={[
+  {icon: <Icons.Info className="w-5 h-5"/>, topic:'Some information about the sripting and JavaScript.'},
+  {icon: <Icons.FileText className="w-5 h-5"/>, topic:'Documents and Forms.'},
+  {icon: <Icons.SquareFunction className="w-5 h-5"/>, topic:' Statements and Functions.'},
+  {icon: <Icons.Car className="w-5 h-5"/>, topic:'Objects.'}
+]}/>
 
 ---
 

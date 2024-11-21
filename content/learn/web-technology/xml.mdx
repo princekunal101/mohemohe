@@ -2,6 +2,7 @@
 chapTitle: eXtensible Markup Language
 bookName: Web Technology
 chapDesc: In the privious chapter we have learnt about the HTML Hyper Text Markup Language, its tags and the basic structure of html.
+chapShortDesc: Understand the logic behind XML and how it differs from HTML.
 chapNum: 5
 publishedDate: 2024-10-13
 updatedDate: 2024-10-13
@@ -9,7 +10,11 @@ tags: ["aktu","web-technology"]
 published: true
 ---
 
-<ChapIntro><li className="flex gap-3"><Icons.MessageSquareCode className=" flex-shrink-0"/> What is extensible markup language and its uses. </li><hr className="my-2"/><li className="flex gap-3"><Icons.Lightbulb className=" flex-shrink-0"/> Differenciate between XML and HTML. </li><hr className="my-2"/><li className="flex gap-3"><Icons.PencilRuler className=" flex-shrink-0"/> What discribe the Document Type Defination DTD.</li></ChapIntro>
+<ChapIntro listData={[
+  {icon: <Icons.MessageSquareCode className="w-5 h-5"/>, topic:'What is extensible markup language and its uses.'},
+  {icon: <Icons.Lightbulb className="w-5 h-5"/>, topic:'Differenciate between XML and HTML.'},
+  {icon: <Icons.PencilRuler className="w-5 h-5"/>, topic:'What discribe the Document Type Defination DTD.'}
+]}/>
 
 ---
 ## eXtensible Markup Language XML

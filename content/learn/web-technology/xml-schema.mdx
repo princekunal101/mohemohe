@@ -2,6 +2,7 @@
 chapTitle: XML Schema & Object Model
 bookName: Web Technology
 chapDesc: In the privious chapter we have learnt the basic of eXtensible Markup language XML and its uses. what makes differ to the HTML and basic knowledge about DTD.
+chapShortDesc: Repersenting the data structure of XML documents, using DOM and SAX.
 chapNum: 6
 publishedDate: 2024-10-16
 updatedDate: 2024-10-16
@@ -9,7 +10,10 @@ tags: ["aktu","web-technology"]
 published: true
 ---
 
-<ChapIntro><li className="flex gap-3"><Icons.ShieldQuestion className=" flex-shrink-0"/> Why we use XML Schema. </li><hr className="my-2"/><li className="flex gap-3"><Icons.FileBox className=" flex-shrink-0"/> XML parser and Document Object Model DOM. </li></ChapIntro>
+<ChapIntro listData={[
+  {icon: <Icons.ShieldQuestion className="w-5 h-5"/>, topic:'Why we use XML Schema. '},
+  {icon: <Icons.FileBox className="w-5 h-5"/>, topic:'XML parser and Document Object Model DOM.'}
+]}/>
 
 ---
 ## XML Schema

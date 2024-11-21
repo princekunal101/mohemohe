@@ -2,6 +2,7 @@
 chapTitle: AJAX
 bookName: Web Technology
 chapDesc: In the privious chapter we have learn about the how JavaScript is important for the web development, Some basic methods and objects which are frequently used in web pages.
+chapShortDesc: Let us overview about Asynchronous JavaScript And XML, which enhance the user experience.
 chapNum: 12
 publishedDate: 2024-11-03
 updatedDate: 2024-11-03
@@ -11,7 +12,10 @@ isMod: false
 published: true
 ---
 
-<ChapIntro><li className="flex gap-3"><Icons.Info className=" flex-shrink-0"/>AJAX information. </li><hr className="my-2"/><li className="flex gap-3"><Icons.MonitorCog className=" flex-shrink-0"/> Working of AJAX. </li><hr className="my-2"/><li className="flex gap-3"><Icons.ChartNoAxesCombined className=" flex-shrink-0"/> Applications of AJAX </li></ChapIntro>
+<ChapIntro listData={[
+  {icon: <Icons.Info className="w-5 h-5"/>, topic:'What is AJAX and how does it works.'},
+  {icon: <Icons.ChartNoAxesCombined className="w-5 h-5"/>, topic:'Applications of AJAX '}
+]}/>
 
 ---
 ## AJAX (Asynchronous JavaScript & XML)
