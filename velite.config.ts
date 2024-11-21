@@ -50,6 +50,7 @@ const chapters = defineCollection({
       bookColor: s.string().max(50).optional(),
       chapNum: s.number(),
       chapDesc: s.string().max(900).optional(),
+      chapShortDesc: s.string().max(300).optional(),
       publishedDate: s.isodate(),
       updatedDate: s.isodate(),
       isBNew: s.boolean().default(false),
