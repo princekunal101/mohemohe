@@ -38,10 +38,7 @@ export default function Home() {
                 <Link href="/learn" className={cn(buttonVariants({ size: "lg" }), "h-12 px-5 text-base w-fit")}>
                   Start Learning
                 </Link>
-                <Link href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-12 px-5 text-base w-fit")}>
+                <Link href="/questions" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-12 px-5 text-base w-fit")}>
                   Questions
                 </Link>
               </div>
@@ -63,7 +60,7 @@ export default function Home() {
         <div className="w-full container mt-12">
           <div className=" w-full hidden sm:grid grid-cols-2 lg:hidden gap-4 ">
             <div className="w-full flex flex-col gap-4">
-              <Link href={'/'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
+              <Link href={'/questions'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
                 <div className="h-64 bg-secondary/50 flex justify-center rounded-t-md mb-4">
                   <div className="py-2 text-gray-500/90">
                     <Icons.questionScetchIII className="h-full w-full" />
@@ -73,7 +70,7 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground">Quick quizzes help in rapidly assessing knowlwdge and pinpointed wear areas for improvement. (*upcoming)</p>
               </Link>
 
-              <Link href={'/'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
+              <Link href={'/questions'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
                 <div className="h-64 bg-secondary/50 flex justify-center rounded-t-md mb-4">
                   <div className="py-2 text-gray-500/90">
                     <Icons.questionScetchIII className="h-full w-full" />
@@ -100,7 +97,7 @@ export default function Home() {
           <div className="w-full grid grid-cols-1 sm:hidden lg:grid lg:grid-cols-3 gap-4">
 
             {/* column 3-1 */}
-            <Link href={'/'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
+            <Link href={'/questions'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
               <div className="h-64 bg-secondary/50 flex justify-center rounded-t-md mb-4">
                 <div className="py-2 text-gray-500/90">
                   <Icons.questionScetchIII className="h-full w-full" />
@@ -118,7 +115,7 @@ export default function Home() {
               <p className="text-sm text-muted-foreground">It breaks down complex topics into manageble sections, making it easier for you to digest and retain information.</p>
             </Link>
 
-            <Link href={'/'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
+            <Link href={'/questions'} className="border rounded-xl p-4 flex flex-col w-full shadow group hover:border-secondary-foreground">
               <div className="h-64 bg-secondary/50 flex justify-center rounded-t-md mb-4">
                 <div className="py-2 text-gray-500/90">
                   <Icons.questionScetchIII className="h-full w-full" />
