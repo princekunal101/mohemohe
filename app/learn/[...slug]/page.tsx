@@ -89,9 +89,6 @@ export async function generateStaticParams(): Promise<ChapterPageProps["params"]
 export default async function LearnChapter({ params }: ChapterPageProps) {
 
   const chapter = await getChapterFromPrams(params);
-  // const router = useRouter();
-
-  // console.log(params.slug[0])
 
   // if chapter is not found as link is provided
   if (!chapter || !chapter.published) {
@@ -122,7 +119,7 @@ export default async function LearnChapter({ params }: ChapterPageProps) {
           <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>
         </div>
       </div>
-        : <h1 className={cn("mb-1 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>}
+        : <h1 className={cn("mb-0 sm:text-4xl text-2xl font-bold")}>{chapter.chapTitle}</h1>}
       {chapter.chapDesc ? (
         <p className={cn(" text-md my-2 sm:my-5")}>{chapter.chapDesc}</p>
       ) : null}

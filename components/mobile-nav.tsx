@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useState } from "react"
 import { LinkProps } from "next/link";
@@ -18,40 +18,40 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" className="w-10 px-0 sm:hidden bg-slate-300 bg-opacity-20">
+        <Button variant="outline" className="w-10 px-0 sm:hidden">
           <Menu className="h-5 w-5" />
           <span className="sr-only">Toggle Theme</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="p-6">
-        <SheetClose className={cn("absolute right-6 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary")}>
-          <X className={cn(" w-5 h-5")} />
+      <SheetContent side="right" className="py-4 px-4">
+        <SheetClose className="absolute right-8 top-5 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+          <X className=" w-5 h-5" />
         </SheetClose>
-        <MobileLink onOpenChange={setOpen} href="/" className="flex items-center mr-10">
-          <Icons.logo className="mr-2 h-8 w-8 flex items-center justify-center rounded bg-black/80 dark:bg-white/25" />
-          <span className="font-bold">{siteConfig.name}</span>
+        <MobileLink onOpenChange={setOpen} href="/" className="flex items-center mr-10 text-xl font-semibold">
+          <Icons.logo className=" h-14 w-14 flex flex-shrink-0 items-center justify-center rounded" />
+          <span>{siteConfig.name}</span>
         </MobileLink>
-        <div className="flex flex-col gap-3 mt-6">
-          <MobileLink onOpenChange={setOpen} href="/learn">
+        <div className="flex flex-col mt-2">
+          <MobileLink onOpenChange={setOpen} href="/learn" className="px-3 rounded py-2 hover:bg-gray-500/10">
             Learn
           </MobileLink>
-          <MobileLink onOpenChange={setOpen} href="/blog">
+          <MobileLink onOpenChange={setOpen} href="/blog" className="px-3 rounded py-2 hover:bg-gray-500/10">
             Blog
           </MobileLink>
-          <MobileLink onOpenChange={setOpen} href="/about">
+          <MobileLink onOpenChange={setOpen} href="/about" className="px-3 rounded py-2 hover:bg-gray-500/10">
             About
           </MobileLink>
-          <hr className="mr-2" />
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
+          <hr className="m-2" />
+          <Link target="_blank" rel="noreferrer" href={siteConfig.links.github} className="px-3 py-1 rounded hover:underline text-sm ">
             Github
           </Link>
           {/* <Link target="_blank" rel="noreferrer" href={siteConfig.links.linkedin}>
             LinkedIn
             </Link> */}
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.instagram}>
+          <Link target="_blank" rel="noreferrer" href={siteConfig.links.instagram} className="px-3 py-1 rounded hover:underline text-sm ">
             Instagram
           </Link>
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.x}>
+          <Link target="_blank" rel="noreferrer" href={siteConfig.links.x} className="px-3 py-1 rounded hover:underline text-sm ">
             X
           </Link>
         </div>

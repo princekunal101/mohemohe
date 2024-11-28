@@ -10,9 +10,9 @@ export function MainNav() {
   const pathname = usePathname()
   return (
     <nav className="flex items-center space-x-4 lg:space-x-6">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
-        <Icons.logo className="h-8 w-8 flex items-center justify-center rounded bg-black/80 dark:bg-white/25" />
-        <span className="font-bold">{siteConfig.name}</span>
+      <Link href="/" className="mr-6 flex items-center text-xl shrink-0 font-semibold">
+        <Icons.logo className="h-14 w-14 flex flex-shrink-0 items-center justify-center" />
+        <span>{siteConfig.name}</span>
       </Link>
 
       <Link href="/learn" className={cn("text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block", pathname === "/learn" ? "text-foreground" : "text-foreground/60")}>
