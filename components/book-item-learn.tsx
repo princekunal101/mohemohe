@@ -24,7 +24,7 @@ export default function BookItemLearn({ slug, bookName, bookDesc, bookShortDesc 
             <p className=" w-full mb-0.5 font-bold line-clamp-2 text-[0.55rem] opacity-95">{bookName}</p>
             <p className=" text-[0.35rem]  line-clamp-3 opacity-95">{bookShortDesc}</p>
           </div>
-          <div className="absolute w-full justify-center flex bottom-1">
+          <div className="absolute w-full justify-center flex bottom-1 text-white/95">
             <Icons.logo className="w-8 h-8" />
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function BookItemLearn({ slug, bookName, bookDesc, bookShortDesc 
       </div>
 
       <div className="flex w-full md:w-min justify-center mt-4 md:mt-0">
-        <Link href={slug} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "w-full sm:w-fit")}>
+        <Link href={slug} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "w-full md:w-fit")}>
           Start Learning <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
       </div>
@@ -58,7 +58,7 @@ export function BookMainItemLearn({ slug, bookName, bookDesc, bookShortDesc }: B
               <p className=" w-full mb-2 text-balance font-bold opacity-95">{bookName}</p>
               <p className=" line-clamp-4 text-[0.7rem] opacity-95">{bookShortDesc}</p>
             </div>
-            <div className="absolute w-full justify-center flex bottom-3">
+            <div className="absolute w-full justify-center flex bottom-3 text-white/95">
               <Icons.logo className="w-14 h-14" />
             </div>
           </div>
