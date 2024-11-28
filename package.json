@@ -1,6 +1,6 @@
 {
   "name": "project1",
-  "version": "0.3.2",
+  "version": "0.3.5",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,7 +15,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@rehype-pretty/transformers": "^0.13.2",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "github-slugger": "^2.0.0",
     "hast-util-to-string": "^3.0.1",
@@ -30,7 +30,7 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "shiki": "^1.6.0",
-    "tailwind-merge": "^2.3.0",
+    "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
