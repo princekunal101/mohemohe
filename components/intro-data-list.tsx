@@ -8,7 +8,7 @@ interface ListData{
 
 export const items: ListData[]=[
 {title: "Web Technology", slug:"/learn/web-technology", desc:"Understanding the backbone of the internet, enabling efficient design and devlopment of websites and web applications."},
-{title: "Gate Syllabus 2025", slug:"/blog/sylabus-gate-cs", desc:"Explore the Gate CSE syllabus to understand the topics and weightage for each subject, helping you to prepare effectivly for the exam."},
+{title: "Gate Syllabus 2025", slug:"/blog/syllabus-gate-cs", desc:"Explore the Gate CSE syllabus to understand the topics and weightage for each subject, helping you to prepare effectivly for the exam."},
 {title: "Java Lab file", slug:"/blog/oops-java-lab", desc:"It provides you practical skills to build robust and effiecient applications and data structure and it's algorithm."},
 ];
 
