@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 import { Github, Instagram, InstagramIcon, Mail, Twitter } from "lucide-react";
-import { Icons } from "./icons";
+import { Icons } from "../icons";
 
 export function SiteFooter() {
   return (

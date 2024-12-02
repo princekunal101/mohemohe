@@ -1,8 +1,8 @@
 import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
-import { Callout } from "./callout";
+import { Callout } from "../mdx/callout";
 import { FigureMdx } from "./mdx-figures";
-import { ChapIntro } from "./mdx-intro";
+import { ChapIntro } from "../mdx/mdx-intro";
 import * as Icons from "lucide-react";
 import { NextUp } from "./mdx-next-up";
 
@@ -20,7 +20,6 @@ const components = {
   FigureMdx,
   ChapIntro,
   NextUp,
-  
   
 }
 

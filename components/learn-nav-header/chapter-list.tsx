@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from "react";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Button } from "./ui/button";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Button } from "../ui/button";
 import { List } from "lucide-react";
 import { cn, createPairedChapters, getBooksBySlug, getChapterByBookPaths, sortByChapters } from "@/lib/utils";
 import { Chapter, chapters } from "@/.velite";
