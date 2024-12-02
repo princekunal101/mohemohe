@@ -38,13 +38,33 @@ const posts = defineCollection({
     }).transform(computeFields)
 })
 
+
+const questions = defineCollection({
+  name: "Question",
+  pattern: `questions/**/**/*.mdx`,// in ${variable books path from getting from learn folder}
+  schema: s
+    .object({
+      slug: s.path().transform((path)=>path.split('/').map(segment => segment.replace(/^\d+-/,'')).join('/')),
+      gitLinks: s.path(),
+      title: s.string().max(90),
+      titleDescription: s.string().max(300),
+      publishedDate: s.isodate(),
+      updatedDate: s.isodate(),
+      isQuiz: s.boolean().default(false),  
+      isNew: s.boolean().default(false),  
+      published: s.boolean().default(true),  
+      body: s.mdx(),
+    }).transform(computeFields)
+})
+
 const chapters = defineCollection({
   name: "Chapter",
   // pattern: "blog/**/**/*.mdx",
   pattern: `learn/**/**/*.mdx`,// in ${variable books path from getting from learn folder}
   schema: s
     .object({
-      slug: s.path(),
+      slug: s.path().transform((path)=>path.split('/').map(segment => segment.replace(/^\d+-/,'')).join('/')),
+      gitLinks: s.path(),
       chapTitle: s.string().max(90),
       bookName: s.string().max(90),
       bookColor: s.string().max(50).optional(),
@@ -183,7 +203,7 @@ export default defineConfig({
     name: "[name]-[hash:6].[ext]",
     clean: true,
   },
-  collections: { chapters, posts },
+  collections: { chapters, posts, questions },
   mdx: {
     rehypePlugins: [
       rehypeSlug,
