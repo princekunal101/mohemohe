@@ -1,0 +1,177 @@
+---
+chapTitle: Web Development Strategies 
+bookName: Web Technology
+chapShortDesc: Understand how data exchanging over the internet through different protocols. as HTTP/HTTPs, FTP, SMTP/IMAP, etc.
+chapNum: 1
+publishedDate: 2024-10-01
+updatedDate: 2024-12-02
+isMod: true
+published: true
+---
+
+Nowadays we all are using websites, for example we are learning from this website, in this chapter we will study how to plan any website, what are the different strategies.
+
+<ChapIntro listData={[
+  {icon: <Icons.Globe className="w-5 h-5"/>, topic: 'What is web page and website?'},
+  {icon: <Icons.Redo className="w-5 h-5"/>, topic: 'What is the history of web and internet? How does it grow?'},
+  {icon: <Icons.Network className="w-5 h-5"/>, topic:'Introduction and tools of Internet governing protocols.'},
+  {icon: <Icons.PencilRuler className="w-5 h-5"/>, topic:'Study the basic consequesnces of writing web projects.'},
+  {icon: <Icons.ArrowDownUp className="w-5 h-5"/>, topic:'Study about the different ways to connect to the Internet.'},
+  {icon: <Icons.Hammer className="w-5 h-5"/>, topic:'Discuss about the Internet services and tools.'},
+  {icon: <Icons.Cable className="w-5 h-5"/>, topic:'Understanding how client-server works?'},
+]}/>
+
+---
+
+# The Web
+The **World Wide Web** (commonly shortned to **the Web**) is a system of interlinked hypertext document associated with via the Internet, with a web browser a user view web pages that may contain text, images, video, and other multimedia and navigate between the using hyperlink. 
+
+The World Wide Web is known as the **www** or **w3** or simply web. **Web is a huge collection of "pages" of information linked to each other around the globe**. Each page can be a combination of text picture audio clips video clips and medicine and other electronically presentable material.
+
+The World Wide Web was created in 1989 by Sir [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee) working at CERN in Geneva, Switzerland. 
+Before the www, the Internet was very difficult to navigate. Much of the information on it was very hard to find and just as difficult to make use of.
+
+---
+
+## History of Web and Internet
+In 1960s, the concept of packet switching emerges as a way to transmit data efficiently. Later in 1970s, ARPANET, became the first network to us packet switching, it was established to connect computers at research institutions.
+Further in 1980s, TCP/IP protovols would become the common language for various network to connect or exchange data.
+
+The National Science Foundation created NSFNET which expanded, internet access beyound military and reasearch institution, and by late 1980s , ISPs started appearing and commercialization begun.
+while 1990s, *Tim Berner Lee* invents the world wide web and made internet work user friendly for a large audience. It explored in popularity that made the extreme growth in internet based bussiness.
+
+After the start of 2000s, the internet continues to evolve rapidly with advancement in mobile technologies, social media platforms and the rise of could computing and AI.
+
+---
+
+## Protocols Governing Web
+A protocol or Internet Protocol is a set of rules, that is used to communicate application to each other. *i.e* the protocol is the interface required for the communicating the different applications over the Internet.
+#### (Directly Governing the Web)
+**Hyper Text Transfer Protocol [(HTTP)](https://developer.mozilla.org/en-US/docs/Web/HTTP):** It defines how the browsers and server communicate and how a browser request a web page from a server.
+
+**Hyper Text Transfer Protocol Secure (HTTPS):** It encrypts the common between the logging credentials and information, etc.
+
+#### (Indirectly Governing the Web) 
+**Transmission Control Protocol/ Internal Protocol (TCP/IP):** TCP is responsibile for transmission of data into packets and ensure reliable delivery.   IP assigns unique address to devices for network routing.
+
+**Domain Name System (DNS):** It translate human readable domain names into machine readable IP address that computer used to locate web server.     Some additional protocols that don't involved in web browsing but are crucial for maintaining overall ecosystem.
+
+**File Transfer Protocol (FTP):** It is a protocol that allows the transfer of file from one computer to another.
+
+**E-mail:** Users subtrate protocols for sending (SMTP) to require (POP3/ IMAP). Thses protocols ensure efficient and secure email communication.
+<FigureMdx lightUrl="wt-smtp-email-diagram" desc="Simple Mail Transfer Protocol SMTP diagram."/>
+
+**Post Office Protocol 3 (POP3):** It is an internet standard protocol on the application layer that the local email client used for retrieving emails from any remote server over the TCP/IP connection.
+
+**Internet Message Access Protocol (IMAP):** It is a protocol that allow distant users to access their emails directly from the server and read them on any devices at any location feasible for them.
+
+**Telnet:** An older protocol for remote access. It allowed you to login into another system and brows files and dictionaries on that remote system.
+
+**User Datagram Protocol (UDP):** It is a connection less protocol for data transfer. It is faster but less reliable.
+
+**Internet Control Message Protocol (ICMP):** It doesn't directly involved in data transmission but carries informational message between network devices like error message indicating unsuccessful packet delivery.
+
+---
+
+## Writing Web Projects
+Web projects are defined as the software project which are specialised to make different type of websites which are implemented on the Internet. Having technical and practical skill can we develop web projects.
+
+**Write a Project mission Statement:**
+Write the specific mission statement that we want to do. For what purpose the particular website is going to be created.
+
+**Identify the objective:** The objectives are specific and most important following objects are given below&mdash;
+  - **S**: Specific, **M**: Measurable, **A**: Attainable, **R**: Realistic, **T**: Time-limited
+
+**Identify your target users:**
+This can be done by market research, focus, truths, understanding and audience needs.
+
+**Determine the Scope:**
+This lists all the features and functionality of your website and prioritise them based on improvement and complexity.
+
+**Budgets:**
+Defining your projects scope, the more accurate your budget will be. It may be required to make assumption for budgets, budget categories, and determine hidden cost and tools.
+
+**More Preliminary Planing Issue:**
+Plan how the content will be assumed from on website under the budgets. It clears roadmap for design and development, faciliating a structured and efficient workflow.
+{/* 
+- **Technical Requirements:**
+What technologies are going to be used.
+*e.g.* HTML, CSS, JS
+
+- **Development:** 
+Frontend, Backend, Content.
+
+**Testing and Maintanace:**
+Test the code, Maintain the web-server, Fix the bugs, Provide regular update, take users feedback.
+
+- **Regular with ISP & Launch:**
+Register with domain name, It's base on wab, connect domain name with server, host the website. */}
+
+---
+## Connection to Internet
+The Internet connects millions of devices and enables us to send emails, photos, videos, and messages. It serves as a medium of sharing and receiving information using the Internet.
+There are the following essential components for connecting to the Internet&mdash;
+
+**Internet Service Provider (ISP):** A company that delivers intended connectivity to users enabling access to online resource like website and web services via various spread one technologies.
+
+**Modem:** It stands for Modulator/Demodulator that translates digital data from computer system into a signal, suitable for transmission over the Internet infrastructure enabling web browsing and data transfer.
+
+**Router:** A device that routes data between local network and the Internet allowing multiple devices to assess online services and manage network traffic efficiently.
+
+**Wireless Fedility (Wi-Fi):** A technology which allows device to connect to the Internet wirelessly within a local area.
+
+---
+## Internet Services and Tools:
+The Internet supports communication and sharing of data, and offers vast amount of information through a variety of services and tools. The major Internet tools and services are&mdash;
+
+**Common Services:** They allow us to communicate or exchange information over the Internet. *e.g.* E-mail, Instant Message, Internet Relay Chat (IRC).
+
+**Information Retrival Services:** Allow easy access to information over internet. *e.g.* File Transfer Protocol (FTP), Archie, Gopher (Display document on the note side).
+
+**Web Services:** Allows exchange of the information between application on the web.
+
+**World Wide Web (www):** It offers a way to access information spread over the several on the internet. *e.g.* video confrencing, information like text, audio, video, hyperlinks, etc. can be accessed easily.
+
+
+---
+
+## Client Server Computing
+It is a fundamental architecture for distributing task and resource across a network.
+It relies on two key players client and servers &mdash;
+
+<FigureMdx lightUrl="wt-client-server-diagram" desc="Client Server Computing diagram"/>
+
+**Client:**
+These are the software programs or device that initiate request for a resorts or services.
+They have a user interface that interact with the server. *e.g.* Mobile Apps, E-mail, etc.
+
+**Server:** 
+These are powerful computers or programs that fullfil client request.
+They store data, perform calculation and manage network resources.
+They are capable of handling multiple client simultaneously.
+
+**Request:**
+Client request to the server. Request specifies resource or service such as web page a file download or a database query
+
+**Processing:**
+Server receive the request, process it and perform the requested operation.
+
+**Response:**
+Server sends response back to the client. Response may be a confirmation message or an error message.
+
+### Advantage of client-server computing
+- Easy backup and updates.
+- Additional servers can be added to ease the workload.
+- Easy to share resources.
+- Centralised storage is allows more secure access to data and application.
+
+### Disadvantage of client-server computing
+- If server fails, all connected clients are affected and loss access to resource.
+- Initial access a lot to setup a client server computing resources.
+- Server can go down in case of number of request of clients exceeded the servers processing capacity.
+- Slow or unstable network can affect the overall performance.
+
+---
+
+
+<NextUp nextChap="2" nextChapName="Hyper Text Markup Language" nextChapLink="/web-technology/html"> Let's know about the basic requirements of developing Web Application. </NextUp>
