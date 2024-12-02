@@ -11,7 +11,7 @@ export function cn(...inputs: ClassValue[]) {
 export function formatDate(input: string | number): string {
   const date = new Date(input);
   return date.toLocaleDateString("en-US", {
-    month: "long",
+    month: "short",
     day: "numeric",
     year: "numeric",
   })
@@ -53,7 +53,7 @@ export function sortByChapters(chapters: Array<Chapter>) {
 
 // paired chapter number list
 export function createPairedChapters(chapters: Array<Chapter>) {
-  const rows = Math.ceil(chapters.length / 2);
+  const rows = Math.ceil((chapters.length +1)/ 2);
   const firstColumn = chapters.slice(1, rows);
   const secondColumn = chapters.slice(rows, chapters.length);
 
