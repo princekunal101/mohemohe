@@ -85,11 +85,6 @@ export default async function PostPage({ params, }: QuestionPageProps) {
 
   return (<article className=" container px-4 sm:px-6 md:px-8 py-6 prose dark:prose-invert max-w-[1024px]">
     <h1 className="mb-2">{question.title}</h1>
-
-    {/* <time className="text-wrap my-2 text-sm font-semibold" dateTime={question.updatedDate}>{dateTitle}</time> */}
-
-    <hr className="mb-4 mt-2" />
-
     <MDXContent code={question.body} />
     <div className="flex w-full gap-2 justify-between px-2">
       <a className="flex gap-2 items-center" target="_blank" href={githubLink}>

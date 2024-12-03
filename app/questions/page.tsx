@@ -1,9 +1,9 @@
 import { questions } from "@/.velite";
-import IntroDataList from "@/components/intro-data-list";
+import QuestionsDataList, { QuizQuestionsDataList } from "@/components/questions-data-list-item";
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "The Question Section ",
+    title: "The Question Section",
     description: "Choose a corner for testing yourself for success.",
 
 }
@@ -22,26 +22,22 @@ export default function QuestionPage() {
                 </div>
             </section>
 
-            <section className="w-full my-6 max-w-6xl mx-auto">
-                <div className="relative flex flex-col space-y-6 mx-4 py-4 rounded-2xl bg-secondary">
-                    <div className="w-full border-b border-b-secondary-foreground/20">
-                        <p className="text-center text-2xl mb-3 font-semibold">Quick Quiz</p>
-                    </div>
-                    <div className="container grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 md:grid-cols-3">
-                        {questions.map((ques, index) => (ques.isQuiz && <IntroDataList key={index} slug={ques.slug} title={ques.title} desc={ques.titleDescription} />))}
-                    </div>
+            <section className="w-full space-y-6 my-3 py-3 max-w-6xl dark:bg-zinc-700 bg-zinc-200 mx-auto">
+                <div className="w-full border-b border-b-secondary-foreground/20">
+                    <p className="text-center text-2xl mb-3 font-semibold">Quick Quiz</p>
+                </div>
+                <div className="container grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 md:grid-cols-3">
+                    {questions.map((ques, index) => (ques.isQuiz && <QuizQuestionsDataList key={index} slug={ques.slug} title={ques.title} topic={0} questions={0} isNew={ques.isNew} />))}
                 </div>
             </section>
 
-            <section className="w-full my-6 max-w-6xl  mx-auto">
-                <div className="relative flex flex-col space-y-6 mx-4 py-4 rounded-2xl bg-secondary">
-                    <div className="w-full border-b border-b-secondary-foreground/20">
-                        <p className="text-center text-2xl mb-3 font-semibold">Questions</p>
-                    </div>
-                    <div className="container grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 md:grid-cols-3">
-                        {questions.map((ques, index) => (!ques.isQuiz && <IntroDataList key={index} slug={ques.slug} title={ques.title} desc={ques.titleDescription} />))}
+            <section className="w-full space-y-6 my-3 py-3 max-w-6xl dark:bg-zinc-700 bg-zinc-200 mx-auto">
+                <div className="w-full border-b border-b-secondary-foreground/20">
+                    <p className="text-center text-2xl mb-3 font-semibold">Questions</p>
+                </div>
+                <div className="container grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 md:grid-cols-3">
+                    {questions.map((ques, index) => (!ques.isQuiz && <QuestionsDataList key={index} slug={ques.slug} title={ques.title} desc={ques.titleDescription} isNew={ques.isNew} />))}
 
-                    </div>
                 </div>
             </section>
         </div>
