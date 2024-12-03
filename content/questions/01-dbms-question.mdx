@@ -1,12 +1,71 @@
 ---
 title: DBMS Questions
-titleDescription: welcome to dbms practice questions.
+titleDescription: Database managment system questions.
 publishedDate: 2024-12-01
 updatedDate: 2024-12-01  
 isNew: true 
 published: true
 ---
 
-we are working continueosly on it. It comming soon! 
+---
+
+1. What are the advantages for file processing system which were removed by the DBMS?
+2. Discuss the role of database administrator.
+3. Discuss three level of abstractions or schemas architecture of DBMS. Explain the differences between physical lavel, conceptual level, and view level of the data abstraction.
+4. What is data model? What are the different types of data models in dbms? Explain them.
+5. What is data independence in dbms? Differentiate between physical and logical data independence.
+6. Explain all database language (DDL command and DML command) in details with example. State the procedural DML and nonprocedural DML with their differences.
+7. Draw the overall structure (database architecture) of dbms and explain its various components.
+8. Differentiate and explain two-tier and three-tier architecture of dbms.
+9. Describe mapping constraints with its types.
+10. Explain the difference between a weak and a strong entity set with example.
+11. What are attributes in DBMS? Explain all types of attributes of an entity.
+12. What do you mean by a key to the relations? Distinguish the terms: super key, candidate key, primary key, unique key, and foreign key with example.
+13. Compare generalisation, spacialization, and aggregation with suitable examples.
+
+**Entity Relationship Model**
+1. What is ER diagram? Explained different components of an ER diagram with their notation. Also make an ER diagram for employee project management system.
+2. Draw an ER diagram of hospital or bank with showing the specialisation, aggregation, and generalisation. Also convert it into relational schema and SQL DDL.
+
+---
+
+**Relational Data Model and Language**
+1. Distinguish between DBMS and RDBMS?
+2. Define constraint. What are different integrity constraints? Entity integrity constraints.
+3. What do you mean by referential integrity? With an example show how a referential integrity can be implemented.
+4. Differentiate between relational algebra and relational calculus?
+5. What is relational algebra? Explain different operations of relational algebra with an example.
+6. What are the relational algebra operations supported in SQL? Write the SQL statement for each operation.
+7. What do you understand by union comparability? Which relational algebra operations required the participating tables to be union compatible? Give the region in detail.
+8. What is relational calculus? What are tuple relational calculus and domain relational calculus?
+9. What are the various anomalies associated with RDBMS?
+10. **a.** Describe SQL. Explain different categories of SQL. **b.** What is aggregate function in SQL? Write SQL query for different aggregate function. **c.** What is a CLAUSE in terms of SQL? **d.** Explain embedded SQL and dynamic SQL in detail.  
+11. What are joints? Discuss all types of joints with the help of suitable examples. Write difference between cross joints, inner joints, natural joints, equi joins, left outer joints, and right outer joints with the suitable example. 
+12. Differentiate between SQL and PL/SQL? Explain producers in SQL/PL SQL.
+13. Discuss the concept of trigger with a suitable example? Also differentiate between views and indexes? Explain different types of triggers in SQL/PL SQL.
+14. What do you mean by cursor?
+
+---
+
+**Data Base Design & Normalization**
+1. Write and describe different Armstrong's axioms (or interface rule) for functional dependency. What is the role of these rules in database development process?
+2. What do you understand by transitive dependencies? Explain with an example any two problems that can arise in database if transitive dependencies are present in the database.
+3. What are RAT axioms? Define the closure of an attribute set. Also discuss the algorithm for finding the closure of functional dependency with a suitable example.
+4. Define partial functional dependency consider the following two sets of functional dependencies $$F = \{A\rightarrow C, AC \rightarrow D, E \rightarrow AD, E \rightarrow H \}$$ and $$G =\{A \rightarrow CD, E \rightarrow AH\}$$. Check whether or not they are equivalent.
+5. Discuss the various anomalies associated with normalisation?
+6. What is personal dependency? Explain the procedure of calculating the canonical cover of a given functional dependency set with suitable example.
+7. Define minimal cover.Suppose a relation $$R(A,B,C)$$ has $$FD$$ set $$F=\{A \rightarrow B, B \rightarrow C, A \rightarrow C, AB \rightarrow B, AB \rightarrow C, AC \rightarrow B \}$$. Convert this $$FD$$ set into minimal cover.
+8. A set of $$FD$$s for the relations $$R \{A,B,C,D,E,F\} $$ is $$AB\rightarrow C, C\rightarrow A, BC\rightarrow D, ABC\rightarrow B, BE\rightarrow C, EC\rightarrow FA, CF\rightarrow BD, D\rightarrow E$$. Find a minimum cover forth is set of $$FD$$s.
+9. Explain normalisation. What are advantages of normalisation? Why do we normalise database? What is a normal form?
+10. What is the purpose of normalisation? Explain 1NF 2NF 3NF and BCNF with suitable example?
+11. List all prime and non prime revealed in relation $$R\{A,B,C,D,E\}$$ with $$FD$$ set $$F=\{AB\rightarrow C, B \rightarrow E, C\rightarrow D\}$$.
+12. What do you mean by loss-less joint decomposition? Explain with suitable example that how functional dependency can be used to show that decomposition are loss-less?
+13. Given the following set of $$FD$$s on a schema $$R\{V, W, X,Y,Z\}$$ $$Z\rightarrow V, W\rightarrow  YX, Y\rightarrow Z, V\rightarrow  WX$$ a state whether the following decomposition are lossless join decomposition or not. 
+<br/>**a.** $$R1=\{V,W,X\}, R2=\{V,Y,Z\}$$ consider a relation $$R\{A,B,C,D,E\}$$ with set $$F\{A\rightarrow CD, C\rightarrow B, B\rightarrow AE\}$$ what are the primary attributes of this relation and decomposition the given relation in 3NF.
+14. Consider the relation $$R\{A,B,C,D,E\}$$ with set $$F=\{A\rightarrow C, B\rightarrow D\}$$. decomposition this relation in 2NF.
+15. Consider the universal relation $$R=\{A,B,C,D,E,F,G,H,I,J\}$$ and the set of functional dependencies $$F=\{AB\rightarrow C,A\rightarrow DE,B\rightarrow F,F\rightarrow GH, D\rightarrow IJ\}$$. what is the key for R? decompose R into 2NF and then 3NF relations.
+16. What is highest normal form of the relation $$R\{X,Y,Z\}$$ with the set $$F=\{WY\rightarrow XZ, X\rightarrow Y\}$$.
+17. Write the difference between 3NF and BCNF. Find normal form of relation $$R\{A,B,C,D,E\}$$ having $$FD$$ set $$F=\{A\rightarrow B, BC\rightarrow  E, ED\rightarrow A\}$$.
+18. Describe the term MVD or JD in contest of DBMS by giving an example. Discuss 4NF and 5NF also.
 
 ---
