@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/config/site";
+import { Icons } from "@/components/icons";
 
 
 export const runtime = "edge";
@@ -8,7 +9,7 @@ export const runtime = "edge";
 const interBold = fetch(new URL("../../../assets/fonts/Inter-Bold.ttf", import.meta.url)).then((res) => res.arrayBuffer());
 export async function GET(req: NextRequest) {
   try {
-    const fontBold = await interBold; 
+    const fontBold = await interBold;
 
     const { searchParams, } = req.nextUrl;
     const title = searchParams.get("title");
@@ -43,35 +44,21 @@ export async function GET(req: NextRequest) {
 
           {/* books */}
           <div style={{ transform: 'rotate(-10deg)' }} tw="flex relative w-[260px] h-[360px] ">
-            <div style={{ background: 'linear-gradient(to bottom, #ef4444, #b91c1c)' }} tw="w-full h-full mb-3 flex flex-col items-center justify-between rounded-md shadow-2xl text-white">
-              <p tw="text-4xl mt-6 mx-4 font-semibold">{bookName}</p>
-              <div tw=" flex opacity-70 items-center bg-black justify-center rounded-full mb-14">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlSpace="preserve"
-                  width={110}
-                  height={110}
-                  viewBox="0 0 180.622 180.622"
-                >
-                  <path
-                    d="m54.365 48.572-12.386 69.616h7.884c7.774 0 12.463-4.77 13.676-11.59l6.966-39.15 12.674 36.025 27.284-34.931-8.833 49.646h7.884c7.774 0 12.463-4.77 13.677-11.59l12.498-70.247H118.64c-7.19 0-10.554 4.804-10.554 4.804L88.967 67.57l-9.086-31.219H67.324c-4.806.018-11.131 3.737-12.96 12.22Z"
-                    style={{
-
-                      opacity: 0.974757,
-                      fill: "#fff",
-                      strokeWidth: 2.02956,
-                      strokeLinecap: "round",
-                      strokeDashoffset: 453.543,
-                      paintOrder: "stroke fill markers",
-                    }}
-                    transform="translate(-2.714 9.81) scale(1.06238)"
-                  />
-                </svg>
+            
+            <div tw="flex w-[256px] relative h-[341px] bg-green-900 overflow-hidden shadow-2xl shadow-green-800/85 rounded-md">
+              <div tw="flex w-full shadow-inner">
+                <div tw="flex flex-col absolute w-full flex-1 p-5 text-zinc-100 justify-center text-center">
+                  <p tw="flex w-full mb-2 text-2xl font-bold opacity-95">{bookName}</p>
+                  <p tw="flex text-[1rem] font-thin opacity-95">Learn Beginner level to Professional level of {bookName}.</p>
+                </div>
+                <div style={{backgroundImage: 'linear-gradient(to right, rgba(0,0,0, 0.25) 30%, rgba(255,255,255, 0.75) 55%, rgba(255,255,255, 0.45) 80%)'}} tw="flex h-full w-3" />
+                <div style={{backgroundImage: 'linear-gradient(to right, rgba(255,255,255, 0.45) 30%, rgba(0,0,0,0.15))'}} tw="flex h-full w-2" />
+                <div style={{backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.15) 10%, rgba(255,255,255,0.40), rgba(255,255,255, 0.10) 95%)'}} tw="flex h-full w-3" />
+                <div style={{backgroundImage: 'linear-gradient(to right, rgba(255,255,255, 0.10) , transparent)'}} tw="flex h-full w-5" />
+                <div tw="flex text-zinc-100 absolute w-full justify-center bottom-3">
+                  <Icons.logo tw="flex w-34 h-34" />
+                </div>
               </div>
-              <div tw="absolute flex w-[260px] h-[360px] rounded-md shadow-inner overflow-hidden">
-                <img tw="h-full w-full flex" src="https://mohemohe.in/images/og-book_cov.png" alt="cover" />
-              </div>
-
             </div>
           </div>
 
