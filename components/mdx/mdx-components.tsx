@@ -5,6 +5,7 @@ import { FigureMdx } from "./mdx-figures";
 import { ChapIntro } from "../mdx/mdx-intro";
 import * as Icons from "lucide-react";
 import { NextUp } from "./mdx-next-up";
+import ToggleComponent from "./mdx-toggle-answer";
 
 
 const useMDXComponent = (code: string) => {
@@ -20,7 +21,7 @@ const components = {
   FigureMdx,
   ChapIntro,
   NextUp,
-  
+  ToggleComponent,
 }
 
 
