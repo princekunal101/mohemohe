@@ -119,6 +119,13 @@ code[data-theme*=" "] {
   @apply no-underline text-blue-500;
 } */
 
+/* @import 'katex/dist/katex.min.css'; */
+
+.katex, .katex .katex-mathml, .katex .katex-mathml math {
+  @apply max-w-full inline-block m-0 overflow-hidden
+}
+
+
 .katex-html {
   @apply hidden
 }
