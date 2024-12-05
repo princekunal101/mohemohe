@@ -4,32 +4,51 @@ bookName: Web Technology
 chapShortDesc: Creating and structuring web content, including lists, tables, images, frames, and forms.
 chapNum: 2
 publishedDate: 2024-10-10
-updatedDate: 2024-11-01
-tags: ["aktu","web-technology"]
+updatedDate: 2024-12-05
 isNew: false
-isMod: false
+isMod: true
 published: true
 ---
 
 In the privious chapter we have learned about web development strategies and what parameters are required to create a web page or website. The Internet and its connectivity were also studied and how browsers as clients and servers communicate with each other.
 
 <ChapIntro listData={[
-  {icon: <Icons.Code className="w-5 h-5"/>, topic:' Some basic html tags.'},
-  {icon: <Icons.FileCode2 className="w-5 h-5"/>, topic:'Basic structure of html.'},
+  {icon: <Icons.Code className="w-5 h-5"/>, topic:' Some basic hyper text markup language which is used to create html documents.'},
+  {icon: <Icons.ListOrdered className="w-5 h-5"/>, topic:'How to use list and hypertext effectively in html documents?'},
+  {icon: <Icons.Image className="w-5 h-5"/>, topic:'How to include images in html documents? It will improve the appearence of html documents.'},
 ]}/>
 
 ---
-## Hyper Text Markup Language (HTML) 
+
+# HTML
+**H**yper **T**ext **M**arkup **L**anguage **HTML** is a method where ordinary text can be converted into hypertext. It is a set of a special codes included to control the layout and appearance of text.
+
+HTML is not a programming language it combines instruction within data to tell and display programme called browser how to render the data that the document contains.
+
+HTML is the character-based method of describing and expressing the content. The content is pictures, text, sound, and video clips.
+{/* 
 - HTML is the language of web. it is used to create websites.
 - HTML is basically used for designing web pages.
 - We use HTML tag to defination look and feel of a website.
 - It is not programming language. It is markup language. *(Markup language is set of text)*.
 - HTML file is always ends with ```.html``` ```.htm```
-- HTML file program always start with **html** tag.
+- HTML file program always start with **html** tag. */}
+
+HTML is a simple markup language used to create platform-independent hypertext document on the worldwide wave most hypertext document on the wave are written in Html.
 
 
+## Structure of HTML Document
+HTML generally has two parts an **on-code** and an **off-code**, which contains the text to be defined. Few tags do not require to an **off-code**.
+```html
+<tagname>...</tagname>
+```
+HTML define and specify the specific elements that make up a page such as the body of the text, heading, paragraphs, line breaks, text element, etc.
 
-## Structure of HTML program/ Web pages
+Tag or tag element refer to the html code codes that define the element in an html file such as heading, emails, paragraph, and list. 
+
+Html tags are inserted into a document between angular brackets `<>` and dag in html are non case-sensitive.
+
+
 ```html showLineNumbers title="index.html"
 <!DOCTYPE html>
 <html lang="en">
@@ -40,158 +59,225 @@ In the privious chapter we have learned about web development strategies and wha
 </head>
 <body>
     <h1>Hello world!</h1>
+    <p>Welcome to Web Technology Tutorial.</p>
 </body>
 </html>
 ```
 
-- ```<title>``` tag is used for setting the title of the web page.
+**Header or Head Section:** It includes a pair of tags, `<head>` and `</head>` to identify the heading or title or metadata of a document. 
+
+The text between the `<title>` and `</title>` tag, appear as the title in the browsers window, and the length of it should not exceed beyond **60** character.
+
+**Body Section:** The body of an html document contains the text that will show up on the web page. The body section is enclosed within `<body>` and `</body>` tags. It gives the description of document layout and structure.
+
+**Heading Tags:** The heading tags are used to display heading on the web page in various sizes as main and subheading. HTML document support 6 level of html heading `<h1>` (as largest) to `<h6>` (as smallest).
+
+**Paragraph Formatting Tags:** Whenever we are interested in organizing the text into a paragraph then paragraph and tab `<p>`...`</p>` can be used. Two specify the beginning of the paragraph and the indoor paragraph `<p>` and `</p>` is used.
+
+<Callout>
+**Notes:**
+
+Ending tag a `<p>` is not necessary.
+</Callout>
+
+The `<br>` (line break) tag is an empty tag or a standalone tag that simply inserts a line break.
+
+The `<b>` or `<strong>` and `<i>` or `<em>` tag is applied only to the first paragraph that appears **bold** and *itailized* respectively.
+
+{/* - ```<title>``` tag is used for setting the title of the web page.
 - ```<head>``` tag is used for setting the title of web page. It can also put the JavaScript in ```<head>``` tag *(validation purpose)*
-- ```<body>``` tag is used for printing the content of web page.
+- ```<body>``` tag is used for printing the content of web page. */}
 
-## Tags:
-**Bold tag** ```<b> </b>```: It is used to bold the contents of the web page. *e.g.* Hello **STUDENTS**.
+**Division Tag:** The `<div>` tag is used to apply alignment and style characteristics to only a section of document.
+
+**Comment tag:** It is a standalone that enable us to include messages for anyone else future reference. 
 ```html
-Hello <b>STUDENTS</b>
+<!-- type comment here -->
 ```
 
-**Italic tag** ```<i> </i>```: It is used to italic the cpntent of the body. *e.g.* Hi *Studends*.
+**Preformatted Text:** The `<pre>` (preformatted text) tag is used to display a block of *"preformatted"* text in a monospace fixed-bitch font. It is mainly used to display text in a tabular or columnar format in which we want to make sure that the column remains properly aligned.
+
+---
+
+## Creating Lists
+Headings and paragraph text elements are used more commonly than lists. We can create two types of lists&mdash; Ordered an Unordered. 
+
+### The Ordered List Tag
+The `<ol>` (Ordered List) tag defines a sequentially numbered list of items. It is used in consumption with the `<li>` (list item) tags, which is used to tag the individual list item in a list.
+
 ```html
-Hi <i>Students</i>
+<ol>
+    <li>MS WORD</li>
+    <li>MS EXCEL</li>
+    <li>MS POWERPOINT</li>
+</ol>
 ```
 
-**Strike off tag** ```<s> </s>```: *e.g.* <s>Hello</s>
+### The Unordered List Tag
+The `<ul>` tags defines a bullet list of items, the `<li>` (list item) is nested inside the `<ul>` tag and defines each item within the list.
+
 ```html
-<s>Hello</s>
+<ul>
+    <li>MS WORD</li>
+    <li>MS EXCEL</li>
+    <li>MS POWERPOINT</li>
+</ul>
 ```
 
-**Underline tag** ```<u> </u>```: It underline the content. *e.g.* <u>Hi Students</u>
-```html
-<u>Hi Students</u>
-```
+#### Nesting Lists
+We can nest a list inside another list, the browser automatically indents nested list levels, We can nest the same or different kinds of lists.
 
-**Heading tag**: It is used for making heading in web pages. There are six type of heading tags &mdash;
-```html
-<h1> ... </h1>
-<h2> ... </h2>
-<h3> ... </h3>
-<h4> ... </h4>
-<h5> ... </h5>
-<h6> ... </h6>
-```
-
-**Stand alone tag** ```<hr>``` ```<br>```: Some tags doen't have closing tag. These tags are called stand alone tag.
-    ```<br>``` used for breaking the line.
-    ```<hr>``` it create a horizontal line.
-```html
-Hello <br>Students
-<hr>
-```
-
-**List tag**: It is the collection of one or more item. HTML support three types of list &mdash;
-    - Unordered list ```<ul> </ul>```
-    - Ordered list ```<ol> </ol>```
-    - Defination list ```<dl> </dl>``` ```<dt> </dt>``` ```<dd> </dd>```
-
-```html
-<html>
+<ToggleComponent>
+```html title="nestedList.html"
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title> COMPUTER </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested List Example</title>
 </head>
 <body>
-    <dl>  <!--tag is used for defination list -->
-        <dt> RAM </dt>  <!--tag is used for defination term -->
-        <dd> Random Access Memory </dd> <!--tag is used for defination description -->
-    </dl>
+    <h1>Nested List Example</h1>
+    <h2>Unordered Nested List<h2>
+    <ul>
+        <li>Item 1
+            <ul>
+                <li>Item 1.1</li>
+                <li>Item 1.2
+                    <ul>
+                        <li>Item 1.2.1</li>
+                        <li>Item 1.2.2</li>
+                    </ul>
+                </li>
+            </li>
+            <li>Item 3.1</li>
+            </ul>
+        </li>
+        <li>Item 2</li>
+        <li>Item 3
+            <ul>
+                <li>Item 3.1</li>
+                <li>Item 3.2</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Ordered Nested List<h2>
+    <ol>
+        <li>Item 1
+            <ol>
+                <li>Item 1.1</li>
+                <li>Item 1.2
+                    <ol>
+                        <li>Item 1.2.1</li>
+                        <li>Item 1.2.2</li>
+                    </ol>
+                </li>
+            </li>
+            <li>Item 3.1</li>
+            </ol>
+        </li>
+        <li>Item 2</li>
+        <li>Item 3
+            <ol>
+                <li>Item 3.1</li>
+                <li>Item 3.2</li>
+            </ol>
+        </li>
+    </ol>
 </body>
 </html>
 ```
+</ToggleComponent>
+---
 
-**Superscript tag** ```<sup> </sup>```: *e.g.* x<sup>2</sup> + y<sup>3</sup> + 70
-```html 
+## Tables
+Table is a collection of row and columns. It is used for arranging the layout of a web page. The contents on the page look organised with the use of tables which adds to its visual appeal also.
+
+Here is an example of a table in html 5 below:
+<ToggleComponent>
+```html title="table.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial=scale=1.0">
+    <title> HTML Tables</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        caption {
+            caption-side: top;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+    </style>
+</head>
 <body>
-    x<sup>2</sup> + y<sup>3</sup> + 70
+    <table>
+        <caption>Monthly Sales Data</caption>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Products</th>
+                <th>Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>January</td>
+                <td>Gadget A</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>February</td>
+                <td>Gadget B</td>
+                <td>200</td>
+            </tr>
+            <tr>
+                <td>March</td>
+                <td>Gadget</td>
+                <td>250</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
-```
-
-**Subscript tag** ```<sub> </sub>```: *e.g.* H<sub>2</sub>SO<sub>4</sub>
-```html
-<body> 
-    H<sub>2</sub>SO<sub>4</sub>
-</body>
-```
-
-**Pre tag** ```<pre> </pre>```: It is used in performated text.
-*e.g.*
-```makefile
-            Name    Marks
-            XYZ     20
-            ABC     30
-```
-
-```html
-<body>
-    <pre>
-            Name    Marks
-            XYZ     20
-            ABC     30
-    </pre>
-</body>
-```
-
-**Anchor tag** ```<a> </a>```: It is used to create hyperlink to a resource *(web page, page file, document file, text file)*.
-        
-        **Attribute of anchor tag**: ```href``` *(hyperlink reference)*
-
-**Image** ```<img> </img>```: It is used to place an image on the Web page. 
-- ```<img>``` tag is used to set an image on the web page. 
-- Images are not part of the Web page file, they are separate file which are inserted into the web page where it is used by the browser.
-
-    **Attribute of image tag**: ```size```, ```title```, ```alignment```, ```border-size```, ```source```.
-```html
-<body>
-    <img src="pic.jpeg" align="right"></img>
-</body>
-```
-
-**Frame set** ```<frame>```: It can display one for more than one HTML document in the same browser window.
-- Each HTML document is called frame and each frame is independent of the others.
-- ```<frame set>``` tag is used to divide browser window.
-- ```<body>``` tag is not required.
-
-    **Attribute of frame set tag**: ```row```, ```columns```, ```frame-border```, ```border-color```, ```name```.
-
-- **Row**: It divides browser window row wise.
-```html
-<html>
-    <frame set rows="30%","70%">
-    <frame set rows="30%","70%","*">
-    </frame set>
 </html>
+
 ```
+</ToggleComponent>
+The `<table>`... `</table>` (Table) tag is used to creating tables. Which marks the beginning and end of the table.
 
-- **Columns**: It divides browsers window column wise.
-```html
-<html>
-    <frame set cols="33%","33%","34%">
-        <frame src="a.html">
-        <frame src="b.html">
-        <frame src="c.html">
-    </frame set>
-</html>
-```
+The `<tr>`... `</tr>` (table row) tag is used to add a row in a table. For each row there will be a set of table row tags.
 
-**Table tag** ```<table>```: It is useful to display data in 2D format.
-- Tabels are also powerful tool for formatting web pages.
-- Table is created using three basic tags. ```<table>```, ```<tr>```, ```<th>``` *(optional)*, ```<td>```.
-    
-    **Attribute for table tag**: 
-- **Border:** It is used to set the border of the table.
-- **Border color:** It is used to change the border colour of the table.
-- **Align:** It is used for setting the alignment of the table.
+The `<td>`... `</td>` (table data) tag is used to define each cell in the table. They must be nested within the table row tags.
 
-**Nested Table**: Nested table in HTML means creating a table on web page inside another table on the same web page.
+<Callout>
+**Needs to Know**
 
-```html showLineNumbers title="table.html"
+It is not necessary for all the row to have same number of columns, the row will less number of columns will be banded with blank cell.
+</Callout>
+
+### Table captains and headers
+Generally, every table displayed in the page will have a title and that describes the contents of the tables.
+
+The `<caption>`... `</caption>` tag is used for the title caption for a table. This elements should appear inside the `<table>` tag but not inside the table row or cells. It may have its lines wrapped to fit within the width of the table.
+
+The `<th>`... `</th>` tags are used to designate a cell to be a header cell and are to be used within the `<tr>`... `</tr>` tags.
+
+#### Nested Tables
+
+```html title="table.html" showLineNumbers
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -218,18 +304,180 @@ Hello <br>Students
 </html>
 ```
 
-
+<ToggleComponent>
 <FigureMdx lightUrl="wt-nasted-table" desc="Nested Table output"/>
+</ToggleComponent>
 
-**Form tag** ```<form>```: Website use ```form``` to collect information from user and transmit that information to the server for processing.
-    - Html form is used to pass the data to a server.
-    - One can have more than one html form in single page.
-    - There are four primary elements used within home tag &mdash;
-        - ```input```, ```text area```, ```select```, ```button```.
+---
 
+## Images
+The `<img>` (image) tag allows us to display images on web page. The `<img>` (image) tag is an empty or standalone document element.
 
+```html
+<img src="cute_girl.jpg" alt="Girl with smile." height="340px" width="280px">
+```
+
+The `src` (source) attribute is required attribute that identify the partial address (url) or just the name of the file to display.
+
+The `alt` (attribute) to provide an alternative to an image in the case of someone using a text only browser or using a graphical browser with image turned off.
+
+### Height and Width of an Image
+Normally, a web browser has to download an image before it allocates space for it on a web page. *i.e.* If it have large graphics, everything else has to wait until the image downloads.
+
+If we set the dimensions of the graphics using the `height` and `width` attribute of the `img` tag, the browser can allocate a space for graphics and then display the render of the page without waiting for the graphics to download completely.
+
+This will resize the graphics to fit horizontally within a browser window, the hight of the image will also be resized correspondingly.
 
 
 ---
-{/* 
-<NextUp nextChap="5" nextChapName="eXtensible Markup Language XML" nextChapLink="/web-technology/xml"> Let's know about XML eXtensible Markup Language and its uses. what makes other from the HTML and valid XML document.</NextUp> */}
+
+## Forms 
+A form is a collection of forms fields on a page. Typically has a form handler, which is a method of collecting information from the form, once the user submits the form, the form handler swings into the action. The form handler is a script (program) that handle the data on the form.
+
+A form handler can be used to&mdash;
+- Store the data submitted by the user into a text file. The data can be retrieved as and when required.
+- Update a database with the data submitted by the user.
+- Post the data on a web page.
+
+### Application areas of forms
+**Eductional sites:** For collecting names, addresses, telephone numbers, e-mail addresses, and other information via website to register user for a service or event.
+
+**Collecting feedback on website:** Most organisation and companies has that offer a service increase users to send their feedback. It is a source of information for change or improvement.
+
+**Providing the interface for session:** Users are required to fill out login or signup form if they want to participate.
+
+### Creating a Form
+Forms can be classified into three sections&mdash;
+- Form header
+- Input fields
+- Action Buttons
+
+<ToggleComponent>
+```html title="varification.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varification Form</title>
+</head>
+<body>
+    <h1>Varification Form</h1>
+    <form id="FormVarification" method="POST" action="varify.php">
+        <div>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+        </div>
+        <div>
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+```
+</ToggleComponent>
+
+#### Form header
+The form header can be added to the form either by using the `<p>` tag or `<div>` tag.
+
+#### Input Element
+Input element are form elements that can accept input form from the user. The following are the sum of the input elements that can be added to a form&mdash;
+
+| Type              | Description                       |
+| ----------------- | --------------------------------- |
+| `text`            | Text entry box                    |
+| `button`          | Custom Push Button                |
+| `checkbox`        | On/Off Check box                  |
+| `image`           | Graphical Image                   |
+| `password`        | Masked text entry                 |
+| `radio`           | Radio Buttons                     |
+| `reset`           | Reset Button                      |
+| `submit`          | Submit Button                     |
+| `date`            | Entering a date as a date picker  |
+| `email`           | A field for editing an email address. |
+| `file`            | the use select a file             |
+| `tel`             | Entering a telephone number.      |
+
+
+**Text Box:** A text box allows a user to enter data such as characters and numbers.
+
+**Check Box:** A cheque box is like a toggle switch where user can select one select or note select the item. If the check box is selected then a value `true` is returned with the check box name else `false` is return. 
+
+**Radio Button:** Radio buttons are used when the user has to make a selection among multiple choices and is always used in a group.
+
+**Password Field:** This is same as a text box, except that whatever the user is marked with an asterisk `*` or a bullet `●` or some similar character so that no one can see what the user has a `value` typed.
+
+**Multiple Line Text Input:** In certain cases it might be necessary to accept several lines of text from the user, in such case to use the `<textarea>` tag.
+
+**Pull Down Menu:** A selection list displays a list of options from which the user can select an item. The `<select>` tag is used to define the selection list in a form and should be defined within the `<form>` tag. The `<option>` tag is attached to the `<select>` tag to display a list of options.
+
+#### Action Buttons 
+Once all the details in the form are entered, then this data has to be stored somewhere so that it can be reused. 
+Their are two predefinite buttons called `submit` or `reset` buttons.
+
+**Submit Button:** On clicking this button the data in all fields will be sent to the server as a series of name/value pair.
+
+**Reset Button:** The `reset` button is used to clear the contents set default values to all the form elements and make them active.
+
+#### Attribute to form tag
+`<form>` tag could have two attributes: methods and action.
+
+**Method:** It specifies how the browser should communicate with the server. Possible value are `GET` and `POST`. `GET` method is used in case data from a pre-stabilised index needs to be queries. And if the information in the form is to be collected for later then `POST` method is used.
+
+**Action:** It specifies what CGI script is used to process the data. The values could either be an `url` to the script or an `mail to:` which will send the form directly to the specified address.
+
+
+---
+
+## Frames 
+Frames enables the user to divide a page into number of rectangular regions/windows of various sizes. A page can have one or more frame, each of the frames is a website in itself, they can access different `url`s and each of these can be updated independently.
+
+Frames could be applied for the following on the web page&mdash;
+- To display the log or a stationary information in one fixed partition of the page.
+- For the table of contents, in a page where people can just click and move around the website without having to move constantly to the contents page.
+
+### Defining Frameset
+The`<frameset>` is the html tag used to create a framed page. This tag replace the `<body>` tag completely to create **frames-style** pages. The `<frameset>` tag can have two attributes&mdash; `rows` and `cols`.
+
+**Rows:** `rows` specify number of horizontal windows or frames and values in the `rows` attribute specify the height of the frames in the frameset.
+
+**Cols:** `cols` specify number of vertical window or frames and the values in them specify the width of the frames in the framset.
+
+```html title="frame.htm"
+<html>
+    <head> <title> Frames Document </title> </head>
+    <frameset cols = 30%, 70%>
+        <frame src="A1.html" name="first frame">
+            <frame src="A2.html" name="second frame">
+    </frameset>
+</html>
+
+```
+
+### iframe
+ `<frameset>` was used in html 4. The `<iframe>` tag specifies an inline frame. An inline frame is used to embed another document with the current html document. use css to style the `<iframe>`.
+
+```html
+<iframe src="/default.asp" width="100%" height="300" style="border:1px solid black;">
+</iframe>
+```
+
+---
+
+<NextUp nextChap="3" nextChapName="eXtensible Markup Language" nextChapLink="/web-technology/xml"> 
+Let's know about (XML) eXtensible Markup Language and its uses.
+</NextUp>
