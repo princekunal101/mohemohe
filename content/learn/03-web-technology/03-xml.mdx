@@ -1,67 +1,234 @@
 ---
-chapTitle: eXtensible Markup Language
+chapTitle: Extensible Markup Language
 bookName: Web Technology
-chapDesc: In the privious chapter we have learnt about the HTML Hyper Text Markup Language, its tags and the basic structure of html.
 chapShortDesc: Understand the logic behind XML and how it differs from HTML.
 chapNum: 3
 publishedDate: 2024-10-13
-updatedDate: 2024-10-13
-tags: ["aktu","web-technology"]
+updatedDate: 2024-12-07
+isMod: true
 published: true
 ---
 
+In the privious chapter we have learnt about the HTML Hyper Text Markup Language, how to create the html document? uses of lists and hypertext, how to improve the appearence of html documents using the images? and creation of forms also.
+
 <ChapIntro listData={[
-  {icon: <Icons.MessageSquareCode className="w-5 h-5"/>, topic:'What is extensible markup language and its uses.'},
-  {icon: <Icons.Lightbulb className="w-5 h-5"/>, topic:'Differenciate between XML and HTML.'},
-  {icon: <Icons.PencilRuler className="w-5 h-5"/>, topic:'What discribe the Document Type Defination DTD.'}
+  {icon: <Icons.MessageSquareCode className="w-5 h-5"/>, topic:'What is extensible markup language? and its uses.'},
+  {icon: <Icons.SmilePlus className="w-5 h-5"/>, topic:'Study about how XML Schema is superior then Document Type Defination/ Decleration?'},
+  {icon: <Icons.PencilRuler className="w-5 h-5"/>, topic:'What makes it differ from html?'}
 ]}/>
 
 ---
-## eXtensible Markup Language XML
+# XML
+XML is an acronym for **Ex**tensible **M**arkup **L**anguage. It is a markup language derived from SGML. It is different from HTML. In html tag semantics and tags sets are fixed and rigidly defined. 
+
+An XML document is written using the markup language to contain a structured information. 
+A document as a data file containing information and reference to data in various format and purpose including but not limited to mathematical equation, vector graphics, ecommerce transaction details, object meta-data, server APIs, and various other structured information.
+
+{/* ## eXtensible Markup Language XML
 - XML stands for extensible markup language.
 - it is like HTML and was designed to describe data.
 - ```<xml>``` tags are not predefined you must define your own page.
 - XML use a document type definition (DTD) or an XML schema to describe the data.
 - XML with a DTD or XML schema is desigred to be safe descriptive.
-- XML is a cross platform software and hardware independent tool for transmitting information.
+- XML is a cross platform software and hardware independent tool for transmitting information. */}
 
-## XML uses
-- XML can work behind the schema to simplify the creation of html document for large website.
-- XML can be used to exchange the information between organisation and system.
-- XML can be used for uploading and reloading of database.
-- It can be used to store and arrange the data which customiges your data handling needs.
-- XML can easily be merged with stylesheets to create almost any desired output.
+Like SGML (unlike HTML). XML is a not a markup language, but a language for defining markup languages. Therefore, XML is a really nothing more than a specification. Specification means a aggreed-upon rules on how to create certain kind of documents.
 
-### Difference between HTML and XML.
-| HTML  | XML   |
-| ----- | ----- |
-| This is a markup language. | This is standard markup language that defines other markup language. |
-| It is not case sensitive. | It is case sensitive. |
-| Develop as a presentation language. | It is not a presentation language nor a programming language. |
-| Has its own predefined tag. | Tags are defined as per that need of the programmer, XML is flexible as tags can be defined when needed. |
-| In HTML closing tags are not necessary.| In XML closing tags are necessary. |
-| HTML is used to display the data. | It is used to explore the data. |
-| It can ignore a small errors. | It does not allow the errors. |
-| HTML is static in nature. | XML is dynamic in nature. |
-| Some of the tools are used for the HTML are Visual Studio (VS) code, Atom, Notepad++ and many more. | Some of the tools are used for xml or Oxygen XML, XML notepad and many more. |
 
-### XML is self destructive because &mdash;
-- It contains send information.
-- It contain receiver information.
-- It contains body information.
-- It content massage information.
+Here the example of simple xml document.
+<ToggleComponent>
+```xml title="message.xml"
+<?xml version="1.0"?>
+<message>
+  <to>Prince</to>
+  <from>Pratithi</from>
+  <heading>Request</heading>
+  <body>Bhai, Sare subject ka syllabus bta de please!</body>
+</message>
+```
+</ToggleComponent>
 
-## Document Type Defination (DTD)
-- A DTD defines the structure and the legal elements and attributes of an xml document.
-- It validate the xml document.
-- Correct syntax is called *Well formed*. But validate against DTD is both *well formed* and *valid*.
-
-### Valid XML Document
-- A valid XML document is well formed as well as it conformed the rule of DTD.
-- The purpose of DTD is to define the structure and legal element attribute of an XML Document.
-- ```.dtd``` is used to save files.
+All the elements are defined in `.dtd` file in next section.
 
 
 ---
-{/* 
-<NextUp nextChap="6" nextChapName="XML Schema & Object Model" nextChapLink="/web-technology/xml-schema"> Let's know about XML Schema and XML parser with document object model DOM.</NextUp> */}
+
+## DTD
+The **D**ocument **T**ype **D**efinition/ **D**ocument **T**ype **D**eclaration (DTD) describes a model of a structure of the content of an xml document. This model says what must be present, which one are optional, what are there attribute are, and how they can be structured with relation to each other.
+
+The Document Type Definition is an XML description of the content model of a type of documents. The document type declaration is a statement in an XML file that identify the DTD that belongs to the document.
+HTML has only one DTD, XML allows us to create own DTDs for the applications.
+```dtd 
+<!DOCTYPE DTD.name [internal.subset]>
+```
+
+Here the example of DTD file, that defines the elements of the XML document above in XML `message.xml`.
+<ToggleComponent>
+```dtd title="message.dtd" showLineNumbers
+<!ELEMENT message (to, from, heading, body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+```
+</ToggleComponent>
+
+`message` elements have four child elements `to`, `from`, `heading`, `body`. Line 2-5 defines the `to`, `from`, `heading`, `body` element to be of type `#PCDATA`.
+
+<Callout>
+**Notes**
+
+PCData (Perseable Character data) is used when the only text is allowed inside an element.
+</Callout>
+
+---
+
+## XML Schema
+{/* Before studying about XML markup or XML schema we will study about XML namepace.
+
+### Namespaces
+XML namespace provide some of the tools that allows us to combine xml document that use separate sets of element type and attributes. */}
+XML Schema is an XML-based alternative to DTD. It describes the structure of an XML document. The XML Schema language is also referred to as XML Schema Definition (XSD).
+
+An XML Schema defines:
+- Elements, Attribute that can appear in a document.
+- Which elements are child elements.
+- The order and the number of the child element.
+- Data types for elements and attributes.
+
+### Successors of DTDs
+XML Schemas will be used in most web applications as a replacement of DTDs. Here are the some reasons&mdash;
+- It is extensible to future additions.
+- It is regional and more powerful than DTDs.
+- It supports Data types and namespace.
+- It is written in XML.
+
+
+
+
+---
+
+## Object Model
+The XML object model is a collection of objects that you use to assess and manipulate the data stored in an xml document.
+The xml document is moduled after a tree in which each element in the tree is a node.
+Objects with various properties and method represent the tree and its nodes.
+Each node contains actual data in the document.
+
+
+---
+
+## Presenting and using XML
+Presenting XML involves transforming and displaying xml data in a format that is easily readable and visually appealing. This can be achieved by using several technologies&mdash;
+
+**XSLT (Extensive language transformation):** It is used to transform xml document into different formats such as HTML, plain text, or other xml documents. This allows for dynamic and flexible presentation of xml data.
+
+**CSS (Cascading a style sheet):** It can be applied to xml documents to extend them similarly to HTML. It can control the appearance of XML content such as colour, font, and layout. This makes the XML data more visually appealing and easier to read.
+
+**JavaScript and DOM Mainipulation:** JavaScript can be used to dynamically manipulate the XML DOM (Document Object Model). This allows for interactive and real-time update to xml content displayed on a web page.
+
+### Using XML
+
+XML can work behind the schema to simplify the creation of html document for large website.
+
+XML can be used to exchange the information between organisation and system.
+
+XML can be used for uploading and reloading of database. It can be used to store and arrange the data which customiges your data handling needs.
+
+XML can easily be merged with stylesheets to create almost any desired output.
+
+#### Difference between HTML and XML.
+|                   HTML                |               XML                   |
+| ------------------------------------- | ----------------------------------- |
+| This is a markup language.            | This is standard markup language that defines other markup language. |
+| It is not case sensitive.             | It is case sensitive.               |
+| Develop as a presentation language.   | It is not a presentation language nor a programming language. |
+| It has its own predefined tag.        | Tags are defined as per that need of the programmer, XML is flexible as tags can be defined when needed. |
+| In HTML closing tags are not necessary.| In XML closing tags are necessary. |
+| HTML is used to display the data.     | It is used to explore the data.     |
+| It can ignore a small errors.         | It does not allow the errors.       |
+| HTML is static in nature.             | XML is dynamic in nature.           |
+| Some of the tools are used for the HTML are Visual Studio (VS) code, Atom, Notepad++ and many more. | Some of the tools are used for xml or Oxygen XML, XML notepad and many more. |
+
+---
+
+## DOM and SAX
+There are two essential approaches being followed by the processes. One is to read the entire document, build a tree, and then allow a programme to request any data, element from that tree. 
+
+Another approach is to provide a call back interface, so that you can invoke the parser and have predefined method involved whenever an element is encountered. This approach being interactive is very useful if reading a large document.
+
+### DOM
+The **D**ocument **O**bject **M**odel (DOM) is a platform and language independent standard object model for presenting html or xml related formats.
+
+The DOM is required by JavaScript scripts that wish to inspect or modify a web page dynamically. 
+*i.e.* The Document Object Model is the way JavaScript sees its containing HTML page and browser state.
+
+The DOM is a W3C (World Wide Web Consortium) standard for accessing documents like XML and HTML. 
+The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programme and scripts to dynamically assess and update the content, structure, and style of a document.
+
+
+Here the following XML DOM example.
+<ToggleComponent>
+```xml title="books.xml"
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<bookstore>
+<book category="cooking">
+  <title lang="en">Everyday Italian</title>
+  <author>Giada De Laurentiis</author>
+  <year>2005</year>
+  <price>30.00</price>
+</book>
+
+<book category="children">
+  <title lang="en">Harry Potter</title>
+  <author>J K. Rowling</author>
+  <year>2005</year>
+  <price>29.00</price>
+</book>
+
+<book category="web">
+  <title lang="en">XQuery Kick Start</title>
+  <author>James McGovern</author>
+  <author>Per Bothner</author>
+  <author>Kurt Cagle</author>
+  <author>Vaidyanathan Nagarajan</author>
+  <year>2003</year>
+  <price>49.99</price>
+</book>
+</bookstore>
+
+```
+</ToggleComponent>
+
+### SAX
+A **S**imple **A**PI for **X**ML (SAX) is a serial access parser API for XML. SAX provides a mechanism for reading data from an XML document. It is a popular alternative of Document Object Model (DOM).
+
+#### SAX Parser
+A Parser which implement SAX *(i.e. SAX Parser)* function as a stream parser, with an event-driven API. The user defined a number of callback methods that will be called when event occur during parsing. The SAX events including text nodes, element nodes, processing instruction, and comments.
+
+The following XML document example.
+
+<ToggleComponent>
+```xml title="example.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<RootElement param="value">
+  <FirstElement>
+    Some Text
+  </FirstElement>
+
+  <SecondElement param2="something">
+    Pre-Text <Inline>Inline Text</Inline> Post-text.
+  </SecondElement>
+</RootElement>
+```
+</ToggleComponent>
+
+#### Advantages
+SAX parsers have certain benefit over DOM-style parsers. 
+
+The quality of memory that a SAX parsers must be used in order to function in typically much smaller than of a DOM parser.
+
+The memory footprint of a SAX parser, is based on the maximum depth of the XML file/tree and the maximum data stored in XML attributes on a single XML element.
+
+---
+
+<NextUp nextChap="4" nextChapName="Cascading Style Sheet" nextChapLink="/web-technology/css"> A style sheet is a collaction of formatting styles, which can be applied to a web page.</NextUp>
