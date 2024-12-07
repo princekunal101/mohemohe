@@ -1,0 +1,188 @@
+---
+chapTitle: JavaScript
+bookName: Web Technology
+chapShortDesc: Basic concept and uses of JavaScript programming language in web technology.
+chapNum: 5
+publishedDate: 2024-10-31
+updatedDate: 2024-10-31
+isNew: false
+isMod: false
+published: true
+---
+In the privious chapter we have learn about the Cascading Style Sheets, that are more useful for designing user interface UI of the web pages. There was basic CSS to Advanced CSS, that have the Structure of website layout design, Some of the devices have their own design according to their screen size as responsiveness.
+
+<ChapIntro listData={[
+  {icon: <Icons.Info className="w-5 h-5"/>, topic:'Some information about the sripting and JavaScript.'},
+  {icon: <Icons.FileText className="w-5 h-5"/>, topic:'Documents and Forms.'},
+  {icon: <Icons.SquareFunction className="w-5 h-5"/>, topic:' Statements and Functions.'},
+  {icon: <Icons.Car className="w-5 h-5"/>, topic:'Objects.'}
+]}/>
+
+---
+
+# Scripting
+Scripting means writing scripts, which are smaller programs designed to automate tasks, managing system processes, or perform specific functions in larger applications. 
+- Those programming language which uses interpreter to execute the source code directly, without any compilation. 
+- There are many scripting languages&mdash; Python, [JavaScript](/learn/web-technology/js#javascript), Bash, Perl, Ruby, PHP, etc.
+
+
+## JavaScript
+ JavaScript is a high level versatile and interpreted programming language used to create dynamic content on web.
+ It was developed by [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich) for *Netscape* and it was initially known as **LiveScript** but later renamed to **JavaScript**.
+- Used as Client Side Scripting Language executing code on users browser.
+- Used for multiple development fields defining its versality.
+- It borrows much of syntax from C, includeing curly braces and control structures as `if`, `for`, `while`, etc.
+- **JavaScript is used for &mdash;** Web development, Server side development, Game development, Mobile app devlopment, etc. 
+
+<Callout>
+**Need to know:** JavaScript has no direct relationship with [Java](/learn/java). It was named to Capitalise on Java's popularity at that time. 
+</Callout>
+
+
+
+### JavaScript is Good for Frontend Language
+JavaScript is plays a crucial role in developing dynamic and interactive web pages. Here is the breakdown of the main functions &mdash;
+- **Client signed interactivity:** JavaScript runs on the client browser, enabling interactivity without loading to communicate with the server.
+- **DOM Manipulation:** The Document Object Model represent the structure of HTML document as a tree structure.
+- **Event handling:** JavaScript enables developers to define actions that occurs in response to user interaction.
+- **Framework and libraries:** JavaScript has a rich ecosystem of framework and libraries such as React, Angular, Vue.js, jQuery, Moment.js, etc.
+
+### Advantage of JavaScript
+- **Easy to learn and implement:** JavaScript's syntax is beginner friendly. 
+- **Popularity:** It is one of the most widely-used programming language and supported by all mazor web browser.
+- **Interpretability:** JavaScript code is interpreted directly by the web browser.
+- **Server load deduction:** JavaScript runs on the client side reducing the load on the serer and improving overall application perfromance.
+
+### Disadvantages of JavaScript
+- **Client side security:** It can be exploited for malicious purposes until not properly secured.
+- **Browser support:** It may have inconsistencies across different browsers.
+
+## Java vs JavaScript
+
+|         Java                    |           JavaScript              |
+| ------------------------------- | --------------------------------- |
+| Java is Object Oriented Programming language.(**OOPs**) | JavaScript is Scripting language.|
+| Compiled to byte code.          | Interpreted at runtime.           |
+| Uses [`jvm`](/learn/java/why-java#jvm-java-virtual-machine) for execution. | Executed at client server.        |
+| It is multithreaded.            | It is event based.                |
+| Faster due to pre compilation.  | Slower due to interpretation.     |
+| Supports large standard libraries. | Relies on framework.           |
+| It is denoted by `.java` extension. | It is denoted by `.js` extension. |
+| Checks extension for compile time error. | Relies on runtime error. |
+| Method are defined within classes. | Functions can be declared anywhere. |
+| Used for app development.       | Mostly used for web development.  |
+| Large scale system.             | Fronted interactivity.            |
+
+### Documents
+The Document Object Model (DOM), is the fundamental API for repersenting and manipulating the content of HTML and XML documents.
+- **Accessing DOM Elements:** JavaScript have several methods to manipulate HTML elements.
+
+|     Method        |         Description       |
+| ----------------- | ------------------------- |
+| `document.getElementById("myId");` | Access through element `id`. |
+| `document.getElementByClassName("myClass");`| Access through element `class`. |
+| `document.getElementByTagName("div");` | Access through element `tag`. |
+| `document.querySelector(".myClass");` | Access single element with any. |
+| `document.querySelectorAll(".myClass");` | Access all element with any. |
+- **Manipulating DOM Elements:** It can modify the content, attributes, and style of HTML elements.
+
+|         Property/Method            |         Description             |
+| ---------------------------------- | ------------------------------- |
+| `element.innerHTML = "New Content";` | Modify the inner HTML of an element. |
+| `element.style.color = "blue";`    | Modify the style/color value to an HTML element. |
+| `element.setAttribute("src", "img.jpg");` | Modify the attribute value of an HTML element. |
+
+### Forms
+The `document.forms` property in JavaScript provides a collection of all `<form>` elements. This makes easy access and manipulate the forms and their elements.
+<Callout>**Need to know:**<br/> Similarly, all the `form`'s componentes are access using the `HTMLFormElement.elements` property. </Callout>
+
+## Statements
+JavaScript statements are instructions that a browser excutes to perform a specific action. Its statement are terminated with semicolon. JavaScript statements are composed by the following statements&mdash; Variables, Operation, Expressions, Keywords and Comments. 
+- **Variable Decleration:** It is used to create variables to store the data values. *keywords are* [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const).
+- **Conditional Statement:** It execute or skip other statements depending on the value of a specified expression. These statement are dessision based, common Conditional statements are `if`, [`if...else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else), [`switch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch).
+- **Loop Statement:** It repeat a block of code until specified condition is true. Loop statements are [`for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while), [`while`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while), and [`do...while`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while).
+- **Try-Catch Statement:** It handles exceptions that occur in the try block, allowing the program to continue running. [`try...catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch), and `finally`.
+
+```js title="SwitchFunc.js" showLineNumbers
+function convert(x) {
+  switch (typeof x) {
+    case 'number':        // Convert number to hexadecimal integer
+      return x.toString(16);
+    case 'string':        // Return the sttring encosed in quotes
+      return '"' + x + '"';
+    default:              // Convert any othr type in the usual way
+      return String(x);
+  } 
+}
+```
+
+## Functions
+A JavaScript function is a block of code that is defined once but may be executed, invoked, any number of times.
+A function defination may includes a list of identifiers, known as *parameters* that works as local variable for the body of the function.
+- Functions are defined with the `function` keyword with a name.
+- Functions often use their argument values to compute a `return value`.
+
+```js title="FactorialFunc.js" showLineNumbers
+function factorial(x) {
+  if (x <= 1) return 1;
+  return x * factorial(x-1);
+}
+```
+
+## Objects
+An object is an unordered collection of properties, each has a name and a value. we are already familier with the fundamental data structure which are named as **hash**, **hashtable**, **dictionary**, or **associative array**.
+
+```js title="ObjectSyntax.js" showLineNumbers
+let student = {
+  firstName: "Prince",
+  lastName: "Kunal",
+  age: 23,
+  greet: function() {
+    return "नमस्ते, " + this.firstName;
+  }
+}
+```
+**Accessing Object Properties:** There are two method to access the object properties&mdash;
+```js title="AccesProperties.js" showLineNumbers
+// Dot Notations
+console.log(student.firstName);     // Prince  
+
+// Bracket Notations 
+console.log(student["firstName"]);  // Prince
+```
+
+
+---
+## AJAX 
+ AJAX (Asynchronous JavaScript & XML) is a technique for creating asynchronous with application.
+ It allows web pages to communicate with server in the background with requiring full page reloads.
+ This enhances the user experience by making web pages feel, move, responsive and interactive.
+
+### Working of AJAX
+- **Event trigger:** A user interaction on a web page on AJAX Request.
+- **`XMLHttpRequest` objects:** It is created by JavaScript which act as a messenger between the web page and server.
+- **Request configuration:** configure several parameters to define how the request interacts with the server.
+- **Parameters:** Choosing appropriate HTTP method based on required action like as `submit`, `update`, `retrieve`, `delete`, etc. Specifing correct URL for server side script including necessary data in request.
+- **Asynchronous communication:** The `XMLHttpRequest` object send the request to the server asynchronously. *i.e.* The browser doesn't freeze while getting towards server responses and user can continue interaction with the page.
+- **Server-Side Processing:** The server receive the request process it and generate response.
+- **Request handling:** The `XMLHttpRequest` object receive the response from the server. JavaScript can then use the response data to update a specific part of the web page without reloading the entire page.
+
+## Advantage of AJAX
+- **Improve overall user experience:** AJAX allows web applcation to update the specific part of page without reloading the entire page. That makes smoother and more responsive interactions.
+- **Reduce the server load:** AJAX reduces the amount of data exchange between client and server, leading to lower server load and bandwidth usage.
+- **Dynamic and faster update:** AJAX enables faster data retrival and rendring, that makes dynamic and quicker response to user actions.
+- **Enhanced user interaction:** User can interact with web application at the real-time and similar to the Desktop Applications, that makes users to more interactive and engaging.
+- **Flexible for Server-Side communication:** Enabling the retrival and submission of data asynchronously, without interrupting the user's interaction with the page.
+
+### Application of AJAX
+- **Live chat application:** Enable real-time messaging without reloading the whole page.
+- **Social media fields:** Using AJAX, to update feeds, posts, comments, and notification at real-time dynamically.
+- **Real-time data application:** Display live updates like stock prices, score board and weather.
+- **Form validation:** It can provide immediate feedback if errors or incomplete fields are there.
+- **Page scrolling:** Infinite page scroll happen when additional content are loaded. This is commonly used in social media feeds, reels, and e-commerce sites.
+
+
+----
+{/* 
+
+<NextUp nextChap="12" nextChapName="AJAX" nextChapLink="/web-technology/ajax"> In the next chapter we will be learn the basic concepts of Asynchronous JavaScript And XML (AJAX), how its working.</NextUp> */}
