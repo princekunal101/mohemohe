@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { BookItemChapterHeader } from "../book-item-learn";
+import ScrollToTopBottom from "../scroll-to-top-bottom";
 
 
 
@@ -59,25 +60,27 @@ export function ChapterHeader({ chapNum, chapTitle, slug, bookName }: ChapterPag
   // console.log(slug)
 
   return (<>
-    <aside key={slug} className={`z-10 px-3 sm:py-2 flex flex-row max-w-[1072px] h-auto min-h-14 items-center rounded-full bg-secondary/60  ${isSticky ? "border lg:w-full left-4 right-4 lg:left-1/2 lg:right-[unset] lg:-translate-x-1/2 border-border/75 top-4 backdrop-blur-lg  shadow-xl fixed" : ""}`}>
-      <ChapterList slug={slug} isSticky={isSticky} bookName={bookName} />
+    <aside key={slug} className={`z-10 px-2 sm:py-2 md:px-5  flex flex-row justify-between max-w-[1072px] h-auto min-h-14 items-center rounded-full bg-secondary/60  ${isSticky ? "border lg:w-full left-4 right-4 lg:left-1/2 lg:right-[unset] lg:-translate-x-1/2 border-border/75 top-4 backdrop-blur-lg  shadow-xl fixed" : ""}`}>
+      <div className="flex flex-row items-center">
+        <ChapterList slug={slug} isSticky={isSticky} bookName={bookName} />
 
-      <div aria-hidden="true" className=" w-[1px] h-9 ml-2.5 mr-3 border-l hidden md:block" />
+        <div aria-hidden="true" className=" w-[1px] h-9 ml-2.5 mr-3 border-l hidden md:block" />
 
-      <div className="hidden md:block">
-        <BookItemChapterHeader bookName={bName} bookShortDesc={bDesc} />
+        <div className="hidden md:block">
+          <BookItemChapterHeader bookName={bName} bookShortDesc={bDesc} />
+        </div>
+
+
+        <div className=" flex flex-col ml-3">
+          {chapNum >= 1 ? <><h3 className="text-sd font-semibold">Chapter {chapNum}</h3>
+            <p className="text-sm font-medium text-muted-foreground">{chapTitle}</p>
+          </> : chapNum === 0 ?
+            <p className="text-sm font-medium text-muted-foreground">{"Introduction"}</p>
+            : <p className="text-sm font-medium text-muted-foreground">{chapTitle}</p>
+          }
+        </div>
       </div>
-
-
-      <div className=" flex flex-col ml-3">
-        {chapNum >= 1 ? <><h3 className="text-sd font-semibold">Chapter {chapNum}</h3>
-          <p className="text-sm font-medium text-muted-foreground">{chapTitle}</p>
-        </> : chapNum === 0 ?
-          <p className="text-sm font-medium text-muted-foreground">{"Introduction"}</p>
-          : <p className="text-sm font-medium text-muted-foreground">{chapTitle}</p>
-        }
-      </div>
-
+      <ScrollToTopBottom />
     </aside>
 
   </>
