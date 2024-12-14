@@ -9,6 +9,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About us",
   description: "Information about us",
+  keywords: [siteConfig.keywords,' About us', ' Team', ' Information', ' What is Mohe Mohe', ' Prince Kunal', ' FAQ'].join(),
 }
 
 export default async function AboutPage() {
