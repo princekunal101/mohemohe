@@ -2,7 +2,7 @@ import { chapters, posts } from "@/.velite";
 import { getAllIndexedChapters, sortPosts } from "@/lib/utils";
 import { MetadataRoute } from "next";
 
-const WEBSITE_HOST_URL = process.env.SITE_URL || 'https://mohemohe.in'
+const WEBSITE_HOST_URL = process.env.SITE_URL || 'https://www.mohemohe.in'
 
 type changeFrequency =
     | 'always'
