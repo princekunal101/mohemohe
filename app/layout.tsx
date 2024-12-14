@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/main-header/site-header";
 import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
     default: siteConfig.name + ` - ` + siteConfig.title
   },
   description: siteConfig.description,
-  keywords: siteConfig.keywords,
+  keywords: [siteConfig.keywords].join(),
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
 };
 
@@ -36,14 +35,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-pt-[3.5rem]">
-      <body
-
-        className={cn("in-h-screen bg-background font-sans antialiased", inter.variable)}>
+      <body className={`in-h-screen bg-background font-sans antialiased overscroll-none ${inter.variable}`}>
+        
         <Providers>
           <div className="relative flex min-h-dvh flex-col bg-background">
+            
             <SiteHeader />
             <main className="flex-1">{children}</main>
             <SiteFooter />
+          
           </div>
         </Providers>
       </body>
