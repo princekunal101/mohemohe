@@ -85,7 +85,7 @@ List any prerequisites or dependencies required to run the project.
 
 ## Usage
 
-Feel free to explore and learn the following langauges fromm our suggested articles.
+Feel free to explore and learn the following langauges from our suggested articles.
 
 <a href="https://www.mohemohe.in/">
 <p align="center">
