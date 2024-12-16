@@ -1,31 +1,29 @@
-
 ---
 <p align="center">
-  <a href="https://www.mohemohe.in"> <img src="https://www.mohemohe.in/m1-logo.png" alt="Project Logo" width="180" height="180">
-  </a>
+<a href="https://www.mohemohe.in"> <img src="https://www.mohemohe.in/m1-logo.png" alt="Project Logo" width="180" height="180">
+</a>
 </p>
 
 <h1 align="center"><b>Mohe Mohe</b></h1>
 
 <p align="center">
-  <a href="https://github.com/princekunal101/project1/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
-  </a>
-  <a href="https://github.com/username/repository/issues">
-    <img src="https://img.shields.io/github/issues/username/repository.svg" alt="GitHub Issues">
-  </a>
-  <a href="https://github.com/username/repository/pulls">
-    <img src="https://img.shields.io/github/issues-pr/username/repository.svg" alt="GitHub Pull Requests">
-  </a>
-  <a href="https://github.com/username/repository/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/username/repository.svg" alt="Contributors">
-  </a>
+<a href="https://github.com/princekunal101/project1/blob/master/LICENSE">
+<img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+</a>
+<a href="https://github.com/username/repository/issues">
+<img src="https://img.shields.io/github/issues/username/repository.svg" alt="GitHub Issues">
+</a>
+<a href="https://github.com/username/repository/pulls">
+<img src="https://img.shields.io/github/issues-pr/username/repository.svg" alt="GitHub Pull Requests">
+</a>
+<a href="https://github.com/username/repository/graphs/contributors">
+<img src="https://img.shields.io/github/contributors/username/repository.svg" alt="Contributors">
+</a>
 </p>
 
 <p align="center">
-  Creative learning app for students and quick revision contents/articles in organized form which help easy to grow programming skills, knowledge and revision for Engineering student.
+Creative learning app for students and quick revision contents/articles in organized form which help easy to grow programming skills, knowledge and revision for Engineering student.
 </p>
-
 ---
 
 ## Table of Contents
@@ -74,7 +72,7 @@ List any prerequisites or dependencies required to run the project.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/username/repository.git
+   git clone https://github.com/princekunal101/mohemohe.git
    ```
 2. Install NPM packages
    ```sh
@@ -87,8 +85,7 @@ List any prerequisites or dependencies required to run the project.
 
 ## Usage
 
-Feel frely to learn and read content/article from the CSE Engineering background.
-
+Feel free to explore and learn the following langauges fromm our suggested articles.
 
 <a href="https://www.mohemohe.in/">
 <p align="center">
@@ -101,7 +98,6 @@ Feel frely to learn and read content/article from the CSE Engineering background
 </a>
 
 You can choose directly from chapter list. Click on the list icon and list will appear.
-
 
 <a href="https://www.mohemohe.in/">
 <p align="center">
@@ -158,9 +154,10 @@ Mention any libraries, articles, or resources used in your project.
 - [MDX](https://mdxjs.com)
 
 ---
+
 ## Learn
+
 - [`Java Programming`](https://www.mohemohe.in/learn/java)
 - [`Java Programming Lab`](https://www.mohemohe.in/blog/opps-java-lab)
 - [`Operating System`](https://www.mohemohe.in/learn/operating-system)
 - [`Operating System Lab`](https://www.mohemohe.in/blog/operating-system-lab)
-
