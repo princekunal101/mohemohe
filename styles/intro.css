@@ -5,7 +5,7 @@
   --line-offset: 150px;
   --line-gap: 5px;
   --line-fade-stop: 93%;
-  --fade-background: #fff;
+  --fade-background: #ffff;
 
   @apply flex justify-center items-start space-y-6 mx-auto h-[640px] md:my-20 mb-20 sm:px-8 md:px-14 pt-16 max-w-[1386px] overflow-hidden;
 }
