@@ -11,6 +11,14 @@ tags: ["DBMS", "aktu", "b-tech", "CSE", "lab"]
 
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
+- [Experiment 3](#experiment-3)
+- [Experiment 4](#experiment-4)
+- [Experiment 5](#experiment-5)
+- [Experiment 6](#experiment-6)
+- [Experiment 7](#experiment-7)
+- [Experiment 8](#experiment-8)
+- [Experiment 9](#experiment-9)
+- [Experiment 10](#experiment-10)
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
@@ -19,7 +27,7 @@ tags: ["DBMS", "aktu", "b-tech", "CSE", "lab"]
 
 **MySQL Installation**<br/>
 To install the MySQL software, we must use the MySQL official site and download the latest version from the MySQL Community Server as per the requirement of our system.
-- For this installation, we need the downloaded version of the MySQL which we initially done in the system. From the directory where we have the unzipped files, open Window Explorer and double-click on **```setup.exe```**.
+- For this installation, we need the downloaded version of the MySQL which we initially done in the system. from the directory where we have the unzipped files, open Window Explorer and double-click on **```setup.exe```**.
 - The product we want to install is MySQL Server 9.0 Setup Wizard.
     <FigureMdx lightUrl="dbms-sql-installation-lab-p1" desc="First window of MySQL Server 9.0 Setup"/>
 - We can perform a basic installation with some term acceptance which is End-User License Agreement then go to the next step.
@@ -57,7 +65,7 @@ To install the MySQL software, we must use the MySQL official site and download 
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-2" >**Experiment 2**</Callout>
-<Callout type="knowing">**Objective:** Create a database by using the Following SQL Commands:<ul><li>CREATE</li><li>INSERT</li><li>SELECT</li><li>DESCRIBE</li></ul></Callout>
+<Callout type="knowing">**Objective:** Create a database by using the Following SQL Commands:<ul><li>CREATE</li><li>insert</li><li>select</li><li>DESCRIBE</li></ul></Callout>
 **Theory**
 - **SQL commands** are extensively used to interact with databases, enabling users to perform a wide range of actions on database systems. Understanding these commands is crucial for effectively managing and manipulating data.
 - *SQL Commands are mainly categorized into five categories:*
@@ -67,25 +75,524 @@ To install the MySQL software, we must use the MySQL official site and download 
     - **DCL:** Data Control Language
     - **TCL:** Transaction Control Language
 - **```CREATE```:** Create database or its objects (table, index, function, views, store procedure, and triggers).
-- **```INSERT```:** Insert data into a table.
-- **```SELECT```:** Used to retrieve data from a database.
+- **```insert```:** insert data into a table.
+- **```select```:** Used to retrieve data from a database.
 - **```DESCRIBE```:** Used to display the structure of a table, view, type, procedure, function, package, or synonym.
-```sql title="student.sql"
-CREATE TABLE Students (
-	RollNo INT PRIMARY KEY,
-	Name VARCHAR(50),
-    Section VARCHAR(10)
-	);
-INSERT INTO Students (RollNo, Name, Section) VALUES (65, 'Girish', 'B');
-INSERT INTO Students (RollNo, Name, Section) VALUES (93, 'Mukesh', 'B');
-INSERT INTO Students (RollNo, Name, Section) VALUES (69, 'Harshit', 'B');
-INSERT INTO Students (RollNo, Name, Section) VALUES (64, 'Divyanshu', 'A');
-INSERT INTO Students (RollNo, Name, Section) VALUES (135, 'Yash', 'C');
 
-SELECT * FROM Students;
+```sql title="mydb.sql (PostgreSQL)"
+-- creating databse
+create database mydb;
+
+-- creating student table
+create table student (
+    id integer,
+    roll_no integer,
+    name varchar(20),
+    branch varchar(20),
+    section varchar(5)
+);
+
+-- insert a data in student table
+insert into student (id, roll_no, name, branch, section)
+value (1, 106, 'Prince Kunal', 'CSE', 'B');
+
+select * from student;
+
+-- delete the data where id is 1
+delete from student where id= 1;
+
+select * from student;
 ```
 **Output:**
-<FigureMdx lightUrl="dbms-sql-installation-lab-p12" desc="Output of the above programs."/>
+<FigureMdx lightUrl="dbms-sql-create-table" desc="Create Table and delete data in Admin 4 (PostgreSQL)."/>
+
+```sql title="mydb.sql (PostgreSQL)"
+-- creating a sequence of the id
+create sequence sequence_id as integer;
+
+-- modify the table attribute normal to primary key, not-null, auto-increment
+alter table student 
+alter column id set default nextval('sequence_id'),
+add primary key (id);
+
+-- add a new column to set date at data-entry-time
+alter table student add data_entry_time timestamp default now();
+
+-- inserting multiple value at a time which are nessary value only.
+insert student (roll_no, name, branch, section) values
+(106, 'Prince Kunal', 'CSE', 'B');
+(66, 'Gulshan', 'CSE', 'B'),
+(80, 'Khushi', 'CSE', 'B'),
+(93, 'Mukesh', 'CSE', 'B');
+
+select * from student;
+
+-- updating the datetime where id is 2
+update student set data_entry_time = now() where id = 2;
+
+select * from student;
+```
+**Output:**
+<FigureMdx lightUrl="dbms-sql-alter-column" desc="Alter column and update in Admin 4 (PostgreSQL)."/>
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3" >**Experiment 3**</Callout>
-<Callout type="knowing">**Objective:** Study of hardware and software requirements of differenet operating systems *(Windows 10, UNIX, Linux, Windows XP, and Windows 7/8)*. </Callout>
+
+<Callout type="knowing">
+**Objective:** Create a database using the following Aggregate Functions:  
+- `MIN()` `MAX()` `COUNT()` `SUM()` `AVG()` 
+</Callout>
+
+**Theory:**
+- An **aggregate function** is a function that performs a calculation on a set of values, and returns a single value.
+- Aggregate functions ignore null values (except for COUNT()).
+
+The most commonly used SQL aggregate functions are:
+- [`min()`](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_min): returns the smallest value within the selected column.
+- [`max()`](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_max): returns the largest value within the selected column.
+- [`count()`](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count): returns the number of rows in a set.
+- [`sum()`](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_sum): returns the total sum of a numerical column.
+- [`avg()`](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_avg): returns the average value of a numerical column.
+
+At first we need to `create database`. 
+```sql title="mydb/postgres@PostgreSQL 17"
+-- creating databse 
+create database mydb;
+
+-- creating DataTable table 
+create table DataTable(
+    id int primary key not null auto_increment,
+    roll_no integer not null,
+    stdu_name varchar(20),
+    class varchar(10),
+    section varchar(20),
+    dbms_lab integer,
+    wt_lab integer,
+    daa_lab integer
+);
+
+-- inserting values in DataTable table
+insert into DataTable(roll_no, stdu_name, class, section, dbms_lab, wt_lab, daa_lab)
+values
+(106, 'Prince Kunal', 'Btech', 'B', 48, 49, 50),
+(66, 'Gulshan Kumar', 'Btech', 'B', 46, 47, 48),
+(81, 'Khushi Srivastva', 'Btech', 'B', 48, 49, null),
+(93, 'Mukesh Kumar', 'Btech', 'B', 49, null, 48),
+(103, 'Pratishtha', 'Btech', 'B', 48, 49, 50),
+(80, 'Khushi', 'Btech', 'B', 45, 46, 49);
+
+select * from DataTable;
+
+-- count() function
+select count(*), count(wt_lab), count(distinct daa_lab), count(dbms_lab) from DataTable;
+
+-- sum() function
+select sum(wt_lab), sum(distinct wt_lab), sum(dbms_lab) as dbms_sum from DataTable;
+
+-- avg() function
+select avg(dbms_lab) as dbms_avg from DataTable;
+
+-- max() function
+select max(dbms_lab), max(daa_lab), max(wt_lab) from DataTable;
+
+-- special function which works on string
+select stdu_name, upper(stdu_name), lower(stdu_name), substring(stdu_name, 4, 6) from DataTable;
+
+-- length() function
+select length(stdu_name) from DataTable;
+```
+**Output:**
+<FigureMdx lightUrl="dbms-sql-create-data-table" desc="Alter column and update in Admin 4 (PostgreSQL)."/>
+<FigureMdx lightUrl="dbms-sql-aggregate-fn" desc="Alter column and update in Admin 4 (PostgreSQL)."/>
+<FigureMdx lightUrl="dbms-sql-string-transform" desc="Alter column and update in Admin 4 (PostgreSQL)."/>
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4" >**Experiment 4**</Callout>
+<Callout type="knowing">
+**Objective:** Create a database using the following SQL Clauses:
+-  ORDER BY
+-  GROUP BY
+-  HAVING Clause 
+</Callout>
+
+**Theory:**
+
+**SQL clauses** help us to retrieve a set or bundles of records from the table. SQL clauses help us to specify a condition on the columns or the records of a table.
+- The `ORDER BY` keyword is used to sort the result-set in ascending or descending order.
+- The `GROUP BY` statement groups rows that have the same values into summary rows, like "find the number of customers in each country". The `GROUP BY` statement is often used with aggregate functions `COUNT()`, `MAX()`, `MIN()`, `SUM()`, `AVG()` to group the result-set by one or more columns.
+- The `HAVING` clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
+
+```sql title="mydb/postgres@PostgreSQL 17"
+-- working on privious database and table
+
+-- arrange into ascending order with the roll_no value
+select roll_no, stdu_name, class, section from DataTable 
+order by roll_no asc;
+
+-- arrange into descending order with the dbms_lab value
+select roll_no, stdu_name, class, section, dbms_lab from DataTable 
+order by dbms_lab desc;
+
+-- group min() and max() with roll_no and stdu_name
+select roll_no, stdu_name, min(dbms_lab), max(dbms_lab) from DataTable 
+group by roll_no, stdu_name;
+
+-- group by dbms_lab: how many numbers are same
+select dbms_lab count(dbms_lab) from DataTable group by dbms_lab;
+
+-- group dbms_lab values which have more then >=47 with roll_no
+select roll_no, dbms_lab from DataTable group by roll_no having max(dbms_lab)>=47;
+```
+**Output:**
+<FigureMdx lightUrl="dbms-sql-max-min" desc="SQL clause max min function in Admin 4 (PostgreSQL)."/>
+<FigureMdx lightUrl="dbms-sql-count-fn" desc="SQL clause count function in Admin 4 (PostgreSQL)."/>
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-5" >**Experiment 5**</Callout>
+<Callout type="knowing">
+**Objective:** Create a database using JOIN SQL Commands.
+</Callout>
+
+**Theory:**
+
+A **SQL JOIN** clause is used to combine rows from two or more tables, based on a related column between them.
+Types of SQL JOINs
+- `inner join`: Returns records that have matching values in both tables.
+- `left join`: Returns all records from the left table, and the matched records from the right table.
+- `right join`: Returns all records from the right table, and the matched records from the left table.
+- `full outer join`: Returns all records when there is a match in either left or right table.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+-- creating database
+create database college_db;
+use college_db;
+
+-- creating student table
+create table students (
+    student_id serial primary key,
+    first_name varchar(50),
+    last_name varchar(50),
+    age int
+    enrollment_date date
+);
+
+-- creating course table
+create table courses (
+    course_id int primary key,
+    course_name varchar(20),
+    credits int
+);
+
+-- creating enrollment table
+create table enrollments (
+    enrollment_id serial primary key,
+    student_id int,
+    course_id int,
+    enrollment_date date,
+    grade double precision,
+    foreign key (student_id) references students(student_id),
+    foreign key (course_id) references courses(course_id)
+);
+
+-- inserting data into students table
+insert into students (student_id, first_name, last_name, age, enrollment_date) values
+(106, 'Prince', 'Kunal', 23, '2022-07-21'),
+(066, 'Gulshan', 'Kumar', 20, '2022-08-15'),
+(080, 'Khushi', '', 20, '2022-08-20'),
+(103, 'Pratishtha', '', 20, '2022-07-20'),
+(070, 'Hifza', 'Arif', 21, '2022-07-21');
+
+select * from students;
+
+-- inserting data into course table
+insert into courses (course_id, course_name, credits) values
+(101, 'Mathematics', 3),
+(102, 'Physics', 4),
+(103, 'Chemistry', 3),
+(104, 'Computer Science', 5);
+
+select * from courses;
+
+-- inserting data into enrollmetn table
+insert into enrollments (enrollment_id, student_id, course_id, Grade) values
+(1, 106, 101, 85.50),
+(2, 106, 102, 90.00),
+(3, 66, 103, 88.00),
+(4, 80, 102, 78.00),
+(5, 103, 103, 92.50),
+(6, 70, 104, 95.00),
+(7, 66, 101, 80.00),
+(8, 106, 104, 91.00),
+(9, 70, 102, 89.50);
+
+select * from enrollments;
+```
+<FigureMdx lightUrl="dbms-sql-student-course-table" desc="Students and Course table in Admin 4 (PostgreSQL)."/>
+<FigureMdx lightUrl="dbms-sql-enrollment-table" desc="Enrollment table with foreign key in Admin 4 (PostgreSQL)."/>
+
+```sql title="mydb/postgres@PostgreSQL 17"
+-- inner join
+select students.first_name, students.last_name, courses.course_name
+from students
+inner join enrollments on students.student_id = enrollments.student_id
+inner join courses on enrollments.course_id = courses.course_id;
+
+-- left join
+select students.first_name, students.last_name, courses.course_name
+from students
+left join enrollments on students.student_id = enrollments.student_id
+left join courses on enrollments.course_id = courses.course_id;
+
+-- right join
+select students.first_name, students.last_name, courses.course_name
+from students
+right join enrollments on students.student_id = enrollments.student_id
+right join courses on enrollments.course_id = courses.course_id;
+
+-- full outer join
+select students.first_name, students.last_name, courses.course_name
+from students
+full outer join enrollments on students.student_id = enrollments.student_id
+full outer join courses on enrollments.course_id = courses.course_id;
+
+-- cross join
+select students.first_name, students.last_name, courses.course_name
+from students
+cross join courses;
+```
+<FigureMdx lightUrl="dbms-sql-all-join-expt-cx" desc="All joins are same except cross join using Admin 4 (PostgreSQL)."/>
+<FigureMdx lightUrl="dbms-sql-cross-join" desc="Cross join using Admin 4 (PostgreSQL)."/>
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6" >**Experiment 6**</Callout>
+<Callout type="knowing">
+**Objective:** Creating Entity-Relationship Diagram. 
+</Callout>
+
+**Theory:**
+
+An Entiry-Relationship Diagram (ERD) is a visual representaion of the entities within a database and the relationships betweeen those entities. It is an essential art of database design as it provides a clear and organized structure for the data to be stored, ensuring data integrity and facilitating efficient data retrieval.
+
+
+There are the following steps to create E-R diagram in Visual Studio (VS) code given below&mdash;
+- Open vs code in the System.
+<FigureMdx lightUrl="dbms-sql-er-diagram-p1" desc="Opening Visual Studio (vs) Code."/>
+- Go to extentions tab. Search **draw.io** and install in vs code.
+<FigureMdx lightUrl="dbms-sql-er-diagram-p2" desc="Install Draw.io Extension in vs code."/>
+- Create a file with extenstion `.drawio`. *e.g.* test.drawio. A canva and tools automatically open.
+<FigureMdx lightUrl="dbms-sql-er-diagram-p3" desc="Create as .drawio Extension file to open Canva."/>
+- Choose the particular section and use the given shapes to create any type of diagram.
+- Double tap inside the shape, text editor will be open automatically.
+<FigureMdx lightUrl="dbms-sql-er-diagram-p4" desc="Choose different shaps in draw.io canva."/>
+- use different shapes and tools edit to desirable diagrams.
+<FigureMdx lightUrl="dbms-sql-er-diagram-p5" desc="Build desirable diagram, wireframs, etc., using it."/>
+Chat Application Entity Relationship (E-R) Diagram:
+<FigureMdx lightUrl="dbms-sql-chat-app-e-r-diagram" desc="Chat Application E-R Diagram using draw.io."/>
+
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-7" >**Experiment 7**</Callout>
+<Callout type="knowing">
+**Objective:** Implementing Normalization. 
+</Callout>
+**Theory:**
+
+**Normalization** is the process of organizing data in a database to reduce redunedency and improve data integrity. It involves diving large tables into smaller, related tables and defining relationships between them. The main goal of normalization is to eliminate redundant data and ensure data dependencies make sense to improve the overall efficiency and integrity of the database.
+
+**Normal Forms:**
+**First Normal Form (1NF):** 
+- Ensures that each table has a primary key.
+- Remove any repeating groups or arrays.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create table students (
+    student_id int primary key,
+    name varchar(50),
+    course_id int,
+    course_name varchar(50)
+);
+```
+
+**Second Normal Form (2NF):**
+- Remove partial dependencies by ensuring that non-key attributes are fully dependent on the primary key.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create table courses (
+    course_id int primary key,
+    course_name varchar(50)
+);
+
+create table student_courses (
+    student_id int,
+    course_id int,
+    primary key (student_id, course_id),
+    foreign key (student_id) references students(student_id),
+    foreign key (course_id) references courses(course_id) 
+);
+```
+
+**Third Normal Form (3NF):**
+- Remove transitive dependencies by ensuring that non-key attributes are not dependent on other non-key attributes.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create table students (
+    student_id serial primary key,
+    name varchar(50)
+);
+
+create table courses (
+    course_id int primary key,
+    course_name varchar(50)
+);
+
+create table enrollments (
+    enrollment_id serial primary key,
+    student_id int,
+    course_id int,
+    foreign key (student_id) references students(student_id),
+    foreign key (course_id) references courses(course_id)
+);
+```
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
+<Callout type="knowing">
+**Objective:** Creating Cursor.
+</Callout>
+
+**Theory:**
+
+Cursor in PL/SQL is a databse object used to retrieve and manipulate multiple rows of data in a controlled manner. It allows row-by-row processing of query results. There are two types of Cursor&mdash;
+- **Implicit Cursor:** Automatically created by PL/SQL for single-row queries.
+- **Explicit Cursor:** Defined by the programmer for queries that return multiple rows. 
+
+**Declare a cursor:**
+```sql title="mydb/postgres@PostgreSQL 17"
+declare 
+    cursor student_courses is
+        select student_id, name from students;
+```
+
+**Open the Cursor:**
+```sql title="mydb/postgres@PostgreSQL 17"
+begin 
+    open student_cursor;
+```
+
+**Fetch Data from the Cursor:**
+```sql title="mydb/postgres@PostgreSQL 17"
+loop
+    fetch student_cursor into v_student_id, v_name;
+    exit when studnet_cursor%notfound;
+    dbms_output.put_line('student_id: ' || v_student_id ||
+     ', name: ' || v_name);
+end loop;
+```
+
+**Close the Cursor:**
+```sql title="mydb/postgres@PostgreSQL 17"
+    close studnet_cursor;
+end;
+```
+
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
+<Callout type="knowing">
+**Objective:** Creating Procedure and Functions. 
+</Callout>
+
+**Theory:**
+
+**Stored Procedures** and **Functions** are PL/SQL constructs used to encapsulate a set of operations or queries to perform specific tasks.
+- **Procedure:** A subprogram that performs a specific action but does not return a value.
+- **Function:** Similar to a procedure but returns a single value.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create or replace procedure AddStudent (
+    p_student_id in students.student_id%type,
+    p_name in students.name%type
+) as
+begin 
+    insert into students (student_id, name) values (p_student_id, p_name);
+end;
+```
+
+```sql title="mydb/postgres@PostgreSQL 17"
+begin
+    AddStudent(106, 'Prince Kunal');
+end;
+```
+```sql title="mydb/postgres@PostgreSQL 17"
+create or replace function GetStudentName (
+    p_student_id in students.student_id%type
+) return students.name%type as
+    v_name students.name%type;
+begin
+    select name into v_name from students where student_id = p_student_id;
+    return v_name;
+end;
+```
+
+```sql title="mydb/postgres@PostgreSQL 17"
+declare
+    v_name students.name%type;
+begin
+    v_name := GetStudentName(106);
+    dbms_output.put_line('Student Name: ' || v_name);
+end;
+```
+
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-10" >**Experiment 10**</Callout>
+<Callout type="knowing">
+**Objective:** Creating Package and Triggers.
+</Callout>
+
+**Theory:**
+
+**Packages** in PL/SQL are schema objects that group logically related PL/SQL types, items, and subprograms. They consist of two parts&mdash;
+- **Package Specification:** Declares the public items that can be referenced outside the package.
+- **Package Body:** Defines the code for the subprograms declared in the Specification.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create or replace package student_package is
+    procedure AddStrudent(p_student_id in students.student_id%type, 
+        p_name in students.name%type);
+    procedure GetStudentName(p_student_id in students.student_id%type) 
+        return students.name%type; 
+end student_package;
+
+create or replace package body student_package is
+    procedure AddStrudent(p_student_id in students.student_id%type, 
+        p_name in students.name%type) is
+    begin
+        insert into students(student_id, name) values 
+        (p_student_id, p_name);
+    end;
+
+    function GetStudentName(p_student_id in students.student_id%type) 
+        return students.name%type is
+            v_name students.name%type;
+    begin
+        select name into v_name from students where student_id = p_student_id;
+        return v_name;
+    end;
+end student_package;
+```
+
+Creating a trigger:
+```sql title="mydb/postgres@PostgreSQL 17"
+create or replace trigger BeforeInsertStudent before insert on students
+for each row
+begin
+    if: new.student_id is null then
+        raise_application_error(-20001, 'Studnet ID cannot be null');
+    end if;
+end;
+```
+<p style={{textAlign: "center", fontSize: "2em"}}>&squ; &squ; &squ;</p>
+
