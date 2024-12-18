@@ -1,12 +1,12 @@
-<p style="text-align: center">
+<p align="center">
   <a href="https://www.mohemohe.in">
     <img src="https://www.mohemohe.in/m1-logo.png" alt="MoheMohe Logo" width="180" height="180">
   </a>
 </p>
 
-<h1 style="text-align: center"><b>Mohe Mohe</b></h1>
+<h1 align="center"><b>Mohe Mohe</b></h1>
 
-<p style="text-align: center">
+<p align="center">
   <a href="https://github.com/princekunal101/mohemohe/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   </a>
@@ -21,12 +21,12 @@
   </a>
 </p>
 
-<p style="text-align: center">
+<p align="center">
   The Learning Platform for the Future, you can click to view these pages.
 </p>
 
 
-<h3 style="text-align:center"> <a href="https://www.mohemohe.in">MoheMohe</a> ● <a href="https://www.mohemohe.in/learn">Learn</a> ● <a href="https://www.mohemohe.in/questions">Questions</a>
+<h3 align="center"> <a href="https://www.mohemohe.in">MoheMohe</a> ● <a href="https://www.mohemohe.in/learn">Learn</a> ● <a href="https://www.mohemohe.in/questions">Questions</a>
 </h3>
 
 ---
