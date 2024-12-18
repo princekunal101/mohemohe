@@ -1,12 +1,12 @@
-<p align="center">
+<p style="text-align: center">
   <a href="https://www.mohemohe.in">
     <img src="https://www.mohemohe.in/m1-logo.png" alt="MoheMohe Logo" width="180" height="180">
   </a>
 </p>
 
-<h1 align="center"><b>Mohe Mohe</b></h1>
+<h1 style="text-align: center"><b>Mohe Mohe</b></h1>
 
-<p align="center">
+<p style="text-align: center">
   <a href="https://github.com/princekunal101/mohemohe/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   </a>
@@ -21,9 +21,13 @@
   </a>
 </p>
 
-<p align="center">
-  Creative learning app for students and quick revision content/articles to enhance programming skills and knowledge for engineering students.
+<p style="text-align: center">
+  The Learning Platform for the Future, you can click to view these pages.
 </p>
+
+
+<h3 style="text-align:center"> <a href="https://www.mohemohe.in">MoheMohe</a> ● <a href="https://www.mohemohe.in/learn">Learn</a> ● <a href="https://www.mohemohe.in/questions">Questions</a>
+</h3>
 
 ---
 
@@ -44,13 +48,28 @@
 ## About The Project
 
 <a href="https://www.mohemohe.in/">
-<p align="center">
+<p style="text-align: center">
   <img src="public/images/screenshots/Screenshot_2024-06-11-23-25-32-769_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="300">
   <img src="public/images/screenshots/Screenshot_2024-06-11-23-26-55-253_com.microsoft.emmx-edit.png" alt="Mohe Mohe Screen Shot" width="300">
 </p>
 </a>
 
 Free articles and programming language learning resources.
+
+### Links
+- [Learn Web Technology](https://www.mohemohe.in/learn/web-technology)
+- [Learn Java Programming](https://www.mohemohe.in/learn/web-technology)
+- [Database Managment System Lab](https://www.mohemohe.in/blog/dbms-lab)
+- [Web Technology Lab](https://www.mohemohe.in/blog/wt-lab)
+- [Design Algorithm and Analysis Lab](https://www.mohemohe.in/blog/daa-lab)
+- [Java Programming Lab](https://www.mohemohe.in/blog/oops-java-lab)
+- [Gate 2025 Syllabus](https://www.mohemohe.in/blog/syllabus-gate-cs)
+- [Forth Semester Syllabus](https://www.mohemohe.in/blog/syllabus-4sem)
+- [Fifth Semester Syllabus](https://www.mohemohe.in/blog/syllabus-5sem)
+
+Practice Questions
+- [Web Technology Practice Questions](https://www.mohemohe.in/questions/wt-question)
+- [DBMS Practice Questions](https://www.mohemohe.in/questions/dbms-question)
 
 ### Built With
 
@@ -79,18 +98,11 @@ Free articles and programming language learning resources.
    cp .env.example .env
    ```
 
-## Usage
-
-<p align="center">
-  <img src="public/images/screenshots/Screenshot_2024-06-12-00-28-58-103_com.microsoft.emmx-edit.png" alt="Mohe Mohe Chapter List" width="300">
-  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-15-264_com.microsoft.emmx-edit.png" alt="Mohe Mohe Theme Toggle" width="300">
-  <img src="public/images/screenshots/Screenshot_2024-06-12-00-34-41-268_com.microsoft.emmx-edit.png" alt="Mohe Mohe Theme Toggle" width="300">
-</p>
-
 ## Roadmap
 
 - Read Articles  
 - Learn Programming Languages
+- Do Practice Questions
 
 See [open issues](https://github.com/princekunal101/mohemohe/issues) for proposed features.
 
@@ -102,13 +114,11 @@ See [open issues](https://github.com/princekunal101/mohemohe/issues) for propose
 4. Push to Branch (`git push origin feature/AmazingFeature`)  
 5. Open a Pull Request  
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for details.
-
 ## Contact
 
-Project Link: [https://github.com/princekunal101/mohemohe](https://github.com/princekunal101/mohemohe)
+- Project Link: [princekunal101/mohemohe](https://github.com/princekunal101/mohemohe)
+- Instagram Link: [mohemohe.in](https://instagram.com/mohemohe.in)
+- X (twitter) Link: [mohemoheIN](https://x.com/mohemoheIN)
 
 ## Acknowledgements
 
@@ -116,11 +126,14 @@ Project Link: [https://github.com/princekunal101/mohemohe](https://github.com/pr
 - [Vercel](https://vercel.com)  
 - [MDX](https://mdxjs.com)
 
+## Thanks to all Contributors❤️
+
+<a href="https://github.com/princekunal101/mohemohe/graphs/contributors">
+<img src =" https://contrib.rocks/image?repo=princekunal101/mohemohe"/>
+</a>
+
+## License
+
+Distributed under the MIT License. See [LICENSE](./LICENSE) for details.
+
 ---
-
-## Learn
-
-- [`Java Programming`](https://www.mohemohe.in/learn/java)  
-- [`Java Programming Lab`](https://www.mohemohe.in/blog/opps-java-lab)  
-- [`Operating System`](https://www.mohemohe.in/learn/operating-system)  
-- [`Operating System Lab`](https://www.mohemohe.in/blog/operating-system-lab)
