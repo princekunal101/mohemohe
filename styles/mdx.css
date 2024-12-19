@@ -122,7 +122,7 @@ code[data-theme*=" "] {
 /* @import 'katex/dist/katex.min.css'; */
 
 .katex, .katex .katex-mathml, .katex .katex-mathml math {
-  @apply max-w-full inline-block m-0 overflow-hidden
+  @apply max-w-full overflow-hidden
 }
 
 
