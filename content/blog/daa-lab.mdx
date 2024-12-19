@@ -2,7 +2,7 @@
 title: Design Analysis and Algorithm Lab
 description: Design Analysis and Algorithm lab
 publishedDate: 2024-10-25
-updatedDate: 2024-10-25
+updatedDate: 2024-12-19
 published: true
 tags: ["DAA", "aktu", "b-tech", "CSE", "lab"]
 
@@ -12,6 +12,11 @@ tags: ["DAA", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
 - [Experiment 3](#experiment-3)
+- [Experiment 4](#experiment-4)
+- [Experiment 5](#experiment-5)
+- [Experiment 6](#experiment-6)
+- [Experiment 7](#experiment-7)
+- [Experiment 8](#experiment-8)
 
 
 
@@ -80,7 +85,7 @@ Element is present at index 3
 - Start from the first element.
 - Compare the current element with the target value.
 - If it matches, return the index.
-- If it doesn’t, move to the next element.
+- If it doesn&apos;t, move to the next element.
 - Continue until the element is found or the end of the array is reached.
 
 ```c title="linear-search.c" showLineNumbers
@@ -115,8 +120,8 @@ Element found at index 4
 ```
 
 **Complexity Analysis:**
-- **Time Complexity:** **$$O(n)$$** – where **$$n$$** is the number of elements in the array. This is because, in the worst case, you might need to check every element.
-- **Space Complexity:** **$$O(1)$$** – Linear Search uses a constant amount of extra space.
+- **Time Complexity:** **$$O(n)$$** : where **$$n$$** is the number of elements in the array. This is because, in the worst case, you might need to check every element.
+- **Space Complexity:** **$$O(1)$$** : Linear Search uses a constant amount of extra space.
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3" >**Experiment 3**</Callout>
 <Callout type="knowing">**Objective:** Program for Insetion Sort. </Callout>
@@ -168,11 +173,418 @@ int main() {
 ```
 
 **Complexity Analysis:**
-- **Best Case:** $$O(n)$$ – when the array is already sorted.
-- **Average Case:** **$$O(n^2)$$** – when the array elements are in random order.
-- **Worst Case:** **$$O(n^2)$$** – when the array is sorted in reverse order.
-- **Space Complexity:** **$$O(1)$$** – Insertion Sort uses a constant amount of extra space.
+- **Best Case:** $$O(n)$$ : when the array is already sorted.
+- **Average Case:** **$$O(n^2)$$** : when the array elements are in random order.
+- **Worst Case:** **$$O(n^2)$$** : when the array is sorted in reverse order.
+- **Space Complexity:** **$$O(1)$$** : Insertion Sort uses a constant amount of extra space.
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4" >**Experiment 4**</Callout>
+<Callout type="knowing">**Objective:** Program for Selection Sort. </Callout>
+**Theory:**
+
+**Selection Sort** is a simple comparision-based sorting algorithm. The algorithm divides the input list into two parts&mdash;
+- The sorted part at the left end and the unsorted part at the right end. Initially, the sorted part is empty, and the unsorted part is entire list.
+- The algorithm proceeds by repeatedly selecting the smallest (or largest) element from the unsorted part and moving it to the end of the sorted part.
+
+**Algorithm**
+- Loop over the array from `i=0` to `n-1`.
+- For each position `i`, find the mallest element in the unsorted part (from `i` to `n-1`).
+- Swap the smallest element found with the element at position `i`.
+- Continue until the array is sorted.
+
+```c title="selectionSort.c" showLineNumbers
+#include <stdio.h>
+
+void selectionSort(int arr[], int n) {
+    int i, j, min_idx;
+    for (i = 0; i < n-1; i++) {
+        min_idx = i;
+        for (j = i+1; j < n; j++)
+            if (arr[j] < arr[min_idx])
+                min_idx = j;
+        int temp = arr[min_idx];
+        arr[min_idx] = arr[i];
+        arr[i] = temp;
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    selectionSort(arr, n);
+    printf("Sorted array; \n");
+    printArray(arr, n);
+    return 0;
+}
+```
+
+```terminal title="Output"
+Sorted array;
+11 12 22 25 64
+```
+
+
+**Complexity Analysis:**
+- **Best Case:** $$O(n^2)$$
+- **Average Case:** $$O(n^2)$$
+- **Worst Case:** $$O(n^2)$$
+- **Space Complexity:** $$O(1)$$
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-5" >**Experiment 5**</Callout>
+<Callout type="knowing">**Objective:** Program for Merge Sort. </Callout>
+
+**Theory:**
+
+**Merge Sort** is an efficient, stable, and comparision-based sorting algorithm. 
+It divides the input into two halves, recursively sorts them, and then merges the two sorted halves. 
+The merging process involves comparing the smallest element of each half and placing the smallest element into the result array.
+
+**Algorithm:**
+- Divide the array into halves.
+- Recursively sort each half.
+- Merge the two sorted halves to prodeuce the sorted result.
+
+```c title="mergeSort.c" showLineNumbers
+#include <stdio.h>
+#include <stdlib.h>
+
+void merge(int arr[], int l, int m, int r) {
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    int L[n1], R[n2];
+    for (i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = arr[m + 1+ j];
+
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(int arr[], int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int arr_size = sizeof(arr) / sizeof(arr[0]);
+    printf("Given array is \n");
+    printArray(arr, arr_size);
+
+    mergeSort(arr, 0, arr_size - 1);
+
+    printf("\nSorted array is \n");
+    printArray(arr, arr_size);
+    return 0;
+}
+```
+
+```terminal title="Output"
+Given array is 
+64 25 12 22 11
+
+Sorted array is
+11 12 22 25 64
+```
+
+**Complexity Analysis:**
+- **Best Case:** $$O(n \log n)$$
+- **Average Case:** $$O(n \log n)$$
+- **Worst Case:** $$O(n \log n)$$
+- **Space Complexity:** $$O(n)$$ (Auxiliary space for merging)
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6" >**Experiment 6**</Callout>
+<Callout type="knowing">**Objective:** Program for Heap Sort. </Callout>
+
+**Theory:**
+
+**Heap Sort** is a composition-based sorting algorithm that uses a binary heap data structure.
+It divides its input into a suite and an unsorted region and iteractively shrink the unsorted region by extracting the largest element and moving it to the sorted region.
+
+**Algorithm:**
+- Build a max heap from the input data.
+- Repeat the following steps until the heap is empty:
+- Remove the largest element from the heap (the root of the heap).
+- Move the removed element to the end of the sorted array.
+- Re-heapify the remaining elements.
+
+```c title="heapSort" showLineNumbers
+#include <stdio.h>
+
+void heapify(int arr[], int n, int i) {
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+
+    if (largest != i) {
+        int temp = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = temp;
+        heapify(arr, n, largest);
+    }
+}
+
+void heapSort(int arr[], int n) {
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i > 0; i--) {
+        int temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+        heapify(arr, i, 0);
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    heapSort(arr, n);
+    printf("Sorted array: \n");
+    printArray(arr, n);
+    return 0;
+}
+```
+
+```terminal title="Output"
+Soerted array:
+11 12 22 25 64
+```
+
+**Complexity Analysis:**
+- **Best Case:** $$O(n \log n)$$
+- **Average Case:** $$O(n \log n)$$
+- **Worst Case:** $$O(n \log n)$$
+- **Space Complexity:** $$O(n)$$ (In-place sorting)
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-7" >**Experiment 7**</Callout>
+<Callout type="knowing">**Objective:** Program for Quick Sort. </Callout>
+
+**Theory:**
+
+**Quick sort** is an efficient, comparison-based, divide-and-conquer sorting algorithm.
+It Works by selecting a 'pivot' element and partitioning the other element into two sub-arrays according to whether they are less than or greater than the pivot.
+The sub-array are then sorted recursively.
+
+**Alogrithm:**
+- Choose a pivot element from the array.
+- Partition the array into sub-array: one with elements less than the pivot and one with elements greater than the pivot.
+- Recursively apply the above steps to the sub-arrays.
+
+```c title="quickSort.c" showLineNumbers
+#include <stdio.h>
+
+void swap(int* a, int* b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    quickSort(arr, 0, n - 1);
+    printf("Sorted array: \n");
+    printArray(arr, n);
+    return 0;
+}
+```
+```terminal title="Output"
+Sorted array:
+11 12 22 25 64
+```
+
+**Complexity Analysis:**
+- **Best Case:** $$O(n \log n)$$
+- **Average Case:** $$O(n \log n)$$
+- **Worst Case:** $$O(n^2)$$
+- **Space Complexity:** $$O(\log n)$$ (due to recursion stack)
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
 <Callout type="knowing">**Objective:** Program for Sort. </Callout>
+
+**Theory:**
+
+The **N-Queens** problem is a classic combinational problem. It involves placing N chess queens on an N&cross;N **chessboard** so that no two queens threaten each other.
+A queen can move horizontally, vertically, or diagonally, so no two queens can say the same row, column, or diagonal.
+
+
+**Algorithm:**
+- Start in the leftmost column.
+- If all queens are placed, return true.
+- Try all rows in the current column. For every row, do the following:
+- If the queen can be placed safely in this row, mark this cell and recursively try to place teh rest of the queens.
+- If placing the queen leads to a solution, return true.
+- If placing the queen doesn't lead to a solution, unmark this cell (backtrack) and try the next row.
+- If all rows have been tried and none worked, return false to trigger backtracking.
+
+```c title="n-queenProblem.c" showLineNumbers
+#include <stdio.h>
+#include <stdbool.h>
+
+#define N 4
+
+void printSolution(int board[N][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++)
+            printf(" %d ", board[i][j]);
+        printf("\n");
+    }
+}
+
+bool isSafe(int board[N][N], int row, int col) {
+    int i, j;
+    for (i = 0; i < col; i++)
+        if (board[row][i])
+            return false;
+
+    for (i = row, j = col; i >= 0 && j >= 0; i--, j--)
+        if (board[i][j])
+            return false;
+
+    for (i = row, j = col; j >= 0 && i < N; i++, j--)
+        if (board[i][j])
+            return false;
+
+    return true;
+}
+
+bool solveNQUtil(int board[N][N], int col) {
+    if (col >= N)
+        return true;
+
+    for (int i = 0; i < N; i++) {
+        if (isSafe(board, i, col)) {
+            board[i][col] = 1;
+
+            if (solveNQUtil(board, col + 1))
+                return true;
+
+            board[i][col] = 0; // BACKTRACK
+        }
+    }
+
+    return false;
+}
+
+bool solveNQ() {
+    int board[N][N] = { { 0, 0, 0, 0 },
+                        { 0, 0, 0, 0 },
+                        { 0, 0, 0, 0 },
+                        { 0, 0, 0, 0 } };
+
+    if (solveNQUtil(board, 0) == false) {
+        printf("Solution does not exist");
+        return false;
+    }
+
+    printSolution(board);
+    return true;
+}
+
+int main() {
+    solveNQ();
+    return 0;
+}
+```
+
+```terminal title="Output"
+0   0   1   0
+1   0   0   0
+0   0   0   1
+0   1   0   0
+```
+
+**Complexity Analysis:**
+- **Time Complexity:** $$O(n!)$$
+- **Space Complexity:** $$O(n^2)$$
+
+<p style={{textAlign: "center", fontSize: "2em"}}>&squ; &squ; &squ;</p>
+
+
