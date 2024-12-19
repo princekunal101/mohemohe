@@ -2,7 +2,7 @@
 title: Database Management System Lab
 description: Database Management System lab
 publishedDate: 2024-10-25
-updatedDate: 2024-10-25
+updatedDate: 2024-12-19
 published: true
 tags: ["DBMS", "aktu", "b-tech", "CSE", "lab"]
 
@@ -74,10 +74,10 @@ To install the MySQL software, we must use the MySQL official site and download 
     - **DML:** Data Manipulation Language
     - **DCL:** Data Control Language
     - **TCL:** Transaction Control Language
-- **```CREATE```:** Create database or its objects (table, index, function, views, store procedure, and triggers).
-- **```insert```:** insert data into a table.
-- **```select```:** Used to retrieve data from a database.
-- **```DESCRIBE```:** Used to display the structure of a table, view, type, procedure, function, package, or synonym.
+- **`CREATE`:** Create database or its objects (table, index, function, views, store procedure, and triggers).
+- **`insert`:** insert data into a table.
+- **`select`:** Used to retrieve data from a database.
+- **`DESCRIBE`:** Used to display the structure of a table, view, type, procedure, function, package, or synonym.
 
 ```sql title="mydb.sql (PostgreSQL)"
 -- creating databse
@@ -466,20 +466,20 @@ Cursor in PL/SQL is a databse object used to retrieve and manipulate multiple ro
 - **Implicit Cursor:** Automatically created by PL/SQL for single-row queries.
 - **Explicit Cursor:** Defined by the programmer for queries that return multiple rows. 
 
-**Declare a cursor:**
+**Declare a cursor:** `student_cursor` is declared for the `select` query.
 ```sql title="mydb/postgres@PostgreSQL 17"
 declare 
     cursor student_courses is
         select student_id, name from students;
 ```
 
-**Open the Cursor:**
+**Open the Cursor:** The cursor is opened with `open student_cursor`.
 ```sql title="mydb/postgres@PostgreSQL 17"
 begin 
     open student_cursor;
 ```
 
-**Fetch Data from the Cursor:**
+**Fetch Data from the Cursor:** The data is fetching into `v_student_id` and `v_name` one row at a time within a loop.
 ```sql title="mydb/postgres@PostgreSQL 17"
 loop
     fetch student_cursor into v_student_id, v_name;
@@ -489,7 +489,7 @@ loop
 end loop;
 ```
 
-**Close the Cursor:**
+**Close the Cursor:** The cursor is closed with `close student_cursor`.
 ```sql title="mydb/postgres@PostgreSQL 17"
     close studnet_cursor;
 end;
@@ -507,8 +507,9 @@ end;
 
 **Stored Procedures** and **Functions** are PL/SQL constructs used to encapsulate a set of operations or queries to perform specific tasks.
 - **Procedure:** A subprogram that performs a specific action but does not return a value.
-- **Function:** Similar to a procedure but returns a single value.
+- **Function:** Similar to a procedure but it returns a single value.
 
+**Creating a Procedure:** A procedure is a set of SQL and procedural statements that perform a task.
 ```sql title="mydb/postgres@PostgreSQL 17"
 create or replace procedure AddStudent (
     p_student_id in students.student_id%type,
@@ -519,11 +520,14 @@ begin
 end;
 ```
 
+**Executing the Procedure:**
 ```sql title="mydb/postgres@PostgreSQL 17"
 begin
     AddStudent(106, 'Prince Kunal');
 end;
 ```
+
+**Creating a Function:** A function is a set of SQL and procedural statements that perform a task and return a value.
 ```sql title="mydb/postgres@PostgreSQL 17"
 create or replace function GetStudentName (
     p_student_id in students.student_id%type
@@ -535,6 +539,7 @@ begin
 end;
 ```
 
+**Executing the Function:** 
 ```sql title="mydb/postgres@PostgreSQL 17"
 declare
     v_name students.name%type;
@@ -584,7 +589,11 @@ create or replace package body student_package is
 end student_package;
 ```
 
-Creating a trigger:
+**Creating a trigger:**
+
+A **trigger** is a stored procedure that automatically executes when certain events occur in the database, such as `insert`, `update`, or `delete`.
+- The **trigger** `BeforeInsertStudent` is defined to execute before an `insert` operation on the `students` table.
+- The **trigger body** checks a record into the `students` table, `new.student_id` is null or not. If null then return `raise_application_error`.
 ```sql title="mydb/postgres@PostgreSQL 17"
 create or replace trigger BeforeInsertStudent before insert on students
 for each row
