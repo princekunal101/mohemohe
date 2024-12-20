@@ -65,7 +65,7 @@ To install the MySQL software, we must use the MySQL official site and download 
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-2" >**Experiment 2**</Callout>
-<Callout type="knowing">**Objective:** Create a database by using the Following SQL Commands:<ul><li>CREATE</li><li>insert</li><li>select</li><li>DESCRIBE</li></ul></Callout>
+<Callout type="knowing">**Objective:** Create a database by using the Following SQL Commands:<ul><li>create</li><li>insert</li><li>select</li><li>DESCRIBE</li></ul></Callout>
 **Theory**
 - **SQL commands** are extensively used to interact with databases, enabling users to perform a wide range of actions on database systems. Understanding these commands is crucial for effectively managing and manipulating data.
 - *SQL Commands are mainly categorized into five categories:*
@@ -74,7 +74,7 @@ To install the MySQL software, we must use the MySQL official site and download 
     - **DML:** Data Manipulation Language
     - **DCL:** Data Control Language
     - **TCL:** Transaction Control Language
-- **`CREATE`:** Create database or its objects (table, index, function, views, store procedure, and triggers).
+- **`create`:** Create database or its objects (table, index, function, views, store procedure, and triggers).
 - **`insert`:** insert data into a table.
 - **`select`:** Used to retrieve data from a database.
 - **`DESCRIBE`:** Used to display the structure of a table, view, type, procedure, function, package, or synonym.
@@ -401,58 +401,172 @@ Chat Application Entity Relationship (E-R) Diagram:
 
 **Normal Forms:**
 **First Normal Form (1NF):** 
+- for non-1NF
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create table college_students (
+    student_id serial primary key,
+    name varchar(50),
+    -- This column stores multiple values (non-atomic)
+    courses varchar(100) 
+);
+
+insert into college_students (name, courses) values 
+('Gulshan', 'DBMS-G1, DAA-G1'),
+('Prince', 'WT-G2, DBMS-G2');
+
+-- for see the college_students table
+select * from college_students;
+```
+<FigureMdx lightUrl="dbms-sql-non-first-nf" desc="Non-1NF table fig. (Student-courses)."/>
+
 - Ensures that each table has a primary key.
 - Remove any repeating groups or arrays.
 
 ```sql title="mydb/postgres@PostgreSQL 17"
-create table students (
-    student_id int primary key,
-    name varchar(50),
-    course_id int,
-    course_name varchar(50)
-);
-```
-
-**Second Normal Form (2NF):**
-- Remove partial dependencies by ensuring that non-key attributes are fully dependent on the primary key.
-
-```sql title="mydb/postgres@PostgreSQL 17"
-create table courses (
-    course_id int primary key,
-    course_name varchar(50)
-);
-
-create table student_courses (
-    student_id int,
-    course_id int,
-    primary key (student_id, course_id),
-    foreign key (student_id) references students(student_id),
-    foreign key (course_id) references courses(course_id) 
-);
-```
-
-**Third Normal Form (3NF):**
-- Remove transitive dependencies by ensuring that non-key attributes are not dependent on other non-key attributes.
-
-```sql title="mydb/postgres@PostgreSQL 17"
-create table students (
+create table college_students (
     student_id serial primary key,
     name varchar(50)
 );
 
-create table courses (
-    course_id int primary key,
-    course_name varchar(50)
+create table college_student_courses (
+    student_id integer references students(student_id),
+    course varchar(50),
+    primary key (student_id, course)
 );
 
-create table enrollments (
-    enrollment_id serial primary key,
-    student_id int,
-    course_id int,
-    foreign key (student_id) references students(student_id),
-    foreign key (course_id) references courses(course_id)
-);
+insert into college_students (student_id, name) values 
+(66, 'Gulshan'),
+(106, 'Prince');
+
+insert into college_student_courses (student_id, course) values 
+(66, 'DBMS-G1'),
+(66, 'DAA-G1'),
+(106, 'WT-G2'),
+(106, 'DBMS-G2');
+
+-- for see the college_student_courses
+select * from college_student_courses;
 ```
+<FigureMdx lightUrl="dbms-sql-convert-first-nf" desc="Conevrted into 1 NF table fig. (students)."/>
+
+**Second Normal Form (2NF):**
+- for non-2NF
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create table college_student_courses (
+    student_id serial primary key,
+    name varchar(50),
+    course varchar(50),
+    teacher varchar(50)
+);
+
+insert into college_student_courses (name, course, teacher) values 
+('Gulshan', 'DBMS-G1', 'Ms. Shahina'),
+('Gulahan', 'DAA-G1', 'Prof. Ravinder'),
+('Prince', 'WT-G2', 'Ms. Pragya'),
+('Prince', 'DBMS-G2', 'Ms. Shahina');
+
+-- for see the college_student_courses table
+select * from college_student_courses;
+```
+<FigureMdx lightUrl="dbms-sql-non-second-nf" desc="Non-2NF table fig. (Student-courses)."/>
+
+- Remove partial dependencies by ensuring that non-key attributes are fully dependent on the primary key.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create table college_students (
+    student_id serial primary key,
+    name varchar(50)
+);
+
+create table college_student_courses (
+    student_id integer references students(student_id),
+    course varchar(50),
+    primary key (student_id, course)
+);
+
+create table college_courses (
+    course varchar(50) primary key,
+    teacher varchar(50)
+);
+
+insert into college_students (student_id, name) values 
+(66, 'Gulshan'),
+(106, 'Prince');
+
+insert into college_student_courses (student_id, course) values 
+(66, 'DBMS-G1'),
+(66, 'DAA-G1'),
+(106, 'WT-G2'),
+(106, 'DBMS-G2');
+
+insert into college_courses (course, teacher) values
+('DBMS-G1', 'Ms. Shahina'),
+('DAA-G1', 'Prof. Ravinder'),
+('WT-G2', 'Ms. Pragya'),
+('DBMS-G2', 'Ms. Shahina');
+
+-- for see the college_students table
+select * from college_students;
+-- for see the college_student_courses table
+select * from college_student_courses;
+-- for see the college_courses table
+select * from college_courses;
+```
+<FigureMdx lightUrl="dbms-sql-convert-second-nf-p1" desc="Conevrted into 2 NF table fig. (students)."/>
+<FigureMdx lightUrl="dbms-sql-convert-second-nf-p2" desc="Conevrted into 2 NF table fig. (student-courses), (course-teacher)."/>
+
+**Third Normal Form (3NF):**
+- for non-3NF
+```sql title="mydb/postgres@PostgreSQL 17"
+
+create table college_students (
+    student_id serial primary key,
+    name varchar(50),
+    branch varchar(50),
+    department_head varchar(50)
+);
+
+insert into college_students (name, branch, department_head) values 
+('Gulshan', 'CSE', 'Dr. B. Sharan'),
+('Yash', 'CSE-IT', 'Prof. Vipin');
+
+-- for see the college_students table
+select * from college_students;
+```
+<FigureMdx lightUrl="dbms-sql-non-third-nf" desc="Non-3NF table fig. (Students)"/>
+
+
+- Remove transitive dependencies by ensuring that non-key attributes are not dependent on other non-key attributes.
+
+```sql title="mydb/postgres@PostgreSQL 17"
+create table college_students (
+    student_id serial primary key,
+    name varchar(50),
+    branch varchar(50)
+);
+
+create table college_departments (
+    branch varchar(50) primary key,
+    department_head varchar(50)
+);
+
+insert into college_students (name, branch) values 
+('Gulshan', 'CSE'),
+('Yash', 'CSE-IT');
+
+insert into college_departments (branch, department_head) values 
+('CSE', 'Dr. B. Sharan'),
+('CSE-IT', 'Prof. Vipin');
+
+-- for see the college_students table
+select * from college_students;
+
+-- for see the college_departments table
+select * from college_departments;
+```
+<FigureMdx lightUrl="dbms-sql-convert-third-nf" desc="Conevrted into 3 NF table fig. (students), (branch)"/>
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
@@ -468,33 +582,33 @@ Cursor in PL/SQL is a databse object used to retrieve and manipulate multiple ro
 
 **Declare a cursor:** `student_cursor` is declared for the `select` query.
 ```sql title="mydb/postgres@PostgreSQL 17"
+create or replace function fetch_student_data() return void as $$
 declare 
-    cursor student_courses is
-        select student_id, name from students;
-```
-
-**Open the Cursor:** The cursor is opened with `open student_cursor`.
-```sql title="mydb/postgres@PostgreSQL 17"
+    student_record record;
+    student_cursor cursor for select student_id, first_name, last_name, age from students;
 begin 
+    -- open the cursor
     open student_cursor;
-```
 
-**Fetch Data from the Cursor:** The data is fetching into `v_student_id` and `v_name` one row at a time within a loop.
-```sql title="mydb/postgres@PostgreSQL 17"
-loop
-    fetch student_cursor into v_student_id, v_name;
-    exit when studnet_cursor%notfound;
-    dbms_output.put_line('student_id: ' || v_student_id ||
-     ', name: ' || v_name);
-end loop;
-```
+    -- fetch each row from the cursor 
+    loop
+        fetch student_cursor into student_record;
+        exit when not found;
+        raise notice 'Student ID: %, First Name: %, Last Name: %, Age: %',
+            student_record.student_id, student_record.first_name, student_record.last_name, student_record.age;
+    end loop;
 
-**Close the Cursor:** The cursor is closed with `close student_cursor`.
-```sql title="mydb/postgres@PostgreSQL 17"
+    -- close the cursor
     close studnet_cursor;
 end;
+$$ language plpgsql;
+
+-- execute function to see the output
+select fetch_student_data();
+
 ```
 
+<FigureMdx lightUrl="dbms-sql-cursor-lab" desc="Creating a cursor for print the student record."/>
 
 
 
@@ -511,44 +625,49 @@ end;
 
 **Creating a Procedure:** A procedure is a set of SQL and procedural statements that perform a task.
 ```sql title="mydb/postgres@PostgreSQL 17"
-create or replace procedure AddStudent (
-    p_student_id in students.student_id%type,
-    p_name in students.name%type
-) as
+create or replace procedure update_student_age (
+    p_student_id integer, new_age integer) as
+$$ 
 begin 
-    insert into students (student_id, name) values (p_student_id, p_name);
+    update students
+    set age = new_age
+    where student_id = p_student_id;
 end;
+$$ language plpgsql;
+
+-- for execute the function
+call update_student_age(66, 21);
+
+-- for see the chnages in exsiting table
+select * from students;
+
 ```
 
-**Executing the Procedure:**
-```sql title="mydb/postgres@PostgreSQL 17"
-begin
-    AddStudent(106, 'Prince Kunal');
-end;
-```
+<FigureMdx lightUrl="dbms-sql-procedure-update-fn" desc="Updating the age in students table with the procedure."/>
+
 
 **Creating a Function:** A function is a set of SQL and procedural statements that perform a task and return a value.
 ```sql title="mydb/postgres@PostgreSQL 17"
-create or replace function GetStudentName (
-    p_student_id in students.student_id%type
-) return students.name%type as
-    v_name students.name%type;
-begin
-    select name into v_name from students where student_id = p_student_id;
-    return v_name;
-end;
-```
-
-**Executing the Function:** 
-```sql title="mydb/postgres@PostgreSQL 17"
+create or replace function get_student_name (
+    f_student_id integer) returns varchar
+language plpgsql
+as $$
 declare
-    v_name students.name%type;
+    student_name varchar;
 begin
-    v_name := GetStudentName(106);
-    dbms_output.put_line('Student Name: ' || v_name);
+    select concat(s.first_name, ' ', s.last_name) into student_name
+    from students s where s.student_id = f_student_id;
+    return student_name;
 end;
+$$;
+
+-- for executing the function
+select get_student_name(106);
+
+select get_student_name(66);
 ```
 
+<FigureMdx lightUrl="dbms-sql-function-get-fn" desc="Get the student from the students table with the function."/>
 
 
 
@@ -564,44 +683,96 @@ end;
 - **Package Body:** Defines the code for the subprograms declared in the Specification.
 
 ```sql title="mydb/postgres@PostgreSQL 17"
-create or replace package student_package is
-    procedure AddStrudent(p_student_id in students.student_id%type, 
-        p_name in students.name%type);
-    procedure GetStudentName(p_student_id in students.student_id%type) 
-        return students.name%type; 
-end student_package;
+-- create a schema
+create schema student_pkg;
 
-create or replace package body student_package is
-    procedure AddStrudent(p_student_id in students.student_id%type, 
-        p_name in students.name%type) is
-    begin
-        insert into students(student_id, name) values 
-        (p_student_id, p_name);
-    end;
+-- create functions in the schema
+-- function to add a student
+create or replace function student_pkg.add_student(
+    p_student_id integer,
+    p_first_name varchar,
+    p_last_name varchar,
+    p_age integer
+) 
+returns void as
+$$
+begin 
+    insert into students(student_id, first_name, last_name, age) values
+    (p_student_id, p_first_name, p_last_name, p_age);
+end;
+$$ language plpgsql;
 
-    function GetStudentName(p_student_id in students.student_id%type) 
-        return students.name%type is
-            v_name students.name%type;
-    begin
-        select name into v_name from students where student_id = p_student_id;
-        return v_name;
-    end;
-end student_package;
+-- function to get a student's name
+create or replace function student_pkg.get_student_name(
+    p_student_id integer
+)
+returns varchar as
+$$
+declare
+    v_name varchar;
+begin
+    select concat(s.first_name, ' ', s.last_name) into v_name from students s where student_id = p_student_id;
+    return v_name;
+end;
+$$ language plpgsql;
+
+-- add new student in students table using function
+select student_pkg.add_student(93, 'Mukesh', 'Kumar', 19);
+select * from students;
+
+-- for extracting the name with student_id
+select student_pkg.get_student_name(70);
+select student_pkg.get_student_name(103);
+
 ```
+
+<FigureMdx lightUrl="dbms-sql-package-add-fn" desc="Add the data in existing table with the package function."/>
+
+<FigureMdx lightUrl="dbms-sql-package-get-fn" desc="Get the name from db with the package function."/>
 
 **Creating a trigger:**
 
 A **trigger** is a stored procedure that automatically executes when certain events occur in the database, such as `insert`, `update`, or `delete`.
 - The **trigger** `BeforeInsertStudent` is defined to execute before an `insert` operation on the `students` table.
 - The **trigger body** checks a record into the `students` table, `new.student_id` is null or not. If null then return `raise_application_error`.
+
 ```sql title="mydb/postgres@PostgreSQL 17"
-create or replace trigger BeforeInsertStudent before insert on students
-for each row
+-- create student_change_log table
+create table student_changes_log (
+    change_id serial primary key,
+    student_id integer,
+    old_age integer,
+    new_age integer,
+    change_date timestamp default current_timestamp
+);
+
+-- defining the trigger's function
+create or replace function log_major_change() returns trigger as $$
 begin
-    if: new.student_id is null then
-        raise_application_error(-20001, 'Studnet ID cannot be null');
+    if old.age is distinct from new.age then
+        insert into student_changes_log (student_id, old_age, new_age)
+        values (old.student_id, old.age, new.age);
     end if;
+    return new;
 end;
+$$ language plpgsql;
+
+-- create trigger to the function log_major_change()
+create trigger after_major_update
+after update on students
+for each row
+execute function log_major_change();
+
+-- update the students table with change_date 
+update students get age = 21 where student_id = 80;
+
+-- see the changes items
+select * from student_changes_log;
+
 ```
+
+<FigureMdx lightUrl="dbms-sql-trigger-on-changes" desc="After changes on students table creating a student_changes_log table."/>
+
+
 <p style={{textAlign: "center", fontSize: "2em"}}>&squ; &squ; &squ;</p>
 
