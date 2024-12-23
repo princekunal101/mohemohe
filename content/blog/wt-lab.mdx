@@ -2,7 +2,7 @@
 title: Web Technology Lab
 description: Web Technology lab
 publishedDate: 2024-10-25
-updatedDate: 2024-10-25
+updatedDate: 2024-12-23
 published: true
 tags: ["WT", "aktu", "b-tech", "CSE", "lab"]
 
@@ -888,22 +888,22 @@ console.log(chalk.green.bold('Generated Password: ') + chalk.yellow.bold(passwor
 
 ```json title="package.json" showLineNumbers
 {
-  "name": "lab-7",
+    "name": "lab-7",
   "version": "1.0.0",
   "main": "index.mjs",
   "scripts": {
-    "start": "node index.mjs",
+      "start": "node index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "generate-password": "index.mjs"
+      "generate-password": "index.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "chalk": "^5.4.1",
+      "chalk": "^5.4.1",
     "commander": "^12.1.0"
   }
 }
@@ -925,25 +925,700 @@ Generated Password: &:jKlaM^jEkY#:D;
 For instance, aggregate user data to find the average age of users in different cities 
 </Callout>
 
+**Theory:**
 
+MongoDB's aggregation framework is a powerful tool for performing and analysis directly within the database. 
+It allows for the transformation and computation of data using a pipeline of stages, each performing a specific operation on the data.
 
+- **Aggrigation Pipeline:** An aggrigation pipeline consists of multiple stages, each performing a specific operation on the input data. 
+The stages are processed sequentially, with the output of one stage being passed as input to the next stage.
+- **`$match`:** Filters the documents based on the specified condition.
+- **`$group`:** Groups the documents by a specified indentifer and can perform various operations on the grouped data, such as calculating the average, sum, or count.
+- **`$avg`:** Calculates the average value of the specified field across all the documents in the group.
+- **`$sort`:** Sorts the documents based on the specified field and order.
+
+initialize a new Node.js project and install the required dependencies.
+
+```bash title="bash"
+npm init -y
+```
+
+```bash title="bash"
+npm install express mongodb
+```
+- initialize a node.js project and create a new file `index.js`.
+- initiate a new MongoDB client and connect to the MongoDB server.
+
+```js title="index.js" showLineNumbers
+const express = require('express');
+const { MongoClient } = require('mongodb');
+
+const app = express();
+const port = 3000;
+
+app.use(express.json()); // Middleware to parse JSON request bodies
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+
+})
+
+const uri = 'mongodb://localhost:27017';
+const client = new MongoClient(uri);
+
+app.post('/addUser', async (req, res) => {
+    try {
+        await client.connect();
+        const database = client.db('userDatabase');
+        const collection = database.collection('users');
+
+        const user = req.body; // Get user data from request body
+        await collection.insertMany(user);
+        console.log('User inserted successfully');
+
+        res.status(201).send('User added successfully');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error adding user');
+    } finally {
+        await client.close();
+    }
+});
+
+app.get('/aggrigate', async (req, res) => {
+    try {
+        await client.connect();
+        // Create or use userDatabase database
+        const database = client.db('userDatabase');
+        // Create or use users collection
+        const collection = database.collection('users');
+
+        // Aggregation pipeline to calculate the average age of users in different cities
+        const aggregationPipepline = [
+            // Use $avg to calculate the average age
+            { $group: { _id: "$city", averageAge: { $avg: "$age" } } },
+            { $sort: { averageAge: -1 } }
+        ];
+
+        // Perform aggregation
+        const results = await collection.aggregate(aggregationPipepline).toArray();
+
+        // Log the results
+        console.log(`Average age of users in different cities: `);
+        results.forEach(result => {
+            console.log(`City: ${result._id}, Average Age: ${result.averageAge}`);
+
+        });
+        res.json(results);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error performing aggrigation');
+    } finally {
+        await client.close();
+    }
+});
+
+```
+
+**Inserting Data:** Inserting JSON data using Postman. on `localhost:3000/aggregate` with `POST` method.
+<FigureMdx lightUrl="wt-lab-8-postman-insert-data" desc="Inserting the JSON data using postman."/>
+
+**Data in Database:** Data inserted in MongoDB userDatabase users collection.
+<FigureMdx lightUrl="wt-lab-8-mongodb-data" desc="MongoDB userDatabase users in JSON formate."/>
+
+```bash title="Output"
+User inserted successfully
+Average age of users in different cities: 
+City: Patna, Average Age: 21.6
+City: Grater Noida, Average Age: 20.6
+City: Bhopal, Average Age: 20.5
+City: Begaluru, Average Age: 20
+City: Darbhanga, Average Age: 19
+```
+<FigureMdx lightUrl="wt-lab-8-aggrigate-data" desc="Aggrigate data output at http://localhost:3000/aggrigate"/>
 
 
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
 <Callout type="knowing">
-**Objective:** Assume four users user1, user2, user3 and user4 having the passwords pwd1, pwd2, pwd3 and pwd4 respectively. Write a servlet for doing the following. 
-- (i) Create a Cookie and add these four user id&apos;s and passwords to this Cookie. 
-- (ii) Read the user id and passwords entered in the Login form and authenticate with the values available in the cookies.
+**Objective:**  Create a table which should contain at least the following fields: `name`, `password`, `email-id`, `phone number` Write 
+Servlet/JSP to connect to that database and extract data from the tables and display them. Insert the details of the users 
+who register with the web site, whenever a new user clicks the submit button in the registration page
 </Callout>
 
+**Theory:**
+
+**JSP:** JavaServer Pages (JSP) is a technology that helps software developers create dynamically generated web pages based on HTML, XML, or other document types.
+
+**Servlet:** A servlet is a Java programming language class that is used to extend the capabilities of servers that host applications accessed by means of a request-response programming model.
+
+Create table `users` in the database `userdb` with the following fields: `name`, `password`, `email`, `phone`.
+```sql title="userdb.sql"
+create table users (
+    id serial primary key,
+    name varchar(50) not null,
+    password varchar(50) not null,
+    email varchar(50) not null,
+    phone varchar(15) not null
+);
+```
+
+Create a new project in Eclipse IDE and add the following files.
+
+```html title="src/main/webapp/index.jsp"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <a href="jsp/register.jsp">Register</a><br>
+    <a href="<%= request.getContextPath() %>/ViewUsersServlet">View Users</a>
+</body>
+</html>
+```
+<FigureMdx lightUrl="wt-lab-9-index-page-jsp" desc="Home page or landing page with index.jsp output."/>
+
+
+```html title="src/main/webapp/register.jsp"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form method="post" action="<%= request.getContextPath() %>/RegisterServlet">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="email_id">Email ID:</label>
+        <input type="email" id="email_id" name="email_id" required><br><br>
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" required><br><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+
+</html>
+```
+<FigureMdx lightUrl="wt-lab-9-register-page-jsp" desc="Registration form for new user with register.jsp output."/>
+
+
+```html title="src/main/webapp/view_users.jsp"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List, com.example.User" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Users</title>
+</head>
+
+<body>
+    <h1>Registered Users</h1>
+    <% List<User> users = (List<User>) request.getAttribute("users");
+    if (users != null && !users.isEmpty()) {
+    out.println("<table border='1'>");
+        out.println("<tr>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Email ID</th>
+            <th>Phone Number</th>
+        </tr>");
+        for (User user : users) {
+        out.println("<tr>
+            <td>" + user.getName() + "</td>
+            <td>" + user.getPassword() + "</td>
+            <td>" + user.getEmailId() + "</td>
+            <td>" + user.getPhoneNumber() + "</td>
+        </tr>");
+        }
+        out.println("</table>");
+    } else {
+    out.println("<p>No users registered.</p>");
+    }
+    %>
+</body>
+
+</html>
+```
+
+
+```java title="java/example/User.java"
+package com.example;
+
+public class User {
+
+    private String name;
+    private String password;
+    private String emailId;
+    private String phoneNumber;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+}
+```
+
+```java title="java/example/RegisterServlet.java"
+package com.example;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String email_id = request.getParameter("email_id");
+        String phone_number = request.getParameter("phone_number");
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/yourdbname", "yourUsername", "yourPassword");
+
+            String sql = "INSERT INTO users (name, password, email_id, phone_number) VALUES (?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setString(2, password);
+            pstmt.setString(3, email_id);
+            pstmt.setString(4, phone_number);
+            pstmt.executeUpdate();
+
+            response.getWriter().println("User registered successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+```java title="java/example/ViewUsersServlet.java"
+package com.example;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/ViewUsersServlet")
+public class ViewUsersServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<User> users = new ArrayList<>();
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/yourdbname", "yourUsername", "yourPassword");
+
+            String sql = "SELECT name, password, email_id, phone_number FROM users";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setName(rs.getString("name"));
+                user.setPassword(rs.getString("password"));
+                user.setEmailId(rs.getString("email_id"));
+                user.setPhoneNumber(rs.getString("phone_number"));
+                users.add(user);
+            }
+
+            request.setAttribute("users", users);
+            request.getRequestDispatcher("/jsp/viewUsers.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+```xml title="main/webapp/WEB-INF/web.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+    https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+    id="WebApp_ID"
+    version="6.0">
+
+    <display-name>User Management Example</display-name>
+
+    <!-- RegisterServlet Configuration -->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.example.RegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- ViewUsersServlet Configuration -->
+    <servlet>
+        <servlet-name>ViewUsersServlet</servlet-name>
+        <servlet-class>com.example.ViewUsersServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ViewUsersServlet</servlet-name>
+        <url-pattern>/ViewUsersServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+```
+
+- `index.jsp`: Home page with links to register and view users.
+- `register.jsp`: Registration form for users to register with the website.
+- `view_users.jsp`: Display the details of the registered users.
+- `User.java`: User class with fields
+- `RegisterServlet.java`: Servlet to insert user details into the database.
+- `ViewUsersServlet.java`: Servlet to retrieve user details from the database and display them.
+- `web.xml`: Configuration file for servlets.
+- `userdb.sql`: SQL script to create the users table in the database.
+
+
+
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-10" >**Experiment 10**</Callout>
-<Callout type="knowing">**Objective:** Next Upcomming practicals.... </Callout>
+<Callout type="knowing">
+**Objective:** Write a JSP which insert the details of the 3 or 4 users who register with the web site by using registration form. 
+Authenticate the user when he submits the login form using the user name and password from the database. 
+</Callout>
 
 
+**Theory:**
+
+**JavaServer Pages** (JSP) is a technology used for creating dynamic web content. 
+It allows embedding Java code directly into HTML pages. 
+JSPs are primarily used for presenting data and collecting user input through forms.
+- Embeds Java code within HTML using special tages.
+- Facilitates the creation of dynamic, server-side web applicants.
+- Integrates seamlessly with Java servlets.
+
+Java Servlets are server-side Java components that handle client requests and generate responses. 
+They run within a servlet container, such as Apache Tomcat, and are used to process or store data submitted from web forms, manage session state, control application flow, etc.
+- Process client requests (HTTP GET, POST).
+- Generate dynamic content.
+- Interact with databases and other backend services.
+- Maintain session management.
 
 
+Create a new dynamic web project in Eclipse IDE and add the following files to the project. 
+This will automatically create the all required files and folders in the project.
 
-<p style={{textAlign: "center", fontSize: "2em"}}>&squ; &squ; &squ;</p>
+```html title="src/main/webapp/register.jsp"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.Connection, java.sql.DriverManager, java.sql.PreparedStatement, java.sql.SQLException" %>
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form method="post" action="<%= request.getContextPath() %>/RegisterServlet">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
+```
+<FigureMdx lightUrl="wt-lab-10-registration-jsp" desc="Registration form with register.jsp output."/>
+
+```html title="src/main/webapp/login.jsp"
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.Connection, java.sql.DriverManager, java.sql.PreparedStatement, 
+    java.sql.ResultSet, java.sql.SQLException" %>
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <form method="post" action="<%= request.getContextPath() %>/LoginServlet">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+```
+<FigureMdx lightUrl="wt-lab-10-login-jsp" desc="Login form with login.jsp output."/>
+
+```java title="java/example/RegisterServlet.java"
+package com.example;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdb", 
+            "postgres", "1234567");
+
+            String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            pstmt.setString(3, email);
+            pstmt.executeUpdate();
+
+            response.getWriter().println("User registered successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+```java title="java/example/LoginServlet.java"
+package com.example;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdb", 
+            "postgres", "1234567");
+
+            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                response.getWriter().println("User authenticated successfully!");
+            } else {
+                response.getWriter().println("Invalid username or password.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+```
+
+```xml title="main/webapp/WEB-INF/web.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+    https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+    id="WebApp_ID"
+    version="6.0">
+
+    <display-name>User Registration and Login</display-name>
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.example.RegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.example.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
+```
+
+- `register.jsp`: Handles user registration.
+- `login.jsp`: Handles user login.
+- `RegisterServlet.java`: Processes registration from submission.
+- `LoginServlet.java`: Processes login form submission.
+- `web.xml`: Servlet mapping configuration.
+
+
+<p style={{textAlign: "center", fontSize: "2em", breakAfter: "page"}}>&squ; &squ; &squ;</p>
 
