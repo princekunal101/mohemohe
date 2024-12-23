@@ -12,6 +12,13 @@ tags: ["WT", "aktu", "b-tech", "CSE", "lab"]
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
 - [Experiment 3](#experiment-3)
+- [Experiment 4](#experiment-4)
+- [Experiment 5](#experiment-5)
+- [Experiment 6](#experiment-6)
+- [Experiment 7](#experiment-7)
+- [Experiment 8](#experiment-8)
+- [Experiment 9](#experiment-9)
+- [Experiment 10](#experiment-10)
 
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-1" >**Experiment 1**</Callout>
@@ -226,4 +233,717 @@ tags: ["WT", "aktu", "b-tech", "CSE", "lab"]
 <FigureMdx lightUrl="wt-website-lab-p3" desc="College Registration form in HTML, output."/>
 
 <Callout type="warning" txCenter="true" breakBefore="true" id="experiment-3" >**Experiment 3**</Callout>
+<Callout type="knowing">**Objective:** Develop a responsive website using CSS and HTML. website may be for tutorial/blogs/comertial website. </Callout>
+
+```html title="index.html" 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Tutorial Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1><a href="#">Learn Coding</a></h1>
+        <nav>
+            <ul class="dp-view">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tutorials</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <a href="#" class="btn">Learn</a>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('header nav .dp-view');
+            menu.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <section class="content">
+            <h2>Welcome to the Tutorial Site</h2>
+            <p>Start your coding journey with our easy-to-follow tutorials!</p>
+        </section>
+        <section class="tutorial">
+            <h2>Featured Tutorial: HTML Basics</h2>
+            <p>This tutorial covers the basics of HTML, the foundation of web development.</p>
+            <a href="#" class="btn">Read More</a>
+        </section>
+        <section class="tutorial">
+            <h2>Featured Tutorial: CSS Advance</h2>
+            <p>This tutorial covers the basics of CSS, the designing of web development.</p>
+            <a href="#" class="btn">Read More</a>
+        </section>
+        <section class="tutorial">
+            <h2>Featured Tutorial: JS Basics</h2>
+            <p>This tutorial covers the basics of JS, the functionlaity of web development.</p>
+            <a href="#" class="btn">Read More</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Learn Coding. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
+```
+
+Style sheet for the above code is as follows:
+
+```css title="styles.css"
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set up the main layout */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    background: #333;
+    width: 100%;
+    color: #fff;
+    padding: 0 26px;
+    text-align: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin-bottom: 12px;
+}
+
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header h1 a:hover {
+    color: #ffffffab;
+    text-decoration: none;
+}
+
+header nav {
+    display: flex;
+    padding: 0px;
+    align-items: center;
+}
+
+header nav .dp-view {
+    width : 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0 8px;
+}
+
+header nav .dp-view li {
+    display: block;
+    margin: 0.7rem 0;
+}
+
+header nav .dp-view li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav .dp-view li a:hover {
+    color: #ffffffab;
+}
+
+header .btn {
+    display: inline-block;
+    height: min-content;
+    padding: 0.3rem 1rem;
+    color: #333;
+    font-weight: 700;
+    background: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+header .btn:hover {
+    opacity: 0.8;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+header nav #nav-list {
+    display: none;
+}
+
+
+main {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .content,
+main .tutorial {
+    width: 80%;
+    background: #f4f4f4;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+main .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+main .btn:hover {
+    opacity: 0.8;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 1rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    
+    main .content,
+    main .tutorial {
+        width: 100%;
+    }
+
+    header nav .dp-view {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header nav .dp-view.active {
+        display: flex;
+        margin-right: 3rem;
+        background: #333;
+
+    }
+
+    header .menu-icon {
+        display: block;
+    }
+}
+
+```
+
+**Output:**
+<FigureMdx lightUrl="wt-lab-3-website-phone" desc="Responsive Website using CSS and HTML for phone."/>
+<FigureMdx lightUrl="wt-lab-3-website-desktop" desc="Responsive Website using CSS and HTML for desktop."/>
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-4" >**Experiment 4**</Callout>
+<Callout type="knowing">**Objective:** Write programs using HTML and JavaScript for validation of input. </Callout>
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="form" method="get" action="/">
+            <h1>Registration</h1>
+            <div class="input-control">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" placeholder="Enter your username">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input id="email" name="username" type="text" placeholder="Enter your e-mail">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Enter a new password">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="password">Confirm Password</label>
+                <input id="password2" name="password" type="password" placeholder="Re-enter your password">
+                <div class="error"></div>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+```
+
+```css title="styles.css"
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    background: linear-gradient(to right,  #ffababac, #cab0ffac, #ffadffac);
+    font-family: 'Poppins', sans-serif;
+}
+
+#form {
+    position: relative;
+    width: 300px;
+    margin: 20vh auto 0 auto;
+    padding: 32px 16px 30px;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+#form h1 {
+    color: #0f2027;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#form button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: rgb(41, 57, 194);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#form button:hover {
+    opacity: 0.9;
+}
+
+.input-control {
+    display: block;
+    width: 100%;
+
+}
+
+.input-control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: flex;
+    font-size: 0.9rem;
+    padding: 0 8px;
+    width: 100%;
+    height: 48px;
+
+}
+
+.input-control input:focus {
+    outline: 0;
+}
+
+.input-control.success input {
+    border-color: #09c372;
+}
+
+.input-control.error input {
+    border-color: #ff3860;
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+```
+
+```js title="script.js"
+const form = document.getElementById('form');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const password2 = document.getElementById('password2');
+
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    validateInputs();
+});
+
+const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success');
+}
+
+const setSuccess = (element) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+const isValidEmail = email => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+const validateInputs = () => {
+    const usernameValue = username.value.trim();
+    const emailValue = email.value.trim();
+    const passwordValue = password.value.trim();
+    const password2Value = password2.value.trim();
+
+    if (usernameValue === '') {
+        setError(username, 'Username is required');
+    } else {
+        setSuccess(username);
+    }
+
+    if (emailValue === '') {
+        setError(email, 'Email is required');
+    } else if (!isValidEmail(emailValue)) {
+        setError(email, 'Provide a valid email address');
+    } else {
+        setSuccess(email);
+    }
+
+    if (passwordValue === '') {
+        setError(password, 'Password is required');
+    } else if (passwordValue.length < 8) {
+        setError(password, 'Password must be at least 8 character.')
+    } else {
+        setSuccess(password);
+    }
+
+    if (password2Value === '') {
+        setError(password2, 'Please confirm your password');
+    } else if (password2Value !== passwordValue) {
+        setError(password2, "Password doesn't match");
+    } else {
+        setSuccess(password2);
+    }
+}
+```
+
+**Output:**
+<FigureMdx lightUrl="wt-lab-4-website-form-validation-p1" desc="Registration form validate the input using JavaScript. empty, error."/>
+<FigureMdx lightUrl="wt-lab-4-website-form-validation-p2" desc="Registration form validate the input using JavaScript. error, correct."/>
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-5" >**Experiment 5**</Callout>
+<Callout type="knowing">**Objective:** Writing program in XML for creation of DTD, which specifies set of rules. </Callout>
+
+**Theory:**
+
+An XML document with correct syntax is called *Well Formed*. 
+An XML document validated against a DTD is both *Well Formed* and *Valid*.
+
+A *Valid* XML document is a *Well Formed* XML document, which also conforms to the rules of a DTD&mdash;
+- DTD declaration either internal XML document or make external DTD file, after linked to a XML document. 
+- Internal DTD You can write rules inside XML document using `<!DOCTYPE ... >` declaration. Scope of this DTD within this document.
+Advantages is document validated by itself without external reference. 
+- External DTD You can write rules in a separate file with `.dtd` extension. 
+later this file linked to a XML document. This way you can linked several XML documents refer same DTD rules.
+
+**Example:**
+
+```xml title="lab_file.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE lab_file SYSTEM "lab_file.dtd">
+<lab_file>
+    <title>Introduction to HTML</title>
+    <author>Prince Kunal</author>
+    <date>2024-12-22</date>
+    <description>This lab covers the basics of HTML, including elements, attributes, 
+    and structure.
+    </description>
+    <steps>
+        <step>Open a text editor and create a new HTML file.</step>
+        <step>Write the basic HTML structure with doctype, html, head, and body tags.</step>
+        <step>Add a title to the head section.</step>
+        <step>Write some content inside the body section.</step>
+    </steps>
+</lab_file>
+
+```
+
+```xml title="lab_file.dtd"
+<!ELEMENT lab_file (title, author, date, description, steps)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT steps (step+)>
+<!ELEMENT step (#PCDATA)>
+```
+
+**Validate the XML Document:**
+
+There are several online XML validator available that can be used to validate XML documents against a DTD.
+- Visit an online XML validator
+- Upload or paste XML and DTD file code.
+- Click on the validate button.
+
+<FigureMdx lightUrl="wt-lab-5-xml-valid" desc="Online validating the XML document as DTD rule set."/>
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-6" >**Experiment 6**</Callout>
+<Callout type="knowing">**Objective:** Create a style sheet in CSS/XSL & display the document in internet explorer. </Callout>
+
+
+```xml title="data.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="style.xsl"?>
+<document>
+    <header>
+        <title>Welcome to My XSL Styled Document</title>
+    </header>
+    <main>
+        <section>
+            <heading>Introduction</heading>
+            <content>This is a sample document to demonstrate XSL styling.</content>
+        </section>
+        <section>
+            <heading>Content</heading>
+            <content>Here is some more content to style using XSL.</content>
+        </section>
+    </main>
+    <footer>
+        <text>© 2024 Sample Website</text>
+    </footer>
+</document>
+```
+
+```xml title="style.xsl"
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>
+					<xsl:value-of select="document/header/title" />
+				</title>
+				<style>
+					body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
+					}
+					header { background-color: #333; color: #fff; padding: 10px; text-align: center;
+					}
+					main { margin-top: 20px; }
+					section { background-color: #fff; margin-bottom: 20px; padding: 15px;
+					border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+					footer { background-color: #333; color: #fff; padding: 10px; text-align: center;
+		margin-top: 20px; }
+				</style>
+			</head>
+			<body>
+				<header>
+					<h1>
+						<xsl:value-of select="document/header/title" />
+					</h1>
+				</header>
+				<main>
+					<xsl:for-each select="document/main/section">
+						<section>
+							<h2>
+								<xsl:value-of select="heading" />
+							</h2>
+							<p>
+								<xsl:value-of select="content" />
+							</p>
+						</section>
+					</xsl:for-each>
+				</main>
+				<footer>
+					<p>
+						<xsl:value-of select="document/footer/text" />
+					</p>
+				</footer>
+			</body>
+		</html>
+	</xsl:template>
+</xsl:stylesheet>
+```
+
+Change default edge browser to internet explorer and open the `data.xml` file. You will see the document styled using the `style.xsl` file.
+
+<Callout> 
+if not appling the css property in output then install `http-server` package in your vs code and run the server using `http-server` command in the terminal.
+</Callout>
+
+**Output:**
+<FigureMdx lightUrl="wt-lab-6-xml-website" desc="A Simple and basic website using XML and XSL, output."/>
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-7" >**Experiment 7**</Callout>
+<Callout type="knowing">
+**Objective:**  Build a command-line utility using Node.js that performs a specific task, such as converting text to uppercase, calculating the factorial of a number, or generating random passwords.  
+</Callout>
+
+**Theory:**
+
+A random password Generator is a tool that generates a random password based on the user's requirements. 
+The user can specify the length of the password and whether it should include uppercase letters, lowercase letters, numbers, and symbols. 
+The password generator uses a set of characters to generate a random password of the specified length.
+
+Create a folder for the project and initialize a new Node.js project using the following commands:
+```bash title="bash"
+npm init -y
+```
+
+```bash title="bash"
+npm install commander chalk
+```
+**File Structure:**
+<FigureMdx lightUrl="wt-lab-7-nodejs-file-structure" desc="File Structure of Node JS."/>
+
+Create `index.mjs` file and add the following code.
+
+```js title="index.mjs" showLineNumbers
+import { Command } from 'commander';
+import chalk from 'chalk';
+
+const generatePassword = (length, options) => {
+    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numbers = '0123456789';
+    const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+    let characters = lowercase;
+    // Corrected typo in 'characters'
+    if (options.uppercase) characters += uppercase;
+    if (options.numbers) characters += numbers;
+    if (options.symbols) characters += symbols;
+
+    let password = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters[randomIndex];
+    }
+    return password;
+}
+
+const program = new Command();
+program
+    .version('1.0.0')
+    .description('Random Password Generator')
+    .option('-l, --length <number>', 'length of the password', '12')
+    .option('-n, --numbers', 'include numbers', false)
+    .option('-s, --symbols', 'include symbols', false)
+    .option('-u, --uppercase', 'include uppercase letters', false)
+    .parse(process.argv);
+
+const options = program.opts();
+const length = parseInt(options.length);
+// Added check for NaN
+if (isNaN(length) || length <= 0) {
+    console.error(chalk.red.bold('Error: Length must be a positive number.'));
+    process.exit(1);
+}
+const password = generatePassword(length, options);
+
+console.log(chalk.green.bold('Generated Password: ') + chalk.yellow.bold(password));
+```
+
+```json title="package.json" showLineNumbers
+{
+  "name": "lab-7",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "generate-password": "index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0"
+  }
+}
+```
+**Output:**
+```bash title="bash"
+node index.mjs --length 0
+Error: Length must be a positive number.
+```
+
+```bash title="bash"
+node index.mjs --length 16 --numbers --symbols --uppercase
+Generated Password: &:jKlaM^jEkY#:D;
+```
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-8" >**Experiment 8**</Callout>
+<Callout type="knowing">
+**Objective:** Develop a script that uses MongoDB&apos;s aggregation framework to perform operations like grouping, filtering, and sorting. 
+For instance, aggregate user data to find the average age of users in different cities 
+</Callout>
+
+
+
+
+
+
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-9" >**Experiment 9**</Callout>
+<Callout type="knowing">
+**Objective:** Assume four users user1, user2, user3 and user4 having the passwords pwd1, pwd2, pwd3 and pwd4 respectively. Write a servlet for doing the following. 
+- (i) Create a Cookie and add these four user id&apos;s and passwords to this Cookie. 
+- (ii) Read the user id and passwords entered in the Login form and authenticate with the values available in the cookies.
+</Callout>
+
+<Callout type="warning" txCenter="true" breakBefore="true" id="experiment-10" >**Experiment 10**</Callout>
 <Callout type="knowing">**Objective:** Next Upcomming practicals.... </Callout>
+
+
+
+
+
+<p style={{textAlign: "center", fontSize: "2em"}}>&squ; &squ; &squ;</p>
+
